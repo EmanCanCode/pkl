@@ -1,77 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PKL.CLUB | Home</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 
-<head>
-  <meta charset="utf-8" />
-  <title>PKL.CLUB | Home</title>
-  <!-- Stylesheets -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+    <!-- Google Fonts for PKL.CLUB -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts for PKL.CLUB -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
-    rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
 
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Responsive -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Custom CSS to prevent text breaking -->
+    <style>
+      /* Prevent awkward word breaks */
+      .title,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .btn-text,
+      .header-theme-btn,
+      .sub-title,
+      .step,
+      .nav-link,
+      .navigation > li > a {
+        word-break: keep-all;
+        overflow-wrap: normal;
+        hyphens: none;
+      }
 
-</head>
+      /* Specific fixes for buttons and short text */
+      .btn-style-one .header-theme-btn,
+      .shape-btn-main .btn-text,
+      .header-btn-main .btn-text {
+        white-space: nowrap;
+      }
 
-<body>
-  <div class="page-wrapper">
+      /* Fun facts section - improved layout */
+      .funfact-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 20px !important;
+      }
+      .funfact-item .icon {
+        flex-shrink: 0 !important;
+        width: 70px !important;
+        min-width: 70px !important;
+      }
+      .funfact-item .count-box {
+        flex-shrink: 0 !important;
+        min-width: 100px !important;
+        width: auto !important;
+      }
+      .funfact-item .title {
+        flex: 1 !important;
+        margin: 0 !important;
+      }
 
-    <!-- Preloader start -->
-    <div class="preloader">
-      <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
-        <path id="preloaderSvg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
-      </svg>
-      <div class="preloader-heading">
-        <div class="load-text">
-          <span>L</span>
-          <span>o</span>
-          <span>a</span>
-          <span>d</span>
-          <span>i</span>
-          <span>n</span>
-          <span>g</span>
+      /* Ensure count numbers don't break */
+      .count-box,
+      .count-text {
+        white-space: nowrap !important;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 991px) {
+        .funfact-item {
+          flex-wrap: nowrap !important;
+        }
+        .funfact-item .icon {
+          width: 50px !important;
+          min-width: 50px !important;
+        }
+        .funfact-item .count-box {
+          min-width: 80px !important;
+        }
+      }
+
+      @media (max-width: 575px) {
+        .funfact-item {
+          flex-direction: row !important;
+          gap: 15px !important;
+        }
+        .funfact-item .icon {
+          width: 45px !important;
+          min-width: 45px !important;
+        }
+        .funfact-item .icon img {
+          max-width: 100% !important;
+        }
+        .funfact-item .count-box {
+          min-width: 70px !important;
+          font-size: 28px !important;
+        }
+        .funfact-item .title {
+          font-size: 14px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!-- Preloader start -->
+      <div class="preloader">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <path
+            id="preloaderSvg"
+            d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"
+          ></path>
+        </svg>
+        <div class="preloader-heading">
+          <div class="load-text">
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Preloader end -->
+      <!-- Preloader end -->
 
-    <!-- Back-to-top start -->
-    <div class="back-to-top-wrapper">
-      <button id="back_to_top" type="button" class="back-to-top-btn">
-        <i class="fa-solid fa-angle-up"></i>
-      </button>
-    </div>
-    <!-- Back-to-top start -->
+      <!-- Back-to-top start -->
+      <div class="back-to-top-wrapper">
+        <button id="back_to_top" type="button" class="back-to-top-btn">
+          <i class="fa-solid fa-angle-up"></i>
+        </button>
+      </div>
+      <!-- Back-to-top start -->
 
-    <!-- Main Header-->
-    <header class="main-header header-style-one">
-      <div class="container">
-        <div class="header-lower">
-          <div class="inner-container">
-            <!-- Main box -->
-            <div class="main-box">
-              <div class="logo-box">
-                <div class="logo">
-                  <a href="index.html"><img src="images/logo.png?v=2" alt="Logo" /></a>
+      <!-- Main Header-->
+      <header class="main-header header-style-one">
+        <div class="container">
+          <div class="header-lower">
+            <div class="inner-container">
+              <!-- Main box -->
+              <div class="main-box">
+                <div class="logo-box">
+                  <div class="logo">
+                    <a href="index.html"
+                      ><img src="images/logo.png?v=2" alt="Logo"
+                    /></a>
+                  </div>
                 </div>
-              </div>
 
-              <!--Nav Box-->
-              <div class="nav-outer">
-                <nav class="nav main-menu">
-                  <ul class="navigation">
-                    <!-- <li class="current dropdown">
+                <!--Nav Box-->
+                <div class="nav-outer">
+                  <nav class="nav main-menu">
+                    <ul class="navigation">
+                      <!-- <li class="current dropdown">
                     <a href="index.html">Home</a>
                     <ul>
                       <li><a href="index.html">Task Management SaaS</a></li>
@@ -80,7 +174,7 @@
                       <li><a href="index-4-automation-saas.html">Automation SaaS</a></li>
                     </ul>
                   </li> -->
-                    <!-- <li class="dropdown">
+                      <!-- <li class="dropdown">
                     <a href="#">Pages</a>
                     <ul>
                       <li><a href="page-about.html">About</a></li>
@@ -107,7 +201,7 @@
                       <li><a href="page-404.html">Page 404</a></li>
                     </ul>
                   </li> -->
-                    <!-- <li class="dropdown">
+                      <!-- <li class="dropdown">
                     <a href="#">Service</a>
                     <ul>
                       <li><a href="page-services.html">Services List</a></li>
@@ -128,258 +222,225 @@
                       <li><a href="blog-details.html">Blog Details</a></li>
                     </ul>
                   </li> -->
-                    <li><a href="world-series.html">World Series</a></li>
-                    <li><a href="players.html">Players</a></li>
-                    <li><a href="operators.html">Operators</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                    <li class="dropdown">
-                      <a href="#">Shop</a>
-                      <ul>
-                        <li><a href="#">Membership</a></li>
-                        <li><a href="#">Profile Image</a></li>
-                        <li><a href="#">Merchandise</a></li>
-                        <li><a href="#">Equipment</a></li>
+                      <li><a href="world-series.html">World Series</a></li>
+                      <li><a href="players.html">Players</a></li>
+                      <li><a href="operators.html">Operators</a></li>
+                      <li><a href="sponsors.html">Sponsors</a></li>
+                      <li class="dropdown">
+                        <a href="#">Shop</a>
+                        <ul>
+                          <li><a href="#">Membership</a></li>
+                          <li><a href="#">Profile Image</a></li>
+                          <li><a href="#">Merchandise</a></li>
+                          <li><a href="#">Equipment</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="pkl-club.html">PKL.CLUB</a></li>
+                      <li><a href="news.html">News</a></li>
+                    </ul>
+                  </nav>
+                </div>
 
-                      </ul>
-                    </li>
-                    <li><a href="pkl-club.html">PKL.CLUB</a></li>
-                    <li><a href="news.html">News</a></li>
+                <!-- Outer Box -->
+                <div class="action-box">
+                  <div class="header-btn">
+                    <a class="header-btn-main theme-btn" href="signup.html"
+                      ><span class="btn-text">Sign Up</span></a
+                    >
+                  </div>
 
-                  </ul>
+                  <!-- Mobile Nav toggler -->
+                  <div class="mobile-nav-toggler">
+                    <div class="shape-line-img">
+                      <i class="fas fa-bars"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+          <nav class="menu-box">
+            <div class="upper-box">
+              <div class="nav-logo">
+                <a href="index.html"
+                  ><img src="images/logo.png?v=2" alt=""
+                /></a>
+              </div>
+              <div class="close-btn"><i class="icon fa fa-times"></i></div>
+            </div>
+            <ul class="navigation clearfix">
+              <!--Keep This Empty / Menu will come through Javascript-->
+            </ul>
+            <ul class="contact-list-one">
+              <li>
+                <i class="icon lnr-icon-envelope1"></i>
+                <span class="title">Send Email</span>
+                <div class="text">
+                  <a href="mailto:lawson@example.com"
+                    >alma.lawson@example.com</a
+                  >
+                </div>
+              </li>
+            </ul>
+            <ul class="social-links">
+              <li>
+                <a href="#"><i class="icon fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-pinterest-p"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-vimeo-v"></i></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <!-- Header Search -->
+        <div class="search-popup">
+          <span class="search-back-drop"></span>
+          <button class="close-search">
+            <span class="fa fa-times"></span>
+          </button>
+
+          <div class="search-inner">
+            <form method="post" action="index.html">
+              <div class="form-group">
+                <input
+                  type="search"
+                  name="search-field"
+                  value=""
+                  placeholder="Search..."
+                  required=""
+                />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- End Header Search -->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+          <div class="auto-container">
+            <div class="inner-container">
+              <!--Logo-->
+              <div class="logo">
+                <a href="index.html"
+                  ><img src="images/logo.png?v=2" alt=""
+                /></a>
+              </div>
+
+              <!--Right Col-->
+              <div class="nav-outer">
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                  <div class="navbar-collapse show collapse clearfix">
+                    <ul class="navigation clearfix">
+                      <!--Keep This Empty / Menu will come through Javascript-->
+                    </ul>
+                  </div>
                 </nav>
+                <!-- Main Menu End-->
               </div>
 
               <!-- Outer Box -->
               <div class="action-box">
                 <div class="header-btn">
-                  <a class="header-btn-main theme-btn" href="signup.html"><span class="btn-text">Sign
-                      Up</span></a>
+                  <a class="header-btn-main theme-btn" href="signup.html"
+                    ><span class="btn-text">Sign Up</span></a
+                  >
                 </div>
 
-                <!-- Mobile Nav toggler -->
+                <!--Mobile Navigation Toggler-->
                 <div class="mobile-nav-toggler">
-                  <div class="shape-line-img"><i class="fas fa-bars"></i></div>
+                  <span class="icon lnr-icon-bars"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <!-- End Sticky Menu -->
+      </header>
+      <!--End Main Header -->
 
-      <!-- Mobile Menu  -->
-      <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-        <nav class="menu-box">
-          <div class="upper-box">
-            <div class="nav-logo">
-              <a href="index.html"><img src="images/logo.png?v=2" alt="" /></a>
-            </div>
-            <div class="close-btn"><i class="icon fa fa-times"></i></div>
+      <!-- Banner Section One-->
+      <section class="banner-section-one">
+        <div class="outer-box pb-25">
+          <div class="shape-2 tm-gsap-img-parallax">
+            <img src="images/icons/shape-10.png" alt="Image" />
           </div>
-          <ul class="navigation clearfix">
-            <!--Keep This Empty / Menu will come through Javascript-->
-          </ul>
-          <ul class="contact-list-one">
-            <li>
-              <i class="icon lnr-icon-envelope1"></i>
-              <span class="title">Send Email</span>
-              <div class="text"><a href="mailto:lawson@example.com">alma.lawson@example.com</a></div>
-            </li>
-          </ul>
-          <ul class="social-links">
-            <li>
-              <a href="#"><i class="icon fab fa-twitter"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="icon fab fa-facebook-f"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="icon fab fa-pinterest-p"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="icon fab fa-vimeo-v"></i></a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <!-- End Mobile Menu -->
-
-      <!-- Header Search -->
-      <div class="search-popup">
-        <span class="search-back-drop"></span>
-        <button class="close-search"><span class="fa fa-times"></span></button>
-
-        <div class="search-inner">
-          <form method="post" action="index.html">
-            <div class="form-group">
-              <input type="search" name="search-field" value="" placeholder="Search..." required="" />
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <!-- End Header Search -->
-
-      <!-- Sticky Header  -->
-      <div class="sticky-header">
-        <div class="auto-container">
-          <div class="inner-container">
-            <!--Logo-->
-            <div class="logo">
-              <a href="index.html"><img src="images/logo.png?v=2" alt="" /></a>
-            </div>
-
-            <!--Right Col-->
-            <div class="nav-outer">
-              <!-- Main Menu -->
-              <nav class="main-menu">
-                <div class="navbar-collapse show collapse clearfix">
-                  <ul class="navigation clearfix">
-                    <!--Keep This Empty / Menu will come through Javascript-->
-                  </ul>
-                </div>
-              </nav>
-              <!-- Main Menu End-->
-            </div>
-
-            <!-- Outer Box -->
-            <div class="action-box">
-              <div class="header-btn">
-                <a class="header-btn-main theme-btn" href="signup.html"><span class="btn-text">Sign Up</span></a>
-              </div>
-
-              <!--Mobile Navigation Toggler-->
-              <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Sticky Menu -->
-    </header>
-    <!--End Main Header -->
-
-    <!-- Banner Section One-->
-    <section class="banner-section-one">
-      <div class="outer-box pb-25">
-        <div class="shape-2 tm-gsap-img-parallax"><img src="images/icons/shape-10.png" alt="Image"></div>
-        <div class="banner-slider">
-          <!-- Slide Item -->
-          <div class="banner-slide">
-            <div class="inner-container">
-              <div class="content-box aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <div class="inner-box" style="text-align: center;">
-                  <div class="banner-logo" style="margin-bottom: 30px;">
-                    <img src="images/PWS-2027.png" alt="Pickleball World Series 2027"
-                      style="max-width: 200px; margin: 0 auto;">
-                  </div>
-                  <h1 class="title">The <span>Pickleball World Series</span> starts now!</h1>
-                  <div class="text">This is the Pickleball World Series the grassroots people's championship. Enter from
-                    anywhere. No rankings. No gatekeepers. Just pure global competition.</div>
-                  <div class="button-box" style="justify-content: center;">
-                    <a class="btn-style-one theme-btn" href="#">
-                      <span class="header-theme-btn">Free PKL.CLUB Membership</span>
-                    </a>
-                    <a class="btn-style-one theme-btn" href="#" style="background: #8BC34A;">
-                      <span class="header-theme-btn">Sponsor an event</span>
-                    </a>
-                  </div>
-                  <div class="shape-btn icon-bounce">
-                    <a class="shape-btn-main theme-btn" href="#"><span class="btn-text">Create a player
-                        profile</span></a>
-                    <img class="shape-btn-img" src="images/icons/btn-img1.png" alt="">
-                  </div>
-                  <div class="shape-btn2 icon-bounce">
-                    <a class="shape-btn-main2 theme-btn" href="#"><span class="btn-text">Operate an Event</span></a>
-                    <img class="shape-btn-img" src="images/icons/btn-img2.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End Banner Section One -->
-
-    <!-- Clients Section One-->
-    <section class="clients-section">
-      <div class="container">
-        <div class="outer-box aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-          <h6 class="client-title"><img class="icon-bounce" src="images/icons/theme-icon22.png" alt="">PKL.CLUB trusted
-            partners and major sponsors</h6>
-          <div class="swiper-container">
-            <div class="swiper clients-swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-8.png" alt="Image">
-                          <img src="images/resource/client1-3.png" alt="Image">
-                        </figure>
-                      </div>
+          <div class="banner-slider">
+            <!-- Slide Item -->
+            <div class="banner-slide">
+              <div class="inner-container">
+                <div
+                  class="content-box aos-init"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                >
+                  <div class="inner-box" style="text-align: center">
+                    <div class="banner-logo" style="margin-bottom: 30px">
+                      <img
+                        src="images/PWS-2027.png"
+                        alt="Pickleball World Series 2027"
+                        style="max-width: 200px; margin: 0 auto"
+                      />
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-7.png" alt="Image">
-                          <img src="images/resource/client1-2.png" alt="Image">
-                        </figure>
-                      </div>
+                    <h1 class="title">
+                      The <span>Pickleball World Series</span> starts now!
+                    </h1>
+                    <div class="text">
+                      This is the Pickleball World Series the grassroots
+                      people's championship. Enter from anywhere. No rankings.
+                      No gatekeepers. Just pure global competition.
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-8.png" alt="Image">
-                          <img src="images/resource/client1-3.png" alt="Image">
-                        </figure>
-                      </div>
+                    <div class="button-box" style="justify-content: center">
+                      <a class="btn-style-one theme-btn" href="#">
+                        <span class="header-theme-btn"
+                          >Free PKL.CLUB Membership</span
+                        >
+                      </a>
+                      <a
+                        class="btn-style-one theme-btn"
+                        href="#"
+                        style="background: #8bc34a"
+                      >
+                        <span class="header-theme-btn">Sponsor an event</span>
+                      </a>
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-9.png" alt="Image">
-                          <img src="images/resource/client1-4.png" alt="Image">
-                        </figure>
-                      </div>
+                    <div class="shape-btn icon-bounce">
+                      <a class="shape-btn-main theme-btn" href="#"
+                        ><span class="btn-text"
+                          >Create a player profile</span
+                        ></a
+                      >
+                      <img
+                        class="shape-btn-img"
+                        src="images/icons/btn-img1.png"
+                        alt=""
+                      />
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-10.png" alt="Image">
-                          <img src="images/resource/client1-5.png" alt="Image">
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="client-block">
-                    <div class="inner-box">
-                      <div class="image-box">
-                        <figure class="image">
-                          <img src="images/resource/client1-9.png" alt="Image">
-                          <img src="images/resource/client1-4.png" alt="Image">
-                        </figure>
-                      </div>
+                    <div class="shape-btn2 icon-bounce">
+                      <a class="shape-btn-main2 theme-btn" href="#"
+                        ><span class="btn-text">Operate an Event</span></a
+                      >
+                      <img
+                        class="shape-btn-img"
+                        src="images/icons/btn-img2.png"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>
@@ -387,240 +448,603 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!--End Clients Section One -->
+      </section>
+      <!--End Banner Section One -->
 
-    <!-- Feature Section -->
-    <section class="features-section-h1 pt-0">
-      <div class="shape-one tm-gsap-img-parallax"><img src="images/icons/shape-31.png" alt=""></div>
-      <div class="container">
-        <div class="sec-title text-center aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-          <span class="sub-title"><img class="icon-img animation__rotateY" style="max-height:25px"
-              src="images/favicon.png" alt="">Our Features</span>
-          <h2>A mission to find the best Pickleball talent <h2 class="title text-reveal-anim">on Earth, powered by
-              you.</h2>
-          </h2>
-          <div class="text">By establishing a tournament system with minimal barriers to entry, we are developing a
-            powerful recruitment tool unmatched by any other sport. Most importantly, we are fostering a global
-            pickleball community.</div>
-        </div>
-        <div class="row g-24">
-          <div class="feature-block-h1 col-xl-8 aos-init" data-aos="fade-right" data-aos-duration="1000"
-            data-aos-delay="200">
-            <div class="inner-block pe-0 pb-0" style="height: 380px;">
-              <div class="shape-1"><img src="images/icons/shape-11.png" alt=""></div>
-              <div class="content-box">
-                <h4 class="title">Find Tournament Locations</h4>
-                <div class="text">Finding the right tournament is easy with our global directory of events. Search by
-                  location or date to discover tournaments that fit your schedule and goals.
-                </div>
-              </div>
-              <div class="image-box" style="max-height: 280px; overflow: hidden;">
-                <figure class="image mb-0"><img src="images/PWS-2026.png" alt="Image"
-                    style="margin-top: -269px; width:100%">
-                </figure>
-              </div>
-            </div>
-          </div>
-          <div class="feature-block-h1 col-xl-4 col-lg-6 col-md-6 aos-init" data-aos="fade-up" data-aos-duration="1000"
-            data-aos-delay="400">
-            <div class="inner-block" style="height: 380px;">
-              <div class="content-box text-center">
-                <h4 class="title">Team Collaboration</h4>
-                <div class="text">
-                  Connect with clubs and sponsors that align with your values and goals.
-                </div>
-              </div>
-              <div class="image-box" style="display: flex; justify-content: center; align-items: center; flex: 1;">
-                <figure class="image mb-0"><img src="images/PWS-female.png" alt="Image"
-                    style="max-height: 200px; width: auto; object-fit: contain;"></figure>
-              </div>
-            </div>
-          </div>
-          <div class="feature-block-h1 style-two col-xl-4 col-lg-6 col-md-6 aos-init" data-aos="fade-up"
-            data-aos-duration="1000" data-aos-delay="400">
-            <div class="inner-block pb-0" style="height: 380px; display: flex; flex-direction: column;">
-              <div class="content-box">
-                <h4 class="title">Play-4-Pickle</h4>
-                <div class="text">
-                  Earn credits and exclusive rewards through our soon-coming Play-4-Pickle
-                  program.
-                </div>
-              </div>
-              <div class="image-box" style="display: flex; justify-content: center; align-items: center; flex: 1;">
-                <figure class="image mb-0"><img src="images/Play4PicklesLogo.png" alt="Image"
-                    style="max-height: 180px; width: auto;"></figure>
-              </div>
-            </div>
-          </div>
-          <div class="feature-block-h1 col-xl-8 aos-init" data-aos="fade-left" data-aos-duration="1000"
-            data-aos-delay="200">
-            <div class="inner-block pe-0 pb-0" style="height: 380px;">
-              <div class="shape-2"><img src="images/icons/shape-12.png" alt=""></div>
-              <div class="content-box">
-                <h4 class="title">Community Growth</h4>
-                <div class="text">
-                  Join a vibrant community of pickleball enthusiasts, players, and organizers dedicated to growing the
-                  sport worldwide.
-                </div>
-              </div>
-              <div class="image-box mt-0">
-                <figure class="image mb-0"><img src="images/resource/featureH1-4.png" alt="Image" style="width: 100%;">
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End Feature Section -->
-
-    <!-- Feature Section -->
-    <section class="features-section-two-h1">
-      <div class="outer-box">
-        <div class="shape-one"><img src="images/icons/shape-13.png" alt=""></div>
-        <div class="shape-two tm-gsap-img-parallax"><img src="images/icons/shape-14.png" alt=""></div>
+      <!-- Clients Section One-->
+      <section class="clients-section">
         <div class="container">
-          <div class="sec-title text-center aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <span class="sub-title"><img class="icon-img animation__rotateY" src="images/icons/sub-title-shape-1.png"
-                alt=""> How It Works</span>
-            <h2 class="title text-reveal-anim">Simplicity is key</h2>
-            <h2 class="title">to executing global events, our tech makes it easy</h2>
-          </div>
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-              <div class="feature-box" style="height: 100%;">
-                <div class="inner-box" style="height: 430px;">
-                  <div class="shape-1">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#091D1E" />
-                    </svg>
+          <div
+            class="outer-box aos-init"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <h6 class="client-title">
+              <img
+                class="icon-bounce"
+                src="images/icons/theme-icon22.png"
+                alt=""
+              />PKL.CLUB trusted partners and major sponsors
+            </h6>
+            <div class="swiper-container">
+              <div class="swiper clients-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-8.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-3.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="shape-2">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#02DF82" />
-                    </svg>
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-7.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-2.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="step">Step 1</div>
-                  <div class="icon"><img src="images/resource/feature-img-1.png" alt=""></div>
-                  <h4 class="title mb-1"><a href="page-service-details.html">Create a profile</a></h4>
-                  <div class="text">Buy a PKL membership</div>
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-8.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-3.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-9.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-4.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-10.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-5.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="client-block">
+                      <div class="inner-box">
+                        <div class="image-box">
+                          <figure class="image">
+                            <img
+                              src="images/resource/client1-9.png"
+                              alt="Image"
+                            />
+                            <img
+                              src="images/resource/client1-4.png"
+                              alt="Image"
+                            />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-              <div class="feature-box" style="height: 100%;">
-                <div class="inner-box" style="height: 430px;">
-                  <div class="shape-1">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#091D1E" />
-                    </svg>
-                  </div>
-                  <div class="shape-2">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#02DF82" />
-                    </svg>
-                  </div>
-                  <div class="step">Step 2</div>
-                  <div class="icon"><img src="images/resource/feature-img-2.png" alt=""></div>
-                  <h4 class="title mb-1"><a href="page-service-details.html">Sign Up & Personalize</a></h4>
-                  <div class="text">Find an activated city in your region or help create one</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-              <div class="feature-box" style="height: 100%;">
-                <div class="inner-box" style="height: 430px;">
-                  <div class="shape-1">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#091D1E" />
-                    </svg>
-                  </div>
-                  <div class="shape-2">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#02DF82" />
-                    </svg>
-                  </div>
-                  <div class="step">Step 3</div>
-                  <div class="icon"><img src="images/resource/feature-img-3.png" alt=""></div>
-                  <h4 class="title mb-1"><a href="page-service-details.html">Join the fun</a></h4>
-                  <div class="text">Register for your catergories in your city</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-              <div class="feature-box" style="height: 100%;">
-                <div class="inner-box" style="height: 430px;">
-                  <div class="shape-1">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#091D1E" />
-                    </svg>
-                  </div>
-                  <div class="shape-2">
-                    <svg width="227" height="168" viewBox="0 0 227 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
-                        fill="#02DF82" />
-                    </svg>
-                  </div>
-                  <div class="step">Step 4</div>
-                  <div class="icon"><img src="images/resource/feature-img-4.png" alt=""></div>
-                  <h4 class="title mb-1"><a href="page-service-details.html">Rise to the top</a></h4>
-                  <div class="text">Work your way through the bracket and join us at the People's World Championship
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bottom-box aos-init" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <div class="inner-box">
-              <div class="image-box">
-                <img src="images/resource/feature-bottom1-1.jpg" alt="">
-                <img src="images/resource/feature-bottom1-2.jpg" alt="">
-                <img src="images/resource/feature-bottom1-3.jpg" alt="">
-                <img src="images/resource/feature-bottom1-4.jpg" alt="">
-              </div>
-              <div class="text-box">Champions rise on the same dates worldwide city, region, and country. The journey
-                ends at the ultimate World Championship for the people’s tournament.</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!--End Feature Section -->
+      </section>
+      <!--End Clients Section One -->
 
-    <!-- Funfact Section -->
-    <section class="funfact-section-home1">
-      <div class="container">
-        <div class="row">
-          <div class="sec-title-column mt-20 col-lg-5">
-            <div class="inner-column">
-              <div class="sec-title aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <span class="sub-title"><img class="icon-img animation__rotateY"
-                    src="images/icons/sub-title-shape-1.png" alt=""> Fun Facts</span>
-                <h2 class="title text-reveal-anim">The fastest growing sport in the world here is the proof</h2>
-                <div class="text">Pickleball is rapidly gaining popularity worldwide due to its accessible learning
-                  curve, versatility in play locations, and inclusive nature that welcomes participants of all ages.
-                  However, the true essence of pickleball lies not only in the game itself but also in the vibrant
-                  communities it fosters. From local courts to international competitions, pickleball is creating
-                  lasting friendships, bridging cultures, and cultivating a sense of camaraderie among players.</div>
+      <!-- Feature Section -->
+      <section class="features-section-h1 pt-0">
+        <div class="shape-one tm-gsap-img-parallax">
+          <img src="images/icons/shape-31.png" alt="" />
+        </div>
+        <div class="container">
+          <div
+            class="sec-title text-center aos-init"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <span class="sub-title"
+              ><img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />Our Features</span
+            >
+            <h2>
+              A mission to find the best Pickleball talent
+              <h2 class="title text-reveal-anim">on Earth, powered by you.</h2>
+            </h2>
+            <div class="text">
+              By establishing a tournament system with minimal barriers to
+              entry, we are developing a powerful recruitment tool unmatched by
+              any other sport. Most importantly, we are fostering a global
+              pickleball community.
+            </div>
+          </div>
+          <div class="row g-24">
+            <div
+              class="feature-block-h1 col-xl-8 aos-init"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="inner-block pe-0 pb-0" style="height: 380px">
+                <div class="shape-1">
+                  <img src="images/icons/shape-11.png" alt="" />
+                </div>
+                <div class="content-box">
+                  <h4 class="title">Find Tournament Locations</h4>
+                  <div class="text">
+                    Finding the right tournament is easy with our global
+                    directory of events. Search by location or date to discover
+                    tournaments that fit your schedule and goals.
+                  </div>
+                </div>
+                <div
+                  class="image-box"
+                  style="max-height: 280px; overflow: hidden"
+                >
+                  <figure class="image mb-0">
+                    <img
+                      src="images/PWS-2026.png"
+                      alt="Image"
+                      style="margin-top: -269px; width: 100%"
+                    />
+                  </figure>
+                </div>
               </div>
-              <!-- <div class="video-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            </div>
+            <div
+              class="feature-block-h1 col-xl-4 col-lg-6 col-md-6 aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+            >
+              <div class="inner-block" style="height: 380px">
+                <div class="content-box text-center">
+                  <h4 class="title">Team Collaboration</h4>
+                  <div class="text">
+                    Connect with clubs and sponsors that align with your values
+                    and goals.
+                  </div>
+                </div>
+                <div
+                  class="image-box"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex: 1;
+                  "
+                >
+                  <figure class="image mb-0">
+                    <img
+                      src="images/PWS-female.png"
+                      alt="Image"
+                      style="
+                        max-height: 200px;
+                        width: auto;
+                        object-fit: contain;
+                      "
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div
+              class="feature-block-h1 style-two col-xl-4 col-lg-6 col-md-6 aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+            >
+              <div
+                class="inner-block pb-0"
+                style="height: 380px; display: flex; flex-direction: column"
+              >
+                <div class="content-box">
+                  <h4 class="title">Play-4-Pickle</h4>
+                  <div class="text">
+                    Earn credits and exclusive rewards through our soon-coming
+                    Play-4-Pickle program.
+                  </div>
+                </div>
+                <div
+                  class="image-box"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex: 1;
+                  "
+                >
+                  <figure class="image mb-0">
+                    <img
+                      src="images/Play4PicklesLogo.png"
+                      alt="Image"
+                      style="max-height: 180px; width: auto"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div
+              class="feature-block-h1 col-xl-8 aos-init"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="inner-block pe-0 pb-0" style="height: 380px">
+                <div class="shape-2">
+                  <img src="images/icons/shape-12.png" alt="" />
+                </div>
+                <div class="content-box">
+                  <h4 class="title">Community Growth</h4>
+                  <div class="text">
+                    Join a vibrant community of pickleball enthusiasts, players,
+                    and organizers dedicated to growing the sport worldwide.
+                  </div>
+                </div>
+                <div class="image-box mt-0">
+                  <figure class="image mb-0">
+                    <img
+                      src="images/resource/featureH1-4.png"
+                      alt="Image"
+                      style="width: 100%"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End Feature Section -->
+
+      <!-- Feature Section -->
+      <section class="features-section-two-h1">
+        <div class="outer-box">
+          <div class="shape-one">
+            <img src="images/icons/shape-13.png" alt="" />
+          </div>
+          <div class="shape-two tm-gsap-img-parallax">
+            <img src="images/icons/shape-14.png" alt="" />
+          </div>
+          <div class="container">
+            <div
+              class="sec-title text-center aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <span class="sub-title"
+                ><img
+                  class="icon-img animation__rotateY"
+                  src="images/icons/sub-title-shape-1.png"
+                  alt=""
+                />
+                How It Works</span
+              >
+              <h2 class="title text-reveal-anim">Simplicity is key</h2>
+              <h2 class="title">
+                to executing global events, our tech makes it easy
+              </h2>
+            </div>
+            <div class="row">
+              <div
+                class="col-xl-3 col-sm-6 aos-init"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="200"
+              >
+                <div class="feature-box" style="height: 100%">
+                  <div class="inner-box" style="height: 430px">
+                    <div class="shape-1">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#091D1E"
+                        />
+                      </svg>
+                    </div>
+                    <div class="shape-2">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#02DF82"
+                        />
+                      </svg>
+                    </div>
+                    <div class="step">Step 1</div>
+                    <div class="icon">
+                      <img src="images/resource/feature-img-1.png" alt="" />
+                    </div>
+                    <h4 class="title mb-1">
+                      <a href="page-service-details.html">Create a profile</a>
+                    </h4>
+                    <div class="text">Buy a PKL membership</div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-xl-3 col-sm-6 aos-init"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+              >
+                <div class="feature-box" style="height: 100%">
+                  <div class="inner-box" style="height: 430px">
+                    <div class="shape-1">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#091D1E"
+                        />
+                      </svg>
+                    </div>
+                    <div class="shape-2">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#02DF82"
+                        />
+                      </svg>
+                    </div>
+                    <div class="step">Step 2</div>
+                    <div class="icon">
+                      <img src="images/resource/feature-img-2.png" alt="" />
+                    </div>
+                    <h4 class="title mb-1">
+                      <a href="page-service-details.html"
+                        >Sign Up & Personalize</a
+                      >
+                    </h4>
+                    <div class="text">
+                      Find an activated city in your region or help create one
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-xl-3 col-sm-6 aos-init"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="400"
+              >
+                <div class="feature-box" style="height: 100%">
+                  <div class="inner-box" style="height: 430px">
+                    <div class="shape-1">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#091D1E"
+                        />
+                      </svg>
+                    </div>
+                    <div class="shape-2">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#02DF82"
+                        />
+                      </svg>
+                    </div>
+                    <div class="step">Step 3</div>
+                    <div class="icon">
+                      <img src="images/resource/feature-img-3.png" alt="" />
+                    </div>
+                    <h4 class="title mb-1">
+                      <a href="page-service-details.html">Join the fun</a>
+                    </h4>
+                    <div class="text">
+                      Register for your catergories in your city
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-xl-3 col-sm-6 aos-init"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="500"
+              >
+                <div class="feature-box" style="height: 100%">
+                  <div class="inner-box" style="height: 430px">
+                    <div class="shape-1">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#091D1E"
+                        />
+                      </svg>
+                    </div>
+                    <div class="shape-2">
+                      <svg
+                        width="227"
+                        height="168"
+                        viewBox="0 0 227 168"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M226.999 -0.000488281C95.6392 3.31004 20.9324 113.379 -0.000976562 168V37.9995C-0.000976562 17.0127 17.0122 -0.000488281 37.999 -0.000488281H226.999Z"
+                          fill="#02DF82"
+                        />
+                      </svg>
+                    </div>
+                    <div class="step">Step 4</div>
+                    <div class="icon">
+                      <img src="images/resource/feature-img-4.png" alt="" />
+                    </div>
+                    <h4 class="title mb-1">
+                      <a href="page-service-details.html">Rise to the top</a>
+                    </h4>
+                    <div class="text">
+                      Work your way through the bracket and join us at the
+                      People's World Championship
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bottom-box aos-init"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="inner-box">
+                <div class="image-box">
+                  <img src="images/resource/feature-bottom1-1.jpg" alt="" />
+                  <img src="images/resource/feature-bottom1-2.jpg" alt="" />
+                  <img src="images/resource/feature-bottom1-3.jpg" alt="" />
+                  <img src="images/resource/feature-bottom1-4.jpg" alt="" />
+                </div>
+                <div class="text-box">
+                  Champions rise on the same dates worldwide city, region, and
+                  country. The journey ends at the ultimate World Championship
+                  for the people’s tournament.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End Feature Section -->
+
+      <!-- Funfact Section -->
+      <section class="funfact-section-home1">
+        <div class="container">
+          <div class="row">
+            <div class="sec-title-column mt-20 col-lg-5">
+              <div class="inner-column">
+                <div
+                  class="sec-title aos-init"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                >
+                  <span class="sub-title"
+                    ><img
+                      class="icon-img animation__rotateY"
+                      src="images/icons/sub-title-shape-1.png"
+                      alt=""
+                    />
+                    Fun Facts</span
+                  >
+                  <h2 class="title text-reveal-anim">
+                    The fastest growing sport in the world here is the proof
+                  </h2>
+                  <div class="text">
+                    Pickleball is rapidly gaining popularity worldwide due to
+                    its accessible learning curve, versatility in play
+                    locations, and inclusive nature that welcomes participants
+                    of all ages. However, the true essence of pickleball lies
+                    not only in the game itself but also in the vibrant
+                    communities it fosters. From local courts to international
+                    competitions, pickleball is creating lasting friendships,
+                    bridging cultures, and cultivating a sense of camaraderie
+                    among players.
+                  </div>
+                </div>
+                <!-- <div class="video-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                 <div class="inner-box">
                   <div class="bg bg-image"><img src="images/resource/video1-bg1.jpg" alt=""></div>
                   <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now" data-fancybox="gallery"
@@ -631,124 +1055,368 @@
                   <h4 class="title mb-0">See how our platform helps you <br>go from idea to campaign</h4>
                 </div>
               </div> -->
-            </div>
-          </div>
-          <!-- News Block -->
-          <div class="col-xl-6 col-lg-7 offset-xl-1">
-            <div class="funfact-wrap">
-              <div class="ks_fade_anim" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <div class="funfact-item" style="display: flex; align-items: center; gap: 15px;">
-                  <span class="icon" style="flex-shrink: 0; margin-right: 5px;"><img src="images/icons/funfact1-4.png"
-                      alt=""></span>
-                  <div class="count-box" style="white-space: nowrap; width: 130px; flex-shrink: 0; text-align: left;">
-                    <span class="count-text mr-5" data-speed="3000" data-stop="60">50</span>+
-                  </div>
-                  <h6 class="title" style="margin: 0;">Country's as of 2025 have pickleball associations</h6>
-                </div>
-              </div>
-              <div class="ks_fade_anim" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                <div class="funfact-item" style="display: flex; align-items: center; gap: 15px;">
-                  <span class="icon" style="flex-shrink: 0; margin-right: 5px;"><img src="images/icons/funfact1-3.png"
-                      alt=""></span>
-                  <div class="count-box" style="white-space: nowrap; width: 130px; flex-shrink: 0; text-align: left;">
-                    <span class="count-text mr-5" data-speed="3000" data-stop="1">0</span>+
-                  </div>
-                  <h6 class="title" style="margin: 0;">Million children have started playing Pickleball over the past 2
-                    years</h6>
-                </div>
-              </div>
-              <div class="ks_fade_anim" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <div class="funfact-item" style="display: flex; align-items: center; gap: 15px;">
-                  <span class="icon" style="flex-shrink: 0; margin-right: 5px;"><img src="images/icons/funfact1-2.png"
-                      alt=""></span>
-                  <div class="count-box" style="white-space: nowrap; width: 130px; flex-shrink: 0; text-align: left;">
-                    <span class="count-text mr-5" data-speed="3000" data-stop="50">40</span>%
-                  </div>
-                  <h6 class="title" style="margin: 0;">Global growth over the past two years, with millions of new
-                    players joining</h6>
-                </div>
-              </div>
-              <div class="ks_fade_anim" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-                <div class="funfact-item" style="display: flex; align-items: center; gap: 15px;">
-                  <span class="icon" style="flex-shrink: 0; margin-right: 5px;"><img src="images/icons/funfact1-1.png"
-                      alt=""></span>
-                  <div class="count-box" style="white-space: nowrap; width: 130px; flex-shrink: 0; text-align: left;">
-                    <span class="count-text mr-5" data-speed="3000">&infin;</span>
-                  </div>
-                  <h6 class="title" style="margin: 0;">Friendship and inclusivity are the top reasons people stay in the
-                    game</h6>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End Funfact Section -->
-
-    <!-- Benefits Section Layout 1 -->
-    <section class="benefits-section-layout1">
-      <div class="container">
-        <div class="outer-box">
-          <div class="shape-1 tm-gsap-img-parallax"><img src="images/icons/shape-32.png" alt=""></div>
-          <div class="sec-title text-center aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <span class="sub-title"><img class="icon-img animation__rotateY" src="images/icons/sub-title-shape-1.png"
-                alt=""> Our Events</span>
-            <h2 class="title text-reveal-anim">Our schedule unites the world<br>in celebrating pickleball</h2>
-          </div>
-          <div class="row">
-            <div class="benefits-block-layout1 col-12 aos-init" data-aos="fade-up" data-aos-duration="1000"
-              data-aos-delay="200">
-              <div class="inner-block">
-                <div class="shape-one"><img src="images/icons/shape-16.png" alt=""></div>
-                <div class="shape-two"><img src="images/icons/shape-17.png" alt=""></div>
-                <div class="logo-box">
-                  <div class="logo"><img src="images/icons/benefits-icon1-1.png" alt=""></div>
+            <!-- News Block -->
+            <div class="col-xl-6 col-lg-7 offset-xl-1">
+              <div class="funfact-wrap">
+                <div
+                  class="ks_fade_anim"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                >
+                  <div class="funfact-item">
+                    <span class="icon"
+                      ><img src="images/icons/funfact1-4.png" alt=""
+                    /></span>
+                    <div class="count-box">
+                      <span class="count-text" data-speed="3000" data-stop="60"
+                        >60</span
+                      >+
+                    </div>
+                    <h6 class="title">
+                      Country's as of 2025 have pickleball associations
+                    </h6>
+                  </div>
                 </div>
-                <div class="content-box">
-                  <h4 class="title">Integrate effortlessly with your favorite tools</h4>
-                  <a class="btn-style-one theme-btn" href="page-about.html">
-                    <span class="header-theme-btn">See All Integratioin</span>
-                    <span class="header-btn-arrow-right"><i class="fa-regular fa-angle-right"></i></span>
-                  </a>
+                <div
+                  class="ks_fade_anim"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="300"
+                >
+                  <div class="funfact-item">
+                    <span class="icon"
+                      ><img src="images/icons/funfact1-3.png" alt=""
+                    /></span>
+                    <div class="count-box">
+                      <span class="count-text" data-speed="3000" data-stop="1"
+                        >1</span
+                      >+
+                    </div>
+                    <h6 class="title">
+                      Million children have started playing Pickleball over the
+                      past 2 years
+                    </h6>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="feature-block-h1 col-xl-6 aos-init" data-aos="fade-right" data-aos-duration="1000"
-              data-aos-delay="200">
-              <div class="inner-block pe-0 pb-0">
-                <div class="content-box">
-                  <h4 class="title">Flexible & Scalable</h4>
-                  <div class="text">Assign responsibilities, set deadlines, <br>track progress, and keep</div>
+                <div
+                  class="ks_fade_anim"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="400"
+                >
+                  <div class="funfact-item">
+                    <span class="icon"
+                      ><img src="images/icons/funfact1-2.png" alt=""
+                    /></span>
+                    <div class="count-box">
+                      <span class="count-text" data-speed="3000" data-stop="50"
+                        >50</span
+                      >%
+                    </div>
+                    <h6 class="title">
+                      Global growth over the past two years, with millions of
+                      new players joining
+                    </h6>
+                  </div>
                 </div>
-                <div class="image-box mt-10">
-                  <figure class="image mb-0"><img src="images/resource/featureH1-5.png" alt="Image"></figure>
+                <div
+                  class="ks_fade_anim"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="500"
+                >
+                  <div class="funfact-item">
+                    <span class="icon"
+                      ><img src="images/icons/funfact1-1.png" alt=""
+                    /></span>
+                    <div class="count-box">
+                      <span class="count-text" data-speed="3000">&infin;</span>
+                    </div>
+                    <h6 class="title">
+                      Friendship and inclusivity are the top reasons people stay
+                      in the game
+                    </h6>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="benefits-block-two-layout1 col-xl-6 aos-init" data-aos="fade-left" data-aos-duration="1000"
-              data-aos-delay="200">
-              <div class="inner-block">
-                <div class="shape-18 tm-gsap-img-parallax"><img src="images/icons/shape-18.png" alt=""></div>
-                <div class="content-box">
-                  <h4 class="title">Powerful Features <br>to Simplify Your Work <br>Every Day</h4>
-                  <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting <br>industry. Lorem
-                    Ipsum has been the industry's standard dummy</div>
-                </div>
-                <a class="btn-style-one theme-btn" href="page-about.html">
-                  <span class="header-theme-btn">Explore More</span>
-                  <span class="header-btn-arrow-right"><i class="fa-regular fa-angle-right"></i></span>
-                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!--End Benefits Section Layout 1 -->
+      </section>
+      <!--End Funfact Section -->
 
-    <!-- Testimonial Section Layout 1 -->
-    <section class="testimonial-section-layout1 pt-0">
+      <!-- Events + Celebrations Section -->
+      <section class="events-celebrations-section" style="padding: 100px 0">
+        <style>
+          .events-celebrations-section .sec-title {
+            text-align: center;
+            margin-bottom: 50px;
+          }
+          .events-celebrations-section .sec-title .title {
+            margin-bottom: 20px;
+          }
+          .events-celebrations-section .section-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            font-style: italic;
+          }
+          .events-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+          }
+          .event-card {
+            background: rgba(47, 160, 111, 0.08);
+            border: 2px solid rgba(47, 160, 111, 0.4);
+            border-radius: 20px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+          }
+          .event-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+              135deg,
+              rgba(47, 160, 111, 0.15) 0%,
+              transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+          }
+          .event-card:hover {
+            transform: translateY(-8px);
+            border-color: #2fa06f;
+            box-shadow: 0 20px 40px rgba(47, 160, 111, 0.2);
+          }
+          .event-card:hover::before {
+            opacity: 1;
+          }
+          .event-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+          }
+          .event-card-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+          }
+          .event-card-icon .placeholder-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(
+              135deg,
+              rgba(126, 217, 87, 0.3) 0%,
+              rgba(47, 160, 111, 0.3) 100%
+            );
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7ed957;
+            font-size: 32px;
+          }
+          .event-card-label {
+            color: rgba(126, 217, 87, 0.9);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+          }
+          .event-card-month {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+          }
+          .event-card-year {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+          }
+
+          /* Responsive */
+          @media (max-width: 1199px) {
+            .events-cards-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+          @media (max-width: 767px) {
+            .events-celebrations-section {
+              padding: 60px 0 !important;
+            }
+            .events-celebrations-section .section-title {
+              font-size: 32px;
+            }
+            .events-celebrations-section .section-description {
+              font-size: 14px;
+              padding: 0 15px;
+            }
+            .events-cards-grid {
+              grid-template-columns: 1fr;
+              gap: 16px;
+            }
+            .event-card {
+              padding: 24px 20px;
+            }
+            .event-card-month,
+            .event-card-year {
+              font-size: 40px;
+            }
+          }
+          @media (max-width: 575px) {
+            .events-cards-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+            .event-card-month,
+            .event-card-year {
+              font-size: 32px;
+            }
+            .event-card-icon {
+              width: 60px;
+              height: 60px;
+            }
+            .event-card-icon .placeholder-icon {
+              width: 50px;
+              height: 50px;
+              font-size: 24px;
+            }
+          }
+        </style>
+
+        <div class="container">
+          <!-- Section Header -->
+          <div
+            class="sec-title text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <span class="sub-title"
+              ><img
+                class="icon-img animation__rotateY"
+                src="images/icons/sub-title-shape-1.png"
+                alt=""
+              />
+              Our Events</span
+            >
+            <h2 class="title text-reveal-anim">Events + Celebrations</h2>
+            <p class="section-description">
+              Our schedule unites the world in celebrating pickleball. City
+              champions are crowned on the same global weekend, regions rise
+              together on a later shared date, and nations are decided on a
+              third. It all builds to the ultimate World Championship,
+              showcasing the best grassroots pickleball players from every
+              corner of the globe.
+            </p>
+          </div>
+
+          <!-- Event Cards -->
+          <div class="events-cards-grid">
+            <!-- Card 1: Cities Weekend -->
+            <div
+              class="event-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <div class="event-card-icon">
+                <div class="placeholder-icon">
+                  <i class="fas fa-city"></i>
+                </div>
+              </div>
+              <div class="event-card-label">PWS Global<br />Cities Weekend</div>
+              <div class="event-card-month">July</div>
+              <div class="event-card-year">2026</div>
+            </div>
+
+            <!-- Card 2: Regional Weekend -->
+            <div
+              class="event-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div class="event-card-icon">
+                <div class="placeholder-icon">
+                  <i class="fas fa-map-marked-alt"></i>
+                </div>
+              </div>
+              <div class="event-card-label">
+                PWS Global<br />Regional Weekend
+              </div>
+              <div class="event-card-month">Sept</div>
+              <div class="event-card-year">2026</div>
+            </div>
+
+            <!-- Card 3: National Weekend -->
+            <div
+              class="event-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              <div class="event-card-icon">
+                <div class="placeholder-icon">
+                  <i class="fas fa-flag"></i>
+                </div>
+              </div>
+              <div class="event-card-label">
+                PWS Global<br />National Weekend
+              </div>
+              <div class="event-card-month">Oct</div>
+              <div class="event-card-year">2026</div>
+            </div>
+
+            <!-- Card 4: World Weekend -->
+            <div
+              class="event-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              <div class="event-card-icon">
+                <div class="placeholder-icon">
+                  <i class="fas fa-globe"></i>
+                </div>
+              </div>
+              <div class="event-card-label">PWS Global<br />World Weekend</div>
+              <div class="event-card-month">Nov</div>
+              <div class="event-card-year">2026</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End Events + Celebrations Section -->
+
+      <!-- Testimonial Section Layout 1 -->
+      <!-- <section class="testimonial-section-layout1 pt-0">
       <div class="sec-title text-center aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
         <span class="sub-title"><img class="icon-img animation__rotateY" src="images/icons/sub-title-shape-1.png"
             alt="">Testimonial</span>
@@ -1026,617 +1694,181 @@
           </div>
         </div>
       </div>
-    </section>
-    <!--End Testimonial Section Layout 1 -->
+    </section> -->
+      <!--End Testimonial Section Layout 1 -->
 
-    <!-- Pricing Table Section -->
-    <section class="pricing-table-section-h1 pt-0">
-      <div class="shape-one tm-gsap-img-parallax"><img src="images/icons/shape-15.png" alt=""></div>
-      <div class="container">
-        <div class="sec-title text-center aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-          <span class="sub-title"><img class="icon-img animation__rotateY" src="images/icons/sub-title-shape-1.png"
-              alt=""> Pricing Plan </span>
-          <h2 class="title text-reveal-anim">Scale Your Productivity <br>With the Right Plan</h2>
+      <!-- Pricing Table Section -->
+      <section class="pricing-table-section-h1 pt-0">
+        <div class="shape-one tm-gsap-img-parallax">
+          <img src="images/icons/shape-15.png" alt="" />
         </div>
-        <div class="d-flex justify-content-center mt-3 mt-md-0">
-          <div class="pricing-two__tab wow fadeInUp" data-wow-delay=".4s">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="pt-1-tab" data-bs-toggle="tab" data-bs-target="#pt-1" type="button"
-                  role="tab" aria-controls="pt-1" aria-selected="true">Monthly</button>
-                <button class="nav-link" id="pt-2-tab" data-bs-toggle="tab" data-bs-target="#pt-2" type="button"
-                  role="tab" aria-controls="pt-2" aria-selected="false">Yearly</button>
-              </div>
-            </nav>
-          </div>
-        </div>
-        <div class="pricing__tab-content">
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="pt-1" role="tabpanel" aria-labelledby="pt-1-tab">
-              <div class="row">
-                <div class="col-md-6 aos-init" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card">
-                    <div class="inner-box">
-                      <div class="popular-ribbon">Popular</div>
-                      <div class="category">Growth</div>
-                      <div class="subtitle">For Growing Businesses <br><span>And Marketers</span></div>
-                      <div class="best-offer mb-20">
-                        <div class="price-area">
-                          <div class="price">$19.00 <span>/Mo</span></div>
-                          <button type="submit" class="get-started">Get Started <i
-                              class="fa-classic fa-light fa-angle-right"></i></button>
-                        </div>
-                        <div>
-                          <div class="limited-offer">
-                            <div class="badge-bg me-1 mb-3 mb-md-0 me-3">
-                              <span class="texts">50%</span>
-                              <small>OFF</small>
-                            </div>
-                            <div class="limit">Limited <br>Time Offer</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="feature-lists">
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                          <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                        </ul>
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Unlimited Projects</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Real-time Collaboration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Recurring Tasks</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Custom Workflows</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 aos-init" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card">
-                    <div class="inner-box">
-                      <div class="category">Growth</div>
-                      <div class="subtitle">For Growing Businesses <br><span>And Marketers</span></div>
-                      <div class="best-offer mb-20">
-                        <div class="price-area">
-                          <div class="price">$24.00 <span>/Mo</span></div>
-                          <button type="submit" class="get-started">Get Started <i
-                              class="fa-classic fa-light fa-angle-right"></i></button>
-                        </div>
-                        <div>
-                          <div class="limited-offer">
-                            <div class="badge-bg me-1 mb-3 mb-md-0 me-3">
-                              <span class="texts">50%</span>
-                              <small>OFF</small>
-                            </div>
-                            <div class="limit">Limited <br>Time Offer</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="feature-lists">
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                          <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                        </ul>
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Unlimited Projects</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Real-time Collaboration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Recurring Tasks</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Custom Workflows</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-12 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card style-two mb-0">
-                    <div class="inner-box">
-                      <div class="row">
-                        <div class="col-lg-4">
-                          <div class="category">Custom</div>
-                          <div class="subtitle">For agencies & large-scale team</div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 offset-xl-1">
-                          <div class="feature-lists">
-                            <ul class="features-list">
-                              <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                              <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                              <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                              <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 offset-xl-1">
-                          <div class="best-offer">
-                            <div class="price-area">
-                              <div class="price">$30.11 <span>/ One Time Fee</span></div>
-                              <button type="submit" class="get-started">Get Started <i
-                                  class="fa-classic fa-light fa-angle-right"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pt-2" role="tabpanel" aria-labelledby="pt-2-tab">
-              <div class="row">
-                <div class="col-md-6 aos-init" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card">
-                    <div class="inner-box">
-                      <div class="popular-ribbon">Popular</div>
-                      <div class="category">Growth</div>
-                      <div class="subtitle">For Growing Businesses <br><span>And Marketers</span></div>
-                      <div class="best-offer mb-20">
-                        <div class="price-area">
-                          <div class="price">$19.00 <span>/Mo</span></div>
-                          <button type="submit" class="get-started">Get Started <i
-                              class="fa-classic fa-light fa-angle-right"></i></button>
-                        </div>
-                        <div>
-                          <div class="limited-offer">
-                            <div class="badge-bg me-1 mb-3 mb-md-0 me-3">
-                              <span class="texts">50%</span>
-                              <small>OFF</small>
-                            </div>
-                            <div class="limit">Limited <br>Time Offer</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="feature-lists">
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                          <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                        </ul>
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Unlimited Projects</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Real-time Collaboration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Recurring Tasks</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Custom Workflows</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 aos-init" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card">
-                    <div class="inner-box">
-                      <div class="category">Growth</div>
-                      <div class="subtitle">For Growing Businesses <br><span>And Marketers</span></div>
-                      <div class="best-offer mb-20">
-                        <div class="price-area">
-                          <div class="price">$24.00 <span>/Mo</span></div>
-                          <button type="submit" class="get-started">Get Started <i
-                              class="fa-classic fa-light fa-angle-right"></i></button>
-                        </div>
-                        <div>
-                          <div class="limited-offer">
-                            <div class="badge-bg me-1 mb-3 mb-md-0 me-3">
-                              <span class="texts">50%</span>
-                              <small>OFF</small>
-                            </div>
-                            <div class="limit">Limited <br>Time Offer</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="feature-lists">
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                          <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                        </ul>
-                        <ul class="features-list">
-                          <li><i class="icon fa-classic far fa-check"></i>Unlimited Projects</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Real-time Collaboration</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Recurring Tasks</li>
-                          <li><i class="icon fa-classic far fa-check"></i>Custom Workflows</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-12 aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                  <div class="pricing-card style-two mb-0">
-                    <div class="inner-box">
-                      <div class="row">
-                        <div class="col-lg-4">
-                          <div class="category">Custom</div>
-                          <div class="subtitle">For agencies & large-scale team</div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 offset-xl-1">
-                          <div class="feature-lists">
-                            <ul class="features-list">
-                              <li><i class="icon fa-classic far fa-check"></i>Real-Time Analytics</li>
-                              <li><i class="icon fa-classic far fa-check"></i>Marketing Dashboard Access</li>
-                              <li><i class="icon fa-classic far fa-check"></i>CRM Integration</li>
-                              <li><i class="icon fa-classic far fa-check"></i>Free Support</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 offset-xl-1">
-                          <div class="best-offer">
-                            <div class="price-area">
-                              <div class="price">$30.11 <span>/ One Time Fee</span></div>
-                              <button type="submit" class="get-started">Get Started <i
-                                  class="fa-classic fa-light fa-angle-right"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End Pricing Table Section -->
-
-    <!-- faqs Section -->
-    <section class="faqs-section-layout1 pt-0">
-      <div class="outer-box">
-        <div class="shape-19 tm-gsap-img-parallax"><img src="images/icons/shape-19.png" alt=""></div>
         <div class="container">
-          <div class="sec-outer aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <div class="sec-title">
-              <span class="sub-title"><img class="icon-img animation__rotateY" src="images/icons/sub-title-shape-1.png"
-                  alt=""> FAQS </span>
-              <h2 class="title text-reveal-anim">Have Questions in Your <br>Mind? Get the Answers Now</h2>
-            </div>
-            <div class="right-box">
-              <h6>Still have question <a href="page-contact.html">Get in Touch</a></h6>
-            </div>
+          <div
+            class="sec-title text-center aos-init"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <span class="sub-title"
+              ><img
+                class="icon-img animation__rotateY"
+                src="images/icons/sub-title-shape-1.png"
+                alt=""
+              />
+              Pricing Plan
+            </span>
+            <h2 class="title text-reveal-anim">
+              Scale Your Productivity <br />With the Right Plan
+            </h2>
           </div>
-          <div class="faqs-outer aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-            <!-- faqs Block -->
-            <div class="faqs-block-layout1">
-              <div class="inner-box active">
-                <button type="button" class="btn-faq">General</button>
-                <div class="faqs-box">
-                  <ul class="accordion-box">
-                    <!--Block-->
-                    <li class="accordion block active-block">
-                      <div class="acc-btn active">1. How do you determine the right solution?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content current">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">2. Does it support recurring tasks or automation?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">3. Can you work with our existing infrastructure?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">4. How much do your services cost?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">5. Can I restrict user permissions?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- faqs Block -->
-            <div class="faqs-block-layout1">
-              <div class="inner-box">
-                <button type="button" class="btn-faq">Supports</button>
-                <div class="faqs-box">
-                  <ul class="accordion-box">
-                    <!--Block-->
-                    <li class="accordion block active-block">
-                      <div class="acc-btn active">1. How do you determine the right solution?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content current">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">2. Does it support recurring tasks or automation?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">3. Can you work with our existing infrastructure?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">4. How much do your services cost?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">5. Can I restrict user permissions?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- faqs Block -->
-            <div class="faqs-block-layout1">
-              <div class="inner-box mb-0">
-                <button type="button" class="btn-faq">Others</button>
-                <div class="faqs-box">
-                  <ul class="accordion-box">
-                    <!--Block-->
-                    <li class="accordion block active-block">
-                      <div class="acc-btn active">1. How do you determine the right solution?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content current">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">2. Does it support recurring tasks or automation?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">3. Can you work with our existing infrastructure?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">4. How much do your services cost?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                    <!--Block-->
-                    <li class="accordion block border-top-0">
-                      <div class="acc-btn">5. Can I restrict user permissions?
-                        <div class="icon far fa-angle-down"></div>
-                      </div>
-                      <div class="acc-content">
-                        <div class="content">
-                          <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End faqs Section -->
-
-    <!-- Cta Section -->
-    <section class="cta-section-layout1 pt-0">
-      <div class="outer-box">
-        <div class="bg-shape-cat"><img src="images/icons/bg-shape-cat-1.png" alt=""></div>
-        <div class="container">
-          <div class="content-box text-center aos-init" data-aos="fade-up" data-aos-duration="1000"
-            data-aos-delay="200">
-            <div class="sec-title text-center">
-              <h2 class="title text-reveal-anim">Get started with a 14-day free trial. <br><img class="me-1"
-                  src="images/icons/cta-shape-1.png" alt="">No credit card required.</h2>
-              <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem
-                Ipsum has been the industry's standard dummy</div>
-            </div>
-            <a class="btn-style-one theme-btn" href="page-contact.html">
-              <span class="header-theme-btn">Start Free Trial</span>
-              <span class="header-btn-arrow-right"><i class="fa-regular fa-angle-right"></i></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--End Cta Section -->
-
-    <!-- Main Footer -->
-    <footer class="main-footer footer-style-one">
-      <div class="widgets-section">
-        <div class="footer-top">
-          <div class="container">
-            <div class="outer-box-top">
-              <div class="content-box">
-                <h3 class="title">Sign up now or never!</h3>
-                <div class="text">Stay up to date with the latest news, announcements, and articles.</div>
-              </div>
-              <div class="subscribe-widget">
-                <div class="subscribe-form-one">
-                  <form method="post" action="#">
-                    <div class="form-group">
-                      <label for="email" class="sr-only">Email Address</label>
-                      <input type="email" id="email" name="email" class="email" value="" placeholder="Email Address"
-                        required />
-                      <button type="submit" class="theme-btn" aria-label="Submit email">
-                        <i class="icon flaticon-paper-plane"></i>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-middle">
-          <div class="container">
-            <div class="row">
-              <!-- Footer Column -->
-              <div class="col-xl-4 col-lg-6">
-                <div class="footer-widget about-widget">
-                  <div class="logo">
-                    <img src="images/logo.png?v=2" alt="">
-                  </div>
-                  <div class="text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-5 col-lg-6 offset-xl-3">
+          <style>
+            .pricing-table-section-h1 .features-list li {
+              opacity: 1 !important;
+              color: #fff !important;
+            }
+            .pricing-table-section-h1 .features-list li .icon {
+              opacity: 1 !important;
+            }
+          </style>
+          <div class="pricing__tab-content">
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="pt-1"
+                role="tabpanel"
+                aria-labelledby="pt-1-tab"
+              >
                 <div class="row">
-                  <!-- footer column -->
-                  <div class="footer-column col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer-widget links-widget wow fadeInLeft" data-wow-delay="200ms">
-                      <h6 class="widget-title">Company</h6>
-                      <div class="widget-content">
-                        <ul class="user-links">
-                          <li><a href="#">About </a></li>
-                          <li><a href="#">Careers</a></li>
-                          <li><a href="#">Our Blogs</a></li>
-                          <li><a href="#">Contact Us</a></li>
-                        </ul>
+                  <div
+                    class="col-md-6 aos-init"
+                    data-aos="fade-right"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                  >
+                    <div class="pricing-card">
+                      <div class="inner-box">
+                        <div class="category">Free</div>
+                        <div class="subtitle">
+                          Join the rally <br /><span>No strings attached</span>
+                        </div>
+                        <div class="best-offer mb-20">
+                          <div class="price-area">
+                            <div class="price">$0 <span>/month</span></div>
+                            <a href="signup.html" class="get-started">
+                              Sign up
+                              <i class="fa-classic fa-light fa-angle-right"></i>
+                            </a>
+                          </div>
+                          <div>
+                            <div class="limited-offer">
+                              <div
+                                class="limit"
+                                style="font-size: 16px; line-height: 1.5"
+                              >
+                                Become<br />membership of a<br />powerful
+                                global<br />club
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="feature-lists">
+                          <ul class="features-list">
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Basic
+                              player profile
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Follow
+                              the PWS
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Event
+                              updates
+                            </li>
+                          </ul>
+                          <ul class="features-list">
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i
+                              >Product discounts
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Free
+                              profile avatar
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i
+                              >Pickleball news
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <!-- footer column -->
-                  <div class="footer-column col-xxl-5 col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer-widget links-widget ms-0 ms-xxl-4 wow fadeInLeft" data-wow-delay="200ms">
-                      <h6 class="widget-title">Useful Link</h6>
-                      <div class="widget-content">
-                        <ul class="user-links">
-                          <li><a href="#">Resources</a></li>
-                          <li><a href="#">Features</a></li>
-                          <li><a href="#">Services</a></li>
-                          <li><a href="#">Help Center</a></li>
-                          <li><a href="#">Team</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- footer column -->
-                  <div class="footer-column col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer-widget links-widget wow fadeInLeft" data-wow-delay="200ms">
-                      <h6 class="widget-title">Product</h6>
-                      <div class="widget-content">
-                        <ul class="user-links">
-                          <li><a href="#">Live Chat</a></li>
-                          <li><a href="#">Analyze</a></li>
-                          <li><a href="#">Keyword</a></li>
-                          <li><a href="#">Case Studies</a></li>
-                          <li><a href="#">Pricing</a></li>
-                        </ul>
+                  <div
+                    class="col-md-6 aos-init"
+                    data-aos="fade-left"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                  >
+                    <div class="pricing-card">
+                      <div class="inner-box">
+                        <div class="popular-ribbon">Popular</div>
+                        <div class="category">Paid</div>
+                        <div class="subtitle">
+                          Unlock the full game <br /><span
+                            >Elevate your PKL.CLUB experience</span
+                          >
+                        </div>
+                        <div class="best-offer mb-20">
+                          <div class="price-area">
+                            <div class="price">$20 <span>/month</span></div>
+                            <a href="signup.html" class="get-started">
+                              Sign up
+                              <i class="fa-classic fa-light fa-angle-right"></i>
+                            </a>
+                          </div>
+                          <div>
+                            <div class="limited-offer">
+                              <div
+                                class="limit"
+                                style="font-size: 16px; line-height: 1.5"
+                              >
+                                Exclusive Early<br />Member Perks<br />and
+                                Benefits
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="feature-lists">
+                          <ul class="features-list">
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Full
+                              global profile
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>$PKL
+                              airdrop
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Full
+                              product discounts
+                            </li>
+                          </ul>
+                          <ul class="features-list">
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i
+                              >Premium profile avatar
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>PWS
+                              eligible
+                            </li>
+                            <li>
+                              <i class="icon fa-classic far fa-check"></i>Access
+                              all tech including Play4 PKL
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1645,44 +1877,638 @@
             </div>
           </div>
         </div>
-        <div class="footer-bottom-two">
+      </section>
+      <!--End Pricing Table Section -->
+
+      <!-- faqs Section -->
+      <section class="faqs-section-layout1 pt-0">
+        <div class="outer-box">
+          <div class="shape-19 tm-gsap-img-parallax">
+            <img src="images/icons/shape-19.png" alt="" />
+          </div>
           <div class="container">
-            <div class="inner-container">
-              <div class="copyright-text">© Copyright 2025 by Company.com</div>
-              <ul class="policy-link">
-                <li><a href="#">Terms & Condition</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
+            <div
+              class="sec-outer aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="sec-title">
+                <span class="sub-title"
+                  ><img
+                    class="icon-img animation__rotateY"
+                    src="images/icons/sub-title-shape-1.png"
+                    alt=""
+                  />
+                  FAQS
+                </span>
+                <h2 class="title text-reveal-anim">
+                  Have Questions in Your <br />Mind? Get the Answers Now
+                </h2>
+              </div>
+              <div class="right-box">
+                <h6>
+                  Still have question
+                  <a href="page-contact.html">Get in Touch</a>
+                </h6>
+              </div>
+            </div>
+            <div
+              class="faqs-outer aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+            >
+              <!-- faqs Block - Players -->
+              <div class="faqs-block-layout1">
+                <div class="inner-box active">
+                  <button type="button" class="btn-faq">Players</button>
+                  <div class="faqs-box">
+                    <ul class="accordion-box">
+                      <!--Block-->
+                      <li class="accordion block active-block">
+                        <div class="acc-btn active">
+                          1. How do I enter the Pickleball World Series?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content current">
+                          <div class="content">
+                            <div class="text">
+                              Just create a player profile and purchase a
+                              PKL.CLUB membership (membership costs are prorated
+                              depending on the country you are in) then register
+                              in any activated city no rankings or
+                              qualifications required.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          2. Do I need to be a paid member to compete?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              There is a free membership option but to
+                              participate in PWS events you must be a paid
+                              member in good standing.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          3. What categories can I compete in?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Your age and gender automatically display the
+                              available singles, doubles, and mixed categories
+                              during registration.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          4. How do I find an activated city near me?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Use the PWS dashboard to search by country,
+                              region, or city and see which locations have been
+                              activated. If your city isn't activated help us
+                              find a city operator and get them to apply to
+                              activate any city or town.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          5. What happens if I win my city tournament?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              You advance to the regional event then national,
+                              and potentially the World Championship in November
+                              2026.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- faqs Block - Operators -->
+              <div class="faqs-block-layout1">
+                <div class="inner-box">
+                  <button type="button" class="btn-faq">Operators</button>
+                  <div class="faqs-box">
+                    <ul class="accordion-box">
+                      <!--Block-->
+                      <li class="accordion block active-block">
+                        <div class="acc-btn active">
+                          1. How do I activate my city for a tournament?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content current">
+                          <div class="content">
+                            <div class="text">
+                              Submit your operator profile and event details
+                              through the Operations Dashboard to get approval.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          2. Can I host multiple events in different regions?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Yes, approved operators can manage multiple city,
+                              regional, and even national events.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          3. How do I register players for my event?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Players register themselves, and their data
+                              automatically populates your dashboard for
+                              brackets and categories.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          4. What support do operators receive from PKL.CLUB?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              You'll get access to the PWS playbook, tech tools,
+                              and sponsor connections to simplify event
+                              management.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          5. How are results reported after my event?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Results flow directly into the regional and
+                              national dashboards, ensuring seamless progression
+                              to the World Championship.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- faqs Block - Fans -->
+              <div class="faqs-block-layout1">
+                <div class="inner-box">
+                  <button type="button" class="btn-faq">Fans</button>
+                  <div class="faqs-box">
+                    <ul class="accordion-box">
+                      <!--Block-->
+                      <li class="accordion block active-block">
+                        <div class="acc-btn active">
+                          1. Can I still join PKL.CLUB if I don't play
+                          competitively?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content current">
+                          <div class="content">
+                            <div class="text">
+                              Membership is open to all and links you to the
+                              worldwide pickleball community. You'll enjoy
+                              numerous benefits, along with exciting
+                              gamification tools powered by Web 3 that are on
+                              the way. This includes the Pickleball token, $PKL,
+                              for which early members will qualify to receive
+                              free tokens.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          2. How can I follow the Pickleball World Series?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              You can track live results, schedules, and updates
+                              directly on the PKL.CLUB dashboard. Also stay
+                              tuned for a global broadcast schedule.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          3. Do fans get any benefits from membership?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Absolutely, members appreciate avatars, XP points,
+                              messaging, and exclusive access to community
+                              features. Whether you're a pickleball enthusiast
+                              or a casual player, our gamification elements will
+                              add excitement and enhance your pickleball
+                              experience.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          4. Can I attend events even if I'm not a player?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Yes, we would be thrilled to have you join us in
+                              supporting these talented players at local,
+                              regional, national, and world events. These
+                              occasions are not just tournaments; they are
+                              celebrations that allow us to honor the incredible
+                              and dynamic sport of pickleball.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          5. How do I support my favorite players or teams?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              You can connect with their profiles, support them
+                              at events, and interact with them through the
+                              community tools available on PKL.CLUB. We also
+                              invite friends and fans to consider sponsoring
+                              local players, helping them with essentials such
+                              as training equipment and travel costs.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- faqs Block - Sponsors -->
+              <div class="faqs-block-layout1">
+                <div class="inner-box mb-0">
+                  <button type="button" class="btn-faq">Sponsors</button>
+                  <div class="faqs-box">
+                    <ul class="accordion-box">
+                      <!--Block-->
+                      <li class="accordion block active-block">
+                        <div class="acc-btn active">
+                          1. How can my brand become an official sponsor of the
+                          Pickleball World Series?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content current">
+                          <div class="content">
+                            <div class="text">
+                              Submit Your Sponsorship Proposal through PKL.CLUB.
+                              Take the opportunity to apply for one of our
+                              global official sponsor spots, which will be
+                              featured on all branding at every event. Please
+                              note that inquiries about sponsoring specific or
+                              multiple events directly are not accepted.
+                              Additionally, we encourage you to support our
+                              incredible players in their journey to success.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          2. What visibility will my company get by sponsoring?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Sponsors are featured across the PKL.CLUB
+                              platform, event dashboards, and live tournament
+                              coverage.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          3. Can sponsors support local or regional events
+                          instead of global ones?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Yes, you can choose to back city, regional,
+                              national, or world events depending on your reach.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          4. How do sponsorships benefit the pickleball
+                          community?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              They provide resources, equipment, and support
+                              that make grassroots competition accessible
+                              worldwide.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Block-->
+                      <li class="accordion block border-top-0">
+                        <div class="acc-btn">
+                          5. Are there opportunities for co-branding or product
+                          integration?
+                          <div class="icon far fa-angle-down"></div>
+                        </div>
+                        <div class="acc-content">
+                          <div class="content">
+                            <div class="text">
+                              Absolutely, sponsors can collaborate on
+                              merchandise, event activations, and digital
+                              campaigns tied to PKL.CLUB.
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
-    <!--End Main Footer -->
+      </section>
+      <!--End faqs Section -->
 
-  </div>
-  <!-- End Page Wrapper -->
+      <!-- Cta Section -->
+      <!-- <section class="cta-section-layout1 pt-0">
+        <div class="outer-box">
+          <div class="bg-shape-cat">
+            <img src="images/icons/bg-shape-cat-1.png" alt="" />
+          </div>
+          <div class="container">
+            <div
+              class="content-box text-center aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="sec-title text-center">
+                <h2 class="title text-reveal-anim">
+                  Get started with a 14-day free trial. <br /><img
+                    class="me-1"
+                    src="images/icons/cta-shape-1.png"
+                    alt=""
+                  />No credit card required.
+                </h2>
+                <div class="text">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. <br />Lorem Ipsum has been the
+                  industry's standard dummy
+                </div>
+              </div>
+              <a class="btn-style-one theme-btn" href="page-contact.html">
+                <span class="header-theme-btn">Start Free Trial</span>
+                <span class="header-btn-arrow-right"
+                  ><i class="fa-regular fa-angle-right"></i
+                ></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!--End Cta Section -->
 
-  <script src="js/jquery.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.fancybox.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/wow.js"></script>
-  <script src="js/select2.min.js"></script>
-  <script src="js/appear.js"></script>
-  <script src="js/knob.js"></script>
-  <script src="js/swiper.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/gsap.min.js"></script>
-  <script src="js/ScrollTrigger.min.js"></script>
-  <script src="js/splitType.js"></script>
-  <script src="js/gsap-scroll-smoother.js"></script>
-  <script src="js/gsap-scroll-to-plugin.js"></script>
-  <script src="js/SplitText.min.js"></script>
-  <script src="js/custom-gsap.js"></script>
-  <script src="js/script.js"></script>
-</body>
+      <!-- Main Footer -->
+      <footer class="main-footer footer-style-one">
+        <div class="widgets-section">
+          <div class="footer-top">
+            <div class="container">
+              <div class="outer-box-top">
+                <div class="content-box">
+                  <h3 class="title">Sign up now or never!</h3>
+                  <div class="text">
+                    Stay up to date with the latest news, announcements, and
+                    articles.
+                  </div>
+                </div>
+                <div class="subscribe-widget">
+                  <div class="subscribe-form-one">
+                    <form method="post" action="#">
+                      <div class="form-group">
+                        <label for="email" class="sr-only">Email Address</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="email"
+                          value=""
+                          placeholder="Email Address"
+                          required
+                        />
+                        <button
+                          type="submit"
+                          class="theme-btn"
+                          aria-label="Submit email"
+                        >
+                          <i class="icon flaticon-paper-plane"></i>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-middle">
+            <div class="container">
+              <div class="row">
+                <!-- Footer Column -->
+                <div class="col-xl-4 col-lg-6">
+                  <div class="footer-widget about-widget">
+                    <div class="logo">
+                      <img src="images/logo.png?v=2" alt="" />
+                    </div>
+                    <div class="text">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-5 col-lg-6 offset-xl-3">
+                  <div class="row">
+                    <!-- footer column -->
+                    <div
+                      class="footer-column col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4"
+                    >
+                      <div
+                        class="footer-widget links-widget wow fadeInLeft"
+                        data-wow-delay="200ms"
+                      >
+                        <h6 class="widget-title">Company</h6>
+                        <div class="widget-content">
+                          <ul class="user-links">
+                            <li><a href="#">About </a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Our Blogs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- footer column -->
+                    <div
+                      class="footer-column col-xxl-5 col-xl-4 col-lg-4 col-md-4 col-sm-4"
+                    >
+                      <div
+                        class="footer-widget links-widget ms-0 ms-xxl-4 wow fadeInLeft"
+                        data-wow-delay="200ms"
+                      >
+                        <h6 class="widget-title">Useful Link</h6>
+                        <div class="widget-content">
+                          <ul class="user-links">
+                            <li><a href="#">Resources</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Team</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- footer column -->
+                    <div
+                      class="footer-column col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-4"
+                    >
+                      <div
+                        class="footer-widget links-widget wow fadeInLeft"
+                        data-wow-delay="200ms"
+                      >
+                        <h6 class="widget-title">Product</h6>
+                        <div class="widget-content">
+                          <ul class="user-links">
+                            <li><a href="#">Live Chat</a></li>
+                            <li><a href="#">Analyze</a></li>
+                            <li><a href="#">Keyword</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">Pricing</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom-two">
+            <div class="container">
+              <div class="inner-container">
+                <div class="copyright-text">
+                  © Copyright 2025 by Company.com
+                </div>
+                <ul class="policy-link">
+                  <li><a href="#">Terms & Condition</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Contact us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!--End Main Footer -->
+    </div>
+    <!-- End Page Wrapper -->
 
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/appear.js"></script>
+    <script src="js/knob.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/splitType.js"></script>
+    <script src="js/gsap-scroll-smoother.js"></script>
+    <script src="js/gsap-scroll-to-plugin.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script src="js/custom-gsap.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
