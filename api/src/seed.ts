@@ -6,8 +6,11 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://pklroot:PklM0ng0Secr3t!@lo
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, default: 'user' },
-    email: { type: String },
+    userType: { type: String, enum: ['admin', 'player', 'operator', 'sponsor'], default: 'player' },
+    email: { type: String, required: true },
+    firstName: { type: String },
+    lastName: { type: String },
+    phone: { type: String },
     isActive: { type: Boolean, default: true },
 }, { timestamps: true });
 
@@ -22,8 +25,8 @@ async function seed() {
         const User = mongoose.model('User', UserSchema);
 
         const admins = [
-            { username: 'eman', password: 'Admin321', role: 'admin', email: 'eman@pkl.club' },
-            { username: 'gabe', password: 'Admin321', role: 'admin', email: 'gabe@pkl.club' },
+            { username: 'eman', password: 'Admin321', userType: 'admin', email: 'eman@pkl.club', firstName: 'Eman', lastName: 'Admin' },
+            { username: 'gabe', password: 'Admin321', userType: 'admin', email: 'gabe@pkl.club', firstName: 'Gabe', lastName: 'Admin' },
         ];
 
         for (const admin of admins) {
@@ -36,8 +39,10 @@ async function seed() {
                 await User.create({
                     username: admin.username,
                     password: hashedPassword,
-                    role: admin.role,
+                    userType: admin.userType,
                     email: admin.email,
+                    firstName: admin.firstName,
+                    lastName: admin.lastName,
                     isActive: true,
                 });
                 console.log(`✅ Created admin user: ${admin.username}`);

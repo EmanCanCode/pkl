@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PKL.CLUB | Sign Up</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Google Fonts for PKL.CLUB -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --pkl-primary: #6366f1;
+            --pkl-primary-dark: #4f46e5;
+            --pkl-success: #10b981;
+            --pkl-warning: #f59e0b;
+            --pkl-danger: #ef4444;
+        }
+
+        .signup-form .form-control,
+        .signup-form .form-select {
+            height: 55px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .signup-form .form-control:focus,
+        .signup-form .form-select:focus {
+            border-color: var(--pkl-primary);
+            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+        }
+
+        .signup-form textarea.form-control {
+            height: auto;
+            min-height: 100px;
+        }
+
+        .signup-section {
+            padding: 100px 0;
+        }
+
+        .signup-box {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+        }
+
+        .signup-box .sec-title {
+            margin-bottom: 30px;
+        }
+
+        .signup-box .sec-title h2 {
+            font-size: 32px;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle .toggle-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            z-index: 10;
+        }
+
+        .form-check-label a {
+            color: var(--pkl-primary);
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+
+        /* User Type Selection Cards */
+        .user-type-selection {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .user-type-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            padding: 30px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .user-type-card:hover {
+            border-color: var(--pkl-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .user-type-card.selected {
+            border-color: var(--pkl-primary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(99, 102, 241, 0.1) 100%);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .user-type-card .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--pkl-primary) 0%, var(--pkl-primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .user-type-card.selected .icon {
+            transform: scale(1.1);
+        }
+
+        .user-type-card h4 {
+            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .user-type-card p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Form Sections */
+        .form-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Conditional Fields */
+        .conditional-field {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .conditional-field.show {
+            display: block;
+        }
+
+        /* Progress Steps */
+        .signup-progress {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-step .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .step-number,
+        .progress-step.completed .step-number {
+            background: var(--pkl-primary);
+            color: #fff;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--pkl-success);
+        }
+
+        .progress-step .step-label {
+            margin-left: 10px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--pkl-primary);
+        }
+
+        .progress-connector {
+            width: 60px;
+            height: 3px;
+            background: #e0e0e0;
+            margin: 0 15px;
+        }
+
+        .progress-connector.active {
+            background: var(--pkl-primary);
+        }
+
+        /* Password Strength */
+        .password-strength {
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-bar-fill.weak { width: 25%; background: var(--pkl-danger); }
+        .strength-bar-fill.fair { width: 50%; background: var(--pkl-warning); }
+        .strength-bar-fill.good { width: 75%; background: #84cc16; }
+        .strength-bar-fill.strong { width: 100%; background: var(--pkl-success); }
+
+        .strength-text {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Form Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            color: #666;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            border-color: var(--pkl-primary);
+            color: var(--pkl-primary);
+        }
+
+        /* Dynamic subtitle */
+        #dynamic-subtitle {
+            transition: all 0.3s ease;
+        }
+
+        /* Field validation */
+        .form-control.is-valid {
+            border-color: var(--pkl-success);
+        }
+
+        .form-control.is-invalid {
+            border-color: var(--pkl-danger);
+        }
+
+        .validation-feedback {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .validation-feedback.valid {
+            color: var(--pkl-success);
+        }
+
+        .validation-feedback.invalid {
+            color: var(--pkl-danger);
+        }
+
+        /* Loading spinner */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .btn-loading .btn-title {
+            visibility: hidden;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Preloader start -->
+        <div class="preloader">
+            <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                <path id="preloaderSvg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+            </svg>
+            <div class="preloader-heading">
+                <div class="load-text">
+                    <span>L</span>
+                    <span>o</span>
+                    <span>a</span>
+                    <span>d</span>
+                    <span>i</span>
+                    <span>n</span>
+                    <span>g</span>
+                </div>
+            </div>
+        </div>
+        <!-- Preloader end -->
+
+        <!-- Back-to-top start -->
+        <div class="back-to-top-wrapper">
+            <button id="back_to_top" type="button" class="back-to-top-btn">
+                <i class="fa-solid fa-angle-up"></i>
+            </button>
+        </div>
+        <!-- Back-to-top start -->
+
+        <!-- Main Header-->
+        <header class="main-header header-style-one position-absolute">
+            <div class="container">
+                <div class="header-lower">
+                    <div class="inner-container">
+                        <!-- Main box -->
+                        <div class="main-box">
+                            <div class="logo-box">
+                                <div class="logo">
+                                    <a href="index.html"><img src="images/logo.png?v=2" alt="Logo" /></a>
+                                </div>
+                            </div>
+
+                            <!--Nav Box-->
+                            <div class="nav-outer">
+                                <nav class="nav main-menu">
+                                    <ul class="navigation">
+                                        <li><a href="world-series.html">World Series</a></li>
+                                        <li><a href="players.html">Players</a></li>
+                                        <li><a href="operators.html">Operators</a></li>
+                                        <li><a href="sponsors.html">Sponsors</a></li>
+                                        <li class="dropdown">
+                                            <a href="#">Shop</a>
+                                            <ul>
+                                                <li><a href="#">Membership</a></li>
+                                                <li><a href="#">Profile Image</a></li>
+                                                <li><a href="#">Merchandise</a></li>
+                                                <li><a href="#">Equipment</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="pkl-club.html">PKL.CLUB</a></li>
+                                        <li><a href="news.html">News</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- Outer Box -->
+                            <div class="action-box">
+                                <div class="header-btn">
+                                    <a class="header-btn-main theme-btn" href="signup.html"><span class="btn-text">Sign Up</span></a>
+                                </div>
+
+                                <!-- Mobile Nav toggler -->
+                                <div class="mobile-nav-toggler">
+                                    <div class="shape-line-img"><i class="fas fa-bars"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <nav class="menu-box">
+                    <div class="upper-box">
+                        <div class="nav-logo">
+                            <a href="index.html"><img src="images/logo.png?v=2" alt="" /></a>
+                        </div>
+                        <div class="close-btn"><i class="icon fa fa-times"></i></div>
+                    </div>
+                    <ul class="navigation clearfix"></ul>
+                    <ul class="contact-list-one">
+                        <li>
+                            <i class="icon lnr-icon-envelope1"></i>
+                            <span class="title">Send Email</span>
+                            <div class="text"><a href="mailto:hello@pkl.club">hello@pkl.club</a></div>
+                        </li>
+                    </ul>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="icon fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="icon fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="icon fab fa-youtube"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Mobile Menu -->
+
+            <!-- Sticky Header  -->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="inner-container">
+                        <div class="logo">
+                            <a href="index.html"><img src="images/logo.png?v=2" alt="" /></a>
+                        </div>
+                        <div class="nav-outer">
+                            <nav class="main-menu">
+                                <div class="navbar-collapse show collapse clearfix">
+                                    <ul class="navigation clearfix"></ul>
+                                </div>
+                            </nav>
+                            <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                        </div>
+                        <div class="action-box">
+                            <div class="header-btn">
+                                <a class="header-btn-main theme-btn" href="signup.html"><span class="btn-text">Sign Up</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Sticky Menu -->
+        </header>
+        <!--End Main Header -->
+
+        <!-- Start main-content -->
+        <section class="page-title" style="background-image: url(images/background/page-title2.png);">
+            <div class="auto-container">
+                <div class="title-outer text-center">
+                    <h1 class="title">Join PKL.CLUB</h1>
+                    <ul class="page-breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Sign Up</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- end main-content -->
+
+        <!--Signup Section Start-->
+        <section class="signup-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-11">
+                        <div class="signup-box">
+                            <!-- Progress Steps -->
+                            <div class="signup-progress">
+                                <div class="progress-step active" data-step="1">
+                                    <div class="step-number">1</div>
+                                    <span class="step-label d-none d-sm-inline">Choose Type</span>
+                                </div>
+                                <div class="progress-connector"></div>
+                                <div class="progress-step" data-step="2">
+                                    <div class="step-number">2</div>
+                                    <span class="step-label d-none d-sm-inline">Your Details</span>
+                                </div>
+                                <div class="progress-connector"></div>
+                                <div class="progress-step" data-step="3">
+                                    <div class="step-number">3</div>
+                                    <span class="step-label d-none d-sm-inline">Complete</span>
+                                </div>
+                            </div>
+
+                            <div class="sec-title text-center">
+                                <span class="sub-title" id="dynamic-subtitle">Choose Your Role</span>
+                                <h2 id="dynamic-title">How Will You Join Us?</h2>
+                                <p class="text" id="dynamic-description">Select the type of account that best describes you</p>
+                            </div>
+
+                            <!-- Alert Messages -->
+                            <div id="signup-alert" class="alert d-none" role="alert"></div>
+
+                            <!-- Step 1: User Type Selection -->
+                            <div class="form-section active" id="step-1">
+                                <div class="user-type-selection">
+                                    <div class="user-type-card" data-type="player">
+                                        <div class="icon"><i class="fa fa-user"></i></div>
+                                        <h4>Player</h4>
+                                        <p>Compete in tournaments, track rankings, and connect with other players</p>
+                                    </div>
+                                    <div class="user-type-card" data-type="operator">
+                                        <div class="icon"><i class="fa fa-building"></i></div>
+                                        <h4>Operator</h4>
+                                        <p>Host events, manage venues, and organize tournaments</p>
+                                    </div>
+                                    <div class="user-type-card" data-type="sponsor">
+                                        <div class="icon"><i class="fa fa-handshake"></i></div>
+                                        <h4>Sponsor</h4>
+                                        <p>Partner with events, support players, and grow your brand</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" class="theme-btn btn-style-one" id="btn-continue-step1" disabled>
+                                        <span class="btn-title">Continue</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Registration Form -->
+                            <div class="form-section" id="step-2">
+                                <form id="signup_form" class="signup-form" novalidate>
+                                    <input type="hidden" name="userType" id="userType" value="">
+
+                                    <!-- Common Fields -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">First Name *</label>
+                                                <input name="firstName" id="firstName" class="form-control" type="text" placeholder="Enter First Name" required>
+                                                <div class="validation-feedback" id="firstName-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Last Name *</label>
+                                                <input name="lastName" id="lastName" class="form-control" type="text" placeholder="Enter Last Name" required>
+                                                <div class="validation-feedback" id="lastName-feedback"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Username *</label>
+                                                <input name="username" id="username" class="form-control" type="text" placeholder="Choose a Username" required>
+                                                <div class="validation-feedback" id="username-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Email Address *</label>
+                                                <input name="email" id="email" class="form-control" type="email" placeholder="Enter Email" required>
+                                                <div class="validation-feedback" id="email-feedback"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone Number</label>
+                                                <input name="phone" id="phone" class="form-control" type="tel" placeholder="Enter Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Password *</label>
+                                                <div class="password-toggle">
+                                                    <input name="password" id="password" class="form-control" type="password" placeholder="Create Password" required minlength="6">
+                                                    <button type="button" class="toggle-btn" onclick="togglePassword('password')">
+                                                        <i class="fa fa-eye" id="password-icon"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="password-strength">
+                                                    <div class="strength-bar">
+                                                        <div class="strength-bar-fill" id="strength-bar"></div>
+                                                    </div>
+                                                    <div class="strength-text" id="strength-text"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Confirm Password *</label>
+                                                <div class="password-toggle">
+                                                    <input name="confirmPassword" id="confirmPassword" class="form-control" type="password" placeholder="Confirm Password" required>
+                                                    <button type="button" class="toggle-btn" onclick="togglePassword('confirmPassword')">
+                                                        <i class="fa fa-eye" id="confirmPassword-icon"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="validation-feedback" id="confirmPassword-feedback"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Player-specific Fields -->
+                                    <div class="conditional-field" id="player-fields">
+                                        <hr class="my-4">
+                                        <h5 class="mb-3">Player Information</h5>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Skill Level</label>
+                                                    <select name="skillLevel" id="skillLevel" class="form-select">
+                                                        <option value="">Select Skill Level</option>
+                                                        <option value="beginner">Beginner (1.0 - 2.5)</option>
+                                                        <option value="intermediate">Intermediate (3.0 - 3.5)</option>
+                                                        <option value="advanced">Advanced (4.0 - 4.5)</option>
+                                                        <option value="pro">Pro (5.0+)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Preferred Play Style</label>
+                                                    <select name="playStyle" id="playStyle" class="form-select">
+                                                        <option value="">Select Play Style</option>
+                                                        <option value="singles">Singles</option>
+                                                        <option value="doubles">Doubles</option>
+                                                        <option value="mixed">Mixed Doubles</option>
+                                                        <option value="all">All Formats</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Operator-specific Fields -->
+                                    <div class="conditional-field" id="operator-fields">
+                                        <hr class="my-4">
+                                        <h5 class="mb-3">Operator Information</h5>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Organization/Venue Name *</label>
+                                                    <input name="organizationName" id="organizationName" class="form-control" type="text" placeholder="Enter Organization Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Number of Courts</label>
+                                                    <select name="courtCount" id="courtCount" class="form-select">
+                                                        <option value="">Select Court Count</option>
+                                                        <option value="1-4">1-4 Courts</option>
+                                                        <option value="5-10">5-10 Courts</option>
+                                                        <option value="11-20">11-20 Courts</option>
+                                                        <option value="20+">20+ Courts</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Venue Address</label>
+                                                    <input name="venueAddress" id="venueAddress" class="form-control" type="text" placeholder="Enter Venue Address">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sponsor-specific Fields -->
+                                    <div class="conditional-field" id="sponsor-fields">
+                                        <hr class="my-4">
+                                        <h5 class="mb-3">Sponsor Information</h5>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Company Name *</label>
+                                                    <input name="companyName" id="companyName" class="form-control" type="text" placeholder="Enter Company Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Industry</label>
+                                                    <select name="industry" id="industry" class="form-select">
+                                                        <option value="">Select Industry</option>
+                                                        <option value="sports">Sports & Recreation</option>
+                                                        <option value="health">Health & Wellness</option>
+                                                        <option value="technology">Technology</option>
+                                                        <option value="food">Food & Beverage</option>
+                                                        <option value="retail">Retail</option>
+                                                        <option value="finance">Finance</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Website</label>
+                                                    <input name="website" id="website" class="form-control" type="url" placeholder="https://example.com">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Sponsorship Interest</label>
+                                                    <select name="sponsorshipInterest" id="sponsorshipInterest" class="form-select">
+                                                        <option value="">Select Interest Level</option>
+                                                        <option value="tournament">Tournament Sponsorship</option>
+                                                        <option value="player">Player Sponsorship</option>
+                                                        <option value="equipment">Equipment Partnership</option>
+                                                        <option value="media">Media & Content</option>
+                                                        <option value="all">Multiple Opportunities</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 mt-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms" required>
+                                            <label class="form-check-label" for="terms">
+                                                I agree to the <a href="#" target="_blank">Terms & Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn-back" id="btn-back-step2">
+                                            <i class="fa fa-arrow-left me-2"></i> Back
+                                        </button>
+                                        <button type="submit" class="theme-btn btn-style-one" id="submit-btn">
+                                            <span class="btn-title">Create Account</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Step 3: Success -->
+                            <div class="form-section" id="step-3">
+                                <div class="text-center py-5">
+                                    <div style="width: 100px; height: 100px; background: var(--pkl-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+                                        <i class="fa fa-check" style="font-size: 50px; color: #fff;"></i>
+                                    </div>
+                                    <h2>Welcome to PKL.CLUB!</h2>
+                                    <p class="text mb-4">Your account has been created successfully.</p>
+                                    <p id="success-message" class="text-muted mb-4"></p>
+                                    <a href="login.html" class="theme-btn btn-style-one">
+                                        <span class="btn-title">Sign In Now</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4" id="login-link">
+                                <p>Already have an account? <a href="login.html" style="color: var(--pkl-primary); font-weight: 600;">Sign In</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Signup Section End-->
+
+        <!-- Main Footer -->
+        <footer class="main-footer footer-style-one">
+            <div class="widgets-section">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="outer-box-top">
+                            <div class="content-box">
+                                <h3 class="title">Sign up now or never!</h3>
+                                <div class="text">Stay up to date with the latest news, announcements, and articles.</div>
+                            </div>
+                            <div class="subscribe-widget">
+                                <div class="subscribe-form-one">
+                                    <form method="post" action="#">
+                                        <div class="form-group">
+                                            <label for="footer-email" class="sr-only">Email Address</label>
+                                            <input type="email" id="footer-email" name="email" class="email" value="" placeholder="Email Address" required />
+                                            <button type="submit" class="theme-btn" aria-label="Submit email">
+                                                <i class="icon flaticon-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="footer-widget about-widget">
+                                    <div class="logo">
+                                        <img src="images/logo.png?v=2" alt="">
+                                    </div>
+                                    <div class="text">
+                                        PKL.CLUB is the premier destination for competitive pickleball players, operators, and sponsors worldwide.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-lg-6 offset-xl-3">
+                                <div class="row">
+                                    <div class="footer-column col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                        <div class="footer-widget links-widget">
+                                            <h6 class="widget-title">Company</h6>
+                                            <div class="widget-content">
+                                                <ul class="user-links">
+                                                    <li><a href="pkl-club.html">About</a></li>
+                                                    <li><a href="#">Careers</a></li>
+                                                    <li><a href="news.html">News</a></li>
+                                                    <li><a href="page-contact.html">Contact Us</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-column col-xxl-5 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                        <div class="footer-widget links-widget ms-0 ms-xxl-4">
+                                            <h6 class="widget-title">Quick Links</h6>
+                                            <div class="widget-content">
+                                                <ul class="user-links">
+                                                    <li><a href="world-series.html">World Series</a></li>
+                                                    <li><a href="players.html">Players</a></li>
+                                                    <li><a href="operators.html">Operators</a></li>
+                                                    <li><a href="sponsors.html">Sponsors</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-column col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                        <div class="footer-widget links-widget">
+                                            <h6 class="widget-title">Account</h6>
+                                            <div class="widget-content">
+                                                <ul class="user-links">
+                                                    <li><a href="signup.html">Sign Up</a></li>
+                                                    <li><a href="login.html">Login</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-two">
+                    <div class="container">
+                        <div class="inner-container">
+                            <div class="copyright-text">© Copyright 2025 PKL.CLUB. All Rights Reserved.</div>
+                            <ul class="policy-link">
+                                <li><a href="#">Terms & Condition</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="page-contact.html">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--End Main Footer -->
+
+    </div>
+    <!-- End Page Wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/appear.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/splitType.js"></script>
+    <script src="js/gsap-scroll-smoother.js"></script>
+    <script src="js/gsap-scroll-to-plugin.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script src="js/custom-gsap.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Signup Form Script -->
+    <script>
+        const API_URL = 'http://localhost:3333';
+
+        // State
+        let selectedUserType = null;
+        let currentStep = 1;
+
+        // User type configurations
+        const userTypeConfig = {
+            player: {
+                subtitle: 'Player Registration',
+                title: 'Create Your Player Account',
+                description: 'Join the PKL.CLUB community and start competing in pickleball tournaments worldwide!',
+                fields: 'player-fields',
+                requiredFields: []
+            },
+            operator: {
+                subtitle: 'Operator Registration',
+                title: 'Create Your Operator Account',
+                description: 'Host events, manage venues, and organize tournaments with PKL.CLUB!',
+                fields: 'operator-fields',
+                requiredFields: ['organizationName']
+            },
+            sponsor: {
+                subtitle: 'Sponsor Registration',
+                title: 'Create Your Sponsor Account',
+                description: 'Partner with events, support players, and grow your brand with PKL.CLUB!',
+                fields: 'sponsor-fields',
+                requiredFields: ['companyName']
+            }
+        };
+
+        // DOM Elements
+        const userTypeCards = document.querySelectorAll('.user-type-card');
+        const btnContinueStep1 = document.getElementById('btn-continue-step1');
+        const btnBackStep2 = document.getElementById('btn-back-step2');
+        const signupForm = document.getElementById('signup_form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for URL parameter to pre-select user type
+            const urlParams = new URLSearchParams(window.location.search);
+            const preselectedType = urlParams.get('type');
+            if (preselectedType && userTypeConfig[preselectedType]) {
+                selectUserType(preselectedType);
+            }
+
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // User type card selection
+            userTypeCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const type = card.dataset.type;
+                    selectUserType(type);
+                });
+            });
+
+            // Continue button (Step 1)
+            btnContinueStep1.addEventListener('click', () => {
+                if (selectedUserType) {
+                    goToStep(2);
+                }
+            });
+
+            // Back button (Step 2)
+            btnBackStep2.addEventListener('click', () => {
+                goToStep(1);
+            });
+
+            // Password strength indicator
+            document.getElementById('password').addEventListener('input', updatePasswordStrength);
+
+            // Password confirmation validation
+            document.getElementById('confirmPassword').addEventListener('input', validatePasswordMatch);
+
+            // Real-time validation
+            ['firstName', 'lastName', 'username', 'email'].forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('blur', () => validateField(field));
+                    field.addEventListener('input', () => {
+                        if (field.classList.contains('is-invalid') || field.classList.contains('is-valid')) {
+                            validateField(field);
+                        }
+                    });
+                }
+            });
+
+            // Form submission
+            signupForm.addEventListener('submit', handleSubmit);
+        }
+
+        function selectUserType(type) {
+            selectedUserType = type;
+            document.getElementById('userType').value = type;
+
+            // Update UI
+            userTypeCards.forEach(card => {
+                card.classList.toggle('selected', card.dataset.type === type);
+            });
+
+            // Enable continue button
+            btnContinueStep1.disabled = false;
+
+            // Update dynamic content
+            const config = userTypeConfig[type];
+            document.getElementById('dynamic-subtitle').textContent = config.subtitle;
+            document.getElementById('dynamic-title').textContent = config.title;
+            document.getElementById('dynamic-description').textContent = config.description;
+        }
+
+        function goToStep(step) {
+            currentStep = step;
+
+            // Update progress indicators
+            document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
+                const stepNum = index + 1;
+                stepEl.classList.remove('active', 'completed');
+                if (stepNum < step) {
+                    stepEl.classList.add('completed');
+                } else if (stepNum === step) {
+                    stepEl.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('.progress-connector').forEach((connector, index) => {
+                connector.classList.toggle('active', index < step - 1);
+            });
+
+            // Show/hide form sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`step-${step}`).classList.add('active');
+
+            // Show/hide conditional fields based on user type
+            if (step === 2 && selectedUserType) {
+                showConditionalFields(selectedUserType);
+            }
+
+            // Update dynamic titles for step 2
+            if (step === 2) {
+                const config = userTypeConfig[selectedUserType];
+                document.getElementById('dynamic-subtitle').textContent = config.subtitle;
+                document.getElementById('dynamic-title').textContent = config.title;
+                document.getElementById('dynamic-description').textContent = config.description;
+            }
+
+            // Hide/show login link
+            document.getElementById('login-link').style.display = step === 3 ? 'none' : 'block';
+
+            // Scroll to top of form
+            document.querySelector('.signup-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showConditionalFields(type) {
+            // Hide all conditional fields
+            document.querySelectorAll('.conditional-field').forEach(field => {
+                field.classList.remove('show');
+            });
+
+            // Show relevant fields
+            const fieldsId = userTypeConfig[type].fields;
+            if (fieldsId) {
+                document.getElementById(fieldsId).classList.add('show');
+            }
+
+            // Update required fields
+            updateRequiredFields(type);
+        }
+
+        function updateRequiredFields(type) {
+            // Remove required from all conditional fields
+            document.querySelectorAll('.conditional-field input, .conditional-field select').forEach(field => {
+                field.removeAttribute('required');
+            });
+
+            // Add required to type-specific fields
+            const requiredFields = userTypeConfig[type].requiredFields;
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.setAttribute('required', 'required');
+                }
+            });
+        }
+
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(`${fieldId}-icon`);
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function updatePasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.getElementById('strength-bar');
+            const strengthText = document.getElementById('strength-text');
+
+            let strength = 0;
+            let label = '';
+
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            strengthBar.className = 'strength-bar-fill';
+            if (strength <= 1) {
+                strengthBar.classList.add('weak');
+                label = 'Weak';
+                strengthText.style.color = 'var(--pkl-danger)';
+            } else if (strength === 2) {
+                strengthBar.classList.add('fair');
+                label = 'Fair';
+                strengthText.style.color = 'var(--pkl-warning)';
+            } else if (strength === 3) {
+                strengthBar.classList.add('good');
+                label = 'Good';
+                strengthText.style.color = '#84cc16';
+            } else {
+                strengthBar.classList.add('strong');
+                label = 'Strong';
+                strengthText.style.color = 'var(--pkl-success)';
+            }
+
+            strengthText.textContent = password.length > 0 ? label : '';
+        }
+
+        function validatePasswordMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const feedback = document.getElementById('confirmPassword-feedback');
+            const field = document.getElementById('confirmPassword');
+
+            if (confirmPassword.length === 0) {
+                field.classList.remove('is-valid', 'is-invalid');
+                feedback.textContent = '';
+                return true;
+            }
+
+            if (password === confirmPassword) {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+                feedback.textContent = 'Passwords match!';
+                feedback.className = 'validation-feedback valid';
+                return true;
+            } else {
+                field.classList.remove('is-valid');
+                field.classList.add('is-invalid');
+                feedback.textContent = 'Passwords do not match';
+                feedback.className = 'validation-feedback invalid';
+                return false;
+            }
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const feedback = document.getElementById(`${field.id}-feedback`);
+
+            let isValid = true;
+            let message = '';
+
+            if (field.required && !value) {
+                isValid = false;
+                message = 'This field is required';
+            } else if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                    message = 'Please enter a valid email address';
+                }
+            } else if (field.id === 'username' && value) {
+                if (value.length < 3) {
+                    isValid = false;
+                    message = 'Username must be at least 3 characters';
+                } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+                    isValid = false;
+                    message = 'Username can only contain letters, numbers, and underscores';
+                }
+            }
+
+            field.classList.remove('is-valid', 'is-invalid');
+            if (value || !field.required) {
+                field.classList.add(isValid ? 'is-valid' : 'is-invalid');
+            }
+
+            if (feedback) {
+                feedback.textContent = message;
+                feedback.className = `validation-feedback ${isValid ? 'valid' : 'invalid'}`;
+            }
+
+            return isValid;
+        }
+
+        function showAlert(message, type) {
+            const alertEl = document.getElementById('signup-alert');
+            alertEl.className = `alert alert-${type}`;
+            alertEl.textContent = message;
+            alertEl.classList.remove('d-none');
+            alertEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hideAlert() {
+            document.getElementById('signup-alert').classList.add('d-none');
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            hideAlert();
+
+            // Validate passwords match
+            if (!validatePasswordMatch()) {
+                showAlert('Passwords do not match!', 'danger');
+                return;
+            }
+
+            // Validate required fields
+            let allValid = true;
+            signupForm.querySelectorAll('[required]').forEach(field => {
+                if (!validateField(field)) {
+                    allValid = false;
+                }
+            });
+
+            if (!allValid) {
+                showAlert('Please fill in all required fields correctly.', 'danger');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(signupForm);
+            const data = {};
+
+            // Only include non-empty values
+            formData.forEach((value, key) => {
+                if (value && key !== 'confirmPassword') {
+                    data[key] = value;
+                }
+            });
+
+            // Show loading state
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_URL}/users/signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Show success step
+                    const typeLabel = selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1);
+                    document.getElementById('success-message').textContent = 
+                        `Your ${typeLabel} account has been created. You can now sign in and start exploring PKL.CLUB!`;
+                    goToStep(3);
+                } else {
+                    showAlert(result.message || 'Failed to create account. Please try again.', 'danger');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                showAlert('Network error. Please check your connection and try again.', 'danger');
+            } finally {
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
