@@ -1,0 +1,43 @@
+services:
+  pkl-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pkl-site
+    ports:
+      - "8888:80"
+    restart: unless-stopped
+    depends_on:
+      - pkl-api
+
+  pkl-mongo:
+    image: mongo:7
+    container_name: pkl-mongo
+    ports:
+      - "47293:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: pklroot
+      MONGO_INITDB_ROOT_PASSWORD: PklM0ng0Secr3t!
+      MONGO_INITDB_DATABASE: pklclub
+    volumes:
+      - pkl_mongo_data:/data/db
+    restart: unless-stopped
+
+  pkl-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: pkl-api
+    ports:
+      - "3333:3000"
+    environment:
+      NODE_ENV: development
+      MONGO_URI: mongodb://pklroot:PklM0ng0Secr3t!@pkl-mongo:27017/pklclub?authSource=admin
+      JWT_SECRET: pkl-jwt-super-secret-key-2026
+      JWT_EXPIRES_IN: 7d
+    depends_on:
+      - pkl-mongo
+    restart: unless-stopped
+
+volumes:
+  pkl_mongo_data:

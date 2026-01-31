@@ -1,0 +1,189 @@
+/*** 
+
+====================================================================
+Section Title
+====================================================================
+
+***/
+
+.sec-title {
+  position: relative;
+  margin-bottom: 50px;
+  &.home2 {
+    .sub-title {
+      border-color: #8D56FA4D;
+      background: linear-gradient(0deg, #25184A, #25184A);
+    }
+  }
+
+  &.home3 {
+    .sub-title {
+      border-radius: 50px;
+      border: 1px solid #252E81;
+      background: linear-gradient(181deg, #121846 1.15%, #020628 98.91%);
+    }
+    
+    h2 {
+      span {
+          color: var(--theme-color1);
+      }
+    }
+  }
+
+  &.home4 {
+    .sub-title {
+      border-radius: 50px;
+      border: 1px solid #FFFFFF21;
+      background: linear-gradient(39.66deg, #222B1C -21.47%, #070C0F 55.5%);
+    }
+    
+    h2 {
+      span {
+          color: var(--theme-color1);
+      }
+    }
+  }
+  .sub-title {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 7px 19.5px;
+    gap: 10px;
+    font-size: var(--sec-title-subtitle-font-size);
+    line-height: var(--sec-title-subtitle-line-height);
+    font-weight: var(--sec-title-subtitle-font-weight);
+    font-family: var(--sec-title-subtitle-font-family);
+    color: var(--sec-title-subtitle-color);
+    text-transform: capitalize;
+    margin-bottom: 18px;
+    border: 1px solid #02DF8233;
+    background: linear-gradient(181.35deg, #142F2A 1.15%, #091D1E 98.91%);
+    .icon-img{
+      min-width: 16px;
+      [data-tm-layout="lemon"] & {
+        filter: invert(1);
+      }
+    }
+    .icon{
+      color: var(--theme-color-white);
+      margin-right: 8px;
+      font-size: 16px;
+    }
+  }
+  &.text-center{
+    .sub-title{
+      justify-content: center;
+    }
+    h2 {
+      @media (max-width: 575.98px){
+        max-width: 90%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  h1{
+    position: relative;
+    font-size: var(--h1-font-size);
+    font-weight: 400;
+    line-height: 1.211em;        
+  }
+
+  h2 {
+    position: relative;
+    font-size: var(--sec-title-font-size);
+    color: var(--sec-title-color);
+    font-family: var(--sec-title-font-family);
+    font-weight: var(--sec-title-font-weight);
+    line-height: var(--sec-title-title-line-height);
+    margin-bottom: 0;
+    @include responsive-font(30px, 4vw, 50px, 1.2);
+    @media (max-width: 575.98px){
+      max-width: 90%;
+    }
+    span{
+      font-weight: 700;
+      color: var(--theme-color1);
+    }
+    @include media-breakpoint-down(md){
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    color: rgba(var(--theme-color-white-rgb), 0.6);
+    [data-tm-layout="lemon"] & {
+      color: var(--body-color);
+    }
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-top: 20px;
+    @include media-breakpoint-down(md){
+      font-size: 14px;
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .text2 {
+    color: var(--theme-color-lighter2);
+  }
+
+  &.light{
+    .sub-title,
+    .text,
+    h2,
+    h1{
+      color: var(--theme-color-gray);
+    }
+    span{
+      font-weight: 700;
+      color: var(--theme-color-gray);
+    }
+  }
+}
+
+.title-stroke-text{
+  color: var(--theme-color1);
+  [data-tm-layout="lemon"] & {
+    color: var(--dark-color2);
+  }
+  font-size: 200px;
+  font-weight: 700;
+  line-height: 200px;
+  pointer-events: none;
+  text-transform: uppercase;
+  @include responsive-font(55px, 9.5vw, 200px, 1.2);
+  span{
+    position: relative;
+    font-size: 200px;
+    font-weight: 700;
+    line-height: 200px;
+    pointer-events: none;
+    text-transform: uppercase;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: var(--theme-color-white);
+    opacity: .25;
+    white-space: nowrap;
+    transform: translateX(100%);
+    overflow: hidden;
+    @include responsive-font(55px, 9.5vw, 200px, 1.2);
+  }
+}
+
+.section-padding {
+  padding: 120px 0;
+
+  @include media-breakpoint-down (xl){
+    padding: 100px 0;
+  }
+
+   @include media-breakpoint-down (lg){
+    padding: 80px 0;
+  }
+}

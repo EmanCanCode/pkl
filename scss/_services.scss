@@ -1,0 +1,189 @@
+/***
+
+====================================================================
+    Language Section Layout 3
+====================================================================
+
+***/
+.language-section-layout3 {
+    .outer-box {
+        position: relative;
+        max-width: 1620px;
+        border-radius: 40px;
+        margin: 0 auto;
+        background: linear-gradient(181.35deg, #121846 1.15%, #020628 98.91%);
+        border: 1.5px solid #252E81;
+        overflow: hidden;
+        padding: 120px 0;
+        @include media-breakpoint-down(lg){
+            padding: 80px 0;
+        }
+        .bg-image {
+            opacity: 0.3;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .image-1 {
+        top: 130px;
+        left: 150px;
+        position: absolute;
+        @include media-breakpoint-down(xl){
+            left: 30px;
+        }
+        @include media-breakpoint-down(lg){
+            display: none;
+        }
+    }
+    .image-2 {
+        top: 190px;
+        right: 184px;
+        position: absolute;
+        @include media-breakpoint-down(xl){
+            right: 30px;
+        }
+        @include media-breakpoint-down(lg){
+            display: none;
+        }
+    }
+    .swiper-outer {
+        margin: 0 -60px;
+        margin-top: 179px;
+        position: relative;
+        @include media-breakpoint-down(sm){
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            width: 346px;
+            height: 346px;
+            background-image: url(../images/icons/language-shape1.png);
+            left: calc(50% - 178px);
+            top: calc(50% - 178px);
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            width: 670px;
+            height: 202px;
+            background-image: url(../images/icons/language-shape2.png);
+            left: calc(50% - 335px);
+            top: calc(50% - 101px);
+        }
+    }
+    .swiper-horizontal {
+        padding: 0;
+    }
+    .outer-service {
+        position: relative;
+        border-radius: 30px;
+        padding: 60px 60px;
+        margin-top: 214px;
+        @include media-breakpoint-down(sm){
+            padding: 40px 20px;
+        }
+        &:before {
+            border-radius: 30px;
+            content: '';
+            position: absolute;
+            background: var(--gradient-10);
+            width: 100%;
+            height: 101%;
+            left: 0;
+            top: 0;
+        }
+        &:after {
+            border-radius: 30px;
+            content: '';
+            position: absolute;
+            background: var(--gradient-11);
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+.language-box-layout3 {
+    .inner-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(180deg, rgba(2, 6, 40, 0.2) 0%, rgba(44, 106, 236, 0.2) 100%);
+        border-radius: 20px;
+        padding: 20px;
+        &:hover {
+            .images {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+        .images {
+            max-width: 56px;
+            height: 42px;
+            overflow: hidden;
+            flex-shrink: 0;
+            img {
+                width: 100%;
+                height: 100%;
+                @include transition(all 300ms ease);
+            }
+        }
+        .title {
+            margin: 0;
+        }
+    }
+}
+
+
+/***
+
+====================================================================
+    Service Block Layout 3
+====================================================================
+
+***/
+.service-block-layout3 {
+    .inner-box {
+        display: flex;
+        align-items: start;
+        gap: 20px;
+        position: relative;
+        z-index: 1;
+        @include media-breakpoint-down(xl){
+            margin-bottom: 50px;
+        }
+        @include media-breakpoint-down(sm){
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        &:hover {
+            .icon {
+                i,img {
+                    transform: scaleX(-1);
+                }
+            }
+        }
+    }
+    .icon {
+        i,img {
+            min-width: 70px;
+            min-height: 70px;
+            line-height: 1;
+            font-size: 60px;
+            @include transition(all 300ms ease);
+        }
+    }
+    .content {
+        .title {
+            margin-bottom: 16px;
+        }
+        .text {}
+    }
+}

@@ -1,0 +1,44 @@
+/*
+ * container.scss
+ * -----------------------------------------------
+*/
+
+.row:not([class*=gx-],[class*=gy-],[class*=g-]) {
+  --bs-gutter-x: 30px;
+}
+
+.gx-100 {
+	--bs-gutter-x: 100px;
+}
+
+.gx-50 {
+	--bs-gutter-x: 50px;
+}
+
+.gx-24 {
+	--bs-gutter-x: 24px;
+}
+
+.container {
+	.container {
+		width: 100%;
+	}
+}
+.container,
+.container-fluid {
+	.container,
+	.container-fluid {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+section > .container, 
+section > .container-fluid {
+	padding-top: var(--container-pt);
+	padding-bottom: var(--container-pt);
+}
+@media (min-width: 1400px) {
+	.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+	    max-width: var(--container-width);
+	}
+}

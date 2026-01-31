@@ -1,0 +1,322 @@
+/***
+
+====================================================================
+  Benefits Section Layout 1
+====================================================================
+
+***/
+.benefits-section-layout1 {
+  position: relative;
+  .outer-box {
+    border-top: 1px solid rgba(var(--theme-color1-rgb), .2);
+    padding: 120px 0;
+    @include media-breakpoint-down(lg){
+      padding: 80px 0;
+    }
+  }
+  .shape-1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+.benefits-block-layout1 {
+  .inner-block {
+    position: relative;
+    margin-bottom: 24px;
+    text-align: center;
+    border: 2px solid #02DF8233;
+    border-radius: 40px;
+    overflow: hidden;
+    padding: 40px 15px 74px;
+    @include media-breakpoint-down(lg){
+      padding: 40px 15px;
+    }
+    @include media-breakpoint-down(sm){
+      padding: 20px 15px;
+    }
+  }
+  .logo-box {
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  // .logo-box {
+  //   .logo {
+  //     background-color: rgba(var(--theme-color-white-rgb), 8%);
+  //     display: inline-block;
+  //     border-radius: 50%;
+  //     height: 100px;
+  //     width: 100px;
+  //     line-height: 100px;
+  //     text-align: center;
+  //     img {
+  //       width: 56px;
+  //       height: 56px;
+  //       border-radius: 50%;
+  //     }
+  //   }
+  // }
+  .content-box {
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      @include media-breakpoint-down(sm){
+        font-size: 24px;
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+  .shape-one {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .shape-two {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: -2;
+  }
+}
+
+.benefits-block-two-layout1 {
+  .inner-block {
+    background: linear-gradient(181.35deg, rgba(5, 15, 19, 0) 1.15%, rgba(2, 223, 130, 0.1) 98.91%);
+    border: 2px solid #02DF8233;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    padding: 38px 50px 60px;
+    position: relative;
+    @include media-breakpoint-down(lg){
+      padding: 30px;
+    }
+  }
+  .content-box {
+    .title {
+      margin-bottom: 105px;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 40px;
+      @include media-breakpoint-down(sm){
+        font-size: 24px;
+        line-height: 35px;
+        br {
+          display: none;
+        }
+      }
+    }
+    .text {
+      margin-bottom: 32px;
+      @include media-breakpoint-down(md){
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+  .shape-18 {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: -1;
+    pointer-events: none;
+    @include media-breakpoint-down(lg){
+      display: none;
+    }
+  }
+}
+
+/***
+
+====================================================================
+  Benefits Section Layout 4
+====================================================================
+
+***/
+.benefits-section-layout4 {
+  padding: 120px 0;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0;
+  }
+  .bottom-box {
+    .inner-box {
+      border: 1px solid rgba(var(--theme-color-white-rgb), .13);
+      background: var(--gradient-10);
+      border-radius: 20px;
+      padding: 24px 40px 21px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include media-breakpoint-down(xl){
+        padding: 24px 15px 21px;
+      }
+      @include media-breakpoint-down(md){
+        align-items: normal;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .title {
+        margin-bottom: 3px;
+        line-height: 1;
+      }
+      .info-box {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        .logo-box {
+          display: flex;
+          align-items: center;
+          @include media-breakpoint-down(md){
+            margin-left: 7px;
+          }
+          img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            margin-left: -10px;
+          }
+        }
+        .count-box {
+          color: var(--theme-color1);
+          font-size: 24px;
+          font-weight: 600;
+          @include media-breakpoint-down(xl){
+            margin-left: 15px;
+          }
+          @include media-breakpoint-down(md){
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.benefits-block-layout4 {
+  .inner-block {
+    border: 1px solid rgba(var(--theme-color-white-rgb), .13);
+    background: var(--gradient-10);
+    border-radius: 20px;
+    padding: 40px 50px 96px;
+    position: relative;
+    margin-bottom: 24px;
+    @include media-breakpoint-down(xl){
+      padding: 40px 15px 20px;
+    }
+    &:hover {
+      .image {
+        animation: icon-bounce 1s infinite ease;
+        -webkit-animation: icon-bounce 1s infinite ease;
+      }
+    }
+  }
+  .image {
+    text-align: center;
+    margin-top: 73px;
+    position: relative;
+    z-index: 1;
+    @include media-breakpoint-down(xl){
+      margin-top: 20px;
+    }
+  }
+  .content {
+    .title {
+      margin-bottom: 16px;
+      @include media-breakpoint-down(xl){
+        margin-bottom: 10px;
+      }
+    }
+    .text {
+      max-width: 307px;
+      @include media-breakpoint-down(xl){
+        max-width: 100%;
+      }
+    }
+  }
+  .bg-shape1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include media-breakpoint-down(lg){
+      width: 100%;
+    }
+    img {
+      @include media-breakpoint-down(lg){
+        width: 100%;
+      }
+    }
+  }
+}
+
+.benefits-block-two-l4 {
+  .inner-block {
+    border: 1px solid rgba(var(--theme-color-white-rgb), .13);
+    background: var(--gradient-10);
+    border-radius: 20px;
+    padding: 27px 40px 33px;
+    position: relative;
+    margin-bottom: 24px;
+    @include media-breakpoint-down(xl){
+      padding: 27px 14px 33px;
+    }
+    &:hover {
+      .image {
+        animation: icon-bounce 1s infinite ease;
+        -webkit-animation: icon-bounce 1s infinite ease;
+      }
+    }
+    h1 {
+      color: var(--theme-color1);
+      margin-bottom: 10px;
+      @include media-breakpoint-down(xl){
+        font-size: 60px;
+      }
+    }
+  }
+  .images-box {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    .image {
+      position: relative;
+      z-index: 1;
+    }
+    .bg-shape2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 256px;
+      height: 256px;
+    }
+  }
+  .content {
+    .title {
+      margin-bottom: 18px;
+      @include media-breakpoint-down(xl){
+        margin-bottom: 10px;
+      }
+    }
+    .text {
+      @include media-breakpoint-down(xl){
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+}
+

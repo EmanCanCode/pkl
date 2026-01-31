@@ -1,0 +1,45 @@
+/*** 
+
+====================================================================
+    About Section
+====================================================================
+
+***/
+.about-section-one {
+  position: relative;
+  padding: 120px 0;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0;
+  }
+  .outer-box{
+    position: relative;
+    padding-left: 215px;
+    @include media-breakpoint-down(xxl){
+      padding-left: 0;
+    }
+    .sec-title{
+      position: static;
+      margin-right: 150px;
+      @include media-breakpoint-down(xxl){
+        margin-right: 0;
+      }
+      .sub-title{
+        position: absolute;
+        left: 0;
+        @include media-breakpoint-down(xxl){
+          position: relative;
+        }
+      }
+      .title{        
+        padding-bottom: 44px;
+      }
+    }
+    .bottom-border{
+      margin-bottom: 37px;
+      border-bottom: 1px solid rgba(var(--theme-color1-rgb), 0.1);
+      @include media-breakpoint-down(xxl){
+        margin-right: 0;
+      }
+    }
+  }
+}

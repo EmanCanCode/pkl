@@ -1,0 +1,74 @@
+/*** 
+
+====================================================================
+    Comments
+====================================================================
+
+***/
+.comment-one {
+  .comment-one__title {
+    margin-bottom: 30px;
+  }
+  .comment-one__single {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid rgb(255 255 255 / 17%);
+    padding-bottom: 60px;
+    margin-bottom: 60px;
+    align-items: top;
+    @media only screen and (max-width: 767px){
+      flex-direction: column;
+    }
+  }
+  .comment-one__content {
+    position: relative;
+    margin-left: 45px;
+    @media only screen and (max-width: 767px){
+      margin-top: 20px;
+      margin-left: 0;
+    }
+    h3 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--theme-color-white);
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .comment-one__btn {
+    padding: 5px 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+  }
+  .comment-one__image {
+    position: relative;
+    display: block;
+    border-radius: 50%;
+    flex: 100px 0 0 ;
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+.comment-form {
+  .comment-form__title {
+    margin-top: -7px;
+  }
+  .form-control{
+    &::placeholder{
+      color: var(--text-color);
+    }
+  }
+  .form-control, 
+  .input-text{
+    color: var(--theme-color-lighter2);
+    background-color: var(--theme-color-gray);
+    border-color: rgb(255 255 255 / 17%);
+  }
+}

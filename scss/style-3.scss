@@ -1,0 +1,57 @@
+//Root 
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 90deg;
+  inherits: false;
+}
+
+//main theme colors
+$theme-color1: #4D84FF;
+$theme-color2: #1ED3F3;
+$theme-color3: #252E81;
+$theme-color4: #4D84FF;
+
+:root {
+  --r: 30px; /* radius */
+  --s: 50px; /* size of the inner curve*/
+  --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%) no-repeat;
+  
+  //theme color
+  --theme-color1: #{$theme-color1};
+  --theme-color2: #{$theme-color2};
+  --theme-color3: #{$theme-color3};
+  --theme-color4: #{$theme-color4};
+
+  //rgb version of those theme colors
+  --theme-color1-rgb: #{hexToRGB($theme-color1)};
+  --theme-color2-rgb: #{hexToRGB($theme-color2)};
+  --theme-color3-rgb: #{hexToRGB($theme-color3)};
+  --theme-color4-rgb: #{hexToRGB($theme-color4)};
+
+  --text-color-theme-color1: #ffffff;
+  
+  //body
+  --body-bg:          #020628;
+
+  //Gradients
+  --gradient-1: linear-gradient(180deg, #1ED3F3 -32.14%, #3055EB 98.21%);
+  --gradient-2: linear-gradient(89.98deg, #121846 44.05%, #020628 99.98%);
+  --gradient-3: linear-gradient(180deg, #1ECCF3 33.17%, #3055EB 100%);
+  --gradient-4: linear-gradient(180.3deg, #121846 0.26%, #020628 69.2%);
+  --gradient-5: linear-gradient(180deg, #1ECCF3 33.17%, #3055EB 100%);
+  --gradient-6: linear-gradient(180deg, rgba(2, 6, 40, 0.2) 0%, rgba(44, 106, 236, 0.2) 100%);
+  --gradient-7: linear-gradient(270deg, #020628 16.07%, rgba(2, 6, 40, 0) 100%);
+  --gradient-8: linear-gradient(180deg, var(--theme-color2) -32.14%, #3055EB 98.21%);
+  --gradient-9: linear-gradient(180deg, #040B1D 43.39%, #0745E3 156.01%);
+  --gradient-10: linear-gradient(180deg, rgba(2, 6, 40, 0.2) 0%, rgba(44, 106, 236, 0.2) 100%);
+  --gradient-11: linear-gradient(90deg, #121846 0%, #020628 97.64%);
+  --gradient-12: linear-gradient(268.58deg, #020628 2.24%, #121846 75.32%);
+  --gradient-13: linear-gradient(360deg, rgba(2, 6, 40, 0.2) 0%, rgba(44, 106, 236, 0.2) 100%);
+
+
+  --h3-font-size:   30px;
+  --h6-font-weight: 600;
+}

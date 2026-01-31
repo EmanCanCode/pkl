@@ -1,0 +1,354 @@
+/*** 
+
+====================================================================
+    Cta Section Layout One
+====================================================================
+
+***/
+.cta-section-layout1 {
+  padding: 120px 0 180px;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0;
+  }
+  .outer-box {
+    position: relative;
+    max-width: 1800px;
+    margin: 0 auto;
+    .bg-shape-cat {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      bottom: 0;
+      @include media-breakpoint-down(xl){
+          display: none;
+      }
+    }
+  }
+}
+
+/*** 
+
+====================================================================
+    Cta Section Layout Two
+====================================================================
+
+***/
+.cta-section-layout2 {
+  padding: 120px 15px;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 15px;
+  }
+  .outer-box {
+    max-width: 1620px;
+    margin: 0 auto;
+    background: #8D56FA1A;
+    border-radius: 40px;
+    border: 1px solid #8D56FA4D;
+    padding: 120px 15px;
+    overflow: hidden;
+    position: relative;
+    @include media-breakpoint-down(lg){
+      padding: 80px 15px;
+    }
+    @media (max-width: 375.98px){
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      background-image: url(../images/icons/shape-22.png);
+      width: 100%;
+      height: 437px;
+      left: 0;
+      top: 0;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      background-image: url(../images/icons/shape-23.png);
+      width: 1310px;
+      height: 557px;
+      left: calc(50% - 655px);
+      bottom: 0;
+      z-index: -1;
+    }
+  }
+  .image-box {
+    .inner-box {
+      position: relative;
+      height: 557px;
+      @include media-breakpoint-down(sm){
+        height: 457px;
+      }
+      .image {
+        position: absolute;
+      }
+      .image1 {
+        left: -43px;
+        top: calc(50% - 124px);
+        @include media-breakpoint-down(md){
+          display: none;
+        }
+      }
+      .image2 {
+        top: 0;
+        left: 18%;
+        @include media-breakpoint-down(md){
+          display: none;
+        }
+      }
+      .image3 {
+        left: calc(50% - 105px);
+        top: 33px;
+        @include media-breakpoint-down(md){
+
+        }
+      }
+      .image4 {
+        right: 85px;
+        top: 40px;
+        @include media-breakpoint-down(xl){
+          right: 10px;
+        }
+        @include media-breakpoint-down(md){
+          display: none;
+        }
+      }
+      .image5 {
+        right: 93px;
+        bottom: 173px;
+        @include media-breakpoint-down(xl){
+          right: 10px;
+        }
+        @include media-breakpoint-down(md){
+          display: none;
+        }
+      }
+      .image6 {
+        left: 28%;
+        top: 29%;
+        @include media-breakpoint-down(md){
+          left: 0%;
+        }
+      }
+      .image7 {
+        right: 18%;
+        top: 30%;
+        @include media-breakpoint-down(md){
+          display: none;
+        }
+      }
+      .logo-box {
+        position: absolute;
+        bottom: 94px;
+        left: calc(50% - 118px);
+        a {
+          display: inline-block;
+          border: 1.77px solid #8D56FA4D;
+          background: #25184A;
+          border-radius: 80px;
+          width: 236px;
+          height: 94px;
+          line-height: 90px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+/*** 
+
+====================================================================
+    Cta Section Two Layout Two
+====================================================================
+
+***/
+.cta-section-two-layout2 {
+  padding: 120px 0;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0;
+  }
+  .outer-box {
+    max-width: 1620px;
+    margin: 0 auto;
+    border: 1px solid #8D56FA4D;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+    @include media-breakpoint-down(lg){
+      padding: 80px 0;
+      text-align: center;
+    }
+    .bg-image {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .button-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    @include media-breakpoint-down(lg){
+      justify-content: center;
+    }
+  }
+  .image-box {
+    .inner-box {
+      .image {
+        position: absolute;
+      }
+      .image1 {
+        right: 20%;
+        bottom: 0;
+        @include media-breakpoint-down(xxl){
+          right: 10%;
+        }
+        @include media-breakpoint-down(xl){
+          display: none;
+        }
+      }
+      .image2 {
+        right: 6%;
+        bottom: 0;
+        @include media-breakpoint-down(xxl){
+          right: -3%;
+        }
+        @include media-breakpoint-down(lg){
+          display: none;
+        }
+      }
+      .image3 {
+        right: 10%;
+        top: 18%;        
+        @include media-breakpoint-down(lg){
+          display: none;
+        }
+      }
+      .image4 {
+        right: 8%;
+        bottom: 22%;
+        @include media-breakpoint-down(xxl){
+          bottom: 19%;
+        }
+        @include media-breakpoint-down(xl){
+          bottom: 15%;
+        }
+        @include media-breakpoint-down(lg){
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+/*** 
+
+====================================================================
+    Rating Section Layout 4
+====================================================================
+
+***/
+.rating-section-layout4 {
+  padding: 120px 0;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0;
+  }
+  .outer-box {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    justify-content: space-between;
+    background: var(--gradient-12);
+    border: 1px solid rgba(var(--theme-color-white-rgb), .13);
+    border-radius: 30px;
+    padding: 54px 42px 52px 79px;
+    margin-bottom: -86px;
+    position: relative;
+    z-index: 1;
+    @media (max-width: 1399.98px) {
+      padding: 54px 42px 52px 40px;
+      gap: 30px;
+    }
+    @include media-breakpoint-down(xl){
+      flex-direction: column;
+      align-items: normal;
+    }
+    @include media-breakpoint-down(md){
+      padding: 30px 20px
+    }
+  }
+  .rating-title {
+    margin-bottom: 0;
+    max-width: 314px;
+  }
+  .rating-outer {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    @media (max-width: 1399.98px) {
+      gap: 12px;
+    }
+    @include media-breakpoint-down(xl){
+      gap: unset;
+      justify-content: space-between;
+    }
+    @include media-breakpoint-down(lg){
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+  }
+  .rating-box {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    &:hover {
+      .icon {
+        i,img {
+          transform: scaleX(-1);
+        }
+      }
+    }
+    .icon {
+      width: 60px;
+      height: 60px;
+      line-height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(var(--theme-color-white-rgb), .13);
+      background: var(--gradient-4);
+      text-align: center;
+      i,img {
+        @include transition(all 300ms ease);
+      }
+    }
+    .content {
+      .title {
+        margin-bottom: 7px;
+      }
+      .review {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 10px;
+        i {
+          font-size: 18px;
+          color: #FFA527;
+        }
+      }
+      .text {
+        color: var(--theme-color-white);
+      }
+    }
+  }
+}

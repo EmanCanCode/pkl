@@ -1,0 +1,738 @@
+@keyframes borderanimate2 {
+ 0% {
+   transform: translate(-50%, -50%) scale(.8);
+ }
+ 60%{
+   opacity: 1;
+ }
+ 100% {
+   transform: translate(-50%, -50%) scale(2.5);
+   opacity: 0;
+ }
+}
+/*** 
+
+====================================================================
+  Anim Icons
+====================================================================
+
+***/
+
+.reveal {
+  position: relative;
+  display: inline-flex;
+  visibility: hidden;
+  overflow: hidden;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transform-origin: left;
+  }   
+}
+
+.anim-icons {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  pointer-events: none;
+  .shape-leaf1 {
+    position: absolute;
+    left: 39px;
+    bottom: 0;
+    @media (max-width: 1599.98px) {
+      display: none;
+    }
+  }
+  .shape-leaf2 {
+    position: absolute;
+    right: 39px;
+    bottom: 0;
+    @media (max-width: 1599.98px) {
+      display: none;
+    }
+  }
+  &.align-top {
+    .shape-leaf1,
+    .shape-leaf2 {
+      bottom: auto;
+      top: 0;
+    }
+  }
+}
+
+[text-split] {
+  opacity: 0;
+}
+
+.word {
+  overflow: hidden;
+  padding-bottom: 0;
+  margin-bottom: -0.1em;
+  transform-origin: bottom;
+}
+
+.anim-icons.full-width {
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.anim-icons .icon {
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.icon-wheel-1 {
+  width: 144px;
+  height: 163px;
+  background-image: url(../images/icons/icon-wheel-1.png);
+}
+
+.icon-wheel-2 {
+  width: 144px;
+  height: 163px;
+  background-image: url(../images/icons/icon-wheel-2.png);
+}
+
+.icon-wheel-3 {
+  width: 149px;
+  height: 147px;
+  background-image: url(../images/icons/icon-wheel-3.png);
+}
+
+.icon-wheel-5 {
+  width: 144px;
+  height: 163px;
+  background-image: url(../images/icons/icon-wheel-5.png);
+}
+
+.icon-wheel-compass-1 {
+  width: 171px;
+  height: 176px;
+  background-image: url(../images/icons/icon-wheel-compass-1.png);
+}
+
+.icon-wheel-compass-2 {
+  width: 97px;
+  height: 99px;
+  background-image: url(../images/icons/icon-wheel-compass-2.png);
+}
+
+.icon-wheel-compass-3 {
+  width: 103px;
+  height: 106px;
+  background-image: url(../images/icons/icon-wheel-compass-3.png);
+}
+
+.icon-anchor-1 {
+  width: 138px;
+  height: 136px;
+  background-image: url(../images/icons/icon-anchor-1.png);
+}
+
+.icon-sailboat-line-1 {
+  width: 431px;
+  height: 705px;
+  background-image: url(../images/icons/icon-sailboat-line-1.png);
+}
+
+.icon-sailboat-line-3 {
+  width: 242px;
+  height: 250px;
+  background-image: url(../images/icons/icon-sailboat-line-3.png);
+}
+
+.icon-sailboat-line-4 {
+  width: 369px;
+  height: 728px;
+  background-image: url(../images/icons/icon-sailboat-line-4.png);
+}
+
+.icon-big-boat-1 {
+  width: 800px;
+  height: 464px;
+  background-image: url(../images/icons/icon-big-boat-1.png);
+}
+
+.icon-big-boat-2 {
+  width: 229px;
+  height: 739px;
+  background-image: url(../images/icons/icon-big-boat-2.png);
+}
+
+.icon-big-boat-3 {
+  width: 373px;
+  height: 126px;
+  background-image: url(../images/icons/icon-big-boat-3.png);
+}
+
+.icon-big-boat-5 {
+  width: 229px;
+  height: 739px;
+  background-image: url(../images/icons/icon-big-boat-5.png);
+}
+
+.icon-pattern1 {
+  width: 494px;
+  height: 465px;
+  background-image: url(../images/background/footer1-pattern1.png);
+}
+
+.icon-pattern2 {
+  width: 247px;
+  height: 477px;
+  background-image: url(../images/background/footer1-pattern2.png);
+}
+
+.icon-plane-1{
+  width: 350px;
+  height: 349px;
+  background-image: url(../images/icons/icon-plane-1.png);
+}
+
+.icon-plane-2 {
+  width: 106px;
+  height: 640px;
+  background-image: url(../images/icons/icon-plane-2.png);
+}
+
+.icon-plane-3 {
+  width: 455px;
+  height: 420px;
+  background-image: url(../images/icons/icon-plane-3.png);
+}
+
+.icon-plane-4 {
+  width: 301px;
+  height: 336px;
+  background-image: url(../images/icons/icon-plane-4.png);
+}
+
+.icon-plane-5 {
+  width: 313px;
+  height: 253px;
+  background-image: url(../images/icons/icon-plane-5.png);
+}
+
+.icon-plane-6 {
+  width: 188px;
+  height: 110px;
+  background-image: url(../images/icons/icon-plane-6.png);
+}
+
+.icon-plane-7 {
+  width: 256px;
+  height: 255px;
+  background-image: url(../images/icons/icon-plane-7.png);
+}
+
+.icon-plane-8 {
+  width: 374px;
+  height: 194px;
+  background-image: url(../images/icons/icon-plane-8.png);
+}
+
+.icon-plane-9 {
+  width: 313px;
+  height: 253px;
+  background-image: url(../images/icons/icon-plane-9.png);
+}
+
+.icon-big-arrow {
+  width: 1279px;
+  height: 250px;
+  background-image: url(../images/banner/icon-big-arrow.png);
+}
+
+.icon-arrow {
+  width: 42px;
+  height: 64px;
+  background-image: url(../images/icons/icon-arrow.png);
+}
+
+.icon-arrow-2 {
+  width: 92px;
+  height: 35px;
+  background-image: url(../images/icons/icon-arrow-2.png);
+}
+
+
+.icon-big-bus {
+  width: 807px;
+  height: 621px;
+  background-image: url(../images/icons/icon-big-bus.png);
+}
+
+.icon-bus {
+  width: 623px;
+  height: 432px;
+  background-image: url(../images/icons/icon-bus.png);
+}
+
+.icon-bus-2 {
+  width: 218px;
+  height: 198px;
+  background-image: url(../images/icons/icon-bus-2.png);
+}
+
+.icon-bus-3 {
+  width: 800px;
+  height: 502px;
+  background-image: url(../images/icons/icon-bus-3.png);
+}
+
+
+.overlay-1 {
+  width: 200px;
+  height: 204px;
+  background-image: url(../images/icons/overlay-1.png);
+}
+
+.overlay-2 {
+  width: 860px;
+  height: 621px;
+  background-image: url(../images/icons/overlay-2.png);
+}
+
+.overlay-3 {
+  width: 491px;
+  height: 500px;
+  background-image: url(../images/icons/overlay-3.png);
+}
+
+.overlay-4 {
+  width: 1078px;
+  height: 621px;
+  background-image: url(../images/icons/overlay-4.png);
+}
+
+.overlay-5 {
+  width: 379px;
+  height: 297px;
+  background-image: url(../images/icons/overlay-5.png);
+}
+
+.overlay-6 {
+  width: 1706px;
+  height: 780px;
+  background-image: url(../images/icons/overlay-6.png);
+}
+
+
+.icon-shapes {
+  width: 92px;
+  height: 144px;
+  background-image: url(../images/icons/icon-box.png);
+}
+
+
+.icon-box-2 {
+  width: 233px;
+  height: 194px;
+  background-image: url(../images/icons/icon-box-2.png);
+}
+
+.icon-border-3 {
+  width: 137px;
+  height: 18px;
+  background-image: url(../images/icons/icon-border-3.png);
+}
+
+.icon-quote {
+  width: 92px;
+  height: 66px;
+  background-image: url(../images/icons/icon-quote.png);
+}
+
+.icon-quote-2 {
+  width: 137px;
+  height: 99px;
+  background-image: url(../images/icons/icon-quote-2.png);
+}
+
+.icon-container {
+  width: 615px;
+  height: 396px;
+  background-image: url(../images/icons/icon-container.png);
+}
+
+.icon-dots {
+  width: 730px;
+  height: 565px;
+  background-image: url(../images/icons/icon-dots.png);
+}
+
+.icon-dots-2 {
+  width: 679px;
+  height: 676px;
+  background-image: url(../images/icons/icon-dots-2.png);
+}
+
+.icon-dots-3 {
+  width: 611px;
+  height: 547px;
+  background-image: url(../images/icons/icon-dots-3.png);
+}
+
+.icon-dots-4 {
+  width: 810px;
+  height: 666px;
+  background-image: url(../images/icons/icon-dots-4.png);
+}
+
+.icon-dots-5 {
+  width: 580px;
+  height: 376px;
+  background-image: url(../images/icons/icon-dots-5.png);
+}
+
+.icon-dotted-map {
+  width: 987px;
+  height: 478px;
+  background-image: url(../images/icons/icon-dotted-map.png);
+}
+
+.icon-dotted-map-2 {
+  width: 987px;
+  height: 478px;
+  background-image: url(../images/icons/icon-dotted-map-2.png);
+}
+
+.icon-city {
+  width: 919px;
+  height: 348px;
+  background-image: url(../images/icons/icon-city.png);
+}
+
+.icon-city-2 {
+  width: 541px;
+  height: 205px;
+  background-image: url(../images/icons/icon-city-2.png);
+}
+
+.bg-lines {
+  width: 1532px;
+  height: 100%;
+  background-image: url(../images/icons/bg-lines.jpg);
+}
+
+.icon-city-3 {
+  width: 541px;
+  height: 205px;
+  background-image: url(../images/icons/icon-city-3.png);
+}
+
+.icon-bounce {
+  animation: icon-bounce 1s infinite ease;
+  /* Only -webkit- prefix is still somewhat relevant for very old mobile browsers */
+  -webkit-animation: icon-bounce 1s infinite ease;
+}
+@keyframes icon-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.bounce-y{
+  animation: bounce-y 10s infinite linear;
+}
+
+.bounce-x{
+  animation: bounce-x 10s infinite linear;
+}
+
+.zoom-one{
+  animation: zoom-one 10s infinite linear;
+}
+
+.zoom-two{
+  animation: zoom-two 5s infinite linear;
+}
+
+.zoom-three{
+  animation: zoom-three 5s infinite linear;
+}
+
+@keyframes float{
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-y {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-x {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-one {
+  0% {
+    transform: scale(.95);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(.95);
+  }
+}
+
+@keyframes zoom-two {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes round-shape-anim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(194, 167, 78, .08), 0 0 0 30px rgba(194, 167, 78, .08), 0 0 0 50px rgba(194, 167, 78, .08);
+  }
+  100% {
+    box-shadow: 0 0 0 30px rgba(194, 167, 78, .08), 0 0 0 50px rgba(194, 167, 78, .08), 0 0 0 70px rgba(194, 167, 78, 0);
+  }
+}
+
+
+.overlay-anim {
+  position: relative;
+  &:after {
+    background: rgba(255, 255, 255, 0.3);
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    opacity: 1;
+    z-index: 9;
+    pointer-events: none;
+  }
+  &:hover{
+    &:after {
+      height: 100%;
+      opacity: 0;
+      transition: all 400ms linear;
+    }
+  }   
+}
+
+.overlay-anim-two {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+  &:hover {
+    &:after {
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 400ms linear;
+    }
+  }
+  &:after {
+    background: rgba(255, 255, 255, .3);
+    bottom: 0;
+    content: "";
+    left: 50%;
+    position: absolute;
+    right: 51%;
+    top: 0;
+    opacity: 1;
+    pointer-events: none;
+    transition: all 300ms linear;
+  }
+}
+
+
+
+// Animated Moving Circles
+
+// Animation rotate area start here ***
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.animation__rotate {
+	animation: rotate 30s linear infinite;
+}
+@keyframes rotateY {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+.animation__rotateY {
+	animation: rotateY 10s linear infinite;
+}
+@keyframes rotateX {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.animation__rotateX {
+	animation: rotateX 30s linear infinite;
+}
+@keyframes rotateX {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.rotateX {
+	animation: rotateX 30s linear infinite;
+}
+
+.circle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  left: -10px;
+  top: -10px;
+  border-radius: 100%;
+  z-index: 1;
+  pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+  @supports (mix-blend-mode: difference) {
+    background-color: white;
+    mix-blend-mode: difference;
+  }
+  @include for-md{
+    display: none !important;
+  }
+}
+.circleZoom{
+  animation: circlezoomrotate 15s infinite linear;
+  animation-direction: alternate;
+}
+.circle-follow {
+  position: fixed;
+  mix-blend-mode: difference;
+  width: 30px;
+  height: 30px;
+  left: -21px;
+  top: -21px;
+  border-radius: 100%;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+  @supports (mix-blend-mode: difference) {
+    border: 1px solid #fff;
+    mix-blend-mode: difference;
+  }
+  @include for-md {
+    display: none !important;
+  }
+}
+
+
+/* Animate 1 */
+.owl-carousel{
+  .animate-7,
+  .animate-6,
+  .animate-5,
+  .animate-4,
+  .animate-3,
+  .animate-2,
+  .animate-1{
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 500ms ease;
+  }
+  .animate-x {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 500ms ease;
+  }
+  
+  .active{
+    .animate-7,
+    .animate-6,
+    .animate-5,
+    .animate-4,
+    .animate-3,
+    .animate-2,
+    .animate-1 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-2 {
+      transition-delay: 300ms;
+    }
+    .animate-3 {
+      transition-delay: 600ms;
+    }
+    .animate-4 {
+      transition-delay: 900ms;
+    }
+    .animate-5 {
+      transition-delay: 1200ms;
+    }
+    .animate-6 {
+      transition-delay: 1500ms;
+    }
+    .animate-7 {
+      transition-delay: 1800ms;
+    }
+  }
+}
