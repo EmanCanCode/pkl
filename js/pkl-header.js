@@ -1,143 +1,177 @@
-// PKL.CLUB Shared Header Component
-// This script dynamically loads the header across all pages
+/**
+ * PKL.CLUB Header Auth Script
+ * Handles user authentication state in the header/navbar
+ */
 
-document.addEventListener("DOMContentLoaded", function () {
-  const headerContainer = document.getElementById("pkl-header");
-  if (!headerContainer) return;
+(function () {
+  "use strict";
 
-  headerContainer.innerHTML = `
-    <!-- Main Header-->
-    <header class="main-header header-style-one">
-      <div class="container">
-        <div class="header-lower">
-          <div class="inner-container">
-            <!-- Main box -->
-            <div class="main-box">
-              <div class="logo-box">
-                <div class="logo">
-                  <a href="index.html"><img src="images/logo.png" alt="PKL.CLUB Logo" /></a>
-                </div>
-              </div>
+  // Check if user is logged in
+  function checkAuth() {
+    const token = localStorage.getItem("pkl_token");
+    const userStr = localStorage.getItem("pkl_user");
 
-              <!--Nav Box-->
-              <div class="nav-outer">
-                <nav class="nav main-menu">
-                  <ul class="navigation">
-                    <li><a href="#">World Series</a></li>
-                    <li><a href="#">Players</a></li>
-                    <li><a href="#">Operators</a></li>
-                    <li><a href="#">Sponsors</a></li>
-                    <li class="dropdown">
-                      <a href="#">Shop</a>
-                      <ul>
-                        <li><a href="#">Membership</a></li>
-                        <li><a href="#">Profile Image</a></li>
-                        <li><a href="#">Merchandise</a></li>
-                        <li><a href="#">Equipment</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">PKL.CLUB</a></li>
-                    <li><a href="#">News</a></li>
-                  </ul>
-                </nav>
-              </div>
-
-              <!-- Outer Box -->
-              <div class="action-box">
-                <div class="header-btn">
-                  <a class="header-btn-main theme-btn" href="#"><span class="btn-text">Sign Up</span></a>
-                </div>
-
-                <!-- Mobile Nav toggler -->
-                <div class="mobile-nav-toggler">
-                  <div class="shape-line-img"><i class="fas fa-bars"></i></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Menu  -->
-      <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-        <nav class="menu-box">
-          <div class="upper-box">
-            <div class="nav-logo">
-              <a href="index.html"><img src="images/logo.png" alt="PKL.CLUB" /></a>
-            </div>
-            <div class="close-btn"><i class="icon fa fa-times"></i></div>
-          </div>
-          <ul class="navigation clearfix">
-            <!--Keep This Empty / Menu will come through Javascript-->
-          </ul>
-          <ul class="contact-list-one">
-            <li>
-              <i class="icon lnr-icon-envelope1"></i>
-              <span class="title">Send Email</span>
-              <div class="text"><a href="mailto:hello@pkl.club">hello@pkl.club</a></div>
-            </li>
-          </ul>
-          <ul class="social-links">
-            <li><a href="#"><i class="icon fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="icon fab fa-facebook-f"></i></a></li>
-            <li><a href="#"><i class="icon fab fa-instagram"></i></a></li>
-            <li><a href="#"><i class="icon fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
-      <!-- End Mobile Menu -->
-
-      <!-- Header Search -->
-      <div class="search-popup">
-        <span class="search-back-drop"></span>
-        <button class="close-search"><span class="fa fa-times"></span></button>
-        <div class="search-inner">
-          <form method="post" action="#">
-            <div class="form-group">
-              <input type="search" name="search-field" value="" placeholder="Search..." required="" />
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <!-- End Header Search -->
-
-      <!-- Sticky Header  -->
-      <div class="sticky-header">
-        <div class="auto-container">
-          <div class="inner-container">
-            <!--Logo-->
-            <div class="logo">
-              <a href="index.html"><img src="images/logo.png" alt="PKL.CLUB" /></a>
-            </div>
-
-            <!--Right Col-->
-            <div class="nav-outer">
-              <!-- Main Menu -->
-              <nav class="main-menu">
-                <div class="navbar-collapse show collapse clearfix">
-                  <ul class="navigation clearfix">
-                    <!--Keep This Empty / Menu will come through Javascript-->
-                  </ul>
-                </div>
-              </nav>
-              <!-- Main Menu End-->
-
-              <!--Mobile Navigation Toggler-->
-              <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Sticky Menu -->
-    </header>
-    <!--End Main Header -->
-  `;
-
-  // Re-initialize mobile menu after dynamic load
-  if (typeof mobileMenu !== "undefined") {
-    mobileMenu();
+    if (token && userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        return user;
+      } catch (e) {
+        console.error("Error parsing user data:", e);
+        return null;
+      }
+    }
+    return null;
   }
-});
+
+  // Update header buttons based on auth state
+  function updateHeaderAuth() {
+    const user = checkAuth();
+    const headerBtns = document.querySelectorAll(
+      ".header-btn .header-btn-main",
+    );
+
+    headerBtns.forEach((btn) => {
+      const btnText = btn.querySelector(".btn-text");
+      if (btnText) {
+        if (user) {
+          // User is logged in - show their name with dropdown
+          const firstName = user.firstName || user.username || "User";
+          btnText.textContent = firstName;
+          btn.href = "#";
+          btn.classList.add("user-logged-in");
+
+          // Create dropdown menu if not exists
+          if (!btn.parentElement.querySelector(".user-dropdown")) {
+            const dropdown = document.createElement("div");
+            dropdown.className = "user-dropdown";
+            dropdown.innerHTML = `
+              <a href="profile.html" class="dropdown-item">
+                <i class="fa fa-user"></i> My Profile
+              </a>
+              <a href="world-series.html" class="dropdown-item">
+                <i class="fa fa-trophy"></i> World Series
+              </a>
+              <a href="#" class="dropdown-item logout-btn">
+                <i class="fa fa-sign-out-alt"></i> Logout
+              </a>
+            `;
+            btn.parentElement.style.position = "relative";
+            btn.parentElement.appendChild(dropdown);
+
+            // Toggle dropdown
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              dropdown.classList.toggle("show");
+            });
+
+            // Logout handler
+            dropdown
+              .querySelector(".logout-btn")
+              .addEventListener("click", function (e) {
+                e.preventDefault();
+                localStorage.removeItem("pkl_token");
+                localStorage.removeItem("pkl_user");
+                window.location.reload();
+              });
+          }
+        } else {
+          // User is not logged in - show Sign Up
+          btnText.textContent = "Sign Up";
+          btn.href = "signup.html";
+          btn.classList.remove("user-logged-in");
+        }
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-btn")) {
+        document.querySelectorAll(".user-dropdown.show").forEach((dd) => {
+          dd.classList.remove("show");
+        });
+      }
+    });
+  }
+
+  // Add styles for user dropdown
+  function addDropdownStyles() {
+    const style = document.createElement("style");
+    style.textContent = `
+      .user-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        min-width: 200px;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        margin-top: 10px;
+      }
+
+      .user-dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .user-dropdown .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+
+      .user-dropdown .dropdown-item:hover {
+        background: #f5f5f5;
+        color: #6366f1;
+      }
+
+      .user-dropdown .dropdown-item i {
+        width: 20px;
+        margin-right: 10px;
+        text-align: center;
+      }
+
+      .user-dropdown .logout-btn {
+        border-top: 1px solid #eee;
+        margin-top: 5px;
+        padding-top: 15px;
+        color: #ef4444;
+      }
+
+      .user-dropdown .logout-btn:hover {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+
+      .header-btn-main.user-logged-in .btn-text::after {
+        content: '\\f078';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-left: 8px;
+        font-size: 10px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      addDropdownStyles();
+      updateHeaderAuth();
+    });
+  } else {
+    addDropdownStyles();
+    updateHeaderAuth();
+  }
+})();
