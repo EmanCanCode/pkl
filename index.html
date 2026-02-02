@@ -24,91 +24,30 @@
 
     <!-- Custom CSS to prevent text breaking -->
     <style>
-      /* Prevent awkward word breaks */
-      .title,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .btn-text,
-      .header-theme-btn,
-      .sub-title,
-      .step,
-      .nav-link,
-      .navigation > li > a {
-        word-break: keep-all;
-        overflow-wrap: normal;
-        hyphens: none;
-      }
-
-      /* Specific fixes for buttons and short text */
-      .btn-style-one .header-theme-btn,
-      .shape-btn-main .btn-text,
-      .header-btn-main .btn-text {
-        white-space: nowrap;
-      }
-
-      /* Fun facts section - improved layout */
-      .funfact-item {
-        display: flex !important;
-        align-items: center !important;
-        gap: 20px !important;
-      }
-      .funfact-item .icon {
-        flex-shrink: 0 !important;
-        width: 70px !important;
-        min-width: 70px !important;
-      }
-      .funfact-item .count-box {
-        flex-shrink: 0 !important;
-        min-width: 100px !important;
-        width: auto !important;
-      }
-      .funfact-item .title {
-        flex: 1 !important;
-        margin: 0 !important;
-      }
-
-      /* Ensure count numbers don't break */
-      .count-box,
-      .count-text {
+      /* Fix SplitType word breaking - keep words together */
+      .text-reveal-anim .word {
         white-space: nowrap !important;
+        display: inline-block !important;
+      }
+      .text-reveal-anim .char {
+        display: inline !important;
       }
 
-      /* Responsive adjustments */
-      @media (max-width: 991px) {
-        .funfact-item {
-          flex-wrap: nowrap !important;
-        }
-        .funfact-item .icon {
-          width: 50px !important;
-          min-width: 50px !important;
-        }
-        .funfact-item .count-box {
-          min-width: 80px !important;
-        }
-      }
+      .funfact-item {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 20px;
+        gap: 0;
 
-      @media (max-width: 575px) {
-        .funfact-item {
-          flex-direction: row !important;
-          gap: 15px !important;
+        .count-box {
+          width: 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        .funfact-item .icon {
-          width: 45px !important;
-          min-width: 45px !important;
-        }
-        .funfact-item .icon img {
-          max-width: 100% !important;
-        }
-        .funfact-item .count-box {
-          min-width: 70px !important;
-          font-size: 28px !important;
-        }
-        .funfact-item .title {
-          font-size: 14px !important;
+
+        .title {
+          max-width: 70%;
         }
       }
     </style>
@@ -1067,9 +1006,6 @@
                   data-aos-delay="200"
                 >
                   <div class="funfact-item">
-                    <span class="icon"
-                      ><img src="images/icons/funfact1-4.png" alt=""
-                    /></span>
                     <div class="count-box">
                       <span class="count-text" data-speed="3000" data-stop="60"
                         >60</span
@@ -1087,9 +1023,6 @@
                   data-aos-delay="300"
                 >
                   <div class="funfact-item">
-                    <span class="icon"
-                      ><img src="images/icons/funfact1-3.png" alt=""
-                    /></span>
                     <div class="count-box">
                       <span class="count-text" data-speed="3000" data-stop="1"
                         >1</span
@@ -1108,9 +1041,6 @@
                   data-aos-delay="400"
                 >
                   <div class="funfact-item">
-                    <span class="icon"
-                      ><img src="images/icons/funfact1-2.png" alt=""
-                    /></span>
                     <div class="count-box">
                       <span class="count-text" data-speed="3000" data-stop="50"
                         >50</span
@@ -1129,9 +1059,6 @@
                   data-aos-delay="500"
                 >
                   <div class="funfact-item">
-                    <span class="icon"
-                      ><img src="images/icons/funfact1-1.png" alt=""
-                    /></span>
                     <div class="count-box">
                       <span class="count-text" data-speed="3000">&infin;</span>
                     </div>
