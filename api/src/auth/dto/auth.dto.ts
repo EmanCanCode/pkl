@@ -21,6 +21,9 @@ export class TokenResponseDto {
     @ApiProperty({ example: 'eman', description: 'Username' })
     username: string;
 
-    @ApiProperty({ example: 'admin', description: 'User role' })
-    role: string;
+    @ApiProperty({ example: 'player', description: 'User type (admin, player, operator, sponsor)' })
+    userType: string;
+
+    @ApiProperty({ example: 'Eman', description: 'User first name' })
+    firstName: string;
 }
