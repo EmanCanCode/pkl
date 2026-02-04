@@ -1183,6 +1183,13 @@
           setAccountType("operator");
         });
 
+      // Check URL params for account type
+      const urlParams = new URLSearchParams(window.location.search);
+      const typeParam = urlParams.get("type");
+      if (typeParam === "operator") {
+        setAccountType("operator");
+      }
+
       // Password Strength Checker
       document
         .getElementById("password")
