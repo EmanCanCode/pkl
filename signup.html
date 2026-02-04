@@ -376,32 +376,18 @@
         color: var(--pkl-gray);
       }
 
-      /* User Type Cards */
+      /* User Type Card - Single centered card */
       .user-type-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        display: flex;
+        justify-content: center;
         margin-bottom: 30px;
       }
 
       .user-type-card {
-        padding: 24px 16px;
-        border: 2px solid #e5e7eb;
+        padding: 30px 50px;
+        border: 2px solid var(--pkl-primary);
         border-radius: 16px;
         text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background: #fff;
-      }
-
-      .user-type-card:hover {
-        border-color: var(--pkl-primary);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(47, 160, 111, 0.1);
-      }
-
-      .user-type-card.selected {
-        border-color: var(--pkl-primary);
         background: linear-gradient(
           135deg,
           rgba(47, 160, 111, 0.05) 0%,
@@ -425,11 +411,6 @@
         justify-content: center;
         color: #fff;
         font-size: 24px;
-        transition: transform 0.3s ease;
-      }
-
-      .user-type-card.selected .icon {
-        transform: scale(1.1);
       }
 
       .user-type-card h4 {
@@ -686,6 +667,24 @@
         text-decoration: underline;
       }
 
+      .auth-operator-link {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+        color: var(--pkl-gray);
+      }
+
+      .auth-operator-link a {
+        color: var(--pkl-primary);
+        text-decoration: none;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .auth-operator-link a:hover {
+        text-decoration: underline;
+      }
+
       /* Responsive */
       @media (max-width: 1199px) {
         .auth-image-side {
@@ -846,39 +845,25 @@
           <form id="signup-form" class="auth-form">
             <!-- Step 1: Account Type -->
             <div class="form-step active" data-step="1">
-              <input type="hidden" id="userType" name="userType" value="" />
+              <input
+                type="hidden"
+                id="userType"
+                name="userType"
+                value="player"
+              />
 
               <div class="user-type-cards">
-                <div class="user-type-card" data-type="player">
+                <div class="user-type-card" id="account-type-card">
                   <div class="icon">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user" id="account-type-icon"></i>
                   </div>
-                  <h4>Player</h4>
-                  <p>Join tournaments & compete</p>
-                </div>
-                <div class="user-type-card" data-type="operator">
-                  <div class="icon">
-                    <i class="fas fa-calendar-alt"></i>
-                  </div>
-                  <h4>Operator</h4>
-                  <p>Host events & tournaments</p>
-                </div>
-                <div class="user-type-card" data-type="sponsor">
-                  <div class="icon">
-                    <i class="fas fa-handshake"></i>
-                  </div>
-                  <h4>Sponsor</h4>
-                  <p>Support players & events</p>
+                  <h4 id="account-type-title">Player</h4>
+                  <p id="account-type-desc">Join tournaments & compete</p>
                 </div>
               </div>
 
               <div class="form-buttons">
-                <button
-                  type="button"
-                  class="auth-submit-btn"
-                  id="step1-next"
-                  disabled
-                >
+                <button type="button" class="auth-submit-btn" id="step1-next">
                   <span class="btn-text">Continue</span>
                   <i class="fas fa-arrow-right"></i>
                 </button>
@@ -1115,6 +1100,11 @@
           <div class="auth-footer">
             Already have an account? <a href="login.html">Sign in</a>
           </div>
+
+          <div class="auth-operator-link">
+            Want to host events?
+            <a href="#" id="switch-to-operator">Sign up as an Operator</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1123,7 +1113,7 @@
     <script>
       const API_URL = "http://localhost:3333";
       let currentStep = 1;
-      let selectedUserType = "";
+      let selectedUserType = "player";
 
       // Toggle Password Visibility
       function togglePassword(fieldId) {
@@ -1154,18 +1144,44 @@
         document.getElementById("auth-alert").classList.remove("show");
       }
 
-      // User Type Selection
-      document.querySelectorAll(".user-type-card").forEach((card) => {
-        card.addEventListener("click", function () {
-          document
-            .querySelectorAll(".user-type-card")
-            .forEach((c) => c.classList.remove("selected"));
-          this.classList.add("selected");
-          selectedUserType = this.dataset.type;
-          document.getElementById("userType").value = selectedUserType;
-          document.getElementById("step1-next").disabled = false;
+      // Switch between Player and Operator
+      function setAccountType(type) {
+        selectedUserType = type;
+        document.getElementById("userType").value = type;
+
+        const icon = document.getElementById("account-type-icon");
+        const title = document.getElementById("account-type-title");
+        const desc = document.getElementById("account-type-desc");
+        const switchLink = document.getElementById("switch-to-operator");
+
+        if (type === "player") {
+          icon.className = "fas fa-user";
+          title.textContent = "Player";
+          desc.textContent = "Join tournaments & compete";
+          switchLink.textContent = "Sign up as an Operator";
+          switchLink.onclick = function (e) {
+            e.preventDefault();
+            setAccountType("operator");
+          };
+        } else {
+          icon.className = "fas fa-calendar-alt";
+          title.textContent = "Operator";
+          desc.textContent = "Host events & tournaments";
+          switchLink.textContent = "Sign up as a Player";
+          switchLink.onclick = function (e) {
+            e.preventDefault();
+            setAccountType("player");
+          };
+        }
+      }
+
+      // Initialize operator switch link
+      document
+        .getElementById("switch-to-operator")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          setAccountType("operator");
         });
-      });
 
       // Password Strength Checker
       document
@@ -1230,10 +1246,6 @@
       document
         .getElementById("step1-next")
         .addEventListener("click", function () {
-          if (!selectedUserType) {
-            showAlert("Please select an account type", "error");
-            return;
-          }
           goToStep(2);
         });
 
