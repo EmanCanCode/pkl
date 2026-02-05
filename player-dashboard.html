@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PKL.CLUB | Player Dashboard</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/fontawesome.css" rel="stylesheet" />
+    <link href="css/linear.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      :root {
+        --pkl-primary: #2fa06f;
+        --pkl-primary-dark: #238c5c;
+        --pkl-accent: #7ed957;
+        --pkl-dark: #0a1628;
+        --pkl-gray: #6b7280;
+        --pkl-light-gray: #f3f4f6;
+        --pkl-danger: #ef4444;
+        --pkl-success: #10b981;
+        --pkl-warning: #f59e0b;
+        --pkl-player: #3b82f6;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        background-color: #040b1d;
+      }
+
+      .page-wrapper {
+        min-height: 100vh;
+      }
+
+      /* Main Content */
+      .dashboard-main {
+        padding: 120px 0 60px;
+      }
+
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 30px;
+      }
+
+      .dashboard-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .dashboard-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 16px;
+      }
+
+      .player-profile-card {
+        background: linear-gradient(135deg, var(--pkl-player) 0%, #1d4ed8 100%);
+        border-radius: 16px;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .player-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .player-info h3 {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .player-info p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+      }
+
+      /* Stats Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(47, 160, 111, 0.3);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--pkl-accent);
+      }
+
+      .stat-card .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .stat-card .stat-icon.wins {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.3) 0%,
+          rgba(255, 165, 0, 0.3) 100%
+        );
+        color: gold;
+      }
+
+      .stat-card .stat-icon.events {
+        background: rgba(59, 130, 246, 0.2);
+        color: var(--pkl-player);
+      }
+
+      .stat-card .stat-icon.upcoming {
+        background: rgba(16, 185, 129, 0.2);
+        color: var(--pkl-success);
+      }
+
+      .stat-card .stat-icon.completed {
+        background: rgba(47, 160, 111, 0.2);
+        color: var(--pkl-primary);
+      }
+
+      .stat-card .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+
+      .stat-card .stat-label {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+      }
+
+      /* Win Rate Display */
+      .win-rate-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.1) 0%,
+          rgba(255, 165, 0, 0.1) 100%
+        );
+        border: 2px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .win-rate-card:hover {
+        border-color: gold;
+      }
+
+      /* Section Header */
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .filter-tabs {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-tab {
+        padding: 10px 20px;
+        border: none;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(47, 160, 111, 0.2);
+      }
+
+      .filter-tab.active {
+        background: var(--pkl-primary);
+        color: #fff;
+      }
+
+      .filter-tab:hover:not(.active) {
+        background: rgba(47, 160, 111, 0.2);
+        border-color: rgba(47, 160, 111, 0.4);
+      }
+
+      /* Events Table */
+      .events-table-card {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        border: 1px solid rgba(47, 160, 111, 0.3);
+        overflow: hidden;
+      }
+
+      .events-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .events-table th {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 16px 20px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(47, 160, 111, 0.2);
+      }
+
+      .events-table td {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(47, 160, 111, 0.1);
+        font-size: 14px;
+        color: #fff;
+      }
+
+      .events-table tr:hover {
+        background: rgba(47, 160, 111, 0.1);
+      }
+
+      .event-name {
+        font-weight: 600;
+      }
+
+      .event-location {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .status-badge.upcoming {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--pkl-player);
+      }
+
+      .status-badge.ongoing {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--pkl-warning);
+      }
+
+      .status-badge.completed {
+        background: rgba(47, 160, 111, 0.1);
+        color: var(--pkl-primary);
+      }
+
+      .result-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .result-badge.winner {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.2) 0%,
+          rgba(255, 165, 0, 0.2) 100%
+        );
+        color: gold;
+      }
+
+      .result-badge.participant {
+        background: rgba(107, 114, 128, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .result-badge.pending {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--pkl-player);
+      }
+
+      .btn-action {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-action.view {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-action.view:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .no-events {
+        text-align: center;
+        padding: 60px 20px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .no-events i {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: rgba(47, 160, 111, 0.4);
+      }
+
+      .no-events h4 {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      /* Toast Notification */
+      .toast-container {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .toast {
+        min-width: 300px;
+        padding: 16px 20px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateX(120%);
+        animation: slideIn 0.4s ease forwards;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .toast.hiding {
+        animation: slideOut 0.4s ease forwards;
+      }
+
+      @keyframes slideIn {
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideOut {
+        to {
+          transform: translateX(120%);
+        }
+      }
+
+      .toast.success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #fff;
+      }
+
+      .toast.error {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: #fff;
+      }
+
+      .toast.warning {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: #fff;
+      }
+
+      .toast.info {
+        background: linear-gradient(
+          135deg,
+          var(--pkl-primary) 0%,
+          var(--pkl-accent) 100%
+        );
+        color: #fff;
+      }
+
+      .toast i {
+        font-size: 20px;
+      }
+
+      .toast-message {
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .toast-close {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0;
+        transition: color 0.3s ease;
+      }
+
+      .toast-close:hover {
+        color: #fff;
+      }
+
+      /* Find Events Button */
+      .btn-find-events {
+        background: linear-gradient(
+          135deg,
+          var(--pkl-primary) 0%,
+          var(--pkl-accent) 100%
+        );
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-find-events:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(47, 160, 111, 0.3);
+        color: #fff;
+      }
+
+      /* Responsive */
+      @media (max-width: 991px) {
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .dashboard-header {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .player-profile-card {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-header {
+          flex-direction: column;
+          gap: 15px;
+          align-items: flex-start;
+        }
+
+        .filter-tabs {
+          flex-wrap: wrap;
+        }
+
+        .events-table-card {
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!-- Toast Container -->
+      <div class="toast-container" id="toast-container"></div>
+
+      <!-- Main Header-->
+      <header class="main-header header-style-one position-absolute">
+        <div class="container">
+          <div class="header-lower">
+            <div class="inner-container">
+              <!-- Main box -->
+              <div class="main-box">
+                <div class="logo-box">
+                  <div class="logo">
+                    <a href="index.html"
+                      ><img src="images/logo.png?v=2" alt="Logo"
+                    /></a>
+                  </div>
+                </div>
+
+                <!--Nav Box-->
+                <div class="nav-outer">
+                  <nav class="nav main-menu">
+                    <ul class="navigation">
+                      <li><a href="world-series.html">World Series</a></li>
+                      <li class="current">
+                        <a href="players.html">Players</a>
+                      </li>
+                      <li><a href="operators.html">Operators</a></li>
+                      <li><a href="sponsors.html">Sponsors</a></li>
+                      <li class="dropdown">
+                        <a href="#">Shop</a>
+                        <ul>
+                          <li><a href="#">Membership</a></li>
+                          <li><a href="#">Profile Image</a></li>
+                          <li><a href="#">Merchandise</a></li>
+                          <li><a href="#">Equipment</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="pkl-club.html">PKL.CLUB</a></li>
+                      <li><a href="news.html">News</a></li>
+                    </ul>
+                  </nav>
+                </div>
+
+                <!-- Outer Box -->
+                <div class="action-box">
+                  <div class="header-btn">
+                    <button
+                      class="header-btn-main theme-btn"
+                      onclick="logout()"
+                      style="cursor: pointer"
+                    >
+                      <span class="btn-text">Logout</span>
+                    </button>
+                  </div>
+
+                  <!-- Mobile Nav toggler -->
+                  <div class="mobile-nav-toggler">
+                    <div class="shape-line-img">
+                      <i class="fas fa-bars"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <nav class="menu-box">
+            <div class="upper-box">
+              <div class="nav-logo">
+                <a href="index.html"
+                  ><img src="images/logo.png?v=2" alt=""
+                /></a>
+              </div>
+              <div class="close-btn"><i class="icon fa fa-times"></i></div>
+            </div>
+            <ul class="navigation clearfix"></ul>
+            <ul class="contact-list-one">
+              <li>
+                <i class="icon lnr-icon-envelope1"></i>
+                <span class="title">Send Email</span>
+                <div class="text">
+                  <a href="mailto:hello@pkl.club">hello@pkl.club</a>
+                </div>
+              </li>
+            </ul>
+            <ul class="social-links">
+              <li>
+                <a href="#"><i class="icon fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-instagram"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="icon fab fa-youtube"></i></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+          <div class="auto-container">
+            <div class="inner-container">
+              <div class="logo">
+                <a href="index.html"
+                  ><img src="images/logo.png?v=2" alt=""
+                /></a>
+              </div>
+              <div class="nav-outer">
+                <nav class="main-menu">
+                  <div class="navbar-collapse show collapse clearfix">
+                    <ul class="navigation clearfix"></ul>
+                  </div>
+                </nav>
+                <div class="mobile-nav-toggler">
+                  <span class="icon lnr-icon-bars"></span>
+                </div>
+              </div>
+              <div class="action-box">
+                <div class="header-btn">
+                  <button
+                    class="header-btn-main theme-btn"
+                    onclick="logout()"
+                    style="cursor: pointer"
+                  >
+                    <span class="btn-text">Logout</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Sticky Menu -->
+      </header>
+      <!--End Main Header -->
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <div class="container">
+          <div class="dashboard-header">
+            <div>
+              <h1 class="dashboard-title">Player Dashboard</h1>
+              <p class="dashboard-subtitle">
+                Track your tournament history and achievements
+              </p>
+            </div>
+            <div class="player-profile-card">
+              <div class="player-avatar" id="player-avatar">P</div>
+              <div class="player-info">
+                <h3 id="player-name">Loading...</h3>
+                <p id="player-username">@username</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card win-rate-card">
+              <div class="stat-icon wins">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="stat-value" id="stat-wins">0</div>
+              <div class="stat-label">Total Wins</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon events">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="stat-value" id="stat-total">0</div>
+              <div class="stat-label">Events Registered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon upcoming">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+              <div class="stat-value" id="stat-upcoming">0</div>
+              <div class="stat-label">Upcoming Events</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon completed">
+                <i class="fas fa-flag-checkered"></i>
+              </div>
+              <div class="stat-value" id="stat-completed">0</div>
+              <div class="stat-label">Completed Events</div>
+            </div>
+          </div>
+
+          <!-- Events Section -->
+          <div class="section-header">
+            <h2 class="section-title">My Events</h2>
+            <div class="filter-tabs">
+              <button class="filter-tab active" data-filter="all">
+                All Events
+              </button>
+              <button class="filter-tab" data-filter="upcoming">
+                Upcoming
+              </button>
+              <button class="filter-tab" data-filter="completed">
+                Completed
+              </button>
+              <button class="filter-tab" data-filter="wins">My Wins</button>
+            </div>
+          </div>
+
+          <!-- Events Table -->
+          <div class="events-table-card">
+            <table class="events-table">
+              <thead>
+                <tr>
+                  <th>Event Name</th>
+                  <th>Location</th>
+                  <th>Dates</th>
+                  <th>Participants</th>
+                  <th>Status</th>
+                  <th>Result</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="events-table-body">
+                <tr>
+                  <td colspan="7">
+                    <div class="no-events">
+                      <i class="fas fa-spinner fa-spin"></i>
+                      <h4>Loading your events...</h4>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <script>
+        const API_URL = "http://localhost:3333";
+        let token = localStorage.getItem("pkl_token");
+        let currentUser = null;
+        let allEvents = [];
+        let currentFilter = "all";
+
+        // Toast notification function
+        function showToast(message, type = "success") {
+          const container = document.getElementById("toast-container");
+          const toast = document.createElement("div");
+          toast.className = `toast ${type}`;
+
+          const icons = {
+            success: "fa-check-circle",
+            error: "fa-times-circle",
+            warning: "fa-exclamation-triangle",
+            info: "fa-info-circle",
+          };
+
+          toast.innerHTML = `
+            <i class="fas ${icons[type] || icons.info}"></i>
+            <span class="toast-message">${message}</span>
+            <button class="toast-close" onclick="this.parentElement.remove()">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+
+          container.appendChild(toast);
+
+          setTimeout(() => {
+            toast.classList.add("hiding");
+            setTimeout(() => toast.remove(), 400);
+          }, 5000);
+        }
+
+        // Check authentication
+        async function checkAuth() {
+          if (!token) {
+            window.location.href = "login.html";
+            return;
+          }
+
+          try {
+            const response = await fetch(`${API_URL}/auth/profile`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+
+            if (!response.ok) {
+              throw new Error("Not authenticated");
+            }
+
+            currentUser = await response.json();
+
+            if (currentUser.userType !== "player") {
+              showToast("Access denied. Player account required.", "error");
+              setTimeout(() => (window.location.href = "index.html"), 2000);
+              return;
+            }
+
+            // Update player profile display
+            updatePlayerProfile();
+
+            // Load events
+            await loadEvents();
+          } catch (error) {
+            console.error("Auth error:", error);
+            window.location.href = "login.html";
+          }
+        }
+
+        // Update player profile card
+        function updatePlayerProfile() {
+          const name = currentUser.firstName
+            ? `${currentUser.firstName} ${currentUser.lastName || ""}`
+            : currentUser.username;
+
+          document.getElementById("player-name").textContent = name;
+          document.getElementById("player-username").textContent =
+            `@${currentUser.username}`;
+          document.getElementById("player-avatar").textContent = (
+            currentUser.firstName || currentUser.username
+          )
+            .charAt(0)
+            .toUpperCase();
+        }
+
+        // Logout
+        function logout() {
+          localStorage.removeItem("pkl_token");
+          localStorage.removeItem("pkl_user");
+          window.location.href = "login.html";
+        }
+
+        // Load player's registered events
+        async function loadEvents() {
+          try {
+            // Get all approved/completed events
+            const response = await fetch(`${API_URL}/events`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+
+            if (!response.ok) throw new Error("Failed to load events");
+
+            const events = await response.json();
+
+            // Filter to only events where this player is registered
+            allEvents = events.filter((event) => {
+              if (!event.registeredPlayers) return false;
+              return event.registeredPlayers.some(
+                (p) =>
+                  p.playerId === currentUser._id ||
+                  p.playerName === currentUser.username,
+              );
+            });
+
+            updateStats();
+            renderEvents();
+          } catch (error) {
+            console.error("Error loading events:", error);
+            showNoEvents("Failed to load events");
+          }
+        }
+
+        // Update stats
+        function updateStats() {
+          const now = new Date();
+
+          const wins = allEvents.filter(
+            (e) =>
+              e.winner &&
+              (e.winner.playerId === currentUser._id ||
+                e.winner.playerName === currentUser.username),
+          ).length;
+
+          const upcoming = allEvents.filter(
+            (e) => new Date(e.startDate) > now && e.status === "approved",
+          ).length;
+
+          const completed = allEvents.filter(
+            (e) => e.status === "completed",
+          ).length;
+
+          document.getElementById("stat-wins").textContent = wins;
+          document.getElementById("stat-total").textContent = allEvents.length;
+          document.getElementById("stat-upcoming").textContent = upcoming;
+          document.getElementById("stat-completed").textContent = completed;
+        }
+
+        // Render events table
+        function renderEvents() {
+          const tbody = document.getElementById("events-table-body");
+          const now = new Date();
+
+          let filtered = allEvents;
+
+          if (currentFilter === "upcoming") {
+            filtered = allEvents.filter(
+              (e) => new Date(e.startDate) > now && e.status === "approved",
+            );
+          } else if (currentFilter === "completed") {
+            filtered = allEvents.filter((e) => e.status === "completed");
+          } else if (currentFilter === "wins") {
+            filtered = allEvents.filter(
+              (e) =>
+                e.winner &&
+                (e.winner.playerId === currentUser._id ||
+                  e.winner.playerName === currentUser.username),
+            );
+          }
+
+          if (filtered.length === 0) {
+            showNoEvents(getEmptyMessage());
+            return;
+          }
+
+          tbody.innerHTML = filtered
+            .map((event) => {
+              const eventStatus = getEventStatus(event);
+              const result = getPlayerResult(event);
+
+              return `
+                <tr>
+                  <td>
+                    <div class="event-name">${event.name}</div>
+                  </td>
+                  <td>
+                    <div>${event.location.courtName}</div>
+                    <div class="event-location">${event.location.city || ""} ${event.location.state}, ${event.location.country}</div>
+                  </td>
+                  <td>${formatDate(event.startDate)} - ${formatDate(event.endDate)}</td>
+                  <td>${event.registeredPlayers?.length || 0}${event.maxParticipants ? ` / ${event.maxParticipants}` : ""}</td>
+                  <td><span class="status-badge ${eventStatus.class}">${eventStatus.label}</span></td>
+                  <td>${result}</td>
+                  <td>
+                    <button class="btn-action view" onclick="viewEvent('${event._id}')">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                  </td>
+                </tr>
+              `;
+            })
+            .join("");
+        }
+
+        function getEventStatus(event) {
+          const now = new Date();
+          const start = new Date(event.startDate);
+          const end = new Date(event.endDate);
+
+          if (event.status === "completed") {
+            return { class: "completed", label: "Completed" };
+          } else if (now < start) {
+            return { class: "upcoming", label: "Upcoming" };
+          } else if (now >= start && now <= end) {
+            return { class: "ongoing", label: "Ongoing" };
+          } else {
+            return { class: "completed", label: "Ended" };
+          }
+        }
+
+        function getPlayerResult(event) {
+          if (!event.winner) {
+            if (event.status === "completed") {
+              return '<span class="result-badge participant">Participated</span>';
+            }
+            return '<span class="result-badge pending">TBD</span>';
+          }
+
+          const isWinner =
+            event.winner.playerId === currentUser._id ||
+            event.winner.playerName === currentUser.username;
+
+          if (isWinner) {
+            return '<span class="result-badge winner"><i class="fas fa-trophy"></i> Winner!</span>';
+          }
+
+          return '<span class="result-badge participant">Participated</span>';
+        }
+
+        function getEmptyMessage() {
+          switch (currentFilter) {
+            case "upcoming":
+              return "No upcoming events";
+            case "completed":
+              return "No completed events yet";
+            case "wins":
+              return "No wins yet - keep competing!";
+            default:
+              return "You haven't registered for any events yet";
+          }
+        }
+
+        function showNoEvents(message) {
+          document.getElementById("events-table-body").innerHTML = `
+            <tr>
+              <td colspan="7">
+                <div class="no-events">
+                  <i class="fas fa-calendar-alt"></i>
+                  <h4>${message}</h4>
+                  <p style="margin-bottom: 20px;">Check out the World Series to find tournaments near you!</p>
+                  <a href="world-series.html" class="btn-find-events">
+                    <i class="fas fa-search"></i> Find Events
+                  </a>
+                </div>
+              </td>
+            </tr>
+          `;
+        }
+
+        function formatDate(dateStr) {
+          return new Date(dateStr).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          });
+        }
+
+        function viewEvent(eventId) {
+          const event = allEvents.find((e) => e._id === eventId);
+          if (event) {
+            const result = event.winner
+              ? event.winner.playerId === currentUser._id ||
+                event.winner.playerName === currentUser.username
+                ? "🏆 You won this event!"
+                : `Winner: ${event.winner.playerName}`
+              : "Winner not declared yet";
+
+            showToast(`${event.name} | ${result}`, "info");
+          }
+        }
+
+        // Filter tabs
+        document.querySelectorAll(".filter-tab").forEach((tab) => {
+          tab.addEventListener("click", function () {
+            document
+              .querySelectorAll(".filter-tab")
+              .forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+            currentFilter = this.dataset.filter;
+            renderEvents();
+          });
+        });
+
+        // Initialize
+        checkAuth();
+      </script>
+
+      <!-- Scripts -->
+      <script src="js/jquery.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/script.js"></script>
+      <script src="js/pkl-header.js"></script>
+    </div>
+    <!-- End page-wrapper -->
+  </body>
+</html>

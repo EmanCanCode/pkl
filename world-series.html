@@ -1040,6 +1040,55 @@
         </div>
       </section>
 
+      <!-- Approved Operator Events Section -->
+      <section
+        class="pws-events-section"
+        style="
+          padding: 80px 0;
+          background: linear-gradient(180deg, #0a1628 0%, #0d1e36 100%);
+        "
+      >
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-12 text-center">
+              <h2
+                style="color: #fff; font-size: 40px; font-weight: 700"
+                data-aos="fade-up"
+              >
+                Upcoming Events
+              </h2>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.7);
+                  font-size: 16px;
+                  margin-top: 10px;
+                "
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                Official PWS events hosted by verified operators
+              </p>
+              <div
+                style="
+                  width: 60px;
+                  height: 3px;
+                  background: linear-gradient(90deg, #2fa06f, #7ed957);
+                  margin: 15px auto 0;
+                  border-radius: 2px;
+                "
+              ></div>
+            </div>
+          </div>
+
+          <div class="row g-4" id="approved-events-grid">
+            <!-- Events will be loaded dynamically -->
+            <div class="col-12 text-center" id="events-loading">
+              <p style="color: rgba(255, 255, 255, 0.5)">Loading events...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Stat Cards Hover Styles + Responsive -->
       <style>
         /* Stat card hover effects */
@@ -2263,6 +2312,141 @@
 
       counters.forEach((counter) => {
         counterObserver.observe(counter);
+      });
+    </script>
+
+    <!-- Approved Events Script -->
+    <script>
+      // Load and display approved operator events
+      async function loadApprovedEvents() {
+        const API_BASE = "http://localhost:3333";
+        const grid = document.getElementById("approved-events-grid");
+        const loading = document.getElementById("events-loading");
+
+        try {
+          const response = await fetch(`${API_BASE}/events/approved`);
+          if (!response.ok) throw new Error("Failed to load events");
+
+          const events = await response.json();
+
+          if (events.length === 0) {
+            grid.innerHTML = `
+              <div class="col-12 text-center">
+                <div style="padding: 60px 20px;">
+                  <i class="fas fa-calendar-alt" style="font-size: 48px; color: rgba(47, 160, 111, 0.3); margin-bottom: 20px;"></i>
+                  <h4 style="color: #fff; margin-bottom: 10px;">No Upcoming Events</h4>
+                  <p style="color: rgba(255, 255, 255, 0.5);">Check back soon for new tournament announcements</p>
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          grid.innerHTML = events
+            .map((event) => {
+              const startDate = new Date(event.startDate).toLocaleDateString(
+                "en-US",
+                { month: "short", day: "numeric" },
+              );
+              const endDate = new Date(event.endDate).toLocaleDateString(
+                "en-US",
+                { month: "short", day: "numeric", year: "numeric" },
+              );
+              const playerCount = event.registeredPlayers?.length || 0;
+              const hasWinner = event.winner && event.winner.playerName;
+
+              return `
+              <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="event-card" style="
+                  background: rgba(0, 0, 0, 0.3);
+                  border: 1px solid rgba(47, 160, 111, 0.3);
+                  border-radius: 16px;
+                  padding: 24px;
+                  height: 100%;
+                  transition: all 0.3s ease;
+                ">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                    <span style="
+                      background: ${event.status === "completed" ? "linear-gradient(135deg, #7ed957, #2fa06f)" : "rgba(47, 160, 111, 0.2)"};
+                      color: ${event.status === "completed" ? "#000" : "#7ed957"};
+                      font-size: 11px;
+                      font-weight: 600;
+                      padding: 4px 10px;
+                      border-radius: 20px;
+                      text-transform: uppercase;
+                    ">${event.status === "completed" ? "Completed" : "Upcoming"}</span>
+                    ${
+                      hasWinner
+                        ? `
+                      <span style="color: gold; font-size: 12px;">
+                        <i class="fas fa-trophy"></i> ${event.winner.playerName}
+                      </span>
+                    `
+                        : ""
+                    }
+                  </div>
+                  
+                  <h4 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 12px;">${event.name}</h4>
+                  
+                  <div style="margin-bottom: 16px;">
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px; margin-bottom: 6px;">
+                      <i class="fas fa-map-marker-alt" style="color: #2fa06f; margin-right: 8px;"></i>
+                      ${event.location.courtName}, ${event.location.city || event.location.state}
+                    </div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px; margin-bottom: 6px;">
+                      <i class="fas fa-globe" style="color: #2fa06f; margin-right: 8px;"></i>
+                      ${event.location.state}, ${event.location.country}
+                    </div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px;">
+                      <i class="fas fa-calendar" style="color: #2fa06f; margin-right: 8px;"></i>
+                      ${startDate} - ${endDate}
+                    </div>
+                  </div>
+                  
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div>
+                      <span style="color: #7ed957; font-size: 20px; font-weight: 700;">${playerCount}</span>
+                      <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-left: 5px;">players</span>
+                    </div>
+                    ${
+                      event.status !== "completed"
+                        ? `
+                      <a href="${event.tournamentSite || "#"}" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        padding: 8px 16px;
+                        background: linear-gradient(135deg, #2fa06f, #7ed957);
+                        border-radius: 8px;
+                        color: #000;
+                        font-size: 13px;
+                        font-weight: 600;
+                        text-decoration: none;
+                      ">Register <i class="fas fa-arrow-right"></i></a>
+                    `
+                        : `
+                      <span style="color: rgba(255, 255, 255, 0.4); font-size: 13px;">Event ended</span>
+                    `
+                    }
+                  </div>
+                </div>
+              </div>
+            `;
+            })
+            .join("");
+        } catch (error) {
+          console.error("Error loading events:", error);
+          grid.innerHTML = `
+            <div class="col-12 text-center">
+              <p style="color: rgba(255, 255, 255, 0.5);">Unable to load events</p>
+            </div>
+          `;
+        }
+      }
+
+      // Load events on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        loadApprovedEvents();
       });
     </script>
 

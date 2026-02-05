@@ -22813,3 +22813,207 @@ Sidebar
 .map {
   height: 450px;
 }
+
+/* Step Tag for Service Cards */
+.step-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(135deg, #02df82 0%, #2fa06f 100%);
+  color: #fff;
+  font-family: "Luckiest Guy", cursive;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transform: rotate(-8deg);
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(2, 223, 130, 0.3);
+  text-transform: capitalize;
+}
+
+.service-block-one .inner-box:hover .step-tag {
+  transform: rotate(0deg);
+  box-shadow: 0 6px 20px rgba(2, 223, 130, 0.4);
+}
+
+/* Enhanced Service Cards for Players/Operators/Sponsors */
+.about-section .service-block-one .inner-box {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 22, 40, 0.95) 0%,
+    rgba(4, 11, 29, 0.98) 100%
+  ) !important;
+  border: 1px solid rgba(47, 160, 111, 0.4) !important;
+  border-radius: 20px !important;
+  padding: 50px 30px 40px !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+}
+
+.about-section .service-block-one .inner-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #02df82,
+    #2fa06f,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about-section .service-block-one .inner-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(2, 223, 130, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.about-section .service-block-one .inner-box:hover {
+  border-color: rgba(47, 160, 111, 0.8) !important;
+  transform: translateY(-10px) !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(2, 223, 130, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.about-section .service-block-one .inner-box:hover::before,
+.about-section .service-block-one .inner-box:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced Icon Box */
+.about-section .service-block-one .icon-box {
+  width: 90px !important;
+  height: 90px !important;
+  background: linear-gradient(
+    135deg,
+    rgba(2, 223, 130, 0.15) 0%,
+    rgba(47, 160, 111, 0.1) 100%
+  ) !important;
+  border: 2px solid rgba(47, 160, 111, 0.4) !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 25px !important;
+  transition: all 0.4s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.about-section .service-block-one .icon-box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #02df82 0%, #2fa06f 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.about-section .service-block-one .icon-box i {
+  font-size: 40px !important;
+  background: linear-gradient(135deg, #02df82 0%, #7ed957 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  position: relative !important;
+  z-index: 1 !important;
+  transition: all 0.4s ease !important;
+}
+
+.about-section .service-block-one .inner-box:hover .icon-box {
+  border-color: #02df82 !important;
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 0 10px 30px rgba(2, 223, 130, 0.3) !important;
+}
+
+.about-section .service-block-one .inner-box:hover .icon-box::before {
+  opacity: 1;
+}
+
+.about-section .service-block-one .inner-box:hover .icon-box i {
+  -webkit-text-fill-color: #fff !important;
+  background: none !important;
+  transform: scale(1.1) !important;
+}
+
+/* Card Title */
+.about-section .service-block-one .title {
+  color: #fff !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
+  text-align: center !important;
+  transition: color 0.3s ease !important;
+}
+
+.about-section .service-block-one .inner-box:hover .title {
+  color: #02df82 !important;
+}
+
+/* Card Text */
+.about-section .service-block-one .text {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  text-align: center !important;
+  transition: color 0.3s ease !important;
+}
+
+.about-section .service-block-one .inner-box:hover .text {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Corner Decorations */
+.about-section .service-block-one .inner-box .corner-decoration {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+}
+
+.about-section .service-block-one .inner-box .corner-decoration.top-right {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid rgba(2, 223, 130, 0.5);
+  border-right: 2px solid rgba(2, 223, 130, 0.5);
+  border-radius: 0 20px 0 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about-section .service-block-one .inner-box .corner-decoration.bottom-left {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid rgba(2, 223, 130, 0.5);
+  border-left: 2px solid rgba(2, 223, 130, 0.5);
+  border-radius: 0 0 0 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about-section .service-block-one .inner-box:hover .corner-decoration {
+  opacity: 1;
+}
