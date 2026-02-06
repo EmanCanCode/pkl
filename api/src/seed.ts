@@ -27,6 +27,7 @@ async function seed() {
         const admins = [
             { username: 'eman', password: 'Admin321', userType: 'admin', email: 'eman@pkl.club', firstName: 'Eman', lastName: 'Admin' },
             { username: 'gabe', password: 'Admin321', userType: 'admin', email: 'gabe@pkl.club', firstName: 'Gabe', lastName: 'Admin' },
+            { username: 'tony', password: 'Admin123!', userType: 'admin', email: 'tony@pkl.club', firstName: 'Tony', lastName: 'Admin' },
         ];
 
         for (const admin of admins) {
@@ -54,6 +55,7 @@ async function seed() {
         console.log('👤 Admin Credentials:');
         console.log('   Username: eman | Password: Admin321');
         console.log('   Username: gabe | Password: Admin321');
+        console.log('   Username: tony | Password: Admin123!');
         console.log('');
 
     } catch (error) {
