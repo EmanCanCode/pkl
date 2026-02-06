@@ -88,13 +88,18 @@ export class EventsService {
   /**
    * Get approved events (for public display like World Series)
    */
-  async findApproved(): Promise<EventDocument[]> {
-    return this.eventModel
+  async findApproved(limit?: number): Promise<EventDocument[]> {
+    const query = this.eventModel
       .find({ status: { $in: [EventStatus.APPROVED, EventStatus.COMPLETED] } })
       .populate("operator", "username firstName lastName email")
       .populate("winner.playerId", "username firstName lastName")
-      .sort({ startDate: 1 })
-      .exec();
+      .sort({ startDate: -1 }); // Sort by most recent first
+
+    if (limit) {
+      query.limit(limit);
+    }
+
+    return query.exec();
   }
 
   /**

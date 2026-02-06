@@ -9,6 +9,7 @@ import {
   RegistrationSchema,
 } from "../registrations/registration.schema";
 import { User, UserSchema } from "../users/user.schema";
+import { Event, EventSchema } from "../events/event.schema";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { User, UserSchema } from "../users/user.schema";
       { name: Tournament.name, schema: TournamentSchema },
       { name: Registration.name, schema: RegistrationSchema },
       { name: User.name, schema: UserSchema },
+      { name: Event.name, schema: EventSchema },
     ]),
   ],
   controllers: [DashboardController],

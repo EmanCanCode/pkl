@@ -71,9 +71,15 @@ export class EventsController {
    */
   @Get("approved")
   @ApiOperation({ summary: "Get all approved/completed events (public)" })
+  @ApiQuery({
+    name: "limit",
+    required: false,
+    description: "Limit number of results",
+  })
   @ApiResponse({ status: 200, description: "List of approved events" })
-  async findApproved() {
-    return this.eventsService.findApproved();
+  async findApproved(@Query("limit") limit?: string) {
+    const limitNum = limit ? parseInt(limit, 10) : undefined;
+    return this.eventsService.findApproved(limitNum);
   }
 
   /**

@@ -714,172 +714,34 @@
           <!-- Section Title -->
           <div class="row mb-5">
             <div class="col-12 text-center">
-              <h2
-                class="pws-dashboard-title"
-                style="
-                  color: #fff;
-                  font-size: 48px;
-                  font-weight: 700;
-                  letter-spacing: 2px;
-                "
-                data-aos="fade-up"
-                data-aos-duration="1000"
-              >
+              <h2 class="pws-dashboard-title" style="color: #fff; font-size: 48px; font-weight: 700; letter-spacing: 2px;" data-aos="fade-up" data-aos-duration="1000">
                 PWS Dashboard
               </h2>
-              <p
-                style="
-                  color: rgba(255, 255, 255, 0.7);
-                  font-size: 18px;
-                  margin-top: 15px;
-                "
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
+              <p style="color: rgba(255, 255, 255, 0.7); font-size: 18px; margin-top: 15px;" data-aos="fade-up" data-aos-delay="100">
                 Find tournaments near you and register to compete
               </p>
-              <div
-                style="
-                  width: 80px;
-                  height: 4px;
-                  background: linear-gradient(90deg, #2fa06f, #7ed957);
-                  margin: 20px auto 0;
-                  border-radius: 2px;
-                "
-                data-aos="scale-x"
-                data-aos-duration="800"
-                data-aos-delay="200"
-              ></div>
+              <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #2fa06f, #7ed957); margin: 20px auto 0; border-radius: 2px;" data-aos="scale-x" data-aos-duration="800" data-aos-delay="200"></div>
             </div>
           </div>
 
           <!-- Search/Filter Bar -->
-          <div
-            class="dashboard-search-bar"
-            style="
-              background: rgba(47, 160, 111, 0.1);
-              border: 1px solid rgba(47, 160, 111, 0.3);
-              border-radius: 16px;
-              padding: 30px;
-              margin-bottom: 40px;
-            "
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="200"
-          >
+          <div class="dashboard-search-bar" style="background: rgba(47, 160, 111, 0.1); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 30px; margin-bottom: 40px;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
             <div class="row g-3 align-items-end">
-              <div class="col-lg-3 col-md-6">
-                <label
-                  for="pws-country"
-                  style="
-                    color: rgba(255, 255, 255, 0.7);
-                    font-size: 14px;
-                    margin-bottom: 8px;
-                    display: block;
-                  "
-                  >Country</label
-                >
-                <select
-                  id="pws-country"
-                  class="dashboard-select"
-                  style="
-                    width: 100%;
-                    padding: 12px 16px;
-                    background: rgba(0, 0, 0, 0.4);
-                    border: 1px solid rgba(47, 160, 111, 0.5);
-                    border-radius: 8px;
-                    color: #fff;
-                    font-size: 15px;
-                    cursor: pointer;
-                  "
-                >
-                  <option value="">Select Country</option>
-                  <option value="usa">USA</option>
-                  <option value="canada">Canada</option>
-                  <option value="mexico">Mexico</option>
-                  <option value="spain">Spain</option>
+              <div class="col-lg-4 col-md-6">
+                <label for="pws-country" style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px; display: block;">Country</label>
+                <select id="pws-country" class="dashboard-select" style="width: 100%; padding: 12px 16px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(47, 160, 111, 0.5); border-radius: 8px; color: #fff; font-size: 15px; cursor: pointer;">
+                  <option value="">All Countries</option>
                 </select>
               </div>
-              <div class="col-lg-3 col-md-6">
-                <label
-                  for="pws-region"
-                  style="
-                    color: rgba(255, 255, 255, 0.7);
-                    font-size: 14px;
-                    margin-bottom: 8px;
-                    display: block;
-                  "
-                  >Region</label
-                >
-                <select
-                  id="pws-region"
-                  class="dashboard-select"
-                  style="
-                    width: 100%;
-                    padding: 12px 16px;
-                    background: rgba(0, 0, 0, 0.4);
-                    border: 1px solid rgba(47, 160, 111, 0.5);
-                    border-radius: 8px;
-                    color: #fff;
-                    font-size: 15px;
-                    cursor: pointer;
-                  "
-                >
-                  <option value="">Select Region</option>
-                  <option value="florida">Florida</option>
-                  <option value="california">California</option>
-                  <option value="texas">Texas</option>
+              <div class="col-lg-4 col-md-6">
+                <label for="pws-state" style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px; display: block;">State/Region</label>
+                <select id="pws-state" class="dashboard-select" style="width: 100%; padding: 12px 16px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(47, 160, 111, 0.5); border-radius: 8px; color: #fff; font-size: 15px; cursor: pointer;">
+                  <option value="">All States</option>
                 </select>
               </div>
-              <div class="col-lg-3 col-md-6">
-                <label
-                  for="pws-city"
-                  style="
-                    color: rgba(255, 255, 255, 0.7);
-                    font-size: 14px;
-                    margin-bottom: 8px;
-                    display: block;
-                  "
-                  >City</label
-                >
-                <select
-                  id="pws-city"
-                  class="dashboard-select"
-                  style="
-                    width: 100%;
-                    padding: 12px 16px;
-                    background: rgba(0, 0, 0, 0.4);
-                    border: 1px solid rgba(47, 160, 111, 0.5);
-                    border-radius: 8px;
-                    color: #fff;
-                    font-size: 15px;
-                    cursor: pointer;
-                  "
-                >
-                  <option value="">Select City</option>
-                  <option value="miami">Miami</option>
-                  <option value="orlando">Orlando</option>
-                  <option value="tampa">Tampa</option>
-                </select>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <button
-                  id="pws-search-btn"
-                  class="dashboard-search-btn"
-                  style="
-                    width: 100%;
-                    padding: 12px 24px;
-                    background: linear-gradient(135deg, #2fa06f, #7ed957);
-                    border: none;
-                    border-radius: 8px;
-                    color: #000;
-                    font-size: 16px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                  "
-                >
-                  <i class="fas fa-search" style="margin-right: 8px"></i> Search
+              <div class="col-lg-4 col-md-12">
+                <button id="pws-search-btn" class="dashboard-search-btn" style="width: 100%; padding: 12px 24px; background: linear-gradient(135deg, #2fa06f, #7ed957); border: none; border-radius: 8px; color: #000; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                  <i class="fas fa-search" style="margin-right: 8px"></i> Search Events
                 </button>
               </div>
             </div>
@@ -887,203 +749,44 @@
 
           <!-- Dashboard Content Grid -->
           <div class="row g-4">
-            <!-- Left Column - Search Results -->
-            <div
-              class="col-lg-4"
-              data-aos="fade-right"
-              data-aos-duration="800"
-              data-aos-delay="300"
-            >
-              <div
-                id="pws-results-panel"
-                class="results-panel"
-                style="
-                  background: rgba(0, 0, 0, 0.3);
-                  border: 1px solid rgba(47, 160, 111, 0.3);
-                  border-radius: 16px;
-                  padding: 24px;
-                  height: 100%;
-                "
-              >
-                <h4
-                  style="
-                    color: #fff;
-                    font-size: 20px;
-                    font-weight: 600;
-                    margin-bottom: 20px;
-                  "
-                >
-                  <i
-                    class="fas fa-list"
-                    style="color: #2fa06f; margin-right: 10px"
-                  ></i
-                  >Search Results
+            <!-- Left Column - Events List -->
+            <div class="col-lg-4" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+              <div id="pws-results-panel" class="results-panel" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 24px; min-height: 400px;">
+                <h4 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 20px;">
+                  <i class="fas fa-calendar-alt" style="color: #2fa06f; margin-right: 10px"></i>Approved Events
                 </h4>
-
-                <!-- Activated Cities -->
-                <div
-                  id="pws-activated-group"
-                  class="results-group"
-                  style="margin-bottom: 24px"
-                >
-                  <span
-                    style="
-                      color: #7ed957;
-                      font-size: 12px;
-                      font-weight: 600;
-                      text-transform: uppercase;
-                      letter-spacing: 1px;
-                    "
-                    >Activated</span
-                  >
-                  <div
-                    id="pws-activated-results"
-                    class="result-items"
-                    style="margin-top: 12px"
-                  >
-                    <!-- Results will be dynamically populated -->
-                  </div>
+                
+                <!-- Events List Container -->
+                <div id="pws-events-list" style="margin-top: 12px;">
+                  <!-- Events will be dynamically populated -->
                 </div>
 
-                <!-- Open Cities -->
-                <div id="pws-open-group" class="results-group">
-                  <span
-                    style="
-                      color: rgba(255, 255, 255, 0.5);
-                      font-size: 12px;
-                      font-weight: 600;
-                      text-transform: uppercase;
-                      letter-spacing: 1px;
-                    "
-                    >Open</span
-                  >
-                  <div
-                    id="pws-open-results"
-                    class="result-items"
-                    style="margin-top: 12px"
-                  >
-                    <!-- Results will be dynamically populated -->
-                  </div>
+                <!-- Loading State -->
+                <div id="pws-loading" style="text-align: center; padding: 40px 20px;">
+                  <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #2fa06f; margin-bottom: 16px;"></i>
+                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">Loading events...</p>
                 </div>
 
                 <!-- No Results Message -->
-                <div
-                  id="pws-no-results"
-                  style="display: none; text-align: center; padding: 40px 20px"
-                >
-                  <i
-                    class="fas fa-search"
-                    style="
-                      font-size: 48px;
-                      color: rgba(255, 255, 255, 0.2);
-                      margin-bottom: 16px;
-                    "
-                  ></i>
-                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0">
-                    No results found. Try adjusting your filters.
-                  </p>
+                <div id="pws-no-results" style="display: none; text-align: center; padding: 40px 20px;">
+                  <i class="fas fa-calendar-times" style="font-size: 48px; color: rgba(255, 255, 255, 0.2); margin-bottom: 16px;"></i>
+                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">No events found. Try adjusting your filters.</p>
                 </div>
               </div>
             </div>
 
-            <!-- Right Column - City Detail -->
-            <div
-              class="col-lg-8"
-              data-aos="fade-left"
-              data-aos-duration="800"
-              data-aos-delay="400"
-            >
-              <div
-                id="pws-city-detail"
-                class="city-detail-panel"
-                style="
-                  background: rgba(0, 0, 0, 0.3);
-                  border: 1px solid rgba(47, 160, 111, 0.3);
-                  border-radius: 16px;
-                  padding: 30px;
-                "
-              >
-                <!-- City content will be dynamically populated -->
+            <!-- Right Column - Event Detail -->
+            <div class="col-lg-8" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+              <div id="pws-event-detail" class="event-detail-panel" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 30px; min-height: 400px;">
+                <!-- Event content will be dynamically populated -->
               </div>
 
-              <!-- Empty State (shown when no city selected) -->
-              <div
-                id="pws-city-empty"
-                class="city-detail-panel"
-                style="
-                  display: none;
-                  background: rgba(0, 0, 0, 0.3);
-                  border: 1px solid rgba(47, 160, 111, 0.3);
-                  border-radius: 16px;
-                  padding: 60px 30px;
-                  text-align: center;
-                "
-              >
-                <i
-                  class="fas fa-map-marker-alt"
-                  style="
-                    font-size: 64px;
-                    color: rgba(47, 160, 111, 0.3);
-                    margin-bottom: 20px;
-                  "
-                ></i>
-                <h4 style="color: #fff; font-size: 24px; margin-bottom: 10px">
-                  Select a City
-                </h4>
-                <p style="color: rgba(255, 255, 255, 0.5); margin: 0">
-                  Choose a city from the search results to view tournament
-                  details.
-                </p>
+              <!-- Empty State (shown when no event selected) -->
+              <div id="pws-event-empty" class="event-detail-panel" style="display: none; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 60px 30px; text-align: center; min-height: 400px;">
+                <i class="fas fa-trophy" style="font-size: 64px; color: rgba(47, 160, 111, 0.3); margin-bottom: 20px;"></i>
+                <h4 style="color: #fff; font-size: 24px; margin-bottom: 10px">Select an Event</h4>
+                <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">Choose an event from the list to view tournament details.</p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Approved Operator Events Section -->
-      <section
-        class="pws-events-section"
-        style="
-          padding: 80px 0;
-          background: linear-gradient(180deg, #0a1628 0%, #0d1e36 100%);
-        "
-      >
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-12 text-center">
-              <h2
-                style="color: #fff; font-size: 40px; font-weight: 700"
-                data-aos="fade-up"
-              >
-                Upcoming Events
-              </h2>
-              <p
-                style="
-                  color: rgba(255, 255, 255, 0.7);
-                  font-size: 16px;
-                  margin-top: 10px;
-                "
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                Official PWS events hosted by verified operators
-              </p>
-              <div
-                style="
-                  width: 60px;
-                  height: 3px;
-                  background: linear-gradient(90deg, #2fa06f, #7ed957);
-                  margin: 15px auto 0;
-                  border-radius: 2px;
-                "
-              ></div>
-            </div>
-          </div>
-
-          <div class="row g-4" id="approved-events-grid">
-            <!-- Events will be loaded dynamically -->
-            <div class="col-12 text-center" id="events-loading">
-              <p style="color: rgba(255, 255, 255, 0.5)">Loading events...</p>
             </div>
           </div>
         </div>
@@ -2315,611 +2018,492 @@
       });
     </script>
 
-    <!-- Approved Events Script -->
-    <script>
-      // Load and display approved operator events
-      async function loadApprovedEvents() {
-        const API_BASE = "http://localhost:3333";
-        const grid = document.getElementById("approved-events-grid");
-        const loading = document.getElementById("events-loading");
-
-        try {
-          const response = await fetch(`${API_BASE}/events/approved`);
-          if (!response.ok) throw new Error("Failed to load events");
-
-          const events = await response.json();
-
-          if (events.length === 0) {
-            grid.innerHTML = `
-              <div class="col-12 text-center">
-                <div style="padding: 60px 20px;">
-                  <i class="fas fa-calendar-alt" style="font-size: 48px; color: rgba(47, 160, 111, 0.3); margin-bottom: 20px;"></i>
-                  <h4 style="color: #fff; margin-bottom: 10px;">No Upcoming Events</h4>
-                  <p style="color: rgba(255, 255, 255, 0.5);">Check back soon for new tournament announcements</p>
-                </div>
-              </div>
-            `;
-            return;
-          }
-
-          grid.innerHTML = events
-            .map((event) => {
-              const startDate = new Date(event.startDate).toLocaleDateString(
-                "en-US",
-                { month: "short", day: "numeric" },
-              );
-              const endDate = new Date(event.endDate).toLocaleDateString(
-                "en-US",
-                { month: "short", day: "numeric", year: "numeric" },
-              );
-              const playerCount = event.registeredPlayers?.length || 0;
-              const hasWinner = event.winner && event.winner.playerName;
-
-              return `
-              <div class="col-lg-4 col-md-6" data-aos="fade-up">
-                <div class="event-card" style="
-                  background: rgba(0, 0, 0, 0.3);
-                  border: 1px solid rgba(47, 160, 111, 0.3);
-                  border-radius: 16px;
-                  padding: 24px;
-                  height: 100%;
-                  transition: all 0.3s ease;
-                ">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
-                    <span style="
-                      background: ${event.status === "completed" ? "linear-gradient(135deg, #7ed957, #2fa06f)" : "rgba(47, 160, 111, 0.2)"};
-                      color: ${event.status === "completed" ? "#000" : "#7ed957"};
-                      font-size: 11px;
-                      font-weight: 600;
-                      padding: 4px 10px;
-                      border-radius: 20px;
-                      text-transform: uppercase;
-                    ">${event.status === "completed" ? "Completed" : "Upcoming"}</span>
-                    ${
-                      hasWinner
-                        ? `
-                      <span style="color: gold; font-size: 12px;">
-                        <i class="fas fa-trophy"></i> ${event.winner.playerName}
-                      </span>
-                    `
-                        : ""
-                    }
-                  </div>
-                  
-                  <h4 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 12px;">${event.name}</h4>
-                  
-                  <div style="margin-bottom: 16px;">
-                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px; margin-bottom: 6px;">
-                      <i class="fas fa-map-marker-alt" style="color: #2fa06f; margin-right: 8px;"></i>
-                      ${event.location.courtName}, ${event.location.city || event.location.state}
-                    </div>
-                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px; margin-bottom: 6px;">
-                      <i class="fas fa-globe" style="color: #2fa06f; margin-right: 8px;"></i>
-                      ${event.location.state}, ${event.location.country}
-                    </div>
-                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 13px;">
-                      <i class="fas fa-calendar" style="color: #2fa06f; margin-right: 8px;"></i>
-                      ${startDate} - ${endDate}
-                    </div>
-                  </div>
-                  
-                  <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                    <div>
-                      <span style="color: #7ed957; font-size: 20px; font-weight: 700;">${playerCount}</span>
-                      <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-left: 5px;">players</span>
-                    </div>
-                    ${
-                      event.status !== "completed"
-                        ? `
-                      <a href="${event.tournamentSite || "#"}" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        padding: 8px 16px;
-                        background: linear-gradient(135deg, #2fa06f, #7ed957);
-                        border-radius: 8px;
-                        color: #000;
-                        font-size: 13px;
-                        font-weight: 600;
-                        text-decoration: none;
-                      ">Register <i class="fas fa-arrow-right"></i></a>
-                    `
-                        : `
-                      <span style="color: rgba(255, 255, 255, 0.4); font-size: 13px;">Event ended</span>
-                    `
-                    }
-                  </div>
-                </div>
-              </div>
-            `;
-            })
-            .join("");
-        } catch (error) {
-          console.error("Error loading events:", error);
-          grid.innerHTML = `
-            <div class="col-12 text-center">
-              <p style="color: rgba(255, 255, 255, 0.5);">Unable to load events</p>
-            </div>
-          `;
-        }
-      }
-
-      // Load events on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        loadApprovedEvents();
-      });
-    </script>
-
     <!-- PWS Dashboard Script -->
     <script>
-      // PWS Dashboard Module
+      // PWS Dashboard Module - Event Focused
       const PWSDashboard = (function () {
         const API_BASE = "http://localhost:3333";
 
-        // Data loaded from API
-        let citiesData = {
-          activated: [],
-          open: [],
-        };
+        // All events data
+        let allEvents = [];
+        let filteredEvents = [];
+        let selectedEvent = null;
 
         // DOM Elements
         let elements = {};
 
-        // Current state
-        let currentFilters = {
+        // Current filters
+        let filters = {
           country: "",
-          region: "",
-          city: "",
+          state: ""
         };
-        let selectedCity = null;
 
-        // Format date range for display
-        function formatDateRange(dates) {
-          if (!dates || !dates.start) return "TBD";
-          const start = new Date(dates.start);
-          const end = new Date(dates.end);
-          const options = { month: "short", day: "2-digit" };
-          const startStr = start.toLocaleDateString("en-US", options);
-          const endStr = end.toLocaleDateString("en-US", { day: "2-digit" });
-          const year = start.getFullYear();
-          return `${startStr}-${endStr}, ${year}`;
-        }
-
-        // Format single date for schedule
-        function formatScheduleDate(dateStr) {
+        // Format date for display
+        function formatDate(dateStr) {
+          if (!dateStr) return "TBD";
           const date = new Date(dateStr);
-          return date.toLocaleDateString("en-US", {
-            month: "short",
-            day: "2-digit",
+          return date.toLocaleDateString("en-US", { 
+            month: "short", 
+            day: "numeric", 
+            year: "numeric" 
           });
         }
 
-        // Transform API city to frontend format
-        function transformCity(city) {
-          const tournament =
-            city.tournaments && city.tournaments.length > 0
-              ? city.tournaments[0]
-              : null;
-          return {
-            id: city._id,
-            name: city.name,
-            region: city.regionName,
-            regionCode: city.regionCode,
-            country: city.countryName,
-            countryCode: city.countryCode,
-            countryFlag: city.flagCode,
-            status: city.status,
-            operator: tournament?.operatorName || null,
-            location: tournament?.location || null,
-            dates: tournament ? formatDateRange(tournament.dates) : "TBD",
-            startDate: tournament?.dates?.start || null,
-            tournamentUrl: tournament?.tournamentUrl || "#",
-            schedule:
-              tournament?.schedule?.map((s) => ({
-                day: s.day,
-                date: formatScheduleDate(s.date),
-                event: s.events?.join(", ") || "Event",
-              })) || [],
-            players:
-              tournament?.playerPreview?.map((p) => ({
-                initials: p.initials,
-                name: p.name,
-                category: "",
-              })) || [],
-            totalPlayers: tournament?.registeredPlayers || 0,
-          };
+        // Format date range
+        function formatDateRange(startDate, endDate) {
+          if (!startDate) return "TBD";
+          const start = new Date(startDate);
+          const end = endDate ? new Date(endDate) : start;
+          const startStr = start.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+          const endStr = end.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+          if (startStr === endStr.slice(0, -6)) {
+            return endStr;
+          }
+          return `${startStr} - ${endStr}`;
         }
 
-        // Fetch cities from API
-        async function fetchCities(filters = {}) {
+        // Get short location string
+        function getShortLocation(location) {
+          if (!location) return "Location TBD";
+          const city = location.city || "";
+          const state = location.state || "";
+          const country = location.country || "";
+          if (city && state) return `${city}, ${state}`;
+          if (city && country) return `${city}, ${country}`;
+          if (state && country) return `${state}, ${country}`;
+          return country || "Location TBD";
+        }
+
+        // Fetch all approved events from API
+        async function fetchEvents() {
           try {
-            const params = new URLSearchParams();
-            if (filters.search) params.append("search", filters.search);
-            if (filters.country) params.append("country", filters.country);
-
-            const response = await fetch(
-              `${API_BASE}/dashboard/cities?${params.toString()}`,
-            );
-            if (!response.ok) throw new Error("Failed to fetch cities");
-
+            console.log("[PWS Dashboard] Fetching events...");
+            const response = await fetch(`${API_BASE}/events/approved`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
-            citiesData = {
-              activated: (data.activated || []).map(transformCity),
-              open: (data.open || []).map(transformCity),
-            };
-
-            return [...citiesData.activated, ...citiesData.open];
+            console.log("[PWS Dashboard] Raw API response:", data);
+            
+            // Handle both array and object with value property
+            const events = Array.isArray(data) ? data : (data.value || data);
+            allEvents = Array.isArray(events) ? events : [];
+            
+            console.log("[PWS Dashboard] Processed events:", allEvents.length);
+            return allEvents;
           } catch (error) {
-            console.error("Error fetching cities:", error);
-            // Return empty arrays on error
+            console.error("[PWS Dashboard] Error fetching events:", error);
             return [];
           }
         }
 
+        // Populate country filter options from events data
+        function populateCountryFilter() {
+          const countries = [...new Set(allEvents
+            .map(e => e.location?.country)
+            .filter(c => c))
+          ].sort();
+          
+          let html = '<option value="">All Countries</option>';
+          countries.forEach(country => {
+            html += `<option value="${country}">${country}</option>`;
+          });
+          elements.countrySelect.innerHTML = html;
+        }
+
+        // Populate state filter options based on selected country
+        function populateStateFilter() {
+          const selectedCountry = filters.country;
+          let states = [];
+          
+          if (selectedCountry) {
+            states = [...new Set(allEvents
+              .filter(e => e.location?.country === selectedCountry)
+              .map(e => e.location?.state)
+              .filter(s => s))
+            ].sort();
+          } else {
+            states = [...new Set(allEvents
+              .map(e => e.location?.state)
+              .filter(s => s))
+            ].sort();
+          }
+          
+          let html = '<option value="">All States</option>';
+          states.forEach(state => {
+            html += `<option value="${state}">${state}</option>`;
+          });
+          elements.stateSelect.innerHTML = html;
+        }
+
+        // Apply filters and return matching events
+        function applyFilters() {
+          filteredEvents = allEvents.filter(event => {
+            const location = event.location || {};
+            
+            if (filters.country && location.country !== filters.country) {
+              return false;
+            }
+            if (filters.state && location.state !== filters.state) {
+              return false;
+            }
+            return true;
+          });
+          
+          return filteredEvents;
+        }
+
         // Initialize the dashboard
         async function init() {
+          console.log("[PWS Dashboard] Initializing...");
           cacheElements();
+          
+          if (!elements.eventsList || !elements.eventDetail) {
+            console.error("[PWS Dashboard] Required DOM elements not found!");
+            return;
+          }
+          
           bindEvents();
 
-          // Load initial data
-          const cities = await fetchCities();
-          renderResults(cities);
+          // Fetch events
+          await fetchEvents();
+          
+          // Populate filters
+          populateCountryFilter();
+          populateStateFilter();
+          
+          // Hide loading, show events
+          elements.loading.style.display = "none";
+          
+          // Apply initial filters (show all)
+          filteredEvents = allEvents;
+          
+          // Render the events list
+          renderEventsList();
 
-          if (cities.length > 0) {
-            selectCity(cities[0]);
+          // Select first event if available
+          if (filteredEvents.length > 0) {
+            selectEvent(filteredEvents[0]);
+          } else {
+            showEmptyState();
           }
+          
+          console.log("[PWS Dashboard] Initialized with", filteredEvents.length, "events");
         }
 
         // Cache DOM elements
         function cacheElements() {
           elements = {
             countrySelect: document.getElementById("pws-country"),
-            regionSelect: document.getElementById("pws-region"),
-            citySelect: document.getElementById("pws-city"),
+            stateSelect: document.getElementById("pws-state"),
             searchBtn: document.getElementById("pws-search-btn"),
-            activatedResults: document.getElementById("pws-activated-results"),
-            openResults: document.getElementById("pws-open-results"),
-            activatedGroup: document.getElementById("pws-activated-group"),
-            openGroup: document.getElementById("pws-open-group"),
+            eventsList: document.getElementById("pws-events-list"),
+            loading: document.getElementById("pws-loading"),
             noResults: document.getElementById("pws-no-results"),
-            cityDetail: document.getElementById("pws-city-detail"),
-            cityEmpty: document.getElementById("pws-city-empty"),
+            eventDetail: document.getElementById("pws-event-detail"),
+            eventEmpty: document.getElementById("pws-event-empty")
           };
+          console.log("[PWS Dashboard] Cached elements:", elements);
         }
 
         // Bind event listeners
         function bindEvents() {
           elements.searchBtn.addEventListener("click", handleSearch);
-          elements.countrySelect.addEventListener(
-            "change",
-            handleCountryChange,
-          );
-          elements.regionSelect.addEventListener("change", handleRegionChange);
+          elements.countrySelect.addEventListener("change", handleCountryChange);
+          elements.stateSelect.addEventListener("change", handleStateChange);
         }
 
         // Handle country selection change
         function handleCountryChange(e) {
-          currentFilters.country = e.target.value;
-          currentFilters.region = "";
-          currentFilters.city = "";
-          elements.regionSelect.value = "";
-          elements.citySelect.value = "";
+          filters.country = e.target.value;
+          filters.state = "";
+          elements.stateSelect.value = "";
+          populateStateFilter();
         }
 
-        // Handle region selection change
-        function handleRegionChange(e) {
-          currentFilters.region = e.target.value;
-          currentFilters.city = "";
-          elements.citySelect.value = "";
+        // Handle state selection change
+        function handleStateChange(e) {
+          filters.state = e.target.value;
         }
 
         // Handle search button click
-        async function handleSearch() {
-          currentFilters.country = elements.countrySelect.value;
-          currentFilters.region = elements.regionSelect.value;
-          currentFilters.city = elements.citySelect.value;
-
-          // Fetch filtered cities from API
-          let cities = await fetchCities({
-            country: currentFilters.country?.toUpperCase(),
-            search: currentFilters.city,
-          });
-
-          // Apply local region filter if needed
-          if (currentFilters.region) {
-            cities = cities.filter(
-              (c) =>
-                c.regionCode?.toLowerCase() ===
-                currentFilters.region.toLowerCase(),
-            );
-          }
-
-          renderResults(cities);
-
-          // Select first result if available
-          if (cities.length > 0) {
-            selectCity(cities[0]);
+        function handleSearch() {
+          filters.country = elements.countrySelect.value;
+          filters.state = elements.stateSelect.value;
+          
+          applyFilters();
+          renderEventsList();
+          
+          if (filteredEvents.length > 0) {
+            selectEvent(filteredEvents[0]);
           } else {
-            showEmptyState();
+            showNoResults();
           }
         }
 
-        // Get all cities (combined activated and open)
-        function getAllCities() {
-          return [...citiesData.activated, ...citiesData.open];
-        }
-
-        // Render search results
-        function renderResults(cities) {
-          const activated = cities.filter((c) => c.status === "activated");
-          const open = cities.filter((c) => c.status === "open");
-
-          // Render activated cities
-          elements.activatedResults.innerHTML = activated
-            .map(
-              (city) => `
-            <div class="result-item ${selectedCity?.id === city.id ? "active" : ""}" 
-                 data-city-id="${city.id}"
-                 style="
-                   background: ${selectedCity?.id === city.id ? "rgba(47, 160, 111, 0.2)" : "rgba(47, 160, 111, 0.1)"};
-                   border: 1px solid ${selectedCity?.id === city.id ? "#2fa06f" : "rgba(47, 160, 111, 0.3)"};
-                   border-radius: 10px;
-                   padding: 14px 16px;
-                   margin-bottom: 10px;
-                   cursor: pointer;
-                   transition: all 0.3s ease;
-                 ">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #fff; font-weight: 500;">${city.name}, ${city.region}, ${city.country}</span>
-                <i class="fas fa-chevron-right" style="color: #2fa06f; font-size: 12px;"></i>
+        // Render the events list in the left panel
+        function renderEventsList() {
+          if (filteredEvents.length === 0) {
+            elements.eventsList.innerHTML = "";
+            elements.noResults.style.display = "block";
+            return;
+          }
+          
+          elements.noResults.style.display = "none";
+          
+          const html = filteredEvents.map(event => {
+            const isSelected = selectedEvent && selectedEvent._id === event._id;
+            const location = getShortLocation(event.location);
+            const dates = formatDateRange(event.startDate, event.endDate);
+            
+            return `
+              <div class="pws-event-item" 
+                   data-event-id="${event._id}"
+                   style="
+                     background: ${isSelected ? 'rgba(47, 160, 111, 0.2)' : 'rgba(47, 160, 111, 0.1)'};
+                     border: 1px solid ${isSelected ? '#2fa06f' : 'rgba(47, 160, 111, 0.3)'};
+                     border-radius: 10px;
+                     padding: 14px 16px;
+                     margin-bottom: 10px;
+                     cursor: pointer;
+                     transition: all 0.3s ease;
+                   "
+                   onmouseover="if(!this.classList.contains('selected')){this.style.background='rgba(47, 160, 111, 0.15)';this.style.borderColor='rgba(47, 160, 111, 0.5)';}"
+                   onmouseout="if(!this.classList.contains('selected')){this.style.background='rgba(47, 160, 111, 0.1)';this.style.borderColor='rgba(47, 160, 111, 0.3)';}"
+              >
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                  <span style="color: #fff; font-weight: 600; font-size: 14px; flex: 1;">${event.name}</span>
+                  <i class="fas fa-chevron-right" style="color: #2fa06f; font-size: 12px; margin-left: 8px;"></i>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px;">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 4px;"></i>${location}
+                  </span>
+                  <span style="color: #7ed957; font-size: 11px; font-weight: 500;">${dates}</span>
+                </div>
               </div>
-            </div>
-          `,
-            )
-            .join("");
-
-          // Render open cities
-          elements.openResults.innerHTML = open
-            .map(
-              (city) => `
-            <div class="result-item" 
-                 data-city-id="${city.id}"
-                 style="
-                   background: rgba(255, 255, 255, 0.05);
-                   border: 1px solid rgba(255, 255, 255, 0.1);
-                   border-radius: 10px;
-                   padding: 14px 16px;
-                   margin-bottom: 10px;
-                   cursor: pointer;
-                   transition: all 0.3s ease;
-                 ">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: rgba(255, 255, 255, 0.6); font-weight: 500;">${city.name}, ${city.region}, ${city.country}</span>
-                <span style="color: rgba(255, 255, 255, 0.4); font-size: 11px;">Coming Soon</span>
-              </div>
-            </div>
-          `,
-            )
-            .join("");
-
-          // Show/hide groups based on results
-          elements.activatedGroup.style.display =
-            activated.length > 0 ? "block" : "none";
-          elements.openGroup.style.display = open.length > 0 ? "block" : "none";
-          elements.noResults.style.display =
-            cities.length === 0 ? "block" : "none";
-
-          // Bind click events to result items
-          document.querySelectorAll(".result-item").forEach((item) => {
-            item.addEventListener("click", function () {
-              const cityId = this.dataset.cityId;
-              const city = getAllCities().find((c) => c.id === cityId);
-              if (city) {
-                selectCity(city);
+            `;
+          }).join("");
+          
+          elements.eventsList.innerHTML = html;
+          
+          // Bind click events
+          document.querySelectorAll(".pws-event-item").forEach(item => {
+            item.addEventListener("click", function() {
+              const eventId = this.dataset.eventId;
+              const event = allEvents.find(e => e._id === eventId);
+              if (event) {
+                selectEvent(event);
               }
             });
           });
         }
 
-        // Select and display city details
-        function selectCity(city) {
-          selectedCity = city;
-
-          // Update active state in results
-          document.querySelectorAll(".result-item").forEach((item) => {
-            const isActive = item.dataset.cityId === city.id;
-            item.style.background = isActive
-              ? "rgba(47, 160, 111, 0.2)"
-              : city.status === "activated"
-                ? "rgba(47, 160, 111, 0.1)"
-                : "rgba(255, 255, 255, 0.05)";
-            item.style.borderColor = isActive
-              ? "#2fa06f"
-              : city.status === "activated"
-                ? "rgba(47, 160, 111, 0.3)"
-                : "rgba(255, 255, 255, 0.1)";
+        // Select and display event details
+        function selectEvent(event) {
+          selectedEvent = event;
+          
+          // Update active state in list
+          document.querySelectorAll(".pws-event-item").forEach(item => {
+            const isSelected = item.dataset.eventId === event._id;
+            item.classList.toggle("selected", isSelected);
+            item.style.background = isSelected ? "rgba(47, 160, 111, 0.2)" : "rgba(47, 160, 111, 0.1)";
+            item.style.borderColor = isSelected ? "#2fa06f" : "rgba(47, 160, 111, 0.3)";
           });
-
-          // Show city detail, hide empty state
-          elements.cityDetail.style.display = "block";
-          elements.cityEmpty.style.display = "none";
-
-          // Render city details
-          renderCityDetail(city);
+          
+          // Show detail panel, hide empty state
+          elements.eventDetail.style.display = "block";
+          elements.eventEmpty.style.display = "none";
+          
+          // Render event details
+          renderEventDetail(event);
         }
 
-        // Render city detail panel
-        function renderCityDetail(city) {
-          const statusBadge =
-            city.status === "activated"
-              ? `<span style="background: linear-gradient(135deg, #2fa06f, #7ed957); color: #000; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;">Activated</span>`
-              : `<span style="background: rgba(255,255,255,0.2); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;">Open</span>`;
-
-          const scheduleHtml =
-            city.schedule.length > 0
-              ? city.schedule
-                  .map(
-                    (s) => `
-            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 14px; text-align: center;">
-              <div style="color: #7ed957; font-size: 13px; font-weight: 600;">Day ${s.day}</div>
-              <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; margin-top: 4px;">${s.date}</div>
-              <div style="color: #fff; font-size: 12px; margin-top: 8px;">${s.event}</div>
-            </div>
-          `,
-                  )
-                  .join("")
-              : '<p style="color: rgba(255,255,255,0.5);">Schedule to be announced</p>';
-
-          const playersHtml =
-            city.players.length > 0
-              ? city.players
-                  .map(
-                    (p) => `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 10px 14px;">
-              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #2fa06f, #7ed957); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 600; font-size: 12px;">${p.initials}</div>
-              <div>
-                <div style="color: #fff; font-size: 13px; font-weight: 500;">${p.name}</div>
-                <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px;">${p.category}</div>
-              </div>
-            </div>
-          `,
-                  )
-                  .join("")
-              : "";
-
-          const remainingPlayers = city.totalPlayers - city.players.length;
-          const morePlayersHtml =
-            remainingPlayers > 0
-              ? `
-            <div style="display: flex; align-items: center; justify-content: center; background: rgba(47, 160, 111, 0.1); border: 1px dashed rgba(47, 160, 111, 0.4); border-radius: 8px; padding: 10px 20px; cursor: pointer;">
-              <span style="color: #2fa06f; font-size: 13px; font-weight: 500;">+${remainingPlayers} more</span>
-            </div>
-          `
-              : "";
-
-          elements.cityDetail.innerHTML = `
-            <!-- City Header -->
-            <div class="city-header" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-              <div>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 8px;">
-                  <h3 style="color: #fff; font-size: 32px; font-weight: 700; margin: 0;">${city.name}</h3>
-                  ${statusBadge}
+        // Render event detail panel
+        function renderEventDetail(event) {
+          const location = event.location || {};
+          const locationStr = [
+            location.courtName,
+            location.city,
+            location.state,
+            location.country
+          ].filter(Boolean).join(", ");
+          
+          const dates = formatDateRange(event.startDate, event.endDate);
+          const playerCount = event.registeredPlayers?.length || 0;
+          
+          // Get country code for flag (simple mapping)
+          const countryFlags = {
+            "USA": "us",
+            "United States": "us",
+            "Canada": "ca",
+            "Mexico": "mx",
+            "Spain": "es",
+            "UK": "gb",
+            "France": "fr",
+            "Germany": "de",
+            "Italy": "it",
+            "Brazil": "br",
+            "Argentina": "ar"
+          };
+          const flagCode = countryFlags[location.country] || "un";
+          
+          elements.eventDetail.innerHTML = `
+            <!-- Event Header -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="flex: 1;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 8px; flex-wrap: wrap;">
+                  <h3 style="color: #fff; font-size: 28px; font-weight: 700; margin: 0;">${event.name}</h3>
+                  <span style="background: linear-gradient(135deg, #2fa06f, #7ed957); color: #000; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px;">Approved</span>
                 </div>
-                <p style="color: rgba(255, 255, 255, 0.6); font-size: 14px; margin: 0;">${city.region}, ${city.country}</p>
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 14px; margin: 0;">
+                  <i class="fas fa-map-marker-alt" style="color: #2fa06f; margin-right: 8px;"></i>${locationStr || "Location TBD"}
+                </p>
               </div>
-              <div style="display: flex; gap: 20px; margin-top: 10px;">
-                <div style="text-align: center;">
-                  <span style="color: rgba(255, 255, 255, 0.5); font-size: 11px; display: block; margin-bottom: 5px;">Country</span>
-                  <img src="https://flagcdn.com/w40/${city.countryFlag}.png" alt="${city.country}" style="width: 40px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
-                </div>
+              <div style="text-align: center; margin-top: 10px;">
+                <span style="color: rgba(255, 255, 255, 0.5); font-size: 11px; display: block; margin-bottom: 5px;">Country</span>
+                <img src="https://flagcdn.com/w40/${flagCode}.png" alt="${location.country}" style="width: 40px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
               </div>
             </div>
 
-            ${
-              city.status === "activated"
-                ? `
-              <!-- Event Info Cards -->
-              <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                  <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
-                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
-                      <i class="fas fa-building" style="margin-right: 6px;"></i>Operator
-                    </div>
-                    <div style="color: #fff; font-size: 15px; font-weight: 500;">${city.operator}</div>
+            <!-- Event Info Cards -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
+                  <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
+                    <i class="fas fa-calendar" style="margin-right: 6px;"></i>Dates
                   </div>
+                  <div style="color: #fff; font-size: 15px; font-weight: 500;">${dates}</div>
                 </div>
-                <div class="col-md-4">
-                  <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
-                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
-                      <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i>Location
-                    </div>
-                    <div style="color: #fff; font-size: 15px; font-weight: 500;">${city.location}</div>
+              </div>
+              <div class="col-md-4">
+                <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
+                  <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
+                    <i class="fas fa-map-pin" style="margin-right: 6px;"></i>Venue
                   </div>
+                  <div style="color: #fff; font-size: 15px; font-weight: 500;">${location.courtName || "TBD"}</div>
                 </div>
-                <div class="col-md-4">
-                  <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
-                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
-                      <i class="fas fa-calendar" style="margin-right: 6px;"></i>Dates
-                    </div>
-                    <div style="color: #fff; font-size: 15px; font-weight: 500;">${city.dates}</div>
+              </div>
+              <div class="col-md-4">
+                <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
+                  <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
+                    <i class="fas fa-users" style="margin-right: 6px;"></i>Players
                   </div>
+                  <div style="color: #fff; font-size: 15px; font-weight: 500;">${playerCount} Registered</div>
                 </div>
               </div>
+            </div>
 
-              <!-- Action Buttons -->
-              <div class="action-buttons" style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
-                <a href="#" class="dashboard-btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: linear-gradient(135deg, #2fa06f, #7ed957); border-radius: 10px; color: #000; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
-                  <i class="fas fa-user-plus"></i> Register to Play
-                </a>
-                <a href="${city.tournamentUrl || "#"}" class="dashboard-btn-secondary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: transparent; border: 2px solid #2fa06f; border-radius: 10px; color: #2fa06f; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
-                  <i class="fas fa-trophy"></i> View Tournament
-                </a>
-              </div>
+            <!-- Action Buttons -->
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
+              <a href="#" class="dashboard-btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: linear-gradient(135deg, #2fa06f, #7ed957); border-radius: 10px; color: #000; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
+                <i class="fas fa-user-plus"></i> Register to Play
+              </a>
+              ${event.tournamentSite ? `
+              <a href="${event.tournamentSite}" target="_blank" class="dashboard-btn-secondary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: transparent; border: 2px solid #2fa06f; border-radius: 10px; color: #2fa06f; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
+                <i class="fas fa-external-link-alt"></i> Tournament Site
+              </a>
+              ` : ''}
+            </div>
 
-              <!-- Event Schedule -->
-              <div class="event-schedule" style="margin-bottom: 30px;">
-                <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
-                  <i class="fas fa-calendar-alt" style="color: #2fa06f; margin-right: 10px;"></i>Event Schedule
-                </h5>
-                <div class="schedule-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
-                  ${scheduleHtml}
-                </div>
-              </div>
+            <!-- Event Description (if available) -->
+            ${event.description ? `
+            <div style="margin-bottom: 30px;">
+              <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+                <i class="fas fa-info-circle" style="color: #2fa06f; margin-right: 10px;"></i>About This Event
+              </h5>
+              <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.7;">${event.description}</p>
+            </div>
+            ` : ''}
 
-              <!-- Registered Players Preview -->
-              <div class="registered-players">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                  <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin: 0;">
-                    <i class="fas fa-users" style="color: #2fa06f; margin-right: 10px;"></i>Registered Players
-                  </h5>
-                  <span style="background: rgba(47, 160, 111, 0.2); color: #7ed957; font-size: 13px; padding: 4px 12px; border-radius: 20px;">${city.totalPlayers} Players</span>
-                </div>
-                <div class="players-preview" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                  ${playersHtml}
-                  ${morePlayersHtml}
+            <!-- Location Details -->
+            <div style="margin-bottom: 30px;">
+              <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+                <i class="fas fa-map" style="color: #2fa06f; margin-right: 10px;"></i>Location Details
+              </h5>
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+                  ${location.courtName ? `
+                  <div>
+                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Venue</div>
+                    <div style="color: #fff; font-size: 14px;">${location.courtName}</div>
+                  </div>
+                  ` : ''}
+                  ${location.city ? `
+                  <div>
+                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">City</div>
+                    <div style="color: #fff; font-size: 14px;">${location.city}</div>
+                  </div>
+                  ` : ''}
+                  ${location.state ? `
+                  <div>
+                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">State</div>
+                    <div style="color: #fff; font-size: 14px;">${location.state}</div>
+                  </div>
+                  ` : ''}
+                  ${location.country ? `
+                  <div>
+                    <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Country</div>
+                    <div style="color: #fff; font-size: 14px;">${location.country}</div>
+                  </div>
+                  ` : ''}
                 </div>
               </div>
-            `
-                : `
-              <!-- Open City Message -->
-              <div style="text-align: center; padding: 40px 20px;">
-                <i class="fas fa-clock" style="font-size: 48px; color: rgba(47, 160, 111, 0.5); margin-bottom: 20px;"></i>
-                <h4 style="color: #fff; font-size: 24px; margin-bottom: 10px;">Coming Soon</h4>
-                <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">This city is open for operator applications. Be the first to host a PWS event here!</p>
-                <a href="operators.html" class="dashboard-btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: linear-gradient(135deg, #2fa06f, #7ed957); border-radius: 10px; color: #000; font-weight: 600; text-decoration: none;">
-                  <i class="fas fa-hand-paper"></i> Apply as Operator
-                </a>
+            </div>
+
+            <!-- Contact Info -->
+            ${event.contactEmail || event.contactPhone ? `
+            <div>
+              <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+                <i class="fas fa-envelope" style="color: #2fa06f; margin-right: 10px;"></i>Contact
+              </h5>
+              <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                ${event.contactEmail ? `
+                <div>
+                  <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-right: 8px;">Email:</span>
+                  <a href="mailto:${event.contactEmail}" style="color: #7ed957; text-decoration: none;">${event.contactEmail}</a>
+                </div>
+                ` : ''}
+                ${event.contactPhone ? `
+                <div>
+                  <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-right: 8px;">Phone:</span>
+                  <a href="tel:${event.contactPhone}" style="color: #7ed957; text-decoration: none;">${event.contactPhone}</a>
+                </div>
+                ` : ''}
               </div>
-            `
-            }
+            </div>
+            ` : ''}
           `;
         }
 
-        // Show empty state
+        // Show no results state
+        function showNoResults() {
+          elements.eventsList.innerHTML = "";
+          elements.noResults.style.display = "block";
+          elements.eventDetail.style.display = "none";
+          elements.eventEmpty.style.display = "block";
+          selectedEvent = null;
+        }
+
+        // Show empty state (no event selected)
         function showEmptyState() {
-          elements.cityDetail.style.display = "none";
-          elements.cityEmpty.style.display = "block";
-          selectedCity = null;
+          elements.eventDetail.style.display = "none";
+          elements.eventEmpty.style.display = "block";
+          selectedEvent = null;
         }
 
         // Public API
         return {
           init: init,
           search: handleSearch,
-          selectCity: function (cityId) {
-            const city = getAllCities().find((c) => c.id === cityId);
-            if (city) selectCity(city);
-          },
-          // Method to refresh data from API
-          refresh: async function () {
-            const cities = await fetchCities();
-            renderResults(cities);
-          },
+          refresh: async function() {
+            await fetchEvents();
+            filteredEvents = applyFilters();
+            renderEventsList();
+          }
         };
       })();
 
       // Initialize dashboard when DOM is ready
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function() {
         PWSDashboard.init();
       });
     </script>

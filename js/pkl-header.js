@@ -220,16 +220,46 @@
           btn.href = "#";
           btn.classList.add("user-logged-in");
 
+          // Remove any inline onclick handlers (e.g., from dashboard pages)
+          btn.removeAttribute("onclick");
+
           // Create dropdown menu if not exists
           if (!btn.parentElement.querySelector(".user-dropdown")) {
             const dropdown = document.createElement("div");
             dropdown.className = "user-dropdown";
 
+            // Determine dashboard link based on userType
+            let dashboardLink = "";
+            if (user.userType === "player") {
+              dashboardLink = `
+                <a href="player-dashboard.html" class="dropdown-item">
+                  <i class="fa fa-tachometer-alt"></i> Dashboard
+                </a>
+              `;
+            } else if (user.userType === "operator") {
+              dashboardLink = `
+                <a href="operator-dashboard.html" class="dropdown-item">
+                  <i class="fa fa-tachometer-alt"></i> Dashboard
+                </a>
+              `;
+            } else if (user.userType === "admin") {
+              dashboardLink = `
+                <a href="admin-dashboard.html" class="dropdown-item">
+                  <i class="fa fa-tachometer-alt"></i> Admin Dashboard
+                </a>
+              `;
+            } else if (user.userType === "sponsor") {
+              dashboardLink = `
+                <a href="sponsor-dashboard.html" class="dropdown-item">
+                  <i class="fa fa-tachometer-alt"></i> Dashboard
+                </a>
+              `;
+            }
+
             // Build dropdown items based on userType
-            let dropdownHTML = `
-              <a href="profile.html" class="dropdown-item">
-                <i class="fa fa-user"></i> My Profile
-              </a>
+            let dropdownHTML =
+              dashboardLink +
+              `
               <a href="world-series.html" class="dropdown-item">
                 <i class="fa fa-trophy"></i> World Series
               </a>

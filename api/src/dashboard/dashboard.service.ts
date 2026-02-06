@@ -13,6 +13,7 @@ import {
   RegistrationStatus,
 } from "../registrations/registration.schema";
 import { User, UserDocument } from "../users/user.schema";
+import { Event, EventDocument, EventStatus } from "../events/event.schema";
 
 export interface DashboardStats {
   totalCities: number;
@@ -53,6 +54,7 @@ export class DashboardService {
     @InjectModel(Registration.name)
     private registrationModel: Model<RegistrationDocument>,
     @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(Event.name) private eventModel: Model<EventDocument>,
   ) {}
 
   async getStats(): Promise<DashboardStats> {
@@ -138,9 +140,7 @@ export class DashboardService {
     return this.categorizeCities(cities);
   }
 
-  private async categorizeCities(
-    cities: CityDocument[],
-  ): Promise<{
+  private async categorizeCities(cities: CityDocument[]): Promise<{
     activated: CityWithTournaments[];
     open: CityWithTournaments[];
   }> {
@@ -166,7 +166,7 @@ export class DashboardService {
     const region = city.region as any;
     const country = city.country as any;
 
-    // Get tournaments for this city
+    // Get tournaments for this city (from Tournament collection - seeded data)
     const tournaments = await this.tournamentModel
       .find({
         city: city._id,
@@ -175,6 +175,19 @@ export class DashboardService {
       .sort({ "dates.start": 1 })
       .exec();
 
+    // Get approved events for this city (from Event collection - user-created)
+    const approvedEvents = await this.eventModel
+      .find({
+        status: EventStatus.APPROVED,
+        $or: [
+          { "location.city": new RegExp(`^${city.name}$`, "i") },
+          { "location.city": city.name },
+        ],
+      })
+      .sort({ startDate: 1 })
+      .exec();
+
+    // Enrich tournaments
     const enrichedTournaments = await Promise.all(
       tournaments.map(async (tournament) => {
         // Get player preview
@@ -210,6 +223,37 @@ export class DashboardService {
       }),
     );
 
+    // Enrich approved events and transform to tournament format
+    const enrichedEvents = approvedEvents.map((event) => {
+      const registeredPlayers = event.registeredPlayers || [];
+      return {
+        _id: event._id.toString(),
+        name: event.name,
+        dates: {
+          start: event.startDate,
+          end: event.endDate,
+        },
+        schedule:
+          event.dataPerDay?.map((day, index) => ({
+            day: index + 1,
+            date: day.date,
+            events: [day.title || "Tournament Day"],
+          })) || [],
+        registeredPlayers: registeredPlayers.length,
+        playerPreview: registeredPlayers.slice(0, 5).map((p) => ({
+          initials: p.playerName
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase(),
+          name: p.playerName,
+        })),
+      };
+    });
+
+    // Combine tournaments and events
+    const allTournaments = [...enrichedTournaments, ...enrichedEvents];
+
     return {
       _id: city._id.toString(),
       name: city.name,
@@ -220,7 +264,7 @@ export class DashboardService {
       countryName: country?.name || "",
       countryCode: country?.code || "",
       flagCode: country?.flagCode || "",
-      tournaments: enrichedTournaments,
+      tournaments: allTournaments,
     };
   }
 

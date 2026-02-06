@@ -406,17 +406,31 @@
   border-radius: 10px;
   transition: all 0.3s ease;
   background: rgba(0, 0, 0, 0.3);
-  color: #fff;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
 }
 
 .form-control:focus {
   outline: none;
   border-color: var(--pkl-primary);
   background: rgba(0, 0, 0, 0.4);
+  color: #fff !important;
 }
 
 .form-control::placeholder {
   color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+/* Override browser autofill styles */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-control:-webkit-autofill:active {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.3) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 textarea.form-control {
