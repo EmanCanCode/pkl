@@ -3,7 +3,7 @@
  * Shared JavaScript functions for operator and admin dashboards
  */
 
-const PKL_API_URL = "http://localhost:3333";
+const PKL_API_URL = "/api";
 
 /**
  * Toast Notification System

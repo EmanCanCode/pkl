@@ -129,6 +129,15 @@
               <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix"></ul>
+            <div class="mobile-menu-btn" style="padding: 20px 30px">
+              <a
+                class="theme-btn btn-style-one"
+                href="signup.html"
+                style="display: block; text-align: center; width: 100%"
+              >
+                <span class="btn-title">Sign Up</span>
+              </a>
+            </div>
             <ul class="contact-list-one">
               <li>
                 <i class="icon lnr-icon-envelope1"></i>
@@ -714,34 +723,135 @@
           <!-- Section Title -->
           <div class="row mb-5">
             <div class="col-12 text-center">
-              <h2 class="pws-dashboard-title" style="color: #fff; font-size: 48px; font-weight: 700; letter-spacing: 2px;" data-aos="fade-up" data-aos-duration="1000">
+              <h2
+                class="pws-dashboard-title"
+                style="
+                  color: #fff;
+                  font-size: 48px;
+                  font-weight: 700;
+                  letter-spacing: 2px;
+                "
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
                 PWS Dashboard
               </h2>
-              <p style="color: rgba(255, 255, 255, 0.7); font-size: 18px; margin-top: 15px;" data-aos="fade-up" data-aos-delay="100">
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.7);
+                  font-size: 18px;
+                  margin-top: 15px;
+                "
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
                 Find tournaments near you and register to compete
               </p>
-              <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #2fa06f, #7ed957); margin: 20px auto 0; border-radius: 2px;" data-aos="scale-x" data-aos-duration="800" data-aos-delay="200"></div>
+              <div
+                style="
+                  width: 80px;
+                  height: 4px;
+                  background: linear-gradient(90deg, #2fa06f, #7ed957);
+                  margin: 20px auto 0;
+                  border-radius: 2px;
+                "
+                data-aos="scale-x"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              ></div>
             </div>
           </div>
 
           <!-- Search/Filter Bar -->
-          <div class="dashboard-search-bar" style="background: rgba(47, 160, 111, 0.1); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 30px; margin-bottom: 40px;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+          <div
+            class="dashboard-search-bar"
+            style="
+              background: rgba(47, 160, 111, 0.1);
+              border: 1px solid rgba(47, 160, 111, 0.3);
+              border-radius: 16px;
+              padding: 30px;
+              margin-bottom: 40px;
+            "
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
             <div class="row g-3 align-items-end">
               <div class="col-lg-4 col-md-6">
-                <label for="pws-country" style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px; display: block;">Country</label>
-                <select id="pws-country" class="dashboard-select" style="width: 100%; padding: 12px 16px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(47, 160, 111, 0.5); border-radius: 8px; color: #fff; font-size: 15px; cursor: pointer;">
+                <label
+                  for="pws-country"
+                  style="
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                    display: block;
+                  "
+                  >Country</label
+                >
+                <select
+                  id="pws-country"
+                  class="dashboard-select"
+                  style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    background: rgba(0, 0, 0, 0.4);
+                    border: 1px solid rgba(47, 160, 111, 0.5);
+                    border-radius: 8px;
+                    color: #fff;
+                    font-size: 15px;
+                    cursor: pointer;
+                  "
+                >
                   <option value="">All Countries</option>
                 </select>
               </div>
               <div class="col-lg-4 col-md-6">
-                <label for="pws-state" style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px; display: block;">State/Region</label>
-                <select id="pws-state" class="dashboard-select" style="width: 100%; padding: 12px 16px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(47, 160, 111, 0.5); border-radius: 8px; color: #fff; font-size: 15px; cursor: pointer;">
+                <label
+                  for="pws-state"
+                  style="
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                    display: block;
+                  "
+                  >State/Region</label
+                >
+                <select
+                  id="pws-state"
+                  class="dashboard-select"
+                  style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    background: rgba(0, 0, 0, 0.4);
+                    border: 1px solid rgba(47, 160, 111, 0.5);
+                    border-radius: 8px;
+                    color: #fff;
+                    font-size: 15px;
+                    cursor: pointer;
+                  "
+                >
                   <option value="">All States</option>
                 </select>
               </div>
               <div class="col-lg-4 col-md-12">
-                <button id="pws-search-btn" class="dashboard-search-btn" style="width: 100%; padding: 12px 24px; background: linear-gradient(135deg, #2fa06f, #7ed957); border: none; border-radius: 8px; color: #000; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
-                  <i class="fas fa-search" style="margin-right: 8px"></i> Search Events
+                <button
+                  id="pws-search-btn"
+                  class="dashboard-search-btn"
+                  style="
+                    width: 100%;
+                    padding: 12px 24px;
+                    background: linear-gradient(135deg, #2fa06f, #7ed957);
+                    border: none;
+                    border-radius: 8px;
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                  "
+                >
+                  <i class="fas fa-search" style="margin-right: 8px"></i> Search
+                  Events
                 </button>
               </div>
             </div>
@@ -750,42 +860,126 @@
           <!-- Dashboard Content Grid -->
           <div class="row g-4">
             <!-- Left Column - Events List -->
-            <div class="col-lg-4" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
-              <div id="pws-results-panel" class="results-panel" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 24px; min-height: 400px;">
-                <h4 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 20px;">
-                  <i class="fas fa-calendar-alt" style="color: #2fa06f; margin-right: 10px"></i>Approved Events
+            <div
+              class="col-lg-4"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              <div
+                id="pws-results-panel"
+                class="results-panel"
+                style="
+                  background: rgba(0, 0, 0, 0.3);
+                  border: 1px solid rgba(47, 160, 111, 0.3);
+                  border-radius: 16px;
+                  padding: 24px;
+                  min-height: 400px;
+                "
+              >
+                <h4
+                  style="
+                    color: #fff;
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                  "
+                >
+                  <i
+                    class="fas fa-calendar-alt"
+                    style="color: #2fa06f; margin-right: 10px"
+                  ></i
+                  >Approved Events
                 </h4>
-                
+
                 <!-- Events List Container -->
-                <div id="pws-events-list" style="margin-top: 12px;">
+                <div id="pws-events-list" style="margin-top: 12px">
                   <!-- Events will be dynamically populated -->
                 </div>
 
                 <!-- Loading State -->
-                <div id="pws-loading" style="text-align: center; padding: 40px 20px;">
-                  <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #2fa06f; margin-bottom: 16px;"></i>
-                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">Loading events...</p>
+                <div
+                  id="pws-loading"
+                  style="text-align: center; padding: 40px 20px"
+                >
+                  <i
+                    class="fas fa-spinner fa-spin"
+                    style="font-size: 32px; color: #2fa06f; margin-bottom: 16px"
+                  ></i>
+                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0">
+                    Loading events...
+                  </p>
                 </div>
 
                 <!-- No Results Message -->
-                <div id="pws-no-results" style="display: none; text-align: center; padding: 40px 20px;">
-                  <i class="fas fa-calendar-times" style="font-size: 48px; color: rgba(255, 255, 255, 0.2); margin-bottom: 16px;"></i>
-                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">No events found. Try adjusting your filters.</p>
+                <div
+                  id="pws-no-results"
+                  style="display: none; text-align: center; padding: 40px 20px"
+                >
+                  <i
+                    class="fas fa-calendar-times"
+                    style="
+                      font-size: 48px;
+                      color: rgba(255, 255, 255, 0.2);
+                      margin-bottom: 16px;
+                    "
+                  ></i>
+                  <p style="color: rgba(255, 255, 255, 0.5); margin: 0">
+                    No events found. Try adjusting your filters.
+                  </p>
                 </div>
               </div>
             </div>
 
             <!-- Right Column - Event Detail -->
-            <div class="col-lg-8" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-              <div id="pws-event-detail" class="event-detail-panel" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 30px; min-height: 400px;">
+            <div
+              class="col-lg-8"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              <div
+                id="pws-event-detail"
+                class="event-detail-panel"
+                style="
+                  background: rgba(0, 0, 0, 0.3);
+                  border: 1px solid rgba(47, 160, 111, 0.3);
+                  border-radius: 16px;
+                  padding: 30px;
+                  min-height: 400px;
+                "
+              >
                 <!-- Event content will be dynamically populated -->
               </div>
 
               <!-- Empty State (shown when no event selected) -->
-              <div id="pws-event-empty" class="event-detail-panel" style="display: none; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(47, 160, 111, 0.3); border-radius: 16px; padding: 60px 30px; text-align: center; min-height: 400px;">
-                <i class="fas fa-trophy" style="font-size: 64px; color: rgba(47, 160, 111, 0.3); margin-bottom: 20px;"></i>
-                <h4 style="color: #fff; font-size: 24px; margin-bottom: 10px">Select an Event</h4>
-                <p style="color: rgba(255, 255, 255, 0.5); margin: 0;">Choose an event from the list to view tournament details.</p>
+              <div
+                id="pws-event-empty"
+                class="event-detail-panel"
+                style="
+                  display: none;
+                  background: rgba(0, 0, 0, 0.3);
+                  border: 1px solid rgba(47, 160, 111, 0.3);
+                  border-radius: 16px;
+                  padding: 60px 30px;
+                  text-align: center;
+                  min-height: 400px;
+                "
+              >
+                <i
+                  class="fas fa-trophy"
+                  style="
+                    font-size: 64px;
+                    color: rgba(47, 160, 111, 0.3);
+                    margin-bottom: 20px;
+                  "
+                ></i>
+                <h4 style="color: #fff; font-size: 24px; margin-bottom: 10px">
+                  Select an Event
+                </h4>
+                <p style="color: rgba(255, 255, 255, 0.5); margin: 0">
+                  Choose an event from the list to view tournament details.
+                </p>
               </div>
             </div>
           </div>
@@ -2022,7 +2216,7 @@
     <script>
       // PWS Dashboard Module - Event Focused
       const PWSDashboard = (function () {
-        const API_BASE = "http://localhost:3333";
+        const API_BASE = "/api";
 
         // All events data
         let allEvents = [];
@@ -2035,17 +2229,17 @@
         // Current filters
         let filters = {
           country: "",
-          state: ""
+          state: "",
         };
 
         // Format date for display
         function formatDate(dateStr) {
           if (!dateStr) return "TBD";
           const date = new Date(dateStr);
-          return date.toLocaleDateString("en-US", { 
-            month: "short", 
-            day: "numeric", 
-            year: "numeric" 
+          return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
           });
         }
 
@@ -2054,8 +2248,15 @@
           if (!startDate) return "TBD";
           const start = new Date(startDate);
           const end = endDate ? new Date(endDate) : start;
-          const startStr = start.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-          const endStr = end.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+          const startStr = start.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+          const endStr = end.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          });
           if (startStr === endStr.slice(0, -6)) {
             return endStr;
           }
@@ -2082,11 +2283,11 @@
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             console.log("[PWS Dashboard] Raw API response:", data);
-            
+
             // Handle both array and object with value property
-            const events = Array.isArray(data) ? data : (data.value || data);
+            const events = Array.isArray(data) ? data : data.value || data;
             allEvents = Array.isArray(events) ? events : [];
-            
+
             console.log("[PWS Dashboard] Processed events:", allEvents.length);
             return allEvents;
           } catch (error) {
@@ -2097,13 +2298,14 @@
 
         // Populate country filter options from events data
         function populateCountryFilter() {
-          const countries = [...new Set(allEvents
-            .map(e => e.location?.country)
-            .filter(c => c))
+          const countries = [
+            ...new Set(
+              allEvents.map((e) => e.location?.country).filter((c) => c),
+            ),
           ].sort();
-          
+
           let html = '<option value="">All Countries</option>';
-          countries.forEach(country => {
+          countries.forEach((country) => {
             html += `<option value="${country}">${country}</option>`;
           });
           elements.countrySelect.innerHTML = html;
@@ -2113,22 +2315,26 @@
         function populateStateFilter() {
           const selectedCountry = filters.country;
           let states = [];
-          
+
           if (selectedCountry) {
-            states = [...new Set(allEvents
-              .filter(e => e.location?.country === selectedCountry)
-              .map(e => e.location?.state)
-              .filter(s => s))
+            states = [
+              ...new Set(
+                allEvents
+                  .filter((e) => e.location?.country === selectedCountry)
+                  .map((e) => e.location?.state)
+                  .filter((s) => s),
+              ),
             ].sort();
           } else {
-            states = [...new Set(allEvents
-              .map(e => e.location?.state)
-              .filter(s => s))
+            states = [
+              ...new Set(
+                allEvents.map((e) => e.location?.state).filter((s) => s),
+              ),
             ].sort();
           }
-          
+
           let html = '<option value="">All States</option>';
-          states.forEach(state => {
+          states.forEach((state) => {
             html += `<option value="${state}">${state}</option>`;
           });
           elements.stateSelect.innerHTML = html;
@@ -2136,9 +2342,9 @@
 
         // Apply filters and return matching events
         function applyFilters() {
-          filteredEvents = allEvents.filter(event => {
+          filteredEvents = allEvents.filter((event) => {
             const location = event.location || {};
-            
+
             if (filters.country && location.country !== filters.country) {
               return false;
             }
@@ -2147,7 +2353,7 @@
             }
             return true;
           });
-          
+
           return filteredEvents;
         }
 
@@ -2155,27 +2361,27 @@
         async function init() {
           console.log("[PWS Dashboard] Initializing...");
           cacheElements();
-          
+
           if (!elements.eventsList || !elements.eventDetail) {
             console.error("[PWS Dashboard] Required DOM elements not found!");
             return;
           }
-          
+
           bindEvents();
 
           // Fetch events
           await fetchEvents();
-          
+
           // Populate filters
           populateCountryFilter();
           populateStateFilter();
-          
+
           // Hide loading, show events
           elements.loading.style.display = "none";
-          
+
           // Apply initial filters (show all)
           filteredEvents = allEvents;
-          
+
           // Render the events list
           renderEventsList();
 
@@ -2185,8 +2391,12 @@
           } else {
             showEmptyState();
           }
-          
-          console.log("[PWS Dashboard] Initialized with", filteredEvents.length, "events");
+
+          console.log(
+            "[PWS Dashboard] Initialized with",
+            filteredEvents.length,
+            "events",
+          );
         }
 
         // Cache DOM elements
@@ -2199,7 +2409,7 @@
             loading: document.getElementById("pws-loading"),
             noResults: document.getElementById("pws-no-results"),
             eventDetail: document.getElementById("pws-event-detail"),
-            eventEmpty: document.getElementById("pws-event-empty")
+            eventEmpty: document.getElementById("pws-event-empty"),
           };
           console.log("[PWS Dashboard] Cached elements:", elements);
         }
@@ -2207,7 +2417,10 @@
         // Bind event listeners
         function bindEvents() {
           elements.searchBtn.addEventListener("click", handleSearch);
-          elements.countrySelect.addEventListener("change", handleCountryChange);
+          elements.countrySelect.addEventListener(
+            "change",
+            handleCountryChange,
+          );
           elements.stateSelect.addEventListener("change", handleStateChange);
         }
 
@@ -2228,10 +2441,10 @@
         function handleSearch() {
           filters.country = elements.countrySelect.value;
           filters.state = elements.stateSelect.value;
-          
+
           applyFilters();
           renderEventsList();
-          
+
           if (filteredEvents.length > 0) {
             selectEvent(filteredEvents[0]);
           } else {
@@ -2246,20 +2459,22 @@
             elements.noResults.style.display = "block";
             return;
           }
-          
+
           elements.noResults.style.display = "none";
-          
-          const html = filteredEvents.map(event => {
-            const isSelected = selectedEvent && selectedEvent._id === event._id;
-            const location = getShortLocation(event.location);
-            const dates = formatDateRange(event.startDate, event.endDate);
-            
-            return `
+
+          const html = filteredEvents
+            .map((event) => {
+              const isSelected =
+                selectedEvent && selectedEvent._id === event._id;
+              const location = getShortLocation(event.location);
+              const dates = formatDateRange(event.startDate, event.endDate);
+
+              return `
               <div class="pws-event-item" 
                    data-event-id="${event._id}"
                    style="
-                     background: ${isSelected ? 'rgba(47, 160, 111, 0.2)' : 'rgba(47, 160, 111, 0.1)'};
-                     border: 1px solid ${isSelected ? '#2fa06f' : 'rgba(47, 160, 111, 0.3)'};
+                     background: ${isSelected ? "rgba(47, 160, 111, 0.2)" : "rgba(47, 160, 111, 0.1)"};
+                     border: 1px solid ${isSelected ? "#2fa06f" : "rgba(47, 160, 111, 0.3)"};
                      border-radius: 10px;
                      padding: 14px 16px;
                      margin-bottom: 10px;
@@ -2281,15 +2496,16 @@
                 </div>
               </div>
             `;
-          }).join("");
-          
+            })
+            .join("");
+
           elements.eventsList.innerHTML = html;
-          
+
           // Bind click events
-          document.querySelectorAll(".pws-event-item").forEach(item => {
-            item.addEventListener("click", function() {
+          document.querySelectorAll(".pws-event-item").forEach((item) => {
+            item.addEventListener("click", function () {
               const eventId = this.dataset.eventId;
-              const event = allEvents.find(e => e._id === eventId);
+              const event = allEvents.find((e) => e._id === eventId);
               if (event) {
                 selectEvent(event);
               }
@@ -2300,19 +2516,23 @@
         // Select and display event details
         function selectEvent(event) {
           selectedEvent = event;
-          
+
           // Update active state in list
-          document.querySelectorAll(".pws-event-item").forEach(item => {
+          document.querySelectorAll(".pws-event-item").forEach((item) => {
             const isSelected = item.dataset.eventId === event._id;
             item.classList.toggle("selected", isSelected);
-            item.style.background = isSelected ? "rgba(47, 160, 111, 0.2)" : "rgba(47, 160, 111, 0.1)";
-            item.style.borderColor = isSelected ? "#2fa06f" : "rgba(47, 160, 111, 0.3)";
+            item.style.background = isSelected
+              ? "rgba(47, 160, 111, 0.2)"
+              : "rgba(47, 160, 111, 0.1)";
+            item.style.borderColor = isSelected
+              ? "#2fa06f"
+              : "rgba(47, 160, 111, 0.3)";
           });
-          
+
           // Show detail panel, hide empty state
           elements.eventDetail.style.display = "block";
           elements.eventEmpty.style.display = "none";
-          
+
           // Render event details
           renderEventDetail(event);
         }
@@ -2324,28 +2544,30 @@
             location.courtName,
             location.city,
             location.state,
-            location.country
-          ].filter(Boolean).join(", ");
-          
+            location.country,
+          ]
+            .filter(Boolean)
+            .join(", ");
+
           const dates = formatDateRange(event.startDate, event.endDate);
           const playerCount = event.registeredPlayers?.length || 0;
-          
+
           // Get country code for flag (simple mapping)
           const countryFlags = {
-            "USA": "us",
+            USA: "us",
             "United States": "us",
-            "Canada": "ca",
-            "Mexico": "mx",
-            "Spain": "es",
-            "UK": "gb",
-            "France": "fr",
-            "Germany": "de",
-            "Italy": "it",
-            "Brazil": "br",
-            "Argentina": "ar"
+            Canada: "ca",
+            Mexico: "mx",
+            Spain: "es",
+            UK: "gb",
+            France: "fr",
+            Germany: "de",
+            Italy: "it",
+            Brazil: "br",
+            Argentina: "ar",
           };
           const flagCode = countryFlags[location.country] || "un";
-          
+
           elements.eventDetail.innerHTML = `
             <!-- Event Header -->
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
@@ -2397,22 +2619,30 @@
               <a href="#" class="dashboard-btn-primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: linear-gradient(135deg, #2fa06f, #7ed957); border-radius: 10px; color: #000; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
                 <i class="fas fa-user-plus"></i> Register to Play
               </a>
-              ${event.tournamentSite ? `
+              ${
+                event.tournamentSite
+                  ? `
               <a href="${event.tournamentSite}" target="_blank" class="dashboard-btn-secondary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: transparent; border: 2px solid #2fa06f; border-radius: 10px; color: #2fa06f; font-weight: 600; text-decoration: none; transition: all 0.3s ease;">
                 <i class="fas fa-external-link-alt"></i> Tournament Site
               </a>
-              ` : ''}
+              `
+                  : ""
+              }
             </div>
 
             <!-- Event Description (if available) -->
-            ${event.description ? `
+            ${
+              event.description
+                ? `
             <div style="margin-bottom: 30px;">
               <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
                 <i class="fas fa-info-circle" style="color: #2fa06f; margin-right: 10px;"></i>About This Event
               </h5>
               <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.7;">${event.description}</p>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
 
             <!-- Location Details -->
             <div style="margin-bottom: 30px;">
@@ -2421,56 +2651,84 @@
               </h5>
               <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
-                  ${location.courtName ? `
+                  ${
+                    location.courtName
+                      ? `
                   <div>
                     <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Venue</div>
                     <div style="color: #fff; font-size: 14px;">${location.courtName}</div>
                   </div>
-                  ` : ''}
-                  ${location.city ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    location.city
+                      ? `
                   <div>
                     <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">City</div>
                     <div style="color: #fff; font-size: 14px;">${location.city}</div>
                   </div>
-                  ` : ''}
-                  ${location.state ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    location.state
+                      ? `
                   <div>
                     <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">State</div>
                     <div style="color: #fff; font-size: 14px;">${location.state}</div>
                   </div>
-                  ` : ''}
-                  ${location.country ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    location.country
+                      ? `
                   <div>
                     <div style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Country</div>
                     <div style="color: #fff; font-size: 14px;">${location.country}</div>
                   </div>
-                  ` : ''}
+                  `
+                      : ""
+                  }
                 </div>
               </div>
             </div>
 
             <!-- Contact Info -->
-            ${event.contactEmail || event.contactPhone ? `
+            ${
+              event.contactEmail || event.contactPhone
+                ? `
             <div>
               <h5 style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 16px;">
                 <i class="fas fa-envelope" style="color: #2fa06f; margin-right: 10px;"></i>Contact
               </h5>
               <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                ${event.contactEmail ? `
+                ${
+                  event.contactEmail
+                    ? `
                 <div>
                   <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-right: 8px;">Email:</span>
                   <a href="mailto:${event.contactEmail}" style="color: #7ed957; text-decoration: none;">${event.contactEmail}</a>
                 </div>
-                ` : ''}
-                ${event.contactPhone ? `
+                `
+                    : ""
+                }
+                ${
+                  event.contactPhone
+                    ? `
                 <div>
                   <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-right: 8px;">Phone:</span>
                   <a href="tel:${event.contactPhone}" style="color: #7ed957; text-decoration: none;">${event.contactPhone}</a>
                 </div>
-                ` : ''}
+                `
+                    : ""
+                }
               </div>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
           `;
         }
 
@@ -2494,16 +2752,16 @@
         return {
           init: init,
           search: handleSearch,
-          refresh: async function() {
+          refresh: async function () {
             await fetchEvents();
             filteredEvents = applyFilters();
             renderEventsList();
-          }
+          },
         };
       })();
 
       // Initialize dashboard when DOM is ready
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function () {
         PWSDashboard.init();
       });
     </script>

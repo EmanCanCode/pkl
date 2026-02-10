@@ -128,6 +128,15 @@
               <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix"></ul>
+            <div class="mobile-menu-btn" style="padding: 20px 30px">
+              <a
+                class="theme-btn btn-style-one"
+                href="signup.html"
+                style="display: block; text-align: center; width: 100%"
+              >
+                <span class="btn-title">Sign Up</span>
+              </a>
+            </div>
             <ul class="contact-list-one">
               <li>
                 <i class="icon lnr-icon-envelope1"></i>
@@ -457,7 +466,7 @@
         if (!token) return;
 
         try {
-          const response = await fetch("http://localhost:3333/auth/profile", {
+          const response = await fetch("/api/auth/profile", {
             headers: { Authorization: `Bearer ${token}` },
           });
 

@@ -43,8 +43,16 @@ export class UsersService {
     }
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    // Explicitly destructure to avoid including plain password from DTO spread
+    const { username, email, userType, firstName, lastName, phone } =
+      createUserDto;
     const createdUser = new this.userModel({
-      ...createUserDto,
+      username,
+      email,
+      userType,
+      firstName,
+      lastName,
+      phone,
       password: hashedPassword,
     });
     return createdUser.save();
