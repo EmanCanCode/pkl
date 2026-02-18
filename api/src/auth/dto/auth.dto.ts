@@ -18,6 +18,9 @@ export class TokenResponseDto {
     @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...', description: 'JWT access token' })
     access_token: string;
 
+    @ApiProperty({ example: '507f1f77bcf86cd799439011', description: 'User ID' })
+    userId: string;
+
     @ApiProperty({ example: 'eman', description: 'Username' })
     username: string;
 
@@ -26,4 +29,10 @@ export class TokenResponseDto {
 
     @ApiProperty({ example: 'Eman', description: 'User first name' })
     firstName: string;
+
+    @ApiProperty({ example: 'Doe', description: 'User last name' })
+    lastName: string;
+
+    @ApiProperty({ example: 'eman@pkl.club', description: 'Email' })
+    email: string;
 }

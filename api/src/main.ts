@@ -4,7 +4,9 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, {
+        rawBody: true, // Required for Stripe webhook signature verification
+    });
 
     app.enableCors();
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
@@ -29,10 +31,13 @@ async function bootstrap() {
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
+    SwaggerModule.setup('api-docs', app, document, {
+        customSiteTitle: 'PKL.CLUB API Docs',
+        useGlobalPrefix: false,
+    });
 
     await app.listen(3000);
     console.log(`🚀 PKL.CLUB API running on: http://localhost:3000`);
-    console.log(`📚 Swagger docs available at: http://localhost:3000/api`);
+    console.log(`📚 Swagger docs available at: http://localhost:3000/api-docs`);
 }
 bootstrap();

@@ -7,6 +7,7 @@ import { TournamentsModule } from "./tournaments/tournaments.module";
 import { RegistrationsModule } from "./registrations/registrations.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { EventsModule } from "./events/events.module";
+import { PaymentsModule } from "./payments/payments.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { EventsModule } from "./events/events.module";
     RegistrationsModule,
     DashboardModule,
     EventsModule,
+    PaymentsModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

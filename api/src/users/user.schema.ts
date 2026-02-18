@@ -43,6 +43,30 @@ export class User {
     @ApiProperty({ example: true, description: 'Is user active' })
     @Prop({ default: true })
     isActive: boolean;
+
+    @ApiProperty({ description: 'Stripe customer ID' })
+    @Prop()
+    stripeCustomerId?: string;
+
+    @ApiProperty({ example: 'active', description: 'Membership status' })
+    @Prop({ type: String, enum: ['none', 'active', 'expired', 'cancelled'], default: 'none' })
+    membershipStatus: string;
+
+    @ApiProperty({ description: 'Membership expiration date' })
+    @Prop()
+    membershipExpires?: Date;
+
+    @ApiProperty({ description: 'Stripe subscription ID for membership' })
+    @Prop()
+    membershipSubscriptionId?: string;
+
+    @ApiProperty({ example: 0, description: 'Membership fee passes remaining (bypass Stripe)' })
+    @Prop({ default: 0 })
+    membershipPasses: number;
+
+    @ApiProperty({ example: 0, description: 'Event registration fee passes remaining (bypass Stripe)' })
+    @Prop({ default: 0 })
+    eventFeePasses: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,0 +1,47 @@
+services:
+  pkl-site:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: pkl-site
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+    depends_on:
+      - pkl-api
+
+  pkl-mongo:
+    image: mongo:7
+    container_name: pkl-mongo
+    ports:
+      - "127.0.0.1:27017:27017" # Only accessible from localhost
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    volumes:
+      - pkl_mongo_data:/data/db
+    restart: unless-stopped
+
+  pkl-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: pkl-api
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@pkl-mongo:27017/${MONGO_DB}?authSource=admin
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+    depends_on:
+      - pkl-mongo
+    restart: unless-stopped
+
+volumes:
+  pkl_mongo_data:
