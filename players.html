@@ -74,23 +74,12 @@
                 <div class="nav-outer">
                   <nav class="nav main-menu">
                     <ul class="navigation">
+                      <li class="current"><a href="players.html">Players</a></li>
+                      <li><a href="index.html#how-it-works">How It Works</a></li>
                       <li><a href="world-series.html">World Series</a></li>
-                      <li class="current">
-                        <a href="players.html">Players</a>
-                      </li>
                       <li><a href="operators.html">Operators</a></li>
-                      <li><a href="sponsors.html">Sponsors</a></li>
-                      <li class="dropdown">
-                        <a href="#">Shop</a>
-                        <ul>
-                          <li><a href="#">Membership</a></li>
-                          <li><a href="#">Profile Image</a></li>
-                          <li><a href="#">Merchandise</a></li>
-                          <li><a href="#">Equipment</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="pkl-club.html">PKL.CLUB</a></li>
-                      <li><a href="news.html">News</a></li>
+                      <li><a href="sponsors.html">Partners</a></li>
+                      <li><a href="page-about.html">About</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -197,112 +186,629 @@
       </header>
       <!--End Main Header -->
 
-      <!-- Start main-content -->
-      <section
-        class="page-title"
-        style="background-image: url(images/background/page-title2.png)"
-      >
-        <div class="auto-container">
-          <div class="title-outer text-center">
-            <h1 class="title">Players</h1>
-            <ul class="page-breadcrumb">
-              <li><a href="index.html">Home</a></li>
-              <li>Players</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <!-- end main-content -->
+      <!-- Background Light Effects -->
+      <div class="page-bg-effects" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden;">
+        <div style="position: absolute; top: -20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(47,160,111,0.15) 0%, transparent 70%); filter: blur(80px);"></div>
+        <div style="position: absolute; top: 40%; right: -15%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(126,217,87,0.1) 0%, transparent 70%); filter: blur(100px);"></div>
+        <div style="position: absolute; bottom: -10%; left: 30%; width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(47,160,111,0.12) 0%, transparent 70%); filter: blur(90px);"></div>
+        <div style="position: absolute; top: 60%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(2,223,130,0.08) 0%, transparent 70%); filter: blur(70px);"></div>
+      </div>
 
-      <!-- Players Content -->
-      <section class="about-section pt-120 pb-70">
+      <!-- Hero Section - Players -->
+      <section class="players-hero-section" style="position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;">
+        <style>
+          .players-hero-content {
+            position: relative;
+            z-index: 3;
+            padding-top: 120px;
+          }
+          .players-hero-section .hero-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            line-height: 1.1;
+          }
+          .players-hero-section .hero-subtitle {
+            font-size: 22px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+          }
+          .players-hero-section .hero-ctas {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+          }
+          .players-hero-section .btn-secondary-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.5);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+          }
+          .players-hero-section .btn-secondary-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+          }
+          @media (max-width: 991px) {
+            .players-hero-section .hero-title {
+              font-size: 42px;
+            }
+            .players-hero-section .hero-subtitle {
+              font-size: 18px;
+            }
+          }
+        </style>
+        
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
-              <div class="sec-title text-center mb-60">
-                <span class="sub-title">Join the Community</span>
-                <h2>Become a PKL Player</h2>
-                <p class="text mt-20">
-                  Register as a player to compete in tournaments, track your
-                  rankings, and connect with the global pickleball community.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="100ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 1</div>
-                  <div class="icon-box"><i class="flaticon-user"></i></div>
-                  <h4 class="title">Create Profile</h4>
-                  <div class="text">
-                    Build your player profile with stats, achievements, and
-                    match history to showcase your skills.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="200ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 2</div>
-                  <div class="icon-box"><i class="flaticon-trophy"></i></div>
-                  <h4 class="title">Compete</h4>
-                  <div class="text">
-                    Enter local and international tournaments to test your
-                    abilities against top players.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="300ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 3</div>
-                  <div class="icon-box"><i class="flaticon-chart"></i></div>
-                  <h4 class="title">Track Progress</h4>
-                  <div class="text">
-                    Monitor your improvement with detailed analytics and global
-                    ranking updates.
-                  </div>
+            <div class="col-lg-6">
+              <div class="players-hero-content">
+                <h1 class="hero-title">Play your way to the top</h1>
+                <p class="hero-subtitle">A global pathway where players rise through competition and earn their place.</p>
+                <div class="hero-ctas">
+                  <a class="btn-style-one theme-btn" href="signup.html" style="font-size: 18px; padding: 18px 36px;">
+                    <span class="btn-title">Create Player Profile</span>
+                  </a>
+                  <a class="btn-secondary-outline" href="index.html#how-it-works">How PKL Works</a>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        
+      </section>
+      <!-- End Hero Section -->
 
-          <div class="text-center mt-50">
-            <a href="signup.html" class="theme-btn btn-style-one"
-              ><span class="btn-title">Register as Player</span></a
-            >
+      <!-- Why PKL Section -->
+      <section class="why-pkl-section" style="padding: 100px 0;">
+        <style>
+          .why-pkl-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+          }
+          .why-pkl-section .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+          }
+          .why-pkl-section .section-copy {
+            color: rgba(255,255,255,0.7);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 16px;
+          }
+          .why-pkl-section .section-tagline {
+            color: #7ed957;
+            font-size: 18px;
+            font-weight: 500;
+            font-style: italic;
+          }
+          .why-pkl-highlight-card {
+            background: rgba(47,160,111,0.08);
+            border: 2px solid rgba(47,160,111,0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+          }
+          .why-pkl-highlight-card:hover {
+            transform: translateY(-8px);
+            border-color: #2fa06f;
+            box-shadow: 0 20px 40px rgba(47,160,111,0.15);
+          }
+          .why-pkl-highlight-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(126,217,87,0.2) 0%, rgba(47,160,111,0.2) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+          }
+          .why-pkl-highlight-card .icon-wrapper i {
+            font-size: 32px;
+            color: #7ed957;
+          }
+          .why-pkl-highlight-card .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+          }
+          .why-pkl-highlight-card .card-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            line-height: 1.6;
+          }
+          @media (max-width: 767px) {
+            .why-pkl-section .section-title {
+              font-size: 32px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Why play with PKL?</h2>
+            <p class="section-copy">
+              PKL was built for players who want real opportunity. We connect local competition to national and global stages through open, merit-based pathways.
+            </p>
+            <p class="section-tagline">Here, your performance shapes your journey.</p>
+          </div>
+          
+          <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+              <div class="why-pkl-highlight-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-door-open"></i>
+                </div>
+                <h4 class="card-title">Open access to certified events</h4>
+                <p class="card-text">No gatekeeping. Join tournaments that count toward your global standing, wherever you are.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="why-pkl-highlight-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h4 class="card-title">Clear progression through competition</h4>
+                <p class="card-text">Your results speak. Advance through local, regional, national, and global stages based on merit.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="why-pkl-highlight-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <h4 class="card-title">Global visibility for emerging talent</h4>
+                <p class="card-text">Get seen by the global pickleball community. Your profile showcases your achievements worldwide.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+      <!-- End Why PKL Section -->
+
+      <!-- Your Pathway Section -->
+      <section class="pathway-section" style="padding: 100px 0;">
+        <style>
+          .pathway-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+          }
+          .pathway-section .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+          }
+          .pathway-step-card {
+            background: rgba(47,160,111,0.08);
+            border: 2px solid rgba(47,160,111,0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            min-height: 320px;
+            position: relative;
+            transition: all 0.3s ease;
+          }
+          .pathway-step-card:hover {
+            transform: translateY(-8px);
+            border-color: #2fa06f;
+            box-shadow: 0 20px 40px rgba(47,160,111,0.15);
+          }
+          .pathway-step-card .step-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #7ed957 0%, #2fa06f 100%);
+            color: #091D1E;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+          }
+          .pathway-step-card .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(126,217,87,0.2) 0%, rgba(47,160,111,0.2) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+          }
+          .pathway-step-card .icon-wrapper i {
+            font-size: 32px;
+            color: #7ed957;
+          }
+          .pathway-step-card .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+          }
+          .pathway-step-card .card-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            line-height: 1.6;
+          }
+          .pathway-section .supporting-line {
+            text-align: center;
+            margin-top: 50px;
+            color: #7ed957;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 500;
+          }
+          .pathway-section .cta-wrapper {
+            text-align: center;
+            margin-top: 40px;
+          }
+          @media (max-width: 767px) {
+            .pathway-section .section-title {
+              font-size: 32px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Your pathway</h2>
+          </div>
+          
+          <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+              <div class="pathway-step-card">
+                <div class="step-tag">Step 1</div>
+                <div class="icon-wrapper">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <h4 class="card-title">Create your profile</h4>
+                <p class="card-text">Join the PKL network and set up your player identity.</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="pathway-step-card">
+                <div class="step-tag">Step 2</div>
+                <div class="icon-wrapper">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h4 class="card-title">Compete locally and regionally</h4>
+                <p class="card-text">Find and play in PKL-certified events near you.</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="pathway-step-card">
+                <div class="step-tag">Step 3</div>
+                <div class="icon-wrapper">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h4 class="card-title">Advance through competition</h4>
+                <p class="card-text">Track results, grow your game, and earn visibility.</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="pathway-step-card">
+                <div class="step-tag">Step 4</div>
+                <div class="icon-wrapper">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <h4 class="card-title">Reach bigger opportunities</h4>
+                <p class="card-text">Top performers gain access to flagship showcases and higher-level competition.</p>
+              </div>
+            </div>
+          </div>
+          
+          <p class="supporting-line">Your progress is shaped by your performance.</p>
+          
+          <div class="cta-wrapper">
+            <a class="btn-style-one theme-btn" href="signup.html" style="font-size: 18px; padding: 18px 40px;">
+              <span class="btn-title">Create your profile</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- End Your Pathway Section -->
+
+      <!-- Who Can Join Section -->
+      <section class="who-can-join-section" style="padding: 100px 0;">
+        <style>
+          .who-can-join-section .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+          }
+          .who-can-join-section .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+          }
+          .who-can-join-section .section-copy {
+            color: rgba(255,255,255,0.7);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 750px;
+            margin: 0 auto;
+          }
+          .player-type-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 50px;
+          }
+          .player-type-tag {
+            background: rgba(47,160,111,0.12);
+            border: 2px solid rgba(47,160,111,0.4);
+            border-radius: 50px;
+            padding: 16px 32px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+          }
+          .player-type-tag:hover {
+            background: rgba(47,160,111,0.25);
+            border-color: #2fa06f;
+            transform: translateY(-4px);
+          }
+          .player-type-tag i {
+            color: #7ed957;
+            margin-right: 10px;
+          }
+          .who-can-join-section .closing-line {
+            text-align: center;
+            margin-top: 50px;
+            color: #7ed957;
+            font-size: 20px;
+            font-style: italic;
+            font-weight: 600;
+          }
+          @media (max-width: 767px) {
+            .who-can-join-section .section-title {
+              font-size: 32px;
+            }
+            .player-type-tag {
+              padding: 12px 24px;
+              font-size: 14px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Who can join?</h2>
+            <p class="section-copy">
+              PKL welcomes players at every stage of their competitive journey. From recreational competitors to rising professionals, the pathway adapts to where you are and helps you grow.
+            </p>
+          </div>
+          
+          <div class="player-type-list">
+            <div class="player-type-tag"><i class="fas fa-check-circle"></i>Recreational competitors</div>
+            <div class="player-type-tag"><i class="fas fa-check-circle"></i>Club players</div>
+            <div class="player-type-tag"><i class="fas fa-check-circle"></i>Tournament players</div>
+            <div class="player-type-tag"><i class="fas fa-check-circle"></i>Competitive amateurs</div>
+            <div class="player-type-tag"><i class="fas fa-check-circle"></i>Emerging professionals</div>
+          </div>
+          
+          <p class="closing-line">If you are willing to play, you belong here.</p>
+        </div>
+      </section>
+      <!-- End Who Can Join Section -->
+
+      <!-- World Series Destination Section -->
+      <section class="world-series-destination-section" style="padding: 100px 0; position: relative; overflow: hidden;">
+        <style>
+          .world-series-destination-section .container {
+            position: relative;
+            z-index: 2;
+          }
+          .world-series-destination-section .content-wrapper {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          .world-series-destination-section .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 30px;
+          }
+          .world-series-destination-section .section-copy {
+            color: rgba(255,255,255,0.8);
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+          }
+          .world-series-destination-section .tagline {
+            color: #7ed957;
+            font-size: 22px;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 40px;
+          }
+          @media (max-width: 767px) {
+            .world-series-destination-section .section-title {
+              font-size: 32px;
+            }
+            .world-series-destination-section .section-copy {
+              font-size: 17px;
+            }
+            .world-series-destination-section .tagline {
+              font-size: 18px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="content-wrapper">
+            <h2 class="section-title">The destination: the PKL World Series</h2>
+            <p class="section-copy">
+              The World Series showcases the top performers from across the PKL pathway.
+            </p>
+            <p class="tagline">It's not where you start — it's what you earn.</p>
+            <a class="btn-style-one theme-btn" href="world-series.html" style="font-size: 18px; padding: 18px 40px;">
+              <span class="btn-title">Explore the World Series</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- End World Series Destination Section -->
+
+      <!-- What You Get Section -->
+      <section class="what-you-get-section" style="padding: 100px 0;">
+        <style>
+          .what-you-get-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+          }
+          .what-you-get-section .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+          }
+          .benefit-card {
+            background: rgba(47,160,111,0.08);
+            border: 2px solid rgba(47,160,111,0.3);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+          }
+          .benefit-card:hover {
+            transform: translateY(-6px);
+            border-color: #2fa06f;
+            box-shadow: 0 15px 30px rgba(47,160,111,0.15);
+          }
+          .benefit-card .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(126,217,87,0.2) 0%, rgba(47,160,111,0.2) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          }
+          .benefit-card .icon-wrapper i {
+            font-size: 24px;
+            color: #7ed957;
+          }
+          .benefit-card .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.4;
+          }
+          @media (max-width: 767px) {
+            .what-you-get-section .section-title {
+              font-size: 32px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">What you get</h2>
+          </div>
+          
+          <div class="row g-4">
+            <div class="col-lg col-md-6 col-sm-6">
+              <div class="benefit-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-id-badge"></i>
+                </div>
+                <h4 class="card-title">Verified player profile</h4>
+              </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6">
+              <div class="benefit-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <h4 class="card-title">Access to certified events</h4>
+              </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6">
+              <div class="benefit-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h4 class="card-title">Performance and progression tracking</h4>
+              </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6">
+              <div class="benefit-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <h4 class="card-title">Global exposure opportunities</h4>
+              </div>
+            </div>
+            <div class="col-lg col-md-6 col-sm-6">
+              <div class="benefit-card">
+                <div class="icon-wrapper">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h4 class="card-title">Community and development resources</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End What You Get Section -->
+
+      <!-- Final CTA Section -->
+      <section class="final-cta-section-players" style="padding: 100px 0; text-align: center;">
+        <style>
+          .final-cta-section-players .cta-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+          }
+          .final-cta-section-players .cta-copy {
+            color: rgba(255,255,255,0.8);
+            font-size: 20px;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+          }
+          @media (max-width: 767px) {
+            .final-cta-section-players .cta-title {
+              font-size: 32px;
+            }
+            .final-cta-section-players .cta-copy {
+              font-size: 17px;
+            }
+          }
+        </style>
+        
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <h2 class="cta-title">Ready to start your journey?</h2>
+              <p class="cta-copy">Join the world's most open pickleball pathway and see how far your game can take you!</p>
+              <a class="btn-style-one theme-btn" href="signup.html" style="font-size: 18px; padding: 18px 40px;">
+                <span class="btn-title">Create your profile</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Final CTA Section -->
 
       <!-- Main Footer -->
       <footer class="main-footer footer-style-one">
