@@ -17,7 +17,6 @@
     { label: "World Series", href: "world-series.html" },
     { label: "Operators", href: "operators.html" },
     { label: "Partners", href: "sponsors.html" },
-    { label: "About", href: "page-about.html" },
   ];
 
   // Extra nav items prepended for specific user roles when on dashboard pages
@@ -36,7 +35,6 @@
     "world-series.html": "World Series",
     "operators.html": "Operators",
     "sponsors.html": "Partners",
-    "page-about.html": "About",
     "admin-dashboard.html": "Dashboard",
     "operator-dashboard.html": "Dashboard",
     "player-dashboard.html": "Dashboard",

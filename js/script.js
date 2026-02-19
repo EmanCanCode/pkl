@@ -327,29 +327,32 @@ var THEMEMASCOT = {};
     });
   }
 
-  //service-carousel One
+  //service-carousel One - Infinite smooth carousel
   if ($(".clients-swiper").length) {
     var swiper = new Swiper(".clients-swiper", {
-      slidesPerView: 5,
-      spaceBetween: 100,
-      speed: 500,
+      slidesPerView: "auto",
+      spaceBetween: 80,
+      speed: 4000,
       loop: true,
-      autoplay: true,
+      loopAdditionalSlides: 3,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+      },
+      allowTouchMove: false,
       breakpoints: {
         0: {
-          slidesPerView: 1,
+          spaceBetween: 40,
         },
         576: {
-          slidesPerView: 2,
+          spaceBetween: 60,
         },
         768: {
-          slidesPerView: 3,
-        },
-        991: {
-          slidesPerView: 3,
+          spaceBetween: 80,
         },
         1200: {
-          slidesPerView: 5,
+          spaceBetween: 100,
         },
       },
     });
