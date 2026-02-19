@@ -35,6 +35,8 @@ services:
       MONGO_URI: mongodb://pklroot:PklM0ng0Secr3t!@pkl-mongo:27017/pklclub?authSource=admin
       JWT_SECRET: pkl-jwt-super-secret-key-2026
       JWT_EXPIRES_IN: 7d
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-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}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_placeholder}
     depends_on:
       - pkl-mongo
     restart: unless-stopped

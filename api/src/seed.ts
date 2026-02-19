@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://pklroot:PklM0ng0Secr3t!@localhost:47293/pklclub?authSource=admin';
 

@@ -6,6 +6,7 @@ import {
   Delete,
   Body,
   Param,
+  Query,
   UseGuards,
   Request,
   BadRequestException,
@@ -28,7 +29,7 @@ const SUPER_ADMIN_USERNAME = "eman";
 @ApiTags("users")
 @Controller("users")
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) { }
 
   @Post("signup")
   @ApiOperation({
@@ -177,5 +178,78 @@ export class UsersController {
 
     await this.usersService.deleteUser(id);
     return { message: "Admin deleted successfully" };
+  }
+
+  /**
+   * Fee-Pass Management (admin only)
+   * Grant membership or event-fee passes so users can bypass Stripe.
+   */
+
+  @Patch(":id/passes")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
+  @ApiOperation({
+    summary:
+      "Grant fee passes to a user (admin only). membershipPasses bypass annual membership. eventFeePasses bypass event registration fee. Use -1 for infinite.",
+  })
+  @ApiResponse({ status: 200, description: "Passes updated" })
+  async grantPasses(
+    @Param("id") id: string,
+    @Body() body: { membershipPasses?: number; eventFeePasses?: number },
+    @Request() req,
+  ) {
+    if (req.user.userType !== UserType.ADMIN) {
+      throw new ForbiddenException("Admin access required");
+    }
+
+    const user = await this.usersService.findById(id);
+    if (!user) {
+      throw new BadRequestException("User not found");
+    }
+
+    const update: any = {};
+    if (body.membershipPasses !== undefined) {
+      update.membershipPasses = body.membershipPasses;
+    }
+    if (body.eventFeePasses !== undefined) {
+      update.eventFeePasses = body.eventFeePasses;
+    }
+
+    if (Object.keys(update).length === 0) {
+      throw new BadRequestException(
+        "Provide membershipPasses and/or eventFeePasses",
+      );
+    }
+
+    const updated = await this.usersService.updateUser(id, update);
+    return {
+      message: "Passes updated",
+      membershipPasses: updated.membershipPasses ?? 0,
+      eventFeePasses: updated.eventFeePasses ?? 0,
+    };
+  }
+
+  /**
+   * Search users by username, email, or name (admin only)
+   */
+  @Get("search")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth("JWT-auth")
+  @ApiOperation({
+    summary: "Search users by query string (admin only)",
+  })
+  async searchUsers(
+    @Request() req,
+    @Query("q") q: string,
+  ) {
+    if (req.user.userType !== UserType.ADMIN) {
+      throw new ForbiddenException("Admin access required");
+    }
+
+    if (!q || q.length < 2) {
+      throw new BadRequestException("Query must be at least 2 characters");
+    }
+
+    return this.usersService.searchUsers(q);
   }
 }

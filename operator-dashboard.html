@@ -1,1135 +1,972 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>PKL.CLUB | Operator Dashboard</title>
-    <!-- Stylesheets -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/fontawesome.css" rel="stylesheet" />
-    <link href="css/linear.css" rel="stylesheet" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8" />
+  <title>PKL.CLUB | Operator Dashboard</title>
+  <!-- Stylesheets -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/fontawesome.css" rel="stylesheet" />
+  <link href="css/linear.css" rel="stylesheet" />
 
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
 
-    <style>
-      :root {
-        --pkl-primary: #2fa06f;
-        --pkl-primary-dark: #238c5c;
-        --pkl-accent: #7ed957;
-        --pkl-dark: #0a1628;
-        --pkl-gray: #6b7280;
-        --pkl-light-gray: #f3f4f6;
-        --pkl-danger: #ef4444;
-        --pkl-success: #10b981;
-        --pkl-warning: #f59e0b;
-      }
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+  <style>
+    :root {
+      --pkl-primary: #2fa06f;
+      --pkl-primary-dark: #238c5c;
+      --pkl-accent: #7ed957;
+      --pkl-dark: #0a1628;
+      --pkl-gray: #6b7280;
+      --pkl-light-gray: #f3f4f6;
+      --pkl-danger: #ef4444;
+      --pkl-success: #10b981;
+      --pkl-warning: #f59e0b;
+    }
 
-      body {
-        font-family: "Inter", sans-serif;
-        /* background: linear-gradient(
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      /* background: linear-gradient(
           180deg,
           #0a1628 0%,
           #0d1f3c 50%,
           #0a1628 100%
         ); */
-        min-height: 100vh;
-        background-color: #040b1d;
-      }
+      min-height: 100vh;
+      background-color: #040b1d;
+    }
 
-      .page-wrapper {
-        min-height: 100vh;
-      }
+    .page-wrapper {
+      min-height: 100vh;
+    }
 
-      /* Main Content */
-      .dashboard-main {
-        padding: 120px 0 60px;
-      }
+    /* Main Content */
+    .dashboard-main {
+      padding: 120px 0 60px;
+    }
 
-      .dashboard-title {
-        font-size: 28px;
-        font-weight: 700;
-        color: #fff;
-        margin-bottom: 10px;
-      }
+    .dashboard-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
 
-      .dashboard-subtitle {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 16px;
-        margin-bottom: 30px;
-      }
+    .dashboard-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
 
-      /* Stats Cards */
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        margin-bottom: 30px;
-      }
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
 
-      .stat-card {
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(47, 160, 111, 0.3);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
+    .stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(47, 160, 111, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
 
-      .stat-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--pkl-accent);
-      }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pkl-accent);
+    }
 
-      .stat-card .stat-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        margin-bottom: 15px;
-      }
+    .stat-card .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
 
-      .stat-card .stat-icon.pending {
-        background: rgba(245, 158, 11, 0.2);
-        color: var(--pkl-warning);
-      }
+    .stat-card .stat-icon.pending {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--pkl-warning);
+    }
 
-      .stat-card .stat-icon.approved {
-        background: rgba(16, 185, 129, 0.2);
-        color: var(--pkl-success);
-      }
+    .stat-card .stat-icon.approved {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--pkl-success);
+    }
 
-      .stat-card .stat-icon.completed {
-        background: rgba(47, 160, 111, 0.2);
-        color: var(--pkl-primary);
-      }
+    .stat-card .stat-icon.completed {
+      background: rgba(47, 160, 111, 0.2);
+      color: var(--pkl-primary);
+    }
 
-      .stat-card .stat-icon.rejected {
-        background: rgba(239, 68, 68, 0.2);
-        color: var(--pkl-danger);
-      }
+    .stat-card .stat-icon.rejected {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--pkl-danger);
+    }
 
-      .stat-card .stat-value {
-        font-size: 32px;
-        font-weight: 700;
-        color: #fff;
-        margin-bottom: 5px;
-      }
+    .stat-card .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 5px;
+    }
 
-      .stat-card .stat-label {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 14px;
-      }
+    .stat-card .stat-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
 
-      /* Actions Bar */
-      .actions-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 25px;
-      }
+    /* Actions Bar */
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
 
-      .btn-create-event {
-        background: linear-gradient(
-          135deg,
+    .btn-create-event {
+      background: linear-gradient(135deg,
           var(--pkl-primary) 0%,
-          var(--pkl-accent) 100%
-        );
-        color: #fff;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
+          var(--pkl-accent) 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-create-event:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(47, 160, 111, 0.3);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+    }
+
+    .filter-tab {
+      padding: 10px 20px;
+      border: none;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(47, 160, 111, 0.2);
+    }
+
+    .filter-tab.active {
+      background: var(--pkl-primary);
+      color: #fff;
+    }
+
+    .filter-tab:hover:not(.active) {
+      background: rgba(47, 160, 111, 0.2);
+      border-color: rgba(47, 160, 111, 0.4);
+    }
+
+    /* Events Table */
+    .events-table-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      border: 1px solid rgba(47, 160, 111, 0.3);
+      overflow-x: auto;
+    }
+
+    .events-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .events-table th {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(47, 160, 111, 0.2);
+    }
+
+    .events-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(47, 160, 111, 0.1);
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .events-table tr:hover {
+      background: rgba(47, 160, 111, 0.1);
+    }
+
+    .event-name {
+      font-weight: 600;
+    }
+
+    .event-location {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .status-badge.pending {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--pkl-warning);
+    }
+
+    .status-badge.approved {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--pkl-success);
+    }
+
+    .status-badge.completed {
+      background: rgba(47, 160, 111, 0.1);
+      color: var(--pkl-primary);
+    }
+
+    .status-badge.rejected {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--pkl-danger);
+    }
+
+    .btn-action {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-action.view {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-action.view:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-action.winner {
+      background: var(--pkl-primary);
+      color: #fff;
+    }
+
+    .btn-action.winner:hover {
+      background: var(--pkl-primary-dark);
+    }
+
+    .btn-action:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .winner-display {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .winner-display i {
+      color: gold;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 22, 40, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(180deg, #0d1f3c 0%, #0a1628 100%);
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid rgba(47, 160, 111, 0.3);
+    }
+
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid rgba(47, 160, 111, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .form-group label .required {
+      color: var(--pkl-danger);
+    }
+
+    .form-control {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      font-size: 15px;
+      border: 2px solid rgba(47, 160, 111, 0.3);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--pkl-primary);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    textarea.form-control {
+      height: auto;
+      padding: 12px 16px;
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid rgba(47, 160, 111, 0.2);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .btn-cancel {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cancel:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-submit {
+      padding: 12px 24px;
+      background: linear-gradient(135deg,
+          var(--pkl-primary) 0%,
+          var(--pkl-accent) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Winner Modal Warning */
+    .warning-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid var(--pkl-danger);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .warning-box i {
+      color: var(--pkl-danger);
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .warning-box h4 {
+      color: var(--pkl-danger);
+      margin-bottom: 8px;
+    }
+
+    .warning-box p {
+      color: var(--pkl-gray);
+      font-size: 14px;
+    }
+
+    .player-select-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 2px solid rgba(47, 160, 111, 0.3);
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .player-select-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(47, 160, 111, 0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      color: #fff;
+    }
+
+    .player-select-item:hover {
+      background: rgba(47, 160, 111, 0.1);
+    }
+
+    .player-select-item.selected {
+      background: rgba(47, 160, 111, 0.2);
+      border-left: 3px solid var(--pkl-primary);
+    }
+
+    .player-select-item input[type="radio"] {
+      accent-color: var(--pkl-primary);
+    }
+
+    .no-events {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .no-events i {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: rgba(47, 160, 111, 0.4);
+    }
+
+    .no-events h4 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      min-width: 300px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateX(120%);
+      animation: slideIn 0.4s ease forwards;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .toast.hiding {
+      animation: slideOut 0.4s ease forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOut {
+      to {
+        transform: translateX(120%);
+      }
+    }
+
+    .toast.success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+    }
+
+    .toast.error {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #fff;
+    }
+
+    .toast.warning {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #fff;
+    }
+
+    .toast.info {
+      background: linear-gradient(135deg,
+          var(--pkl-primary) 0%,
+          var(--pkl-accent) 100%);
+      color: #fff;
+    }
+
+    .toast i {
+      font-size: 20px;
+    }
+
+    .toast-message {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .toast-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+
+    .toast-close:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
       }
 
-      .btn-create-event:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(47, 160, 111, 0.3);
-      }
-
-      .filter-tabs {
-        display: flex;
-        gap: 10px;
-      }
-
-      .filter-tab {
-        padding: 10px 20px;
-        border: none;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(47, 160, 111, 0.2);
-      }
-
-      .filter-tab.active {
-        background: var(--pkl-primary);
-        color: #fff;
-      }
-
-      .filter-tab:hover:not(.active) {
-        background: rgba(47, 160, 111, 0.2);
-        border-color: rgba(47, 160, 111, 0.4);
-      }
-
-      /* Events Table */
-      .events-table-card {
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 16px;
-        border: 1px solid rgba(47, 160, 111, 0.3);
-        overflow: hidden;
-      }
-
-      .events-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .events-table th {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 16px 20px;
-        text-align: left;
-        font-size: 13px;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.7);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 1px solid rgba(47, 160, 111, 0.2);
-      }
-
-      .events-table td {
-        padding: 16px 20px;
-        border-bottom: 1px solid rgba(47, 160, 111, 0.1);
-        font-size: 14px;
-        color: #fff;
-      }
-
-      .events-table tr:hover {
-        background: rgba(47, 160, 111, 0.1);
-      }
-
-      .event-name {
-        font-weight: 600;
-      }
-
-      .event-location {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 13px;
-      }
-
-      .status-badge {
-        display: inline-block;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      .status-badge.pending {
-        background: rgba(245, 158, 11, 0.1);
-        color: var(--pkl-warning);
-      }
-
-      .status-badge.approved {
-        background: rgba(16, 185, 129, 0.1);
-        color: var(--pkl-success);
-      }
-
-      .status-badge.completed {
-        background: rgba(47, 160, 111, 0.1);
-        color: var(--pkl-primary);
-      }
-
-      .status-badge.rejected {
-        background: rgba(239, 68, 68, 0.1);
-        color: var(--pkl-danger);
-      }
-
-      .btn-action {
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 500;
-        cursor: pointer;
-        border: none;
-        transition: all 0.3s ease;
-      }
-
-      .btn-action.view {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-action.view:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-
-      .btn-action.winner {
-        background: var(--pkl-primary);
-        color: #fff;
-      }
-
-      .btn-action.winner:hover {
-        background: var(--pkl-primary-dark);
-      }
-
-      .btn-action:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      .winner-display {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .winner-display i {
-        color: gold;
-      }
-
-      /* Modal */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(10, 22, 40, 0.85);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        padding: 20px;
-        backdrop-filter: blur(5px);
-      }
-
-      .modal-overlay.show {
-        display: flex;
-      }
-
-      .modal-content {
-        background: linear-gradient(180deg, #0d1f3c 0%, #0a1628 100%);
-        border-radius: 20px;
-        max-width: 600px;
-        width: 100%;
-        max-height: 90vh;
-        overflow-y: auto;
-        border: 1px solid rgba(47, 160, 111, 0.3);
-      }
-
-      .modal-header {
-        padding: 24px;
-        border-bottom: 1px solid rgba(47, 160, 111, 0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .modal-header h3 {
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-      }
-
-      .modal-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: rgba(255, 255, 255, 0.6);
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .modal-close:hover {
-        color: #fff;
-      }
-
-      .modal-body {
-        padding: 24px;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-group label {
-        display: block;
-        font-size: 14px;
-        font-weight: 500;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-
-      .form-group label .required {
-        color: var(--pkl-danger);
-      }
-
-      .form-control {
-        width: 100%;
-        height: 48px;
-        padding: 0 16px;
-        font-size: 15px;
-        border: 2px solid rgba(47, 160, 111, 0.3);
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        background: rgba(0, 0, 0, 0.3);
-        color: #fff;
-      }
-
-      .form-control:focus {
-        outline: none;
-        border-color: var(--pkl-primary);
-        background: rgba(0, 0, 0, 0.4);
-      }
-
-      .form-control::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-      }
-
-      textarea.form-control {
-        height: auto;
-        padding: 12px 16px;
-        min-height: 100px;
-        resize: vertical;
-      }
-
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+      .actions-bar {
+        flex-direction: column;
         gap: 15px;
       }
 
-      .modal-footer {
-        padding: 20px 24px;
-        border-top: 1px solid rgba(47, 160, 111, 0.2);
-        display: flex;
-        justify-content: flex-end;
-        gap: 12px;
+      .filter-tabs {
+        flex-wrap: wrap;
       }
 
-      .btn-cancel {
-        padding: 12px 24px;
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
+      .form-row {
+        grid-template-columns: 1fr;
       }
 
-      .btn-cancel:hover {
-        background: rgba(255, 255, 255, 0.2);
+      .events-table-card {
+        overflow-x: visible;
       }
 
-      .btn-submit {
-        padding: 12px 24px;
-        background: linear-gradient(
-          135deg,
-          var(--pkl-primary) 0%,
-          var(--pkl-accent) 100%
-        );
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
+      .events-table thead {
+        display: none;
       }
 
-      /* Winner Modal Warning */
-      .warning-box {
-        background: rgba(239, 68, 68, 0.1);
-        border: 2px solid var(--pkl-danger);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-
-      .warning-box i {
-        color: var(--pkl-danger);
-        font-size: 24px;
-        margin-bottom: 10px;
+      .events-table tbody tr {
         display: block;
-      }
-
-      .warning-box h4 {
-        color: var(--pkl-danger);
-        margin-bottom: 8px;
-      }
-
-      .warning-box p {
-        color: var(--pkl-gray);
-        font-size: 14px;
-      }
-
-      .player-select-list {
-        max-height: 200px;
-        overflow-y: auto;
-        border: 2px solid rgba(47, 160, 111, 0.3);
-        border-radius: 10px;
-        margin-bottom: 15px;
-        background: rgba(0, 0, 0, 0.2);
-      }
-
-      .player-select-item {
-        padding: 12px 16px;
-        border-bottom: 1px solid rgba(47, 160, 111, 0.1);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: all 0.2s ease;
-        color: #fff;
-      }
-
-      .player-select-item:hover {
-        background: rgba(47, 160, 111, 0.1);
-      }
-
-      .player-select-item.selected {
-        background: rgba(47, 160, 111, 0.2);
-        border-left: 3px solid var(--pkl-primary);
-      }
-
-      .player-select-item input[type="radio"] {
-        accent-color: var(--pkl-primary);
-      }
-
-      .no-events {
-        text-align: center;
-        padding: 60px 20px;
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      .no-events i {
-        font-size: 48px;
-        margin-bottom: 15px;
-        color: rgba(47, 160, 111, 0.4);
-      }
-
-      .no-events h4 {
-        margin-bottom: 10px;
-        color: #fff;
-      }
-
-      /* Toast Notification */
-      .toast-container {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .toast {
-        min-width: 300px;
-        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(47, 160, 111, 0.2);
         border-radius: 12px;
+        margin-bottom: 12px;
+        padding: 16px;
+      }
+
+      .events-table tbody td {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 12px;
-        transform: translateX(120%);
-        animation: slideIn 0.4s ease forwards;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        padding: 8px 4px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        gap: 10px;
+        text-align: right;
       }
 
-      .toast.hiding {
-        animation: slideOut 0.4s ease forwards;
+      .events-table tbody td:last-child {
+        border-bottom: none;
+        justify-content: flex-end;
+        padding-top: 12px;
       }
 
-      @keyframes slideIn {
-        to {
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes slideOut {
-        to {
-          transform: translateX(120%);
-        }
-      }
-
-      .toast.success {
-        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        color: #fff;
-      }
-
-      .toast.error {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        color: #fff;
-      }
-
-      .toast.warning {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        color: #fff;
-      }
-
-      .toast.info {
-        background: linear-gradient(
-          135deg,
-          var(--pkl-primary) 0%,
-          var(--pkl-accent) 100%
-        );
-        color: #fff;
-      }
-
-      .toast i {
-        font-size: 20px;
-      }
-
-      .toast-message {
-        font-weight: 500;
-        font-size: 14px;
-      }
-
-      .toast-close {
-        margin-left: auto;
-        background: none;
-        border: none;
+      .events-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
         color: rgba(255, 255, 255, 0.7);
-        cursor: pointer;
-        font-size: 16px;
-        padding: 0;
-        transition: color 0.3s ease;
+        text-align: left;
+        flex-shrink: 0;
+        font-size: 13px;
       }
 
-      .toast-close:hover {
-        color: #fff;
+      .dashboard-tabs {
+        flex-wrap: wrap;
       }
+    }
+  </style>
+</head>
 
-      /* Responsive */
-      @media (max-width: 991px) {
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
+<body>
+  <div class="page-wrapper">
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    <div id="pkl-header"></div>
 
-      @media (max-width: 767px) {
-        .stats-grid {
-          grid-template-columns: 1fr;
-        }
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="container">
+        <h1 class="dashboard-title">Operator Dashboard</h1>
+        <p class="dashboard-subtitle">
+          Manage your events and tournament applications
+        </p>
 
-        .actions-bar {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .filter-tabs {
-          flex-wrap: wrap;
-        }
-
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-
-        .events-table-card {
-          overflow-x: auto;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="page-wrapper">
-      <!-- Toast Container -->
-      <div class="toast-container" id="toast-container"></div>
-
-      <!-- Main Header-->
-      <header class="main-header header-style-one position-absolute">
-        <div class="container">
-          <div class="header-lower">
-            <div class="inner-container">
-              <!-- Main box -->
-              <div class="main-box">
-                <div class="logo-box">
-                  <div class="logo">
-                    <a href="index.html"
-                      ><img src="images/logo.png?v=2" alt="Logo"
-                    /></a>
-                  </div>
-                </div>
-
-                <!--Nav Box-->
-                <div class="nav-outer">
-                  <nav class="nav main-menu">
-                    <ul class="navigation">
-                      <li>
-                        <a href="world-series.html">World Series</a>
-                      </li>
-                      <li><a href="players.html">Players</a></li>
-                      <li class="current">
-                        <a href="operators.html">Operators</a>
-                      </li>
-                      <li><a href="sponsors.html">Sponsors</a></li>
-                      <li class="dropdown">
-                        <a href="#">Shop</a>
-                        <ul>
-                          <li><a href="#">Membership</a></li>
-                          <li><a href="#">Profile Image</a></li>
-                          <li><a href="#">Merchandise</a></li>
-                          <li><a href="#">Equipment</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="pkl-club.html">PKL.CLUB</a></li>
-                      <li><a href="news.html">News</a></li>
-                    </ul>
-                  </nav>
-                </div>
-
-                <!-- Outer Box -->
-                <div class="action-box">
-                  <div class="header-btn">
-                    <button
-                      class="header-btn-main theme-btn"
-                      onclick="logout()"
-                      style="cursor: pointer"
-                    >
-                      <span class="btn-text">Logout</span>
-                    </button>
-                  </div>
-
-                  <!-- Mobile Nav toggler -->
-                  <div class="mobile-nav-toggler">
-                    <div class="shape-line-img">
-                      <i class="fas fa-bars"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon pending">
+              <i class="fas fa-clock"></i>
             </div>
+            <div class="stat-value" id="stat-pending">0</div>
+            <div class="stat-label">Pending Applications</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon approved">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-value" id="stat-approved">0</div>
+            <div class="stat-label">Approved Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon completed">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-value" id="stat-completed">0</div>
+            <div class="stat-label">Completed Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon rejected">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="stat-value" id="stat-rejected">0</div>
+            <div class="stat-label">Rejected</div>
           </div>
         </div>
 
-        <!-- Mobile Menu  -->
-        <div class="mobile-menu">
-          <div class="menu-backdrop"></div>
-          <nav class="menu-box">
-            <div class="upper-box">
-              <div class="nav-logo">
-                <a href="index.html"
-                  ><img src="images/logo.png?v=2" alt=""
-                /></a>
-              </div>
-              <div class="close-btn"><i class="icon fa fa-times"></i></div>
-            </div>
-            <ul class="navigation clearfix"></ul>
-            <ul class="contact-list-one">
-              <li>
-                <i class="icon lnr-icon-envelope1"></i>
-                <span class="title">Send Email</span>
-                <div class="text">
-                  <a href="mailto:hello@pkl.club">hello@pkl.club</a>
-                </div>
-              </li>
-            </ul>
-            <ul class="social-links">
-              <li>
-                <a href="#"><i class="icon fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="icon fab fa-facebook-f"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="icon fab fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="icon fab fa-youtube"></i></a>
-              </li>
-            </ul>
-          </nav>
+        <!-- Actions Bar -->
+        <div class="actions-bar">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">
+              All Events
+            </button>
+            <button class="filter-tab" data-filter="pending">Pending</button>
+            <button class="filter-tab" data-filter="approved">
+              Approved
+            </button>
+            <button class="filter-tab" data-filter="completed">
+              Completed
+            </button>
+            <button class="filter-tab" data-filter="rejected">
+              Rejected
+            </button>
+          </div>
+          <button class="btn-create-event" onclick="openCreateModal()">
+            <i class="fas fa-plus"></i> Create Event
+          </button>
         </div>
-        <!-- End Mobile Menu -->
 
-        <!-- Sticky Header  -->
-        <div class="sticky-header">
-          <div class="auto-container">
-            <div class="inner-container">
-              <div class="logo">
-                <a href="index.html"
-                  ><img src="images/logo.png?v=2" alt=""
-                /></a>
-              </div>
-              <div class="nav-outer">
-                <nav class="main-menu">
-                  <div class="navbar-collapse show collapse clearfix">
-                    <ul class="navigation clearfix"></ul>
+        <!-- Events Table -->
+        <div class="events-table-card">
+          <table class="events-table">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>Dates</th>
+                <th>Players</th>
+                <th>Status</th>
+                <th>Winner</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="events-table-body">
+              <tr>
+                <td colspan="7">
+                  <div class="no-events">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Loading events...</h4>
                   </div>
-                </nav>
-                <div class="mobile-nav-toggler">
-                  <span class="icon lnr-icon-bars"></span>
-                </div>
-              </div>
-              <div class="action-box">
-                <div class="header-btn">
-                  <button
-                    class="header-btn-main theme-btn"
-                    onclick="logout()"
-                    style="cursor: pointer"
-                  >
-                    <span class="btn-text">Logout</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Sticky Menu -->
-      </header>
-      <!--End Main Header -->
-
-      <!-- Main Content -->
-      <main class="dashboard-main">
-        <div class="container">
-          <h1 class="dashboard-title">Operator Dashboard</h1>
-          <p class="dashboard-subtitle">
-            Manage your events and tournament applications
-          </p>
-
-          <!-- Stats Grid -->
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon pending">
-                <i class="fas fa-clock"></i>
-              </div>
-              <div class="stat-value" id="stat-pending">0</div>
-              <div class="stat-label">Pending Applications</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon approved">
-                <i class="fas fa-check-circle"></i>
-              </div>
-              <div class="stat-value" id="stat-approved">0</div>
-              <div class="stat-label">Approved Events</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon completed">
-                <i class="fas fa-trophy"></i>
-              </div>
-              <div class="stat-value" id="stat-completed">0</div>
-              <div class="stat-label">Completed Events</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon rejected">
-                <i class="fas fa-times-circle"></i>
-              </div>
-              <div class="stat-value" id="stat-rejected">0</div>
-              <div class="stat-label">Rejected</div>
-            </div>
-          </div>
-
-          <!-- Actions Bar -->
-          <div class="actions-bar">
-            <div class="filter-tabs">
-              <button class="filter-tab active" data-filter="all">
-                All Events
-              </button>
-              <button class="filter-tab" data-filter="pending">Pending</button>
-              <button class="filter-tab" data-filter="approved">
-                Approved
-              </button>
-              <button class="filter-tab" data-filter="completed">
-                Completed
-              </button>
-            </div>
-            <button class="btn-create-event" onclick="openCreateModal()">
-              <i class="fas fa-plus"></i> Create Event
-            </button>
-          </div>
-
-          <!-- Events Table -->
-          <div class="events-table-card">
-            <table class="events-table">
-              <thead>
-                <tr>
-                  <th>Event Name</th>
-                  <th>Location</th>
-                  <th>Dates</th>
-                  <th>Players</th>
-                  <th>Status</th>
-                  <th>Winner</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="events-table-body">
-                <tr>
-                  <td colspan="7">
-                    <div class="no-events">
-                      <i class="fas fa-calendar-alt"></i>
-                      <h4>Loading events...</h4>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </main>
-
-      <!-- Create Event Modal -->
-      <div class="modal-overlay" id="create-modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3>Create New Event</h3>
-            <button class="modal-close" onclick="closeCreateModal()">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="create-event-form">
-              <div class="form-group">
-                <label>Event Name <span class="required">*</span></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="event-name"
-                  placeholder="Spring Championship 2026"
-                  required
-                />
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Country <span class="required">*</span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="event-country"
-                    placeholder="USA"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label>State/Province <span class="required">*</span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="event-state"
-                    placeholder="California"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>City</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="event-city"
-                    placeholder="Los Angeles"
-                  />
-                </div>
-                <div class="form-group">
-                  <label
-                    >Court/Venue Name <span class="required">*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="event-court"
-                    placeholder="Sunset Courts"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Address</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="event-address"
-                  placeholder="123 Main St"
-                />
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Start Date <span class="required">*</span></label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="event-start-date"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label>End Date <span class="required">*</span></label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="event-end-date"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Max Participants</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="event-max-participants"
-                    placeholder="50"
-                  />
-                </div>
-                <div class="form-group">
-                  <label>Entry Fee ($)</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="event-entry-fee"
-                    placeholder="25.00"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Tournament Website</label>
-                <input
-                  type="url"
-                  class="form-control"
-                  id="event-website"
-                  placeholder="https://example.com/tournament"
-                />
-              </div>
-
-              <div class="form-group">
-                <label>Description</label>
-                <textarea
-                  class="form-control"
-                  id="event-description"
-                  placeholder="Describe your event..."
-                ></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn-cancel" onclick="closeCreateModal()">
-              Cancel
-            </button>
-            <button class="btn-submit" onclick="submitEvent()">
-              Submit Application
-            </button>
-          </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </main>
 
-      <!-- Set Winner Modal -->
-      <div class="modal-overlay" id="winner-modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3>Declare Winner</h3>
-            <button class="modal-close" onclick="closeWinnerModal()">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="warning-box">
-              <i class="fas fa-exclamation-triangle"></i>
-              <h4>Warning: This Action is Irreversible!</h4>
-              <p>
-                Once you declare a winner, this cannot be changed. Please make
-                sure you have selected the correct player before confirming.
-              </p>
+    <!-- View Event Detail Modal -->
+    <div class="modal-overlay" id="view-modal">
+      <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+          <h3 id="view-modal-title">Event Details</h3>
+          <button class="modal-close" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="view-modal-body">
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" onclick="closeViewModal()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div class="modal-overlay" id="create-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Create New Event</h3>
+          <button class="modal-close" onclick="closeCreateModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="create-event-form">
+            <div class="form-group">
+              <label>Event Name <span class="required">*</span></label>
+              <input type="text" class="form-control" id="event-name" placeholder="Spring Championship 2026" required />
             </div>
 
-            <div class="form-group">
-              <label>Select from Registered Players</label>
-              <div class="player-select-list" id="player-select-list">
-                <div class="no-events" style="padding: 20px">
-                  No registered players
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Country <span class="required">*</span></label>
+                <input type="text" class="form-control" id="event-country" placeholder="USA" required />
+              </div>
+              <div class="form-group">
+                <label>State/Province <span class="required">*</span></label>
+                <input type="text" class="form-control" id="event-state" placeholder="California" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" id="event-city" placeholder="Los Angeles" />
+              </div>
+              <div class="form-group">
+                <label>Court/Venue Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="event-court" placeholder="Sunset Courts" required />
               </div>
             </div>
 
             <div class="form-group">
-              <label>Or Enter Winner Name Manually</label>
-              <input
-                type="text"
-                class="form-control"
-                id="winner-name"
-                placeholder="Winner's Full Name"
-              />
+              <label>Address</label>
+              <input type="text" class="form-control" id="event-address" placeholder="123 Main St" />
             </div>
 
-            <input type="hidden" id="winner-event-id" />
-            <input type="hidden" id="winner-player-id" />
-          </div>
-          <div class="modal-footer">
-            <button class="btn-cancel" onclick="closeWinnerModal()">
-              Cancel
-            </button>
-            <button
-              class="btn-submit"
-              style="background: var(--pkl-danger)"
-              onclick="confirmWinner()"
-            >
-              Confirm Winner
-            </button>
-          </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Start Date <span class="required">*</span></label>
+                <input type="date" class="form-control" id="event-start-date" required />
+              </div>
+              <div class="form-group">
+                <label>End Date <span class="required">*</span></label>
+                <input type="date" class="form-control" id="event-end-date" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Max Participants</label>
+                <input type="number" class="form-control" id="event-max-participants" placeholder="50" />
+              </div>
+              <div class="form-group">
+                <label>Entry Fee ($)</label>
+                <input type="number" class="form-control" id="event-entry-fee" placeholder="25.00" step="0.01" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Tournament Website</label>
+              <input type="url" class="form-control" id="event-website" placeholder="https://example.com/tournament" />
+            </div>
+
+            <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control" id="event-description" placeholder="Describe your event..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" onclick="closeCreateModal()">
+            Cancel
+          </button>
+          <button class="btn-submit" onclick="submitEvent()">
+            Submit Application
+          </button>
         </div>
       </div>
+    </div>
 
-      <script>
-        const API_URL = "/api";
-        let token = localStorage.getItem("pkl_token");
-        let currentUser = null;
-        let allEvents = [];
-        let currentFilter = "all";
+    <!-- Set Winner Modal -->
+    <div class="modal-overlay" id="winner-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Declare Winner</h3>
+          <button class="modal-close" onclick="closeWinnerModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="warning-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h4>Warning: This Action is Irreversible!</h4>
+            <p>
+              Once you declare a winner, this cannot be changed. Please make
+              sure you have selected the correct player before confirming.
+            </p>
+          </div>
 
-        // Toast notification function
-        function showToast(message, type = "success") {
-          const container = document.getElementById("toast-container");
-          const toast = document.createElement("div");
-          toast.className = `toast ${type}`;
+          <div class="form-group">
+            <label>Select from Registered Players</label>
+            <div class="player-select-list" id="player-select-list">
+              <div class="no-events" style="padding: 20px">
+                No registered players
+              </div>
+            </div>
+          </div>
 
-          const icons = {
-            success: "fa-check-circle",
-            error: "fa-times-circle",
-            warning: "fa-exclamation-triangle",
-            info: "fa-info-circle",
-          };
+          <div class="form-group">
+            <label>Or Enter Winner Name Manually</label>
+            <input type="text" class="form-control" id="winner-name" placeholder="Winner's Full Name" />
+          </div>
 
-          toast.innerHTML = `
+          <input type="hidden" id="winner-event-id" />
+          <input type="hidden" id="winner-player-id" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" onclick="closeWinnerModal()">
+            Cancel
+          </button>
+          <button class="btn-submit" style="background: var(--pkl-danger)" onclick="confirmWinner()">
+            Confirm Winner
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API_URL = "/api";
+      let token = localStorage.getItem("pkl_token");
+      let currentUser = null;
+      let allEvents = [];
+      let currentFilter = "all";
+
+      // Toast notification function
+      function showToast(message, type = "success") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+
+        const icons = {
+          success: "fa-check-circle",
+          error: "fa-times-circle",
+          warning: "fa-exclamation-triangle",
+          info: "fa-info-circle",
+        };
+
+        toast.innerHTML = `
           <i class="fas ${icons[type] || icons.info}"></i>
           <span class="toast-message">${message}</span>
           <button class="toast-close" onclick="this.parentElement.remove()">
@@ -1137,150 +974,148 @@
           </button>
         `;
 
-          container.appendChild(toast);
+        container.appendChild(toast);
 
-          // Auto remove after 5 seconds
-          setTimeout(() => {
-            toast.classList.add("hiding");
-            setTimeout(() => toast.remove(), 400);
-          }, 5000);
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+          toast.classList.add("hiding");
+          setTimeout(() => toast.remove(), 400);
+        }, 5000);
+      }
+
+      // Check authentication
+      async function checkAuth() {
+        if (!token) {
+          window.location.href = "login.html";
+          return;
         }
 
-        // Check authentication
-        async function checkAuth() {
-          if (!token) {
-            window.location.href = "login.html";
+        try {
+          const response = await fetch(`${API_URL}/auth/profile`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          if (!response.ok) {
+            throw new Error("Not authenticated");
+          }
+
+          currentUser = await response.json();
+
+          if (
+            currentUser.userType !== "operator" &&
+            currentUser.userType !== "admin"
+          ) {
+            showToast("Access denied. Operator account required.", "error");
+            setTimeout(() => (window.location.href = "index.html"), 2000);
             return;
           }
 
-          try {
-            const response = await fetch(`${API_URL}/auth/profile`, {
-              headers: { Authorization: `Bearer ${token}` },
-            });
-
-            if (!response.ok) {
-              throw new Error("Not authenticated");
-            }
-
-            currentUser = await response.json();
-
-            if (
-              currentUser.userType !== "operator" &&
-              currentUser.userType !== "admin"
-            ) {
-              showToast("Access denied. Operator account required.", "error");
-              setTimeout(() => (window.location.href = "index.html"), 2000);
-              return;
-            }
-
-            // Load events
-            await loadEvents();
-          } catch (error) {
-            console.error("Auth error:", error);
-            window.location.href = "login.html";
-          }
-        }
-
-        // Logout
-        function logout() {
-          localStorage.removeItem("pkl_token");
-          localStorage.removeItem("pkl_user");
+          // Load events
+          await loadEvents();
+        } catch (error) {
+          console.error("Auth error:", error);
           window.location.href = "login.html";
         }
+      }
 
-        // Load events
-        async function loadEvents() {
-          try {
-            const response = await fetch(`${API_URL}/events/my-applications`, {
-              headers: { Authorization: `Bearer ${token}` },
-            });
+      // Logout
+      function logout() {
+        localStorage.removeItem("pkl_token");
+        localStorage.removeItem("pkl_user");
+        window.location.href = "login.html";
+      }
 
-            if (!response.ok) throw new Error("Failed to load events");
+      // Load events
+      async function loadEvents() {
+        try {
+          const response = await fetch(`${API_URL}/events/my-applications`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
 
-            allEvents = await response.json();
-            updateStats();
-            renderEvents();
-          } catch (error) {
-            console.error("Error loading events:", error);
-            showNoEvents("Failed to load events");
-          }
+          if (!response.ok) throw new Error("Failed to load events");
+
+          allEvents = await response.json();
+          updateStats();
+          renderEvents();
+        } catch (error) {
+          console.error("Error loading events:", error);
+          showNoEvents("Failed to load events");
+        }
+      }
+
+      // Update stats
+      function updateStats() {
+        const pending = allEvents.filter(
+          (e) => e.status === "pending",
+        ).length;
+        const approved = allEvents.filter(
+          (e) => e.status === "approved",
+        ).length;
+        const completed = allEvents.filter(
+          (e) => e.status === "completed",
+        ).length;
+        const rejected = allEvents.filter(
+          (e) => e.status === "rejected",
+        ).length;
+
+        document.getElementById("stat-pending").textContent = pending;
+        document.getElementById("stat-approved").textContent = approved;
+        document.getElementById("stat-completed").textContent = completed;
+        document.getElementById("stat-rejected").textContent = rejected;
+      }
+
+      // Render events table
+      function renderEvents() {
+        const tbody = document.getElementById("events-table-body");
+        let filtered = allEvents;
+
+        if (currentFilter !== "all") {
+          filtered = allEvents.filter((e) => e.status === currentFilter);
         }
 
-        // Update stats
-        function updateStats() {
-          const pending = allEvents.filter(
-            (e) => e.status === "pending",
-          ).length;
-          const approved = allEvents.filter(
-            (e) => e.status === "approved",
-          ).length;
-          const completed = allEvents.filter(
-            (e) => e.status === "completed",
-          ).length;
-          const rejected = allEvents.filter(
-            (e) => e.status === "rejected",
-          ).length;
-
-          document.getElementById("stat-pending").textContent = pending;
-          document.getElementById("stat-approved").textContent = approved;
-          document.getElementById("stat-completed").textContent = completed;
-          document.getElementById("stat-rejected").textContent = rejected;
+        if (filtered.length === 0) {
+          showNoEvents("No events found");
+          return;
         }
 
-        // Render events table
-        function renderEvents() {
-          const tbody = document.getElementById("events-table-body");
-          let filtered = allEvents;
-
-          if (currentFilter !== "all") {
-            filtered = allEvents.filter((e) => e.status === currentFilter);
-          }
-
-          if (filtered.length === 0) {
-            showNoEvents("No events found");
-            return;
-          }
-
-          tbody.innerHTML = filtered
-            .map(
-              (event) => `
+        tbody.innerHTML = filtered
+          .map(
+            (event) => `
                 <tr>
-                    <td>
+                    <td data-label="Event Name">
                         <div class="event-name">${event.name}</div>
                     </td>
-                    <td>
+                    <td data-label="Location">
                         <div>${event.location.courtName}</div>
                         <div class="event-location">${event.location.city || ""} ${event.location.state}, ${event.location.country}</div>
                     </td>
-                    <td>
+                    <td data-label="Dates">
                         ${formatDate(event.startDate)} - ${formatDate(event.endDate)}
                     </td>
-                    <td>${event.registeredPlayers?.length || 0}</td>
-                    <td>
+                    <td data-label="Players">${event.registeredPlayers?.length || 0}</td>
+                    <td data-label="Status">
                         <span class="status-badge ${event.status}">${event.status}</span>
                     </td>
-                    <td>
-                        ${
-                          event.winner
-                            ? `<div class="winner-display"><i class="fas fa-trophy"></i> ${event.winner.playerName}</div>`
-                            : "-"
-                        }
+                    <td data-label="Winner">
+                        ${event.winner
+                ? `<div class="winner-display"><i class="fas fa-trophy"></i> ${event.winner.playerName}</div>`
+                : "-"
+              }
                     </td>
-                    <td>
-                        ${
-                          event.status === "approved" && !event.winner
-                            ? `<button class="btn-action winner" onclick="openWinnerModal('${event._id}')">Set Winner</button>`
-                            : `<button class="btn-action view" onclick="viewEvent('${event._id}')">View</button>`
-                        }
+                    <td data-label="Actions">
+                        ${event.status === "approved" && !event.winner
+                ? `<button class="btn-action winner" onclick="openWinnerModal('${event._id}')">Set Winner</button>`
+                : `<button class="btn-action view" onclick="viewEvent('${event._id}')">View</button>`
+              }
                     </td>
                 </tr>
             `,
-            )
-            .join("");
-        }
+          )
+          .join("");
+      }
 
-        function showNoEvents(message) {
-          document.getElementById("events-table-body").innerHTML = `
+      function showNoEvents(message) {
+        document.getElementById("events-table-body").innerHTML = `
                 <tr>
                     <td colspan="7">
                         <div class="no-events">
@@ -1291,224 +1126,304 @@
                     </td>
                 </tr>
             `;
-        }
+      }
 
-        function formatDate(dateStr) {
-          return new Date(dateStr).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          });
-        }
-
-        // Filter tabs
-        document.querySelectorAll(".filter-tab").forEach((tab) => {
-          tab.addEventListener("click", function () {
-            document
-              .querySelectorAll(".filter-tab")
-              .forEach((t) => t.classList.remove("active"));
-            this.classList.add("active");
-            currentFilter = this.dataset.filter;
-            renderEvents();
-          });
+      function formatDate(dateStr) {
+        return new Date(dateStr).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
         });
+      }
 
-        // Create Event Modal
-        function openCreateModal() {
-          document.getElementById("create-modal").classList.add("show");
+      // Filter tabs
+      document.querySelectorAll(".filter-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          document
+            .querySelectorAll(".filter-tab")
+            .forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+          currentFilter = this.dataset.filter;
+          renderEvents();
+        });
+      });
+
+      // Create Event Modal
+      function openCreateModal() {
+        document.getElementById("create-modal").classList.add("show");
+      }
+
+      function closeCreateModal() {
+        document.getElementById("create-modal").classList.remove("show");
+        document.getElementById("create-event-form").reset();
+      }
+
+      async function submitEvent() {
+        const eventData = {
+          name: document.getElementById("event-name").value,
+          location: {
+            country: document.getElementById("event-country").value,
+            state: document.getElementById("event-state").value,
+            city: document.getElementById("event-city").value,
+            courtName: document.getElementById("event-court").value,
+            address: document.getElementById("event-address").value,
+          },
+          startDate: document.getElementById("event-start-date").value,
+          endDate: document.getElementById("event-end-date").value,
+          maxParticipants:
+            parseInt(
+              document.getElementById("event-max-participants").value,
+            ) || undefined,
+          entryFee:
+            parseFloat(document.getElementById("event-entry-fee").value) ||
+            undefined,
+          tournamentSite:
+            document.getElementById("event-website").value || undefined,
+          description:
+            document.getElementById("event-description").value || undefined,
+        };
+
+        // Validate required fields
+        if (
+          !eventData.name ||
+          !eventData.location.country ||
+          !eventData.location.state ||
+          !eventData.location.courtName ||
+          !eventData.startDate ||
+          !eventData.endDate
+        ) {
+          showToast("Please fill in all required fields", "warning");
+          return;
         }
 
-        function closeCreateModal() {
-          document.getElementById("create-modal").classList.remove("show");
-          document.getElementById("create-event-form").reset();
-        }
-
-        async function submitEvent() {
-          const eventData = {
-            name: document.getElementById("event-name").value,
-            location: {
-              country: document.getElementById("event-country").value,
-              state: document.getElementById("event-state").value,
-              city: document.getElementById("event-city").value,
-              courtName: document.getElementById("event-court").value,
-              address: document.getElementById("event-address").value,
+        try {
+          const response = await fetch(`${API_URL}/events`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
-            startDate: document.getElementById("event-start-date").value,
-            endDate: document.getElementById("event-end-date").value,
-            maxParticipants:
-              parseInt(
-                document.getElementById("event-max-participants").value,
-              ) || undefined,
-            entryFee:
-              parseFloat(document.getElementById("event-entry-fee").value) ||
-              undefined,
-            tournamentSite:
-              document.getElementById("event-website").value || undefined,
-            description:
-              document.getElementById("event-description").value || undefined,
-          };
+            body: JSON.stringify(eventData),
+          });
 
-          // Validate required fields
-          if (
-            !eventData.name ||
-            !eventData.location.country ||
-            !eventData.location.state ||
-            !eventData.location.courtName ||
-            !eventData.startDate ||
-            !eventData.endDate
-          ) {
-            showToast("Please fill in all required fields", "warning");
-            return;
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Failed to create event");
           }
 
-          try {
-            const response = await fetch(`${API_URL}/events`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify(eventData),
-            });
-
-            if (!response.ok) {
-              const error = await response.json();
-              throw new Error(error.message || "Failed to create event");
-            }
-
-            showToast(
-              "Event application submitted successfully! It will be reviewed by an administrator.",
-              "success",
-            );
-            closeCreateModal();
-            await loadEvents();
-          } catch (error) {
-            console.error("Error creating event:", error);
-            showToast("Error: " + error.message, "error");
-          }
+          showToast(
+            "Event application submitted successfully! It will be reviewed by an administrator.",
+            "success",
+          );
+          closeCreateModal();
+          await loadEvents();
+        } catch (error) {
+          console.error("Error creating event:", error);
+          showToast("Error: " + error.message, "error");
         }
+      }
 
-        // Winner Modal
-        let currentEventForWinner = null;
+      // Winner Modal
+      let currentEventForWinner = null;
 
-        async function openWinnerModal(eventId) {
-          const event = allEvents.find((e) => e._id === eventId);
-          if (!event) return;
+      async function openWinnerModal(eventId) {
+        const event = allEvents.find((e) => e._id === eventId);
+        if (!event) return;
 
-          currentEventForWinner = event;
-          document.getElementById("winner-event-id").value = eventId;
-          document.getElementById("winner-name").value = "";
-          document.getElementById("winner-player-id").value = "";
+        currentEventForWinner = event;
+        document.getElementById("winner-event-id").value = eventId;
+        document.getElementById("winner-name").value = "";
+        document.getElementById("winner-player-id").value = "";
 
-          // Populate player list
-          const playerList = document.getElementById("player-select-list");
-          if (event.registeredPlayers && event.registeredPlayers.length > 0) {
-            playerList.innerHTML = event.registeredPlayers
-              .map(
-                (player) => `
+        // Populate player list
+        const playerList = document.getElementById("player-select-list");
+        if (event.registeredPlayers && event.registeredPlayers.length > 0) {
+          playerList.innerHTML = event.registeredPlayers
+            .map(
+              (player) => `
                     <label class="player-select-item" onclick="selectPlayer('${player.playerId || ""}', '${player.playerName}')">
                         <input type="radio" name="winner-player" />
                         <span>${player.playerName}</span>
                     </label>
                 `,
-              )
-              .join("");
-          } else {
-            playerList.innerHTML =
-              '<div style="padding: 20px; text-align: center; color: var(--pkl-gray);">No registered players - enter name manually</div>';
-          }
-
-          document.getElementById("winner-modal").classList.add("show");
+            )
+            .join("");
+        } else {
+          playerList.innerHTML =
+            '<div style="padding: 20px; text-align: center; color: var(--pkl-gray);">No registered players - enter name manually</div>';
         }
 
-        function selectPlayer(playerId, playerName) {
-          document.getElementById("winner-player-id").value = playerId;
-          document.getElementById("winner-name").value = playerName;
+        document.getElementById("winner-modal").classList.add("show");
+      }
 
-          // Update visual selection
-          document.querySelectorAll(".player-select-item").forEach((item) => {
-            item.classList.remove("selected");
-          });
-          event.target
-            .closest(".player-select-item")
-            ?.classList.add("selected");
+      function selectPlayer(playerId, playerName) {
+        document.getElementById("winner-player-id").value = playerId;
+        document.getElementById("winner-name").value = playerName;
+
+        // Update visual selection
+        document.querySelectorAll(".player-select-item").forEach((item) => {
+          item.classList.remove("selected");
+        });
+        event.target
+          .closest(".player-select-item")
+          ?.classList.add("selected");
+      }
+
+      function closeWinnerModal() {
+        document.getElementById("winner-modal").classList.remove("show");
+        currentEventForWinner = null;
+      }
+
+      async function confirmWinner() {
+        const eventId = document.getElementById("winner-event-id").value;
+        const playerId = document.getElementById("winner-player-id").value;
+        const playerName = document.getElementById("winner-name").value;
+
+        if (!playerName) {
+          showToast("Please select a player or enter a name", "warning");
+          return;
         }
 
-        function closeWinnerModal() {
-          document.getElementById("winner-modal").classList.remove("show");
-          currentEventForWinner = null;
-        }
+        // Final confirmation
+        const confirmed = confirm(
+          `Are you ABSOLUTELY sure you want to declare "${playerName}" as the winner?\n\n` +
+          `⚠️ THIS ACTION CANNOT BE UNDONE!`,
+        );
 
-        async function confirmWinner() {
-          const eventId = document.getElementById("winner-event-id").value;
-          const playerId = document.getElementById("winner-player-id").value;
-          const playerName = document.getElementById("winner-name").value;
+        if (!confirmed) return;
 
-          if (!playerName) {
-            showToast("Please select a player or enter a name", "warning");
-            return;
-          }
-
-          // Final confirmation
-          const confirmed = confirm(
-            `Are you ABSOLUTELY sure you want to declare "${playerName}" as the winner?\n\n` +
-              `⚠️ THIS ACTION CANNOT BE UNDONE!`,
+        try {
+          const response = await fetch(
+            `${API_URL}/events/${eventId}/winner`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                playerId: playerId || undefined,
+                playerName: playerName,
+              }),
+            },
           );
 
-          if (!confirmed) return;
-
-          try {
-            const response = await fetch(
-              `${API_URL}/events/${eventId}/winner`,
-              {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                  playerId: playerId || undefined,
-                  playerName: playerName,
-                }),
-              },
-            );
-
-            if (!response.ok) {
-              const error = await response.json();
-              throw new Error(error.message || "Failed to set winner");
-            }
-
-            showToast("Winner declared successfully! 🏆", "success");
-            closeWinnerModal();
-            await loadEvents();
-          } catch (error) {
-            console.error("Error setting winner:", error);
-            showToast("Error: " + error.message, "error");
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Failed to set winner");
           }
+
+          showToast("Winner declared successfully! 🏆", "success");
+          closeWinnerModal();
+          await loadEvents();
+        } catch (error) {
+          console.error("Error setting winner:", error);
+          showToast("Error: " + error.message, "error");
+        }
+      }
+
+      function viewEvent(eventId) {
+        const event = allEvents.find((e) => e._id === eventId);
+        if (!event) return;
+
+        const loc = event.location || {};
+        const locationStr = [loc.courtName, loc.city, loc.state, loc.country].filter(Boolean).join(', ');
+        const dates = `${formatDate(event.startDate)} - ${formatDate(event.endDate)}`;
+        const players = event.registeredPlayers || [];
+
+        const statusColors = {
+          pending: '#f59e0b',
+          approved: '#2fa06f',
+          completed: '#6b7280',
+          rejected: '#ef4444'
+        };
+        const statusColor = statusColors[event.status] || '#6b7280';
+
+        let html = `
+          <div style="margin-bottom: 20px;">
+            <span style="display: inline-block; background: ${statusColor}; color: #fff; font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px; text-transform: uppercase;">${event.status}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+              <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">Location</div>
+              <div style="color: #fff; font-size: 14px;">${locationStr || 'TBD'}</div>
+            </div>
+            <div>
+              <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">Dates</div>
+              <div style="color: #fff; font-size: 14px;">${dates}</div>
+            </div>
+            <div>
+              <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">Max Participants</div>
+              <div style="color: #fff; font-size: 14px;">${event.maxParticipants || 'Unlimited'}</div>
+            </div>
+            <div>
+              <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">Registered</div>
+              <div style="color: #fff; font-size: 14px;">${players.length} Players</div>
+            </div>
+          </div>
+        `;
+
+        if (event.winner) {
+          html += `
+          <div style="background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); border-radius: 10px; padding: 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-trophy" style="color: #fbbf24; font-size: 20px;"></i>
+            <div>
+              <div style="color: #fbbf24; font-size: 11px; font-weight: 600; text-transform: uppercase;">Winner</div>
+              <div style="color: #fff; font-size: 16px; font-weight: 600;">${event.winner.playerName}</div>
+            </div>
+          </div>
+          `;
         }
 
-        function viewEvent(eventId) {
-          // Could open a detail modal or navigate to event page
-          const event = allEvents.find((e) => e._id === eventId);
-          if (event) {
-            showToast(
-              `Event: ${event.name} | Status: ${event.status} | Players: ${event.registeredPlayers?.length || 0}`,
-              "info",
-            );
-          }
+        if (event.status === 'rejected') {
+          html += `
+          <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-times-circle" style="color: #ef4444; font-size: 20px;"></i>
+            <div>
+              <div style="color: #ef4444; font-size: 11px; font-weight: 600; text-transform: uppercase;">Rejected</div>
+              <div style="color: rgba(255,255,255,0.7); font-size: 14px;">This event application was not approved.</div>
+            </div>
+          </div>
+          `;
         }
 
-        // Initialize
-        checkAuth();
-      </script>
+        if (players.length > 0) {
+          html += `
+          <div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 10px; text-transform: uppercase; font-weight: 600;">Registered Players</div>
+            <div style="max-height: 200px; overflow-y: auto;">
+              ${players.map((p, i) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 4px;">
+                  <span style="color: #fff; font-size: 13px;">${i + 1}. ${p.playerName || p.email || 'Unknown'}</span>
+                  <span style="color: rgba(255,255,255,0.4); font-size: 11px;">${p.registeredAt ? formatDate(p.registeredAt) : ''}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          `;
+        }
 
-      <!-- Scripts -->
-      <script src="js/jquery.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/script.js"></script>
-      <script src="js/pkl-header.js"></script>
-    </div>
-    <!-- End page-wrapper -->
-  </body>
+        document.getElementById('view-modal-title').textContent = event.name;
+        document.getElementById('view-modal-body').innerHTML = html;
+        document.getElementById('view-modal').classList.add('show');
+      }
+
+      function closeViewModal() {
+        document.getElementById('view-modal').classList.remove('show');
+      }
+
+      // Initialize
+      checkAuth();
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/pkl-header-component.js"></script>
+  </div>
+  <!-- End page-wrapper -->
+</body>
+
 </html>

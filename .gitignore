@@ -27,3 +27,6 @@ npm-debug.log*
 
 # Docker volumes (local only)
 pkl_mongo_data/
+
+# SSL certificates (generated on server)
+ssl/

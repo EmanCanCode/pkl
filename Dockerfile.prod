@@ -1,0 +1,21 @@
+FROM nginx:alpine
+
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy site files
+COPY . /usr/share/nginx/html
+
+# Remove unnecessary files from container
+RUN rm -f /usr/share/nginx/html/Dockerfile* \
+    && rm -f /usr/share/nginx/html/docker-compose*.yml \
+    && rm -f /usr/share/nginx/html/nginx*.conf \
+    && rm -f /usr/share/nginx/html/.env* \
+    && rm -f /usr/share/nginx/html/deploy.sh \
+    && rm -f /usr/share/nginx/html/DEPLOYMENT.md \
+    && rm -rf /usr/share/nginx/html/.git \
+    && rm -rf /usr/share/nginx/html/ssl
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
