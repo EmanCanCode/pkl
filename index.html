@@ -455,26 +455,146 @@
 
     <!-- Clients Section One-->
     <section class="clients-section">
-      <div class="container">
-        <div class="outer-box aos-init" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-          <h6 class="client-title">
-            <img class="icon-bounce" src="images/icons/theme-icon22.png" alt="" />PKL.CLUB trusted partners and major
-            sponsors
-          </h6>
-          <div class="partners-logos">
-            <a href="#" class="partner-logo">
-              <img src="images/Pickleball Pros Logo.svg" alt="Pickleball Pros" />
-            </a>
-            <a href="#" class="partner-logo">
-              <img src="images/Rallie Pickleball.png" alt="Rallie Pickleball" />
-            </a>
-            <a href="#" class="partner-logo">
-              <img src="images/VFV Logo.png" alt="VFV" />
-            </a>
+        <div class="container">
+          <div
+            class="outer-box aos-init"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <h6 class="client-title">
+              <img
+                class="icon-bounce"
+                src="images/icons/theme-icon22.png"
+                alt=""
+              />PKL.CLUB trusted partners and major sponsors
+            </h6>
+            
+            <!-- CSS Marquee Animation -->
+            <style>
+              .logo-marquee-wrapper {
+                overflow: hidden;
+                width: 100%;
+                position: relative;
+                padding: 20px 0;
+              }
+              .logo-marquee-wrapper::before,
+              .logo-marquee-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100px;
+                z-index: 2;
+                pointer-events: none;
+              }
+              .logo-marquee-wrapper::before {
+                left: 0;
+                background: linear-gradient(to right, #050f13, transparent);
+              }
+              .logo-marquee-wrapper::after {
+                right: 0;
+                background: linear-gradient(to left, #050f13, transparent);
+              }
+              .logo-marquee-track {
+                display: flex;
+                width: max-content;
+                animation: marquee-scroll 20s linear infinite;
+              }
+              .logo-marquee-track:hover {
+                animation-play-state: paused;
+              }
+              @keyframes marquee-scroll {
+                0% {
+                  transform: translateX(0);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              .logo-marquee-item {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 50px;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+              }
+              .logo-marquee-item:hover {
+                opacity: 0.7;
+                transform: scale(1.05);
+              }
+              .logo-marquee-item img {
+                width: 100px;
+                height: 100px;
+                object-fit: contain;
+                filter: grayscale(0%);
+                transition: filter 0.3s ease;
+              }
+              .logo-marquee-item:hover img {
+                filter: grayscale(0%) brightness(1.1);
+              }
+              @media (max-width: 768px) {
+                .logo-marquee-item {
+                  padding: 0 30px;
+                }
+                .logo-marquee-item img {
+                  width: 80px;
+                  height: 80px;
+                }
+                .logo-marquee-wrapper::before,
+                .logo-marquee-wrapper::after {
+                  width: 50px;
+                }
+              }
+            </style>
+            
+            <div class="logo-marquee-wrapper">
+              <div class="logo-marquee-track">
+                <!-- First set of logos -->
+                <div class="logo-marquee-item">
+                  <img src="images/Pickleball Pros Logo.svg" alt="Pickleball Pros" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Rallie Pickleball.png" alt="Rallie Pickleball" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/VFV Logo.png" alt="VFV" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Pickleball Pros Logo.svg" alt="Pickleball Pros" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Rallie Pickleball.png" alt="Rallie Pickleball" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/VFV Logo.png" alt="VFV" />
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="logo-marquee-item">
+                  <img src="images/Pickleball Pros Logo.svg" alt="Pickleball Pros" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Rallie Pickleball.png" alt="Rallie Pickleball" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/VFV Logo.png" alt="VFV" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Pickleball Pros Logo.svg" alt="Pickleball Pros" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/Rallie Pickleball.png" alt="Rallie Pickleball" />
+                </div>
+                <div class="logo-marquee-item">
+                  <img src="images/VFV Logo.png" alt="VFV" />
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     <!--End Clients Section One -->
 
     <!-- Funfact Section - COMMENTED OUT

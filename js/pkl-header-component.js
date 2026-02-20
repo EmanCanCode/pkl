@@ -13,7 +13,7 @@
   // ── configuration ──────────────────────────────────────────────
   const NAV_ITEMS = [
     { label: "Players", href: "players.html" },
-    { label: "How It Works", href: "index.html#how-it-works" },
+    { label: "How It Works", href: "how-it-works.html" },
     { label: "World Series", href: "world-series.html" },
     { label: "Operators", href: "operators.html" },
     { label: "Partners", href: "sponsors.html" },
@@ -32,6 +32,7 @@
   // Page → nav label mapping for "current" highlighting
   const PAGE_TO_NAV = {
     "players.html": "Players",
+    "how-it-works.html": "How It Works",
     "world-series.html": "World Series",
     "operators.html": "Operators",
     "sponsors.html": "Partners",

@@ -329,33 +329,77 @@ var THEMEMASCOT = {};
 
   //service-carousel One - Infinite smooth carousel
   if ($(".clients-swiper").length) {
-    var swiper = new Swiper(".clients-swiper", {
-      slidesPerView: "auto",
-      spaceBetween: 80,
-      speed: 4000,
-      loop: true,
-      loopAdditionalSlides: 3,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-      },
-      allowTouchMove: false,
-      breakpoints: {
-        0: {
-          spaceBetween: 40,
+    var initClientsSwiper = function () {
+      var swiper = new Swiper(".clients-swiper", {
+        slidesPerView: "auto",
+        spaceBetween: 80,
+        speed: 5000,
+        loop: true,
+        loopedSlides: 10,
+        loopAdditionalSlides: 5,
+        freeMode: true,
+        freeModeMomentum: false,
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+          reverseDirection: false,
         },
-        576: {
-          spaceBetween: 60,
+        allowTouchMove: false,
+        grabCursor: false,
+        breakpoints: {
+          0: {
+            spaceBetween: 40,
+          },
+          576: {
+            spaceBetween: 60,
+          },
+          768: {
+            spaceBetween: 80,
+          },
+          1200: {
+            spaceBetween: 100,
+          },
         },
-        768: {
-          spaceBetween: 80,
-        },
-        1200: {
-          spaceBetween: 100,
-        },
-      },
-    });
+      });
+    };
+
+    // Wait for images to load before initializing swiper
+    var swiperImages = document.querySelectorAll(".clients-swiper img");
+    var loadedCount = 0;
+    var totalImages = swiperImages.length;
+
+    if (totalImages === 0) {
+      initClientsSwiper();
+    } else {
+      swiperImages.forEach(function (img) {
+        if (img.complete) {
+          loadedCount++;
+          if (loadedCount >= totalImages) {
+            initClientsSwiper();
+          }
+        } else {
+          img.addEventListener("load", function () {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              initClientsSwiper();
+            }
+          });
+          img.addEventListener("error", function () {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              initClientsSwiper();
+            }
+          });
+        }
+      });
+      // Fallback timeout in case images stall
+      setTimeout(function () {
+        if (loadedCount < totalImages) {
+          initClientsSwiper();
+        }
+      }, 3000);
+    }
   }
 
   //service-carousel One

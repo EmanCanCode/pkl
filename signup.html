@@ -1103,7 +1103,9 @@
 
           <div class="auth-operator-link">
             Want to host events?
-            <a href="#" id="switch-to-operator">Sign up as an Operator</a>
+            <a href="signup.html?type=operator" id="switch-to-operator"
+              >Sign up as an Operator</a
+            >
           </div>
         </div>
       </div>
@@ -1159,28 +1161,28 @@
           title.textContent = "Player";
           desc.textContent = "Join tournaments & compete";
           switchLink.textContent = "Sign up as an Operator";
-          switchLink.onclick = function (e) {
-            e.preventDefault();
-            setAccountType("operator");
-          };
+          switchLink.href = "signup.html?type=operator";
         } else {
           icon.className = "fas fa-calendar-alt";
           title.textContent = "Operator";
           desc.textContent = "Host events & tournaments";
           switchLink.textContent = "Sign up as a Player";
-          switchLink.onclick = function (e) {
-            e.preventDefault();
-            setAccountType("player");
-          };
+          switchLink.href = "signup.html?type=player";
         }
+        // Update URL without reload
+        const newUrl =
+          type === "player" ? "signup.html" : "signup.html?type=operator";
+        window.history.replaceState({}, "", newUrl);
       }
 
-      // Initialize operator switch link
+      // Initialize operator switch link - allow both click and navigation
       document
         .getElementById("switch-to-operator")
         .addEventListener("click", function (e) {
           e.preventDefault();
-          setAccountType("operator");
+          const currentType = selectedUserType;
+          const newType = currentType === "player" ? "operator" : "player";
+          setAccountType(newType);
         });
 
       // Check URL params for account type

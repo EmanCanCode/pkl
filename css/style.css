@@ -16731,6 +16731,12 @@ Process Section H2
   align-items: center;
   justify-content: center;
   width: auto !important;
+  min-width: 100px;
+}
+.clients-section .swiper-slide img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
 .client-block .inner-box:hover .image-box .image img:nth-child(1) {
@@ -16801,6 +16807,75 @@ Process Section H2
   .partners-logos {
     gap: 30px;
     flex-direction: column;
+  }
+}
+
+/* Partners Carousel - Infinite Loop Animation */
+.partners-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.partners-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: scrollPartners 12s linear infinite;
+}
+
+.partners-track:hover {
+  animation-play-state: paused;
+}
+
+.partners-set {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding-right: 80px;
+  flex-shrink: 0;
+}
+
+@keyframes scrollPartners {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .partners-set {
+    gap: 50px;
+    padding-right: 50px;
+  }
+  .partners-track {
+    animation-duration: 10s;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .partners-set {
+    gap: 40px;
+    padding-right: 40px;
+  }
+  .partners-track {
+    animation-duration: 8s;
   }
 }
 .partner-logo {

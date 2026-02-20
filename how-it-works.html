@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PKL.CLUB | How It Works</title>
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Google Fonts for PKL.CLUB -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      /* How It Works Page Styles */
+      .hiw-hero {
+        padding: 200px 0 100px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Background Effects */
+      .hiw-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 20%,
+            rgba(47, 160, 111, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 80%,
+            rgba(126, 217, 87, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .hiw-hero .shape-1 {
+        position: absolute;
+        top: 10%;
+        left: -5%;
+        opacity: 0.6;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hiw-hero .shape-2 {
+        position: absolute;
+        top: 15%;
+        right: -3%;
+        opacity: 0.5;
+        animation: float 8s ease-in-out infinite reverse;
+      }
+
+      .hiw-hero .shape-3 {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        opacity: 0.4;
+        animation: float 7s ease-in-out infinite;
+      }
+
+      .hiw-hero .shape-4 {
+        position: absolute;
+        bottom: 20%;
+        right: 8%;
+        opacity: 0.5;
+        animation: float 5s ease-in-out infinite reverse;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+
+      .hiw-hero .hero-content {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hiw-hero .hero-content h1 {
+        font-size: 56px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      .hiw-hero .hero-content .subheadline {
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .hiw-hero .hero-content .intro-copy {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 40px;
+        line-height: 1.7;
+      }
+
+      .hiw-hero .button-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Pathway Visual */
+      .pathway-visual {
+        margin-top: 60px;
+        padding: 50px 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(47, 160, 111, 0.2) 0%,
+          rgba(9, 29, 30, 0.9) 50%,
+          rgba(47, 160, 111, 0.15) 100%
+        );
+        border: 2px solid rgba(47, 160, 111, 0.5);
+        border-radius: 24px;
+        backdrop-filter: blur(10px);
+        box-shadow:
+          0 10px 40px rgba(47, 160, 111, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 2;
+      }
+
+      .pathway-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .pathway-step {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .pathway-step .step-box {
+        background: linear-gradient(
+          145deg,
+          rgba(47, 160, 111, 0.35) 0%,
+          rgba(47, 160, 111, 0.15) 100%
+        );
+        border: 2px solid rgba(47, 160, 111, 0.6);
+        padding: 20px 30px;
+        border-radius: 16px;
+        text-align: center;
+        min-width: 150px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .pathway-step .step-box:hover {
+        transform: translateY(-5px);
+        border-color: #2fa06f;
+        box-shadow: 0 8px 25px rgba(47, 160, 111, 0.3);
+      }
+
+      .pathway-step .step-box .step-icon {
+        font-size: 32px;
+        color: #7ed957;
+        margin-bottom: 10px;
+        text-shadow: 0 0 20px rgba(126, 217, 87, 0.5);
+      }
+
+      .pathway-step .step-box .step-text {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      .pathway-step .arrow {
+        color: #7ed957;
+        font-size: 28px;
+        text-shadow: 0 0 15px rgba(126, 217, 87, 0.4);
+        animation: pulse-arrow 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-arrow {
+        0%,
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        50% {
+          opacity: 0.7;
+          transform: translateX(5px);
+        }
+      }
+
+      /* PKL Pathway Section */
+      .pkl-pathway-section {
+        padding: 100px 0;
+      }
+
+      .pathway-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .pathway-card {
+        background: rgba(47, 160, 111, 0.08);
+        border: 2px solid rgba(47, 160, 111, 0.3);
+        border-radius: 20px;
+        padding: 35px 25px;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .pathway-card:hover {
+        transform: translateY(-8px);
+        border-color: #2fa06f;
+        box-shadow: 0 20px 40px rgba(47, 160, 111, 0.2);
+      }
+
+      .pathway-card .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #2fa06f 0%, #7ed957 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .pathway-card .card-icon {
+        font-size: 40px;
+        color: #2fa06f;
+        margin-bottom: 20px;
+      }
+
+      .pathway-card h4 {
+        color: #fff;
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .pathway-card p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .supporting-line {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #2fa06f;
+      }
+
+      /* What Makes PKL Different Section */
+      .different-section {
+        padding: 100px 0;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .different-content {
+        max-width: 800px;
+        margin: 0 auto 50px;
+        text-align: center;
+      }
+
+      .different-content p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+      }
+
+      .highlights-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .highlight-item {
+        background: rgba(47, 160, 111, 0.1);
+        border: 2px solid rgba(47, 160, 111, 0.3);
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .highlight-item:hover {
+        border-color: #2fa06f;
+        transform: translateY(-5px);
+      }
+
+      .highlight-item .highlight-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          135deg,
+          rgba(47, 160, 111, 0.3) 0%,
+          rgba(126, 217, 87, 0.3) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 24px;
+        color: #7ed957;
+      }
+
+      .highlight-item h5 {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      /* World Series Section */
+      .world-series-section {
+        padding: 100px 0;
+      }
+
+      .world-series-content {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .world-series-text {
+        flex: 1;
+      }
+
+      .world-series-text p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .world-series-image {
+        flex: 1;
+        text-align: center;
+      }
+
+      .world-series-image img {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+
+      /* Getting Started Section */
+      .getting-started-section {
+        padding: 100px 0;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .getting-started-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .getting-started-card {
+        background: rgba(47, 160, 111, 0.08);
+        border: 2px solid rgba(47, 160, 111, 0.3);
+        border-radius: 24px;
+        padding: 50px 40px;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      .getting-started-card:hover {
+        border-color: #2fa06f;
+        box-shadow: 0 20px 40px rgba(47, 160, 111, 0.15);
+      }
+
+      .getting-started-card .card-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #2fa06f 0%, #7ed957 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 36px;
+        color: #fff;
+      }
+
+      .getting-started-card h3 {
+        color: #fff;
+        font-size: 28px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .getting-started-card p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1199px) {
+        .pathway-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .highlights-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .world-series-content {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hiw-hero {
+          padding: 140px 0 60px;
+        }
+
+        .hiw-hero .shape-1,
+        .hiw-hero .shape-2,
+        .hiw-hero .shape-3,
+        .hiw-hero .shape-4 {
+          display: none;
+        }
+
+        .hiw-hero .hero-content h1 {
+          font-size: 36px;
+        }
+
+        .hiw-hero .hero-content .subheadline {
+          font-size: 18px;
+        }
+
+        .pathway-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .highlights-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .getting-started-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pathway-flow {
+          flex-direction: column;
+        }
+
+        .pathway-step .arrow {
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!-- Preloader start -->
+      <div class="preloader">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <path
+            id="preloaderSvg"
+            d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"
+          ></path>
+        </svg>
+        <div class="preloader-heading">
+          <div class="load-text">
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+          </div>
+        </div>
+      </div>
+      <!-- Preloader end -->
+
+      <!-- Back-to-top start -->
+      <div class="back-to-top-wrapper">
+        <button id="back_to_top" type="button" class="back-to-top-btn">
+          <i class="fa-solid fa-angle-up"></i>
+        </button>
+      </div>
+      <!-- Back-to-top end -->
+
+      <div id="pkl-header"></div>
+
+      <!-- Hero Section: Overview and Definition -->
+      <section class="hiw-hero">
+        <!-- Background Shapes -->
+        <div class="shape-1 tm-gsap-img-parallax">
+          <img src="images/icons/shape-10.png" alt="" />
+        </div>
+        <div class="shape-2 tm-gsap-img-parallax">
+          <img src="images/icons/shape-31.png" alt="" />
+        </div>
+        <div class="shape-3 tm-gsap-img-parallax">
+          <img src="images/icons/shape-13.png" alt="" />
+        </div>
+        <div class="shape-4 tm-gsap-img-parallax">
+          <img src="images/icons/shape-14.png" alt="" />
+        </div>
+
+        <div class="container">
+          <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>How PKL Works</h1>
+            <p class="subheadline">
+              PKL is a global pathway where players progress through competition
+              and earn access to larger global competitions.
+            </p>
+            <p class="intro-copy">
+              We connect local competition to national and international
+              opportunity through an open, merit-based system.
+            </p>
+            <div class="button-group">
+              <a class="btn-style-one theme-btn" href="signup.html">
+                <span class="btn-text">Create Your Player Profile</span>
+              </a>
+              <a
+                class="btn-style-one theme-btn"
+                href="#pkl-pathway"
+                style="background: #8bc34a"
+              >
+                <span class="btn-text">See the Player Pathway</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Pathway Visual -->
+          <div
+            class="pathway-visual"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
+            <div class="pathway-flow">
+              <div class="pathway-step">
+                <div class="step-box">
+                  <div class="step-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="step-text">Local Play</div>
+                </div>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
+              <div class="pathway-step">
+                <div class="step-box">
+                  <div class="step-icon"><i class="fas fa-trophy"></i></div>
+                  <div class="step-text">Certified Events</div>
+                </div>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
+              <div class="pathway-step">
+                <div class="step-box">
+                  <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                  <div class="step-text">Progression</div>
+                </div>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
+              <div class="pathway-step">
+                <div class="step-box">
+                  <div class="step-icon"><i class="fas fa-globe"></i></div>
+                  <div class="step-text">World Series</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Hero Section -->
+
+      <!-- The PKL Pathway Section -->
+      <section class="pkl-pathway-section" id="pkl-pathway">
+        <div class="container">
+          <div
+            class="sec-title text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <span class="sub-title">
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              Your Journey
+            </span>
+            <h2 class="title text-reveal-anim">The PKL Pathway</h2>
+          </div>
+
+          <div class="pathway-grid">
+            <!-- Step 1 -->
+            <div
+              class="pathway-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <div class="step-number">1</div>
+              <div class="card-icon"><i class="fas fa-user-plus"></i></div>
+              <h4>Create Your Profile</h4>
+              <p>Join the PKL network and establish your player identity.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+              class="pathway-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div class="step-number">2</div>
+              <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+              <h4>Compete in Pathway Events</h4>
+              <p>
+                Play in events that feed into the PKL pathway and count toward
+                progression.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div
+              class="pathway-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              <div class="step-number">3</div>
+              <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+              <h4>Progress Through Performance</h4>
+              <p>
+                Advance as you compete, improve, and earn results over time.
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div
+              class="pathway-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              <div class="step-number">4</div>
+              <div class="card-icon"><i class="fas fa-star"></i></div>
+              <h4>Earn Access to Bigger Opportunities</h4>
+              <p>
+                Top performers reach higher-level showcases, culminating in the
+                World Series.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="supporting-line"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="500"
+          >
+            Performance drives progression.
+          </div>
+
+          <div
+            class="text-center"
+            style="margin-top: 40px"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="600"
+          >
+            <a class="btn-style-one theme-btn" href="signup.html">
+              <span class="btn-text">Start Your Journey</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- End PKL Pathway Section -->
+
+      <!-- What Makes PKL Different Section -->
+      <section class="different-section">
+        <div class="container">
+          <div
+            class="sec-title text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <span class="sub-title">
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              Our Difference
+            </span>
+            <h2 class="title text-reveal-anim">What Makes PKL Different?</h2>
+          </div>
+
+          <div
+            class="different-content"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
+            <p>
+              PKL is built around open access and earned progression. We connect
+              players through competition and let your performance shine and
+              shape opportunities. Local success can lead to global visibility
+              through one unified pathway.
+            </p>
+          </div>
+
+          <div class="highlights-grid">
+            <!-- Highlight 1 -->
+            <div
+              class="highlight-item"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <div class="highlight-icon"><i class="fas fa-door-open"></i></div>
+              <h5>Anyone Can Enter</h5>
+            </div>
+
+            <!-- Highlight 2 -->
+            <div
+              class="highlight-item"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div class="highlight-icon"><i class="fas fa-bullseye"></i></div>
+              <h5>Every Match Matters</h5>
+            </div>
+
+            <!-- Highlight 3 -->
+            <div
+              class="highlight-item"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              <div class="highlight-icon"><i class="fas fa-medal"></i></div>
+              <h5>Progress Is Earned</h5>
+            </div>
+
+            <!-- Highlight 4 -->
+            <div
+              class="highlight-item"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              <div class="highlight-icon"><i class="fas fa-link"></i></div>
+              <h5>Opportunity Is Connected</h5>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End What Makes PKL Different Section -->
+
+      <!-- The World Series Section -->
+      <section class="world-series-section">
+        <div class="container">
+          <div
+            class="sec-title text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <span class="sub-title">
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              The Destination
+            </span>
+            <h2 class="title text-reveal-anim">The PKL World Series</h2>
+          </div>
+
+          <div class="world-series-content">
+            <div
+              class="world-series-text"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              <p>
+                The PKL World Series brings together top performers from across
+                the globe. It represents the highest level of competition within
+                the PKL system.
+              </p>
+              <p>
+                Qualification is earned through consistent performance in PKL
+                events. This is where the pathway leads. This is where champions
+                are crowned.
+              </p>
+              <a class="btn-style-one theme-btn" href="world-series.html">
+                <span class="btn-text">Explore the World Series</span>
+              </a>
+            </div>
+            <div
+              class="world-series-image"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            >
+              <img src="images/PWS-2027.png" alt="PKL World Series" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End World Series Section -->
+
+      <!-- Getting Started Section -->
+      <section class="getting-started-section">
+        <div class="container">
+          <div
+            class="sec-title text-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <span class="sub-title">
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              Begin Now
+            </span>
+            <h2 class="title text-reveal-anim">Getting Started</h2>
+          </div>
+
+          <div class="getting-started-grid">
+            <!-- For Players -->
+            <div
+              class="getting-started-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <div class="card-icon"><i class="fas fa-user"></i></div>
+              <h3>For Players</h3>
+              <p>
+                Create your profile and begin your journey through pathway
+                competition.
+              </p>
+              <a class="btn-style-one theme-btn" href="signup.html">
+                <span class="btn-text">Create Your Profile</span>
+              </a>
+            </div>
+
+            <!-- For Operators -->
+            <div
+              class="getting-started-card"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div class="card-icon"><i class="fas fa-flag"></i></div>
+              <h3>For Operators</h3>
+              <p>
+                Apply to host a pathway event and help power the system locally.
+              </p>
+              <a
+                class="btn-style-one theme-btn"
+                href="signup.html?type=operator"
+              >
+                <span class="btn-text">Become an Operator</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Getting Started Section -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer footer-style-one">
+        <div class="widgets-section"></div>
+        <div class="footer-middle">
+          <div class="container">
+            <div class="row">
+              <!-- Footer Column -->
+              <div class="col-xl-4 col-lg-6">
+                <div class="footer-widget about-widget">
+                  <div class="logo">
+                    <img src="images/logo.png?v=2" alt="PKL.CLUB" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-5 col-lg-6 offset-xl-3">
+                <div class="row">
+                  <!-- footer column -->
+                  <div
+                    class="footer-column col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4"
+                  >
+                    <div
+                      class="footer-widget links-widget wow fadeInLeft"
+                      data-wow-delay="200ms"
+                    >
+                      <h6 class="widget-title">Company</h6>
+                      <div class="widget-content">
+                        <ul class="user-links">
+                          <li>
+                            <a href="mailto:hello@pkl.club">Contact Us</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- footer column -->
+                  <div
+                    class="footer-column col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-sm-4"
+                  >
+                    <div
+                      class="footer-widget links-widget wow fadeInLeft"
+                      data-wow-delay="200ms"
+                    >
+                      <h6 class="widget-title">Product</h6>
+                      <div class="widget-content">
+                        <ul class="user-links">
+                          <li><a href="signup.html">Sign Up</a></li>
+                          <li><a href="world-series.html">World Series</a></li>
+                          <li><a href="players.html">Players</a></li>
+                          <li><a href="operators.html">Operators</a></li>
+                          <li><a href="sponsors.html">Partners</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-two">
+          <div class="container">
+            <div class="inner-container">
+              <div class="copyright-text">
+                &copy; Copyright 2026 PKL.CLUB. All Rights Reserved.
+              </div>
+              <ul class="policy-link">
+                <li><a href="#">Terms &amp; Condition</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="mailto:hello@pkl.club">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!--End Main Footer -->
+    </div>
+    <!-- End Page Wrapper -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/appear.js"></script>
+    <script src="js/knob.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/splitType.js"></script>
+    <script src="js/gsap-scroll-smoother.js"></script>
+    <script src="js/gsap-scroll-to-plugin.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script src="js/custom-gsap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/pkl-header-component.js"></script>
+  </body>
+</html>
