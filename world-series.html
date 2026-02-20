@@ -58,10 +58,48 @@
       <div id="pkl-header"></div>
 
       <!-- Start main-content -->
-      <section class="pws-hero-section" style="padding: 180px 0 80px">
-        <div class="auto-container">
+      <section
+        class="pws-hero-section"
+        style="padding: 200px 0 100px; position: relative; overflow: hidden"
+      >
+        <!-- Background Effects -->
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+              radial-gradient(
+                ellipse at 30% 20%,
+                rgba(47, 160, 111, 0.15) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                ellipse at 70% 80%,
+                rgba(126, 217, 87, 0.08) 0%,
+                transparent 50%
+              );
+            pointer-events: none;
+          "
+        ></div>
+        <div
+          class="tm-gsap-img-parallax"
+          style="position: absolute; top: 10%; left: -5%; opacity: 0.5"
+        >
+          <img src="images/icons/shape-10.png" alt="" />
+        </div>
+        <div
+          class="tm-gsap-img-parallax"
+          style="position: absolute; top: 15%; right: -3%; opacity: 0.4"
+        >
+          <img src="images/icons/shape-31.png" alt="" />
+        </div>
+
+        <div class="auto-container" style="position: relative; z-index: 2">
           <div class="title-outer text-center">
-            <!-- PWS Logo -->
+            <!-- Player Image (focus on players, not logo) -->
             <div
               class="pws-logo mb-4"
               data-aos="fade-down"
@@ -70,130 +108,233 @@
             >
               <img
                 src="images/PWS-female.png"
-                alt="Pickleball World Series female image"
-                style="max-width: 200px; opacity: 1"
+                alt="Pickleball World Series player"
+                style="max-width: 180px; opacity: 1"
               />
             </div>
             <h1
               class="title pws-hero-title"
               style="
-                font-size: 64px;
+                font-size: 56px;
                 font-weight: 700;
                 color: #fff;
                 margin-bottom: 20px;
+                line-height: 1.2;
               "
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay="400"
             >
-              Pickleball World Series
+              Play Your Way to the<br /><span style="color: #7ed957"
+                >PKL World Series</span
+              >
             </h1>
-            <ul
-              class="page-breadcrumb"
-              style="margin-bottom: 40px"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="600"
-            >
-              <li><a href="index.html">Home</a></li>
-              <li>World Series</li>
-            </ul>
-            <!-- Tournament Description -->
             <div
               class="pws-description"
               style="max-width: 800px; margin: 0 auto"
               data-aos="fade-up"
               data-aos-duration="1000"
-              data-aos-delay="800"
+              data-aos-delay="600"
             >
               <p
                 style="
-                  color: #fff;
-                  font-style: italic;
-                  font-size: 18px;
-                  font-weight: 200;
-                  line-height: 1.6;
+                  color: rgba(255, 255, 255, 0.85);
+                  font-size: 20px;
+                  font-weight: 400;
+                  line-height: 1.7;
                   margin-bottom: 40px;
                 "
               >
-                This is where you will find all the information, visuals and
-                real time results of the PWS tournament. The peoples pickleball
-                tournament lives here
+                Top performers from across the PKL pathway qualify by competing,
+                improving, and earning every step.
               </p>
-              <!-- Sponsorship Section -->
-              <h4
-                style="
-                  color: #fff;
-                  font-size: 16px;
-                  font-weight: 200;
-                  margin-bottom: 15px;
-                "
+            </div>
+            <!-- CTAs -->
+            <div
+              style="
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+              "
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="800"
+            >
+              <a class="btn-style-one theme-btn" href="signup.html">
+                <span class="btn-text">Start Your Journey</span>
+              </a>
+              <a
+                class="btn-style-one theme-btn"
+                href="how-it-works.html"
+                style="background: #8bc34a"
               >
-                Submit Your Sponsorship Proposal through PKL.CLUB
-              </h4>
-              <p
-                style="
-                  color: #fff;
-                  font-style: italic;
-                  font-size: 14px;
-                  font-weight: 200;
-                  line-height: 1.6;
-                  opacity: 1;
-                "
-              >
-                Take the opportunity to apply for one of our global official
-                sponsor spots, which will be featured on all branding at every
-                event. Please note that inquiries about sponsoring specific
-                events should be directed to the respective event operators.
-              </p>
+                <span class="btn-text">How the Pathway Works</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
       <!-- end main-content -->
 
+      <!-- What is the PKL World Series? -->
+      <section style="padding: 100px 0">
+        <div class="container">
+          <div class="row align-items-center">
+            <div
+              class="col-lg-6"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              <div style="max-width: 540px">
+                <span
+                  class="sub-title"
+                  style="margin-bottom: 20px; display: inline-block"
+                >
+                  <img
+                    class="icon-img animation__rotateY"
+                    style="max-height: 25px"
+                    src="images/favicon.png"
+                    alt=""
+                  />
+                  The Destination
+                </span>
+                <h2
+                  style="
+                    color: #fff;
+                    font-size: 42px;
+                    font-weight: 700;
+                    margin-bottom: 25px;
+                    line-height: 1.2;
+                  "
+                >
+                  What is the PKL World Series?
+                </h2>
+                <p
+                  style="
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 18px;
+                    line-height: 1.8;
+                    margin-bottom: 20px;
+                  "
+                >
+                  The PKL World Series brings together top-performing players
+                  from across the globe. Players qualify through competition and
+                  results, rather than rankings or reputation.
+                </p>
+                <p
+                  style="
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 18px;
+                    line-height: 1.8;
+                    margin-bottom: 30px;
+                  "
+                >
+                  Opportunity is earned through play.
+                </p>
+                <p
+                  style="
+                    color: #7ed957;
+                    font-size: 22px;
+                    font-weight: 600;
+                    font-style: italic;
+                    margin-bottom: 0;
+                  "
+                >
+                  The court decides who belongs.
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-lg-6 text-center"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <img
+                src="images/PWS-2027.png"
+                alt="PKL World Series"
+                style="
+                  max-width: 380px;
+                  width: 100%;
+                  filter: drop-shadow(0 20px 40px rgba(47, 160, 111, 0.3));
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End What is the PKL World Series? -->
+
       <!-- Global Map Section -->
       <section class="pws-map-section" style="padding: 80px 0">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-12 text-center">
+          <div class="row align-items-center">
+            <div
+              class="col-lg-5"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              <span
+                class="sub-title"
+                style="margin-bottom: 20px; display: inline-block"
+              >
+                <img
+                  class="icon-img animation__rotateY"
+                  style="max-height: 25px"
+                  src="images/favicon.png"
+                  alt=""
+                />
+                Global Reach
+              </span>
               <h2
                 class="pws-map-title"
                 style="
                   color: #fff;
-                  font-size: 72px;
+                  font-size: 42px;
                   font-weight: 700;
+                  margin-bottom: 20px;
+                  line-height: 1.2;
+                "
+              >
+                A global stage
+              </h2>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 17px;
+                  line-height: 1.8;
+                  margin-bottom: 20px;
+                "
+              >
+                The PKL World Series reflects the reach of the global pathway.
+                Players qualify through competition in regions around the world,
+                bringing together diverse playing styles, backgrounds, and
+                communities.
+              </p>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 17px;
+                  line-height: 1.8;
                   margin-bottom: 0;
                 "
-                data-aos="fade-up"
-                data-aos-duration="1000"
               >
-                Global interactive map displaying
-              </h2>
-              <h2
-                class="pws-map-title"
-                style="
-                  color: #2fa06f;
-                  font-size: 72px;
-                  font-weight: 700;
-                  margin-bottom: 40px;
-                "
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                data-aos-delay="200"
-              >
-                PWS participation
-              </h2>
-              <div
-                class="map-container"
-                data-aos="zoom-in"
-                data-aos-duration="1200"
-                data-aos-delay="400"
-              >
+                Top performers from local and regional events earn the
+                opportunity to compete on a shared international stage.
+              </p>
+            </div>
+            <div
+              class="col-lg-7"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <div class="map-container" style="padding-left: 30px">
                 <img
                   src="images/map.png"
-                  alt="PWS Global Participation Map"
-                  style="max-width: 100%; height: auto"
+                  alt="PKL Global Pathway Map"
+                  style="max-width: 100%; height: auto; opacity: 0.85"
                 />
               </div>
             </div>
@@ -201,43 +342,58 @@
         </div>
       </section>
 
-      <!-- PWS Global Stats Section -->
+      <!-- Community Proof Section -->
       <section class="pws-stats-section" style="padding: 100px 0">
         <div class="container">
           <!-- Section Title -->
           <div class="row mb-5">
             <div class="col-12 text-center">
+              <span
+                class="sub-title"
+                style="margin-bottom: 15px; display: inline-block"
+              >
+                <img
+                  class="icon-img animation__rotateY"
+                  style="max-height: 25px"
+                  src="images/favicon.png"
+                  alt=""
+                />
+                Community
+              </span>
               <h2
                 class="pws-stats-title"
                 style="
                   color: #fff;
-                  font-size: 48px;
+                  font-size: 42px;
                   font-weight: 700;
-                  letter-spacing: 2px;
+                  margin-bottom: 15px;
                 "
                 data-aos="fade-up"
                 data-aos-duration="1000"
               >
-                PWS Global Stats
+                Built Through Competition
               </h2>
-              <div
+              <p
                 style="
-                  width: 80px;
-                  height: 4px;
-                  background: linear-gradient(90deg, #2fa06f, #7ed957);
-                  margin: 20px auto 0;
-                  border-radius: 2px;
+                  color: rgba(255, 255, 255, 0.75);
+                  font-size: 18px;
+                  max-width: 600px;
+                  margin: 0 auto;
+                  line-height: 1.7;
                 "
-                data-aos="scale-x"
+                data-aos="fade-up"
                 data-aos-duration="800"
-                data-aos-delay="200"
-              ></div>
+                data-aos-delay="100"
+              >
+                The World Series is powered by a growing global community of
+                players and organizers.
+              </p>
             </div>
           </div>
 
           <!-- Stats Grid -->
           <div class="row g-4">
-            <!-- Registered Players -->
+            <!-- Players in the Pathway -->
             <div class="col-lg-4 col-md-6">
               <div
                 class="stat-card"
@@ -288,7 +444,7 @@
                     margin: 0;
                   "
                 >
-                  Registered Players
+                  Players in the Pathway
                 </h4>
               </div>
             </div>
@@ -344,7 +500,7 @@
                     margin: 0;
                   "
                 >
-                  Event Operators
+                  Certified Operators
                 </h4>
               </div>
             </div>
@@ -400,7 +556,7 @@
                     margin: 0;
                   "
                 >
-                  Activated Cities
+                  Active Cities
                 </h4>
               </div>
             </div>
@@ -456,7 +612,7 @@
                     margin: 0;
                   "
                 >
-                  Countries
+                  Countries Represented
                 </h4>
               </div>
             </div>
@@ -568,7 +724,7 @@
                     margin: 0;
                   "
                 >
-                  PKL.CLUB Members
+                  Community Members
                 </h4>
               </div>
             </div>
@@ -576,48 +732,52 @@
         </div>
       </section>
 
-      <!-- PWS Dashboard Section -->
+      <!-- Events & Participation Section -->
       <section class="pws-dashboard-section" style="padding: 100px 0">
         <div class="container">
           <!-- Section Title -->
           <div class="row mb-5">
             <div class="col-12 text-center">
+              <span
+                class="sub-title"
+                style="margin-bottom: 15px; display: inline-block"
+              >
+                <img
+                  class="icon-img animation__rotateY"
+                  style="max-height: 25px"
+                  src="images/favicon.png"
+                  alt=""
+                />
+                Events
+              </span>
               <h2
                 class="pws-dashboard-title"
                 style="
                   color: #fff;
-                  font-size: 48px;
+                  font-size: 42px;
                   font-weight: 700;
-                  letter-spacing: 2px;
+                  margin-bottom: 15px;
                 "
                 data-aos="fade-up"
                 data-aos-duration="1000"
               >
-                PWS Dashboard
+                Get on the Court
               </h2>
               <p
                 style="
-                  color: rgba(255, 255, 255, 0.7);
+                  color: rgba(255, 255, 255, 0.75);
                   font-size: 18px;
-                  margin-top: 15px;
+                  max-width: 700px;
+                  margin: 0 auto;
+                  line-height: 1.7;
                 "
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
-                Find tournaments near you and register to compete
+                Every World Series competitor begins by playing in PKL-certified
+                events. Find upcoming competitions near you and start building
+                your performance record.
               </p>
-              <div
-                style="
-                  width: 80px;
-                  height: 4px;
-                  background: linear-gradient(90deg, #2fa06f, #7ed957);
-                  margin: 20px auto 0;
-                  border-radius: 2px;
-                "
-                data-aos="scale-x"
-                data-aos-duration="800"
-                data-aos-delay="200"
-              ></div>
             </div>
           </div>
 
@@ -861,12 +1021,12 @@
         /* Responsive styles */
         /* Hero section title */
         .pws-hero-title {
-          font-size: 64px !important;
+          font-size: 56px !important;
         }
 
         /* Map section titles */
         .pws-map-title {
-          font-size: 72px !important;
+          font-size: 42px !important;
         }
 
         /* Stats section title */
@@ -882,11 +1042,11 @@
         /* Tablet breakpoint */
         @media (max-width: 991px) {
           .pws-hero-title {
-            font-size: 48px !important;
+            font-size: 42px !important;
           }
 
           .pws-map-title {
-            font-size: 48px !important;
+            font-size: 32px !important;
           }
 
           .pws-stats-title {
@@ -898,7 +1058,7 @@
           }
 
           .pws-hero-section {
-            padding: 140px 0 60px !important;
+            padding: 160px 0 60px !important;
           }
 
           .pws-map-section {
@@ -917,7 +1077,7 @@
           }
 
           .pws-map-title {
-            font-size: 28px !important;
+            font-size: 26px !important;
           }
 
           .pws-stats-title {
@@ -929,7 +1089,7 @@
           }
 
           .pws-hero-section {
-            padding: 120px 0 50px !important;
+            padding: 140px 0 50px !important;
           }
 
           .pws-map-section {
@@ -964,7 +1124,7 @@
         /* Small mobile breakpoint */
         @media (max-width: 480px) {
           .pws-hero-title {
-            font-size: 26px !important;
+            font-size: 28px !important;
           }
 
           .pws-map-title {
@@ -1092,17 +1252,54 @@
             data-aos="fade-up"
             data-aos-duration="1000"
           >
+            <span
+              class="sub-title"
+              style="margin-bottom: 15px; display: inline-block"
+            >
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              The Final Stage
+            </span>
             <h2
               style="
-                font-family: &quot;Bebas Neue&quot;, sans-serif;
-                font-size: 48px;
-                color: #7ed957;
-                letter-spacing: 2px;
-                margin-bottom: 0;
+                font-size: 42px;
+                font-weight: 700;
+                color: #fff;
+                margin-bottom: 15px;
               "
             >
-              PWS World Tournament Bracket
+              The Final Stage: the World Series
             </h2>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 18px;
+                max-width: 700px;
+                margin: 0 auto 10px;
+                line-height: 1.7;
+              "
+            >
+              The World Series bracket represents the final phase of the PKL
+              pathway, where top performers from around the world compete for
+              the title. Every place is earned through performance in pathway
+              events.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 14px;
+                font-style: italic;
+                max-width: 600px;
+                margin: 20px auto 0;
+              "
+            >
+              This is an illustrative example of how the final stage will be
+              structured as the pathway develops.
+            </p>
           </div>
 
           <!-- Tournament Bracket -->
@@ -1916,6 +2113,94 @@
         </style>
       </section>
       <!--End PWS World Tournament Bracket Section -->
+
+      <!-- Final CTA: Return to Pathway -->
+      <section style="padding: 100px 0; position: relative; overflow: hidden">
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+              ellipse at 50% 50%,
+              rgba(47, 160, 111, 0.1) 0%,
+              transparent 70%
+            );
+            pointer-events: none;
+          "
+        ></div>
+        <div class="container" style="position: relative; z-index: 2">
+          <div class="text-center" style="max-width: 700px; margin: 0 auto">
+            <span
+              class="sub-title"
+              style="margin-bottom: 15px; display: inline-block"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              <img
+                class="icon-img animation__rotateY"
+                style="max-height: 25px"
+                src="images/favicon.png"
+                alt=""
+              />
+              Start Now
+            </span>
+            <h2
+              style="
+                color: #fff;
+                font-size: 42px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                line-height: 1.2;
+              "
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              Your Journey Starts Before the World Series
+            </h2>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 18px;
+                line-height: 1.8;
+                margin-bottom: 40px;
+              "
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="100"
+            >
+              Every player here began with a first match. Join the PKL pathway
+              and see how far your game can take you.
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+              "
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
+              <a class="btn-style-one theme-btn" href="signup.html">
+                <span class="btn-text">Create Your Player Profile</span>
+              </a>
+              <a
+                class="btn-style-one theme-btn"
+                href="how-it-works.html"
+                style="background: #8bc34a"
+              >
+                <span class="btn-text">Learn How It Works</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Final CTA -->
+
       <!-- Main Footer -->
       <footer class="main-footer footer-style-one">
         <div class="widgets-section"></div>
@@ -1927,11 +2212,6 @@
                 <div class="footer-widget about-widget">
                   <div class="logo">
                     <img src="images/logo.png?v=2" alt="PKL.CLUB" />
-                  </div>
-                  <div class="text">
-                    The world's first decentralized Pickleball community. Join
-                    the revolution and earn $PKL tokens while playing the
-                    fastest growing sport.
                   </div>
                 </div>
               </div>
