@@ -21,6 +21,296 @@
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      /* ===== Operators Page Styles ===== */
+
+      /* --- Hero Section --- */
+      .op-hero {
+        padding: 200px 0 120px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Floating Shapes */
+      .op-hero .shape-1 {
+        position: absolute;
+        top: 10%;
+        left: -5%;
+        opacity: 0.6;
+        animation: op-float 6s ease-in-out infinite;
+      }
+
+      .op-hero .shape-2 {
+        position: absolute;
+        top: 15%;
+        right: -3%;
+        opacity: 0.5;
+        animation: op-float 8s ease-in-out infinite reverse;
+      }
+
+      .op-hero .shape-3 {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        opacity: 0.4;
+        animation: op-float 7s ease-in-out infinite;
+      }
+
+      .op-hero .shape-4 {
+        position: absolute;
+        bottom: 20%;
+        right: 8%;
+        opacity: 0.5;
+        animation: op-float 5s ease-in-out infinite reverse;
+      }
+
+      @keyframes op-float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+
+      .op-hero .hero-content {
+        text-align: center;
+        max-width: 740px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .op-hero .hero-content h1 {
+        font-size: 56px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        line-height: 1.15;
+      }
+
+      .op-hero .hero-content .subheadline {
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 40px;
+        font-weight: 500;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .op-hero .hero-ctas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .op-hero .hero-ctas .cta-secondary {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .op-hero .hero-ctas .cta-secondary:hover {
+        color: var(--theme-color1);
+        border-bottom-color: var(--theme-color1);
+      }
+
+      @media (max-width: 767px) {
+        .op-hero {
+          padding: 140px 0 80px;
+        }
+        .op-hero .shape-1,
+        .op-hero .shape-2,
+        .op-hero .shape-3,
+        .op-hero .shape-4 {
+          display: none;
+        }
+        .op-hero .hero-content h1 {
+          font-size: 36px;
+        }
+        .op-hero .hero-content .subheadline {
+          font-size: 17px;
+        }
+      }
+
+      /* --- Partnership in Action (Split Screen) --- */
+      .op-proof {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .op-proof .split-row {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .op-proof .split-image {
+        flex: 1;
+        min-width: 0;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .op-proof .split-image img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        display: block;
+        border-radius: 16px;
+      }
+
+      .op-proof .split-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .op-proof .split-text h2 {
+        font-size: 38px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .op-proof .split-text p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 16px;
+      }
+
+      .op-proof .split-text .op-highlights {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0 32px;
+      }
+
+      .op-proof .split-text .op-highlights li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .op-proof .split-text .op-highlights li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--theme-color1);
+      }
+
+      .op-proof .split-text .proof-ctas {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .op-proof .split-text .proof-ctas .cta-secondary {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .op-proof .split-text .proof-ctas .cta-secondary:hover {
+        color: var(--theme-color1);
+        border-bottom-color: var(--theme-color1);
+      }
+
+      @media (max-width: 991px) {
+        .op-proof .split-row {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .op-proof .split-image img {
+          height: 320px;
+        }
+        .op-proof .split-text h2 {
+          font-size: 30px;
+        }
+      }
+
+      /* --- Application CTA Section --- */
+      .op-apply {
+        padding: 120px 0;
+        position: relative;
+      }
+
+      .op-apply .apply-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .op-apply .apply-inner h2 {
+        font-size: 38px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .op-apply .apply-inner p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 40px;
+      }
+
+      .op-apply .apply-ctas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .op-apply .apply-ctas .cta-secondary {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .op-apply .apply-ctas .cta-secondary:hover {
+        color: var(--theme-color1);
+        border-bottom-color: var(--theme-color1);
+      }
+
+      @media (max-width: 768px) {
+        .op-apply {
+          padding: 80px 0;
+        }
+        .op-apply .apply-inner h2 {
+          font-size: 30px;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -53,116 +343,104 @@
           <i class="fa-solid fa-angle-up"></i>
         </button>
       </div>
-      <!-- Back-to-top start -->
+      <!-- Back-to-top end -->
       <div id="pkl-header"></div>
 
-      <!-- Start main-content -->
-      <section
-        class="page-title"
-        style="background-image: url(images/background/page-title2.png)"
-      >
-        <div class="auto-container">
-          <div class="title-outer text-center">
-            <h1 class="title">Operators</h1>
-            <ul class="page-breadcrumb">
-              <li><a href="index.html">Home</a></li>
-              <li>Operators</li>
-            </ul>
-          </div>
+      <!-- ===== Hero - Partnership Invitation ===== -->
+      <section class="op-hero">
+        <!-- Background Shapes -->
+        <div class="shape-1 tm-gsap-img-parallax">
+          <img src="images/icons/shape-10.png" alt="" />
         </div>
-      </section>
-      <!-- end main-content -->
+        <div class="shape-2 tm-gsap-img-parallax">
+          <img src="images/icons/shape-31.png" alt="" />
+        </div>
+        <div class="shape-3 tm-gsap-img-parallax">
+          <img src="images/icons/shape-13.png" alt="" />
+        </div>
+        <div class="shape-4 tm-gsap-img-parallax">
+          <img src="images/icons/shape-14.png" alt="" />
+        </div>
 
-      <!-- Operators Content -->
-      <section class="about-section pt-120 pb-70">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="sec-title text-center mb-60">
-                <span class="sub-title">Host Events</span>
-                <h2>Become an Operator</h2>
-                <p class="text mt-20">
-                  Partner with PKL.CLUB to host and manage pickleball
-                  tournaments at your venue. Gain access to our player network
-                  and tournament management tools.
-                </p>
-              </div>
+          <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Become a PKL Operator</h1>
+            <p class="subheadline">
+              Host PKL pathway events and connect local competition to global opportunity.
+            </p>
+            <div class="hero-ctas">
+              <a href="signup.html?type=operator" class="theme-btn btn-style-one">
+                <span class="btn-title">Apply as Operator</span>
+              </a>
+              <a href="mailto:hello@pkl.club" class="cta-secondary">Request Info</a>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="100ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 1</div>
-                  <div class="icon-box"><i class="flaticon-building"></i></div>
-                  <h4 class="title">Venue Management</h4>
-                  <div class="text">
-                    Register your facility and manage court availability,
-                    scheduling, and event bookings seamlessly.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="200ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 2</div>
-                  <div class="icon-box"><i class="flaticon-calendar"></i></div>
-                  <h4 class="title">Tournament Hosting</h4>
-                  <div class="text">
-                    Create and manage tournaments with our comprehensive tools
-                    for brackets, scoring, and player communication.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-30">
-              <div
-                class="service-block-one wow fadeInUp"
-                data-wow-delay="300ms"
-              >
-                <div
-                  class="inner-box"
-                  style="min-height: 320px; position: relative"
-                >
-                  <div class="corner-decoration top-right"></div>
-                  <div class="corner-decoration bottom-left"></div>
-                  <div class="step-tag">Step 3</div>
-                  <div class="icon-box"><i class="flaticon-money"></i></div>
-                  <h4 class="title">Revenue Sharing</h4>
-                  <div class="text">
-                    Earn revenue from tournament entry fees and benefit from our
-                    sponsor partnerships.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center mt-50">
-            <a href="signup.html?type=operator" class="theme-btn btn-style-one"
-              ><span class="btn-title">Apply as Operator</span></a
-            >
           </div>
         </div>
       </section>
+      <!-- ===== End Hero ===== -->
+
+      <!-- ===== Partnership in Action ===== -->
+      <section class="op-proof">
+        <div class="container">
+          <div class="split-row">
+            <!-- Left: Event Photo -->
+            <div class="split-image">
+              <img
+                src="images/resource/operator-event.jpg"
+                alt="PKL tournament event in action"
+              />
+            </div>
+            <!-- Right: Text Block -->
+            <div class="split-text">
+              <h2>Powering PKL locally</h2>
+              <p>
+                PKL works with experienced local operators to deliver high-quality,
+                player-first events that feed into the global pathway.
+              </p>
+              <p>
+                Our partners manage competition on the ground while PKL provides the
+                structure, standards, and visibility that connect local play to global
+                opportunity.
+              </p>
+              <ul class="op-highlights">
+                <li>Organized tournament formats</li>
+                <li>Consistent player experience</li>
+                <li>Integrated results reporting</li>
+                <li>Global pathway connection</li>
+              </ul>
+              <div class="proof-ctas">
+                <a href="signup.html?type=operator" class="theme-btn btn-style-one">
+                  <span class="btn-title">Apply to become an operator</span>
+                </a>
+                <a href="mailto:hello@pkl.club" class="cta-secondary">Request more information</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== End Partnership in Action ===== -->
+
+      <!-- ===== Operator Application (Final CTA) ===== -->
+      <section class="op-apply">
+        <div class="container">
+          <div class="apply-inner">
+            <h2>Apply to join the PKL operator network</h2>
+            <p>
+              We work with experienced organizers who are committed to delivering
+              high-quality, player-first competition. If you believe your venue or
+              organization is a strong fit, we invite you to apply. Our team reviews
+              every application individually.
+            </p>
+            <div class="apply-ctas">
+              <a href="signup.html?type=operator" class="theme-btn btn-style-one">
+                <span class="btn-title">Apply to become an operator</span>
+              </a>
+              <a href="mailto:hello@pkl.club" class="cta-secondary">Request more information</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== End Operator Application ===== -->
   <!-- Main Footer -->
   <footer class="main-footer footer-style-one">
     <div class="widgets-section">
