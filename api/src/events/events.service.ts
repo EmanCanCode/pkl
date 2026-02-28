@@ -1,4 +1,4 @@
-import {
+﻿import {
   Injectable,
   NotFoundException,
   ForbiddenException,
@@ -86,7 +86,7 @@ export class EventsService {
   }
 
   /**
-   * Get approved events (for public display like World Series)
+   * Get approved events (for public display like Pathway Series)
    */
   async findApproved(limit?: number): Promise<EventDocument[]> {
     const query = this.eventModel

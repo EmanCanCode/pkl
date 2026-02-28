@@ -1,4 +1,4 @@
-/**
+﻿/**
  * PKL.CLUB Dynamic Header Component
  * Renders a consistent header across ALL pages.
  * Handles auth state, nav highlighting, role-based nav visibility.
@@ -14,7 +14,7 @@
   const NAV_ITEMS = [
     { label: "Players", href: "players.html" },
     { label: "How It Works", href: "how-it-works.html" },
-    { label: "World Series", href: "world-series.html" },
+    { label: "Pathway Series", href: "world-series.html" },
     { label: "Operators", href: "operators.html" },
     { label: "Partners", href: "sponsors.html" },
   ];
@@ -33,7 +33,7 @@
   const PAGE_TO_NAV = {
     "players.html": "Players",
     "how-it-works.html": "How It Works",
-    "world-series.html": "World Series",
+    "world-series.html": "Pathway Series",
     "operators.html": "Operators",
     "sponsors.html": "Partners",
     "admin-dashboard.html": "Dashboard",
@@ -352,7 +352,7 @@
 
       dropdown.innerHTML =
         dashboardLink +
-        `<a href="world-series.html" class="dropdown-item"><i class="fa fa-trophy"></i> World Series</a>` +
+        `<a href="world-series.html" class="dropdown-item"><i class="fa fa-trophy"></i> Pathway Series</a>` +
         roleLinks +
         `<a href="#" class="dropdown-item logout-btn"><i class="fa fa-sign-out-alt"></i> Logout</a>`;
 
@@ -486,7 +486,7 @@
 
     const page = getCurrentPage();
     if ((blocked[user.userType] || []).includes(page)) {
-      alert("You don't have access to this page. Redirecting to World Series.");
+      alert("You don't have access to this page. Redirecting to Pathway Series.");
       window.location.href = "world-series.html";
     }
   }

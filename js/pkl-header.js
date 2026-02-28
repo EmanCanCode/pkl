@@ -1,4 +1,4 @@
-/**
+﻿/**
  * PKL.CLUB Header Auth Script
  * Handles user authentication state in the header/navbar
  * Controls navigation visibility based on userType
@@ -138,7 +138,7 @@
     const user = checkAuth();
     if (user && !checkPageAccess(user)) {
       // Redirect to appropriate page based on userType
-      alert("You don't have access to this page. Redirecting to World Series.");
+      alert("You don't have access to this page. Redirecting to Pathway Series.");
       window.location.href = "world-series.html";
     }
   }
@@ -261,7 +261,7 @@
               dashboardLink +
               `
               <a href="world-series.html" class="dropdown-item">
-                <i class="fa fa-trophy"></i> World Series
+                <i class="fa fa-trophy"></i> Pathway Series
               </a>
             `;
 
