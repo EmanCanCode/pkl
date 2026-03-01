@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -18,8 +18,8 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
     rel="stylesheet" />
 
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
+  <link rel="icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1168,7 +1168,7 @@
           body: JSON.stringify({ status: "approved", reviewNotes: "" }),
         });
 
-        showToast("Event approved successfully! ✅", "success");
+        showToast("Event approved successfully! ?", "success");
         await loadEvents();
       } catch (error) {
         console.error("Error approving event:", error);
@@ -1188,7 +1188,7 @@
           body: JSON.stringify({ status: "approved", reviewNotes: notes }),
         });
 
-        showToast("Event approved successfully! ✅", "success");
+        showToast("Event approved successfully! ?", "success");
         closeModal("details-modal");
         await loadEvents();
       } catch (error) {
@@ -1282,7 +1282,7 @@
           body: JSON.stringify(eventData),
         });
 
-        showToast("Event created and approved! ✅", "success");
+        showToast("Event created and approved! ?", "success");
         closeModal("create-event-modal");
         await loadEvents();
       } catch (error) {
@@ -1338,7 +1338,7 @@
           }),
         });
 
-        showToast("Admin account created successfully! ✅", "success");
+        showToast("Admin account created successfully! ?", "success");
         closeModal("create-admin-modal");
         await loadAdmins();
       } catch (error) {
@@ -1386,7 +1386,7 @@
           body: JSON.stringify({ username, email, firstName, lastName }),
         });
 
-        showToast("Admin updated successfully! ✅", "success");
+        showToast("Admin updated successfully! ?", "success");
         closeModal("edit-admin-modal");
         await loadAdmins();
       } catch (error) {
@@ -1476,7 +1476,7 @@
                 </div>
               </div>
             </td>
-            <td data-label="Email">${user.email || "—"}</td>
+            <td data-label="Email">${user.email || "�"}</td>
             <td data-label="Type"><span class="status-badge" style="background: ${typeColor}22; color: ${typeColor}; text-transform: capitalize;">${user.userType}</span></td>
             <td data-label="Membership Passes">${passDisplay(memberPasses)}</td>
             <td data-label="Event Fee Passes">${passDisplay(eventPasses)}</td>
@@ -1497,7 +1497,7 @@
       if (!user) return;
 
       const name = user.firstName ? `${user.firstName} ${user.lastName || ""}` : user.username;
-      document.getElementById("grant-pass-user-label").textContent = `${name} (@${user.username}) — ${user.userType}`;
+      document.getElementById("grant-pass-user-label").textContent = `${name} (@${user.username}) � ${user.userType}`;
       document.getElementById("grant-pass-user-id").value = userId;
       document.getElementById("grant-membership-passes").value = user.membershipPasses ?? 0;
       document.getElementById("grant-event-passes").value = user.eventFeePasses ?? 0;
@@ -1526,7 +1526,7 @@
           body: JSON.stringify({ membershipPasses, eventFeePasses }),
         });
 
-        showToast("Passes updated successfully! ✅", "success");
+        showToast("Passes updated successfully! ?", "success");
         closeModal("grant-pass-modal");
 
         // Refresh the search results

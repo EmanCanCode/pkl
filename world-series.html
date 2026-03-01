@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -16,8 +16,8 @@
       rel="stylesheet"
     />
 
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
+    <link rel="icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
 
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -107,7 +107,7 @@
               data-aos-delay="200"
             >
               <img
-                src="images/PWS-female.png"
+                src="images/Pathway Logo Feb 28th 2026.png"
                 alt="Pickleball Pathway Series player"
                 style="max-width: 180px; opacity: 1"
               />
@@ -2926,7 +2926,7 @@
             btnStyle +
             " background: rgba(107, 114, 128, 0.15); color: rgba(255, 255, 255, 0.5); cursor: default;";
 
-          // Completed / finalized events — no registration allowed
+          // Completed / finalized events � no registration allowed
           if (event.status === "completed") {
             return `<span style="${completedStyle}"><i class="fas fa-flag-checkered"></i> Event Finalized</span>`;
           }
@@ -2996,7 +2996,7 @@
             const memberStatus = await memberResp.json();
 
             if (!memberStatus.isActive) {
-              // Need membership first – redirect to membership checkout
+              // Need membership first � redirect to membership checkout
               const memberCheckoutResp = await fetch(
                 `${API_BASE}/payments/membership/checkout`,
                 {
@@ -3030,7 +3030,7 @@
               return;
             }
 
-            // Has membership – create event checkout
+            // Has membership � create event checkout
             const checkoutResp = await fetch(
               `${API_BASE}/payments/event/checkout`,
               {
@@ -3061,7 +3061,7 @@
             // If user had a fee pass, registration is already complete (no Stripe needed)
             if (checkout.bypassed) {
               showPwsToast(
-                "✅ " + (checkout.message || "Registered successfully!"),
+                "? " + (checkout.message || "Registered successfully!"),
               );
               // Update button in-place
               const actionDiv = document.getElementById("pws-action-buttons");
@@ -3141,7 +3141,7 @@
             setTimeout(
               () =>
                 showPwsToast(
-                  "🎉 Registration successful! You are now registered.",
+                  "?? Registration successful! You are now registered.",
                 ),
               500,
             );
@@ -3156,7 +3156,7 @@
             const eventId = params.get("eventId");
             setTimeout(() => {
               showPwsToast(
-                "🎉 Membership activated! Proceeding with registration...",
+                "?? Membership activated! Proceeding with registration...",
               );
               if (eventId) {
                 registerForEvent(eventId);
