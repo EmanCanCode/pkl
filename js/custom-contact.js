@@ -1,59 +1,34 @@
 (function ($) {
   $("#contact_form").validate({
     submitHandler: function (form) {
-      var form_btn = $(form).find('button[type="submit"]');
+      var name = $(form).find('[name="form_name"]').val();
+      var email = $(form).find('[name="form_email"]').val();
+      var subject = $(form).find('[name="form_subject"]').val() || "Contact Form Inquiry";
+      var phone = $(form).find('[name="form_phone"]').val();
+      var message = $(form).find('[name="form_message"]').val();
+
+      var body = "Name: " + name + "\n";
+      body += "Email: " + email + "\n";
+      if (phone) body += "Phone: " + phone + "\n";
+      body += "\n" + message;
+
+      var mailtoLink =
+        "mailto:hello@pkl.club" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailtoLink;
+
+      // Show success message
       var form_result_div = "#form-result";
       $(form_result_div).remove();
-      form_btn.before(
-        '<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>',
+      $(form).find('button[type="submit"]').before(
+        '<div id="form-result" class="alert alert-success" role="alert">Opening your email client...</div>',
       );
-      var form_btn_old_msg = form_btn.html();
-      form_btn.html(form_btn.prop("disabled", true).data("loading-text"));
-
-      var payload = {
-        name: $(form).find('[name="form_name"]').val(),
-        email: $(form).find('[name="form_email"]').val(),
-        subject: $(form).find('[name="form_subject"]').val(),
-        phone: $(form).find('[name="form_phone"]').val(),
-        message: $(form).find('[name="form_message"]').val(),
-      };
-
-      $.ajax({
-        url: "/api/contact",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(payload),
-        dataType: "json",
-        success: function (data) {
-          if (data.status === "true") {
-            $(form).find(".form-control").val("");
-            $(form_result_div)
-              .removeClass("alert-danger")
-              .addClass("alert-success");
-          } else {
-            $(form_result_div)
-              .removeClass("alert-success")
-              .addClass("alert-danger");
-          }
-          form_btn.prop("disabled", false).html(form_btn_old_msg);
-          $(form_result_div).html(data.message).fadeIn("slow");
-          setTimeout(function () {
-            $(form_result_div).fadeOut("slow");
-          }, 6000);
-        },
-        error: function () {
-          form_btn.prop("disabled", false).html(form_btn_old_msg);
-          $(form_result_div)
-            .removeClass("alert-success")
-            .addClass("alert-danger");
-          $(form_result_div)
-            .html("Message could not be sent. Please try again.")
-            .fadeIn("slow");
-          setTimeout(function () {
-            $(form_result_div).fadeOut("slow");
-          }, 6000);
-        },
-      });
+      $(form).find(".form-control").val("");
+      setTimeout(function () {
+        $(form_result_div).fadeOut("slow");
+      }, 4000);
     },
   });
 })(jQuery);

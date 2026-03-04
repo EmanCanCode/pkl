@@ -1,8 +1,14 @@
-import { Injectable, ConflictException } from "@nestjs/common";
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+  BadRequestException,
+} from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User, UserDocument, UserType } from "./user.schema";
 import * as bcrypt from "bcryptjs";
+import * as crypto from "crypto";
 import { CreateUserDto } from "./dto/create-user.dto";
 
 @Injectable()
@@ -131,5 +137,56 @@ export class UsersService {
       .select("-password")
       .limit(20)
       .exec();
+  }
+
+  async generateResetToken(
+    emailOrUsername: string,
+  ): Promise<{ user: UserDocument; token: string } | null> {
+    // Find by email or username
+    const user = await this.userModel
+      .findOne({
+        $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
+      })
+      .exec();
+
+    if (!user) return null;
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(token)
+      .digest("hex");
+
+    user.resetToken = hashedToken;
+    user.resetTokenExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    await user.save();
+
+    return { user, token }; // return unhashed token for the email link
+  }
+
+  async resetPasswordWithToken(
+    token: string,
+    newPassword: string,
+  ): Promise<void> {
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(token)
+      .digest("hex");
+
+    const user = await this.userModel
+      .findOne({
+        resetToken: hashedToken,
+        resetTokenExpires: { $gt: new Date() },
+      })
+      .exec();
+
+    if (!user) {
+      throw new BadRequestException("Invalid or expired reset token");
+    }
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    user.resetToken = undefined;
+    user.resetTokenExpires = undefined;
+    await user.save();
   }
 }

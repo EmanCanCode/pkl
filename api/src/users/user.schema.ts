@@ -67,6 +67,12 @@ export class User {
     @ApiProperty({ example: 0, description: 'Event registration fee passes remaining (bypass Stripe)' })
     @Prop({ default: 0 })
     eventFeePasses: number;
+
+    @Prop()
+    resetToken?: string;
+
+    @Prop()
+    resetTokenExpires?: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

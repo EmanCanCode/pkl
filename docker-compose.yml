@@ -21,9 +21,9 @@ services:
     ports:
       - "47293:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: pklroot
-      MONGO_INITDB_ROOT_PASSWORD: PklM0ng0Secr3t!
-      MONGO_INITDB_DATABASE: pklclub
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-pklroot}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB:-pklclub}
     volumes:
       - pkl_mongo_data:/data/db
     restart: unless-stopped
@@ -39,11 +39,14 @@ services:
       - .env
     environment:
       NODE_ENV: development
-      MONGO_URI: mongodb://pklroot:PklM0ng0Secr3t!@pkl-mongo:27017/pklclub?authSource=admin
-      JWT_SECRET: pkl-jwt-super-secret-key-2026
-      JWT_EXPIRES_IN: 7d
+      MONGO_URI: mongodb://${MONGO_USER:-pklroot}:${MONGO_PASSWORD}@pkl-mongo:27017/${MONGO_DB:-pklclub}?authSource=admin
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      GMAIL: ${GMAIL}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8888}
     depends_on:
       - pkl-mongo
     restart: unless-stopped

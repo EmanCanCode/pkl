@@ -5,11 +5,13 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
     imports: [
         UsersModule,
         PassportModule,
+        MailModule,
         JwtModule.register({
             secret: process.env.JWT_SECRET || 'pkl-jwt-super-secret-key-2026',
             signOptions: { expiresIn: process.env.JWT_EXPIRES_IN || '7d' },

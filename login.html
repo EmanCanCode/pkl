@@ -262,10 +262,20 @@
       color: var(--pkl-primary);
       text-decoration: none;
       font-weight: 500;
+      cursor: pointer;
     }
 
     .forgot-link:hover {
       text-decoration: underline;
+    }
+
+    /* View transitions */
+    .auth-view {
+      display: none;
+    }
+
+    .auth-view.active {
+      display: block;
     }
 
     /* Alert */
@@ -507,91 +517,177 @@
           Back to Home
         </a>
 
-        <div class="auth-form-header">
-          <h1>Welcome Back</h1>
-          <p>Sign in to your PKL.CLUB account</p>
-        </div>
-
-        <!-- Alert Message -->
+        <!-- Alert Message (shared) -->
         <div id="auth-alert" class="auth-alert">
           <i class="fas fa-info-circle"></i>
           <span id="alert-message"></span>
         </div>
 
-        <form id="login-form" class="auth-form">
-          <div class="form-group">
-            <label for="username">Username or Email</label>
-            <input type="text" id="username" name="username" class="form-control"
-              placeholder="Enter your username or email" required />
+        <!-- ===== VIEW 1: LOGIN ===== -->
+        <div id="view-login" class="auth-view active">
+          <div class="auth-form-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to your PKL.CLUB account</p>
           </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <div class="password-wrapper">
-              <input type="password" id="password" name="password" class="form-control"
-                placeholder="Enter your password" required />
-              <button type="button" class="password-toggle" onclick="togglePassword('password')">
-                <i class="fas fa-eye" id="password-icon"></i>
-              </button>
+          <form id="login-form" class="auth-form">
+            <div class="form-group">
+              <label for="username">Username or Email</label>
+              <input type="text" id="username" name="username" class="form-control"
+                placeholder="Enter your username or email" required />
             </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="password-wrapper">
+                <input type="password" id="password" name="password" class="form-control"
+                  placeholder="Enter your password" required />
+                <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                  <i class="fas fa-eye" id="password-icon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="remember-check">
+                <input type="checkbox" name="remember" />
+                <span>Remember me</span>
+              </label>
+              <a class="forgot-link" onclick="showView('forgot')">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="submit-btn">
+              <span class="spinner"></span>
+              <span class="btn-text">Sign In</span>
+            </button>
+          </form>
+
+          <div class="auth-divider">
+            <span>or continue with</span>
           </div>
 
-          <div class="form-options">
-            <label class="remember-check">
-              <input type="checkbox" name="remember" />
-              <span>Remember me</span>
-            </label>
-            <a href="#" class="forgot-link">Forgot password?</a>
+          <div class="social-login">
+            <a href="#" class="social-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  fill="#4285F4" />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  fill="#34A853" />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  fill="#FBBC05" />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  fill="#EA4335" />
+              </svg>
+              Google
+            </a>
+            <a href="#" class="social-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              Facebook
+            </a>
           </div>
 
-          <button type="submit" class="auth-submit-btn" id="submit-btn">
-            <span class="spinner"></span>
-            <span class="btn-text">Sign In</span>
-          </button>
-        </form>
-
-        <div class="auth-divider">
-          <span>or continue with</span>
+          <div class="auth-footer">
+            Don't have an account? <a href="signup.html">Sign up for free</a>
+          </div>
         </div>
 
-        <div class="social-login">
-          <a href="#" class="social-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                fill="#4285F4" />
-              <path
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                fill="#34A853" />
-              <path
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                fill="#FBBC05" />
-              <path
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                fill="#EA4335" />
-            </svg>
-            Google
-          </a>
-          <a href="#" class="social-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
-              <path
-                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-            Facebook
-          </a>
+        <!-- ===== VIEW 2: FORGOT PASSWORD ===== -->
+        <div id="view-forgot" class="auth-view">
+          <div class="auth-form-header">
+            <h1>Reset Password</h1>
+            <p>Enter your username or email and we'll send you a reset link</p>
+          </div>
+
+          <form id="forgot-form" class="auth-form">
+            <div class="form-group">
+              <label for="forgot-email">Username or Email</label>
+              <input type="text" id="forgot-email" name="emailOrUsername" class="form-control"
+                placeholder="Enter your username or email" required />
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="forgot-btn">
+              <span class="spinner"></span>
+              <span class="btn-text">Send Reset Link</span>
+            </button>
+          </form>
+
+          <div class="auth-footer" style="margin-top: 30px;">
+            Remember your password? <a href="#" onclick="showView('login'); return false;">Back to Sign In</a>
+          </div>
         </div>
 
-        <div class="auth-footer">
-          Don't have an account? <a href="signup.html">Sign up for free</a>
+        <!-- ===== VIEW 3: RESET PASSWORD (with token) ===== -->
+        <div id="view-reset" class="auth-view">
+          <div class="auth-form-header">
+            <h1>Set New Password</h1>
+            <p>Choose a strong password for your account</p>
+          </div>
+
+          <form id="reset-form" class="auth-form">
+            <div class="form-group">
+              <label for="new-password">New Password</label>
+              <div class="password-wrapper">
+                <input type="password" id="new-password" name="newPassword" class="form-control"
+                  placeholder="Enter new password" required minlength="6" />
+                <button type="button" class="password-toggle" onclick="togglePassword('new-password')">
+                  <i class="fas fa-eye" id="new-password-icon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <div class="password-wrapper">
+                <input type="password" id="confirm-password" name="confirmPassword" class="form-control"
+                  placeholder="Confirm new password" required minlength="6" />
+                <button type="button" class="password-toggle" onclick="togglePassword('confirm-password')">
+                  <i class="fas fa-eye" id="confirm-password-icon"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="reset-btn">
+              <span class="spinner"></span>
+              <span class="btn-text">Reset Password</span>
+            </button>
+          </form>
+
+          <div class="auth-footer" style="margin-top: 30px;">
+            <a href="#" onclick="showView('login'); return false;">Back to Sign In</a>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
   <script>
-    // API URL - uses relative path for reverse proxy through nginx
     const API_URL = "/api";
+    let resetToken = null;
+
+    // Check URL for reset token on page load
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      if (token) {
+        resetToken = token;
+        showView("reset");
+      }
+    })();
+
+    function showView(view) {
+      document.querySelectorAll(".auth-view").forEach((v) => v.classList.remove("active"));
+      document.getElementById("view-" + view).classList.add("active");
+      hideAlert();
+    }
 
     function togglePassword(fieldId) {
       const field = document.getElementById(fieldId);
@@ -611,7 +707,6 @@
     function showAlert(message, type) {
       const alertEl = document.getElementById("auth-alert");
       const messageEl = document.getElementById("alert-message");
-
       alertEl.className = "auth-alert show " + type;
       messageEl.textContent = message;
     }
@@ -620,74 +715,144 @@
       document.getElementById("auth-alert").classList.remove("show");
     }
 
-    document
-      .getElementById("login-form")
-      .addEventListener("submit", async function (e) {
-        e.preventDefault();
-        hideAlert();
+    function setLoading(btnId, loading) {
+      const btn = document.getElementById(btnId);
+      if (loading) {
+        btn.classList.add("loading");
+        btn.disabled = true;
+      } else {
+        btn.classList.remove("loading");
+        btn.disabled = false;
+      }
+    }
 
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
+    // LOGIN
+    document.getElementById("login-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideAlert();
 
-        const submitBtn = document.getElementById("submit-btn");
-        submitBtn.classList.add("loading");
-        submitBtn.disabled = true;
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
 
-        try {
-          const response = await fetch(`${API_URL}/auth/login`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
+      setLoading("submit-btn", true);
 
-          const result = await response.json();
+      try {
+        const response = await fetch(`${API_URL}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
 
-          if (response.ok) {
-            localStorage.setItem("pkl_token", result.access_token);
-            localStorage.setItem(
-              "pkl_user",
-              JSON.stringify({
-                userId: result.userId,
-                username: result.username,
-                userType: result.userType,
-                firstName: result.firstName || result.username,
-                lastName: result.lastName || '',
-                email: result.email || '',
-              }),
-            );
+        const result = await response.json();
 
-            showAlert("Login successful! Redirecting...", "success");
-            setTimeout(() => {
-              // Redirect based on user type
-              if (result.userType === "admin") {
-                window.location.href = "admin-dashboard.html";
-              } else if (result.userType === "operator") {
-                window.location.href = "operator-dashboard.html";
-              } else if (result.userType === "player") {
-                window.location.href = "player-dashboard.html";
-              } else {
-                window.location.href = "world-series.html";
-              }
-            }, 1500);
-          } else {
-            showAlert(
-              result.message || "Invalid credentials. Please try again.",
-              "error",
-            );
-          }
-        } catch (error) {
-          console.error("Login error:", error);
-          showAlert(
-            "Network error. Please check your connection and try again.",
-            "error",
+        if (response.ok) {
+          localStorage.setItem("pkl_token", result.access_token);
+          localStorage.setItem(
+            "pkl_user",
+            JSON.stringify({
+              userId: result.userId,
+              username: result.username,
+              userType: result.userType,
+              firstName: result.firstName || result.username,
+              lastName: result.lastName || "",
+              email: result.email || "",
+            }),
           );
-        } finally {
-          submitBtn.classList.remove("loading");
-          submitBtn.disabled = false;
+
+          showAlert("Login successful! Redirecting...", "success");
+          setTimeout(() => {
+            if (result.userType === "admin") {
+              window.location.href = "admin-dashboard.html";
+            } else if (result.userType === "operator") {
+              window.location.href = "operator-dashboard.html";
+            } else if (result.userType === "player") {
+              window.location.href = "player-dashboard.html";
+            } else {
+              window.location.href = "world-series.html";
+            }
+          }, 1500);
+        } else {
+          showAlert(result.message || "Invalid credentials. Please try again.", "error");
         }
-      });
+      } catch (error) {
+        console.error("Login error:", error);
+        showAlert("Network error. Please check your connection and try again.", "error");
+      } finally {
+        setLoading("submit-btn", false);
+      }
+    });
+
+    // FORGOT PASSWORD
+    document.getElementById("forgot-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideAlert();
+
+      const formData = new FormData(this);
+      const emailOrUsername = formData.get("emailOrUsername");
+
+      setLoading("forgot-btn", true);
+
+      try {
+        const response = await fetch(`${API_URL}/auth/forgot-password`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ emailOrUsername }),
+        });
+
+        const result = await response.json();
+        showAlert(result.message || "If an account exists, a reset link has been sent to your email.", "success");
+      } catch (error) {
+        console.error("Forgot password error:", error);
+        showAlert("Network error. Please try again.", "error");
+      } finally {
+        setLoading("forgot-btn", false);
+      }
+    });
+
+    // RESET PASSWORD
+    document.getElementById("reset-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideAlert();
+
+      const newPassword = document.getElementById("new-password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (newPassword !== confirmPassword) {
+        showAlert("Passwords do not match.", "error");
+        return;
+      }
+
+      if (newPassword.length < 6) {
+        showAlert("Password must be at least 6 characters.", "error");
+        return;
+      }
+
+      setLoading("reset-btn", true);
+
+      try {
+        const response = await fetch(`${API_URL}/auth/reset-password`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: resetToken, newPassword }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          showAlert("Password reset successfully! You can now sign in.", "success");
+          // Clean the URL
+          window.history.replaceState({}, document.title, "login.html");
+          setTimeout(() => showView("login"), 2000);
+        } else {
+          showAlert(result.message || "Invalid or expired reset link. Please request a new one.", "error");
+        }
+      } catch (error) {
+        console.error("Reset password error:", error);
+        showAlert("Network error. Please try again.", "error");
+      } finally {
+        setLoading("reset-btn", false);
+      }
+    });
   </script>
 </body>
 

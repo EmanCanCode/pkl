@@ -14,6 +14,26 @@ export class LoginDto {
     password: string;
 }
 
+export class ForgotPasswordDto {
+    @ApiProperty({ example: 'eman@pkl.club', description: 'Email or username' })
+    @IsString()
+    @IsNotEmpty()
+    emailOrUsername: string;
+}
+
+export class ResetPasswordDto {
+    @ApiProperty({ description: 'Reset token from email link' })
+    @IsString()
+    @IsNotEmpty()
+    token: string;
+
+    @ApiProperty({ example: 'NewPassword123!', description: 'New password' })
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(6)
+    newPassword: string;
+}
+
 export class TokenResponseDto {
     @ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...', description: 'JWT access token' })
     access_token: string;
