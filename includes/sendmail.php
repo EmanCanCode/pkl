@@ -8,12 +8,12 @@ $mail = new PHPMailer();
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'just55.justhost.com';                  // Specify main and backup SMTP servers
+$mail->Host = 'smtp.gmail.com';                       // Gmail SMTP server
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'themeforest@ismail-hossain.me';    // SMTP username
-$mail->Password = 'AsDf12**';                         // SMTP password
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
+$mail->Username = getenv('GMAIL');                    // Gmail address (from env)
+$mail->Password = getenv('GMAIL_APP_PASSWORD');       // Gmail App Password (from env)
+$mail->SMTPSecure = 'tls';                            // TLS encryption
+$mail->Port = 587;                                    // TCP port for TLS
 
 $message = "";
 $status = "false";
@@ -31,8 +31,8 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
         $botcheck = $_POST['form_botcheck'];
 
-        $toemail = 'spam.thememascot@gmail.com'; // Your Email Address
-        $toname = 'ThemeMascot'; // Your Name
+        $toemail = getenv('GMAIL'); // Your Email Address (from env)
+        $toname = 'PKL Club'; // Your Name
 
         if( $botcheck == '' ) {
 

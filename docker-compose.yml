@@ -6,6 +6,11 @@ services:
     container_name: pkl-site
     ports:
       - "8888:80"
+    env_file:
+      - .env
+    environment:
+      GMAIL: ${GMAIL}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
     restart: unless-stopped
     depends_on:
       - pkl-api
@@ -30,13 +35,15 @@ services:
     container_name: pkl-api
     ports:
       - "3333:3000"
+    env_file:
+      - .env
     environment:
       NODE_ENV: development
       MONGO_URI: mongodb://pklroot:PklM0ng0Secr3t!@pkl-mongo:27017/pklclub?authSource=admin
       JWT_SECRET: pkl-jwt-super-secret-key-2026
       JWT_EXPIRES_IN: 7d
-      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-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}
-      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_placeholder}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
     depends_on:
       - pkl-mongo
     restart: unless-stopped
