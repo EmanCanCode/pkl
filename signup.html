@@ -1102,7 +1102,7 @@
           </div>
 
           <div class="auth-operator-link">
-            Want to host events?
+            <span id="switch-label">Want to host events?</span>
             <a href="signup.html?type=operator" id="switch-to-operator"
               >Sign up as an Operator</a
             >
@@ -1155,17 +1155,20 @@
         const title = document.getElementById("account-type-title");
         const desc = document.getElementById("account-type-desc");
         const switchLink = document.getElementById("switch-to-operator");
+        const switchLabel = document.getElementById("switch-label");
 
         if (type === "player") {
           icon.className = "fas fa-user";
           title.textContent = "Player";
           desc.textContent = "Join tournaments & compete";
+          switchLabel.textContent = "Want to host events?";
           switchLink.textContent = "Sign up as an Operator";
           switchLink.href = "signup.html?type=operator";
         } else {
           icon.className = "fas fa-calendar-alt";
           title.textContent = "Operator";
           desc.textContent = "Host events & tournaments";
+          switchLabel.textContent = "Want to compete instead?";
           switchLink.textContent = "Sign up as a Player";
           switchLink.href = "signup.html?type=player";
         }
