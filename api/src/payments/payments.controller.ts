@@ -21,12 +21,7 @@ class CheckoutDto {
     cancelUrl: string;
 }
 
-class TournamentCheckoutDto extends CheckoutDto {
-    tournamentId: string;
-    registrationId: string;
-}
-
-class EventCheckoutDto extends CheckoutDto {
+class EventRegisterDto {
     eventId: string;
 }
 
@@ -56,44 +51,21 @@ export class PaymentsController {
         );
     }
 
-    @Post('tournament/checkout')
+    @Post('event/register')
     @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()
-    @ApiOperation({ summary: 'Create tournament registration checkout (requires active membership)' })
-    @ApiBody({ type: TournamentCheckoutDto })
-    @ApiResponse({ status: 200, description: 'Returns Stripe checkout session' })
+    @ApiOperation({ summary: 'Register for an event (requires active membership, no event fee)' })
+    @ApiBody({ type: EventRegisterDto })
+    @ApiResponse({ status: 200, description: 'Player registered to event' })
     @ApiResponse({ status: 403, description: 'Active membership required' })
-    async createTournamentCheckout(
+    async registerForEvent(
         @Req() req: any,
-        @Body() body: TournamentCheckoutDto,
+        @Body() body: EventRegisterDto,
     ) {
         const userId = req.user.userId;
-        return this.paymentsService.createTournamentCheckout(
-            userId,
-            body.tournamentId,
-            body.registrationId,
-            body.successUrl,
-            body.cancelUrl,
-        );
-    }
-
-    @Post('event/checkout')
-    @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth()
-    @ApiOperation({ summary: 'Create event registration checkout (requires active membership)' })
-    @ApiBody({ type: EventCheckoutDto })
-    @ApiResponse({ status: 200, description: 'Returns Stripe checkout session' })
-    @ApiResponse({ status: 403, description: 'Active membership required' })
-    async createEventCheckout(
-        @Req() req: any,
-        @Body() body: EventCheckoutDto,
-    ) {
-        const userId = req.user.userId;
-        return this.paymentsService.createEventCheckout(
+        return this.paymentsService.registerForEvent(
             userId,
             body.eventId,
-            body.successUrl,
-            body.cancelUrl,
         );
     }
 

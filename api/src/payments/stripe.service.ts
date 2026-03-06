@@ -6,9 +6,8 @@ export class StripeService implements OnModuleInit {
     private stripe: Stripe;
     private readonly logger = new Logger(StripeService.name);
 
-    // Dynamic price IDs — populated on module init
+    // Dynamic price ID — populated on module init
     private membershipPriceId: string | null = null;
-    private eventPriceId: string | null = null;
 
     constructor() {
         const secretKey = process.env.STRIPE_SECRET_KEY;
@@ -26,7 +25,6 @@ export class StripeService implements OnModuleInit {
             return;
         }
         await this.ensureMembershipProduct();
-        await this.ensureEventRegistrationProduct();
     }
 
     /**
@@ -77,50 +75,6 @@ export class StripeService implements OnModuleInit {
     }
 
     /**
-     * Find or create the PKL Event Registration product + $25 one-time price
-     */
-    private async ensureEventRegistrationProduct(): Promise<void> {
-        if (process.env.STRIPE_EVENT_PRICE_ID) {
-            this.eventPriceId = process.env.STRIPE_EVENT_PRICE_ID;
-            this.logger.log(`Event price (from env): ${this.eventPriceId}`);
-            return;
-        }
-
-        try {
-            const existing = await this.findProductByMetadata('pkl_event_registration');
-            if (existing) {
-                const prices = await this.stripe.prices.list({
-                    product: existing.id,
-                    active: true,
-                    limit: 1,
-                });
-                if (prices.data.length > 0) {
-                    this.eventPriceId = prices.data[0].id;
-                    this.logger.log(`Event price (existing): ${this.eventPriceId}`);
-                    return;
-                }
-            }
-
-            const product = await this.stripe.products.create({
-                name: 'PKL Pathway Series Event Registration',
-                description: 'One-time registration fee for a PKL Pathway Series event.',
-                metadata: { pkl_type: 'pkl_event_registration' },
-            });
-
-            const price = await this.stripe.prices.create({
-                product: product.id,
-                unit_amount: 2500, // $25.00
-                currency: 'usd',
-            });
-
-            this.eventPriceId = price.id;
-            this.logger.log(`Created event product ${product.id} → price ${price.id} ($25)`);
-        } catch (error: any) {
-            this.logger.error(`Failed to set up event registration product: ${error.message}`);
-        }
-    }
-
-    /**
      * Search for an existing Stripe product by our custom metadata tag
      */
     private async findProductByMetadata(pklType: string): Promise<Stripe.Product | null> {
@@ -133,13 +87,6 @@ export class StripeService implements OnModuleInit {
             throw new Error('Membership price not configured — check Stripe setup and STRIPE_SECRET_KEY');
         }
         return this.membershipPriceId;
-    }
-
-    getEventPriceId(): string {
-        if (!this.eventPriceId) {
-            throw new Error('Event price not configured — check Stripe setup and STRIPE_SECRET_KEY');
-        }
-        return this.eventPriceId;
     }
 
     async createCustomer(email: string, name: string): Promise<Stripe.Customer> {
@@ -171,62 +118,6 @@ export class StripeService implements OnModuleInit {
             metadata: {
                 userId,
                 type: 'membership',
-            },
-        });
-    }
-
-    async createTournamentCheckoutSession(
-        customerId: string,
-        userId: string,
-        tournamentId: string,
-        registrationId: string,
-        successUrl: string,
-        cancelUrl: string,
-    ): Promise<Stripe.Checkout.Session> {
-        return this.stripe.checkout.sessions.create({
-            customer: customerId,
-            payment_method_types: ['card'],
-            line_items: [
-                {
-                    price: this.getEventPriceId(),
-                    quantity: 1,
-                },
-            ],
-            mode: 'payment', // Tournament is one-time
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            metadata: {
-                userId,
-                tournamentId,
-                registrationId,
-                type: 'tournament',
-            },
-        });
-    }
-
-    async createEventCheckoutSession(
-        customerId: string,
-        userId: string,
-        eventId: string,
-        successUrl: string,
-        cancelUrl: string,
-    ): Promise<Stripe.Checkout.Session> {
-        return this.stripe.checkout.sessions.create({
-            customer: customerId,
-            payment_method_types: ['card'],
-            line_items: [
-                {
-                    price: this.getEventPriceId(),
-                    quantity: 1,
-                },
-            ],
-            mode: 'payment',
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            metadata: {
-                userId,
-                eventId,
-                type: 'event_registration',
             },
         });
     }

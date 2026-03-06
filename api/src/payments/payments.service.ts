@@ -103,62 +103,15 @@ export class PaymentsService {
     }
 
     /**
-     * Create tournament registration checkout session
-     * REQUIRES ACTIVE MEMBERSHIP
+     * Register player for an event.
+     * REQUIRES ACTIVE MEMBERSHIP (Stripe subscription or admin-granted passes).
+     * No per-event fee — membership is the only requirement.
      */
-    async createTournamentCheckout(
-        userId: string,
-        tournamentId: string,
-        registrationId: string,
-        successUrl: string,
-        cancelUrl: string,
-    ): Promise<{ sessionId: string; url: string }> {
-        // ENFORCE MEMBERSHIP REQUIREMENT
-        if (!(await this.hasActiveMembership(userId))) {
-            throw new ForbiddenException(
-                'Active membership required to register for tournaments. Please purchase a membership first.',
-            );
-        }
-
-        const customerId = await this.ensureStripeCustomer(userId);
-
-        const session = await this.stripeService.createTournamentCheckoutSession(
-            customerId,
-            userId,
-            tournamentId,
-            registrationId,
-            successUrl,
-            cancelUrl,
-        );
-
-        // Record pending payment
-        await this.paymentModel.create({
-            user: new Types.ObjectId(userId),
-            type: PaymentType.TOURNAMENT,
-            stripeSessionId: session.id,
-            amount: 0,
-            stripePriceId: this.stripeService.getEventPriceId(),
-            tournament: new Types.ObjectId(tournamentId),
-            registration: new Types.ObjectId(registrationId),
-            status: PaymentStatus.PENDING,
-        });
-
-        return { sessionId: session.id, url: session.url! };
-    }
-
-    /**
-     * Create event registration checkout session
-     * REQUIRES ACTIVE MEMBERSHIP
-     * If user has eventFeePasses, bypass Stripe and register directly
-     * Auto-registers player to event on successful payment via webhook
-     */
-    async createEventCheckout(
+    async registerForEvent(
         userId: string,
         eventId: string,
-        successUrl: string,
-        cancelUrl: string,
-    ): Promise<{ sessionId: string; url: string } | { bypassed: true; message: string }> {
-        // ENFORCE MEMBERSHIP REQUIREMENT
+    ): Promise<{ bypassed: true; message: string }> {
+        // ENFORCE MEMBERSHIP REQUIREMENT (admin passes checked first)
         if (!(await this.hasActiveMembership(userId))) {
             throw new ForbiddenException(
                 'Active membership required to register for events. Please purchase a membership first.',
@@ -185,54 +138,11 @@ export class PaymentsService {
             throw new BadRequestException('Event is full');
         }
 
-        // CHECK FOR EVENT FEE PASS (admin-granted bypass)
-        const user = await this.userModel.findById(userId);
-        if (user && (user.eventFeePasses === -1 || (user.eventFeePasses && user.eventFeePasses > 0))) {
-            // Consume one pass (unless infinite = -1)
-            if (user.eventFeePasses !== -1) {
-                await this.userModel.findByIdAndUpdate(userId, { $inc: { eventFeePasses: -1 } });
-            }
+        // Register directly — no per-event payment
+        await this.registerPlayerToEvent(userId, eventId);
 
-            // Register directly without Stripe
-            await this.registerPlayerToEvent(userId, eventId);
-
-            // Record a $0 payment for audit trail
-            await this.paymentModel.create({
-                user: new Types.ObjectId(userId),
-                type: PaymentType.TOURNAMENT,
-                stripeSessionId: `pass_${Date.now()}_${userId}`,
-                amount: 0,
-                stripePriceId: 'FEE_PASS',
-                event: new Types.ObjectId(eventId),
-                status: PaymentStatus.COMPLETED,
-            });
-
-            this.logger.log(`Player ${userId} used event fee pass for event ${eventId}`);
-            return { bypassed: true, message: 'Registered using event fee pass' } as any;
-        }
-
-        const customerId = await this.ensureStripeCustomer(userId);
-
-        const session = await this.stripeService.createEventCheckoutSession(
-            customerId,
-            userId,
-            eventId,
-            successUrl,
-            cancelUrl,
-        );
-
-        // Record pending payment
-        await this.paymentModel.create({
-            user: new Types.ObjectId(userId),
-            type: PaymentType.TOURNAMENT,
-            stripeSessionId: session.id,
-            amount: 0,
-            stripePriceId: this.stripeService.getEventPriceId(),
-            event: new Types.ObjectId(eventId),
-            status: PaymentStatus.PENDING,
-        });
-
-        return { sessionId: session.id, url: session.url! };
+        this.logger.log(`Player ${userId} registered for event ${eventId} (membership active)`);
+        return { bypassed: true, message: 'Registered successfully!' };
     }
 
     /**
