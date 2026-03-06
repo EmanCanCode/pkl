@@ -9155,12 +9155,16 @@ Section Title
   color: var(--theme-color-white);
   font-weight: 600;
   font-size: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .feature-box .text {
   color: rgba(var(--theme-color-white-rgb), 0.6);
   font-weight: 600;
   max-width: 208px;
   margin: 0 auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /*** 
