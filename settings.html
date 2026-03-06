@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>PKL.CLUB | Settings</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/fontawesome.css" rel="stylesheet" />
+  <link href="css/linear.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Ubuntu:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="shortcut icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
+  <link rel="icon" href="images/Pathway Logo Feb 28th 2026.png" type="image/x-icon" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --pkl-primary: #2fa06f;
+      --pkl-primary-dark: #238c5c;
+      --pkl-accent: #7ed957;
+      --pkl-dark: #0a1628;
+      --pkl-gray: #6b7280;
+      --pkl-success: #10b981;
+      --pkl-danger: #ef4444;
+      --pkl-warning: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+      background-color: #040b1d;
+    }
+
+    .page-wrapper { min-height: 100vh; }
+
+    .dashboard-main { padding: 120px 0 60px; }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .dashboard-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+    }
+
+    /* Settings Card */
+    .settings-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(47, 160, 111, 0.3);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .settings-card h2 {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .settings-card h2 i {
+      margin-right: 10px;
+      color: var(--pkl-primary);
+    }
+
+    .settings-row {
+      display: flex;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .settings-row:last-child { border-bottom: none; }
+
+    .settings-label {
+      width: 180px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .settings-value {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* User avatar header */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pkl-primary) 0%, var(--pkl-primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .profile-header-info h2 {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      border: none;
+      padding: 0;
+    }
+
+    .profile-header-info p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+
+    /* Membership badge */
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .badge-active {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--pkl-success);
+    }
+
+    .badge-none, .badge-expired {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--pkl-danger);
+    }
+
+    .badge-cancelled {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--pkl-warning);
+    }
+
+    .badge-role {
+      background: rgba(47, 160, 111, 0.2);
+      color: var(--pkl-primary);
+      text-transform: capitalize;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 99999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard-main { padding: 100px 0 40px; }
+      .settings-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .settings-label { width: auto; }
+      .profile-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <div class="toast-container" id="toast-container"></div>
+    <div id="pkl-header"></div>
+
+    <main class="dashboard-main">
+      <div class="container">
+        <div class="dashboard-header">
+          <div>
+            <h1 class="dashboard-title">Settings</h1>
+            <p class="dashboard-subtitle">View your account information</p>
+          </div>
+        </div>
+
+        <!-- Profile Header -->
+        <div class="settings-card">
+          <div class="profile-header">
+            <div class="profile-avatar" id="profile-avatar">?</div>
+            <div class="profile-header-info">
+              <h2 id="profile-fullname">Loading...</h2>
+              <p id="profile-role-line">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Info -->
+        <div class="settings-card">
+          <h2><i class="fas fa-user"></i> Account Information</h2>
+          <div class="settings-row">
+            <div class="settings-label">Username</div>
+            <div class="settings-value" id="info-username">—</div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-label">Email</div>
+            <div class="settings-value" id="info-email">—</div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-label">First Name</div>
+            <div class="settings-value" id="info-firstname">—</div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-label">Last Name</div>
+            <div class="settings-value" id="info-lastname">—</div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-label">Phone</div>
+            <div class="settings-value" id="info-phone">—</div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-label">Account Type</div>
+            <div class="settings-value" id="info-role">—</div>
+          </div>
+        </div>
+
+        <!-- Membership -->
+        <div class="settings-card" id="membership-card">
+          <h2><i class="fas fa-id-card"></i> Membership</h2>
+          <div class="settings-row">
+            <div class="settings-label">Status</div>
+            <div class="settings-value" id="info-membership">—</div>
+          </div>
+          <div class="settings-row" id="row-expires" style="display:none">
+            <div class="settings-label">Expires</div>
+            <div class="settings-value" id="info-expires">—</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <script>
+      const API = window.location.hostname === "localhost"
+        ? "http://localhost:3333/api"
+        : "/api";
+
+      function checkAuth() {
+        const token = localStorage.getItem("pkl_token");
+        const userStr = localStorage.getItem("pkl_user");
+        if (!token || !userStr) {
+          window.location.href = "login.html";
+          return;
+        }
+        loadProfile(token);
+      }
+
+      async function loadProfile(token) {
+        try {
+          const res = await fetch(`${API}/auth/profile`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (!res.ok) throw new Error("Failed to load profile");
+          const user = await res.json();
+          renderProfile(user);
+        } catch (err) {
+          console.error(err);
+          // Fallback to localStorage data
+          try {
+            const user = JSON.parse(localStorage.getItem("pkl_user"));
+            if (user) renderProfile(user);
+          } catch (_) {}
+        }
+      }
+
+      function renderProfile(user) {
+        const first = user.firstName || "";
+        const last = user.lastName || "";
+        const fullName = (first + " " + last).trim() || user.username;
+        const initials = first ? first.charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase();
+
+        document.getElementById("profile-avatar").textContent = initials;
+        document.getElementById("profile-fullname").textContent = fullName;
+        document.getElementById("profile-role-line").textContent = "@" + user.username + " \u00B7 " + (user.userType || "").charAt(0).toUpperCase() + (user.userType || "").slice(1);
+
+        document.getElementById("info-username").textContent = user.username || "—";
+        document.getElementById("info-email").textContent = user.email || "—";
+        document.getElementById("info-firstname").textContent = user.firstName || "—";
+        document.getElementById("info-lastname").textContent = user.lastName || "—";
+        document.getElementById("info-phone").textContent = user.phone || "—";
+
+        const roleEl = document.getElementById("info-role");
+        roleEl.innerHTML = `<span class="badge badge-role">${user.userType || "—"}</span>`;
+
+        // Membership
+        const status = user.membershipStatus || "none";
+        const memEl = document.getElementById("info-membership");
+        const badgeClass = status === "active" ? "badge-active" : status === "cancelled" ? "badge-cancelled" : "badge-none";
+        memEl.innerHTML = `<span class="badge ${badgeClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
+
+        if (user.membershipExpires && status === "active") {
+          document.getElementById("row-expires").style.display = "";
+          document.getElementById("info-expires").textContent = new Date(user.membershipExpires).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+        }
+
+        // Hide membership card for admin
+        if (user.userType === "admin") {
+          document.getElementById("membership-card").style.display = "none";
+        }
+      }
+
+      checkAuth();
+    </script>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/pkl-header-component.js"></script>
+  </div>
+</body>
+
+</html>

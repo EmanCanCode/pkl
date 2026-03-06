@@ -39,6 +39,7 @@
     "admin-dashboard.html": "Dashboard",
     "operator-dashboard.html": "Dashboard",
     "player-dashboard.html": "Dashboard",
+    "settings.html": "Settings",
     "index.html": "",
   };
 
@@ -340,20 +341,16 @@
         dashboardLink = `<a href="${db[0]}" class="dropdown-item"><i class="fa fa-tachometer-alt"></i> ${db[1]}</a>`;
       }
 
-      // Role-specific links
-      let roleLinks = "";
-      if (user.userType === "player") {
-        roleLinks = `<a href="players.html" class="dropdown-item"><i class="fa fa-users"></i> Players Hub</a>`;
-      } else if (user.userType === "operator") {
-        roleLinks = `<a href="operators.html" class="dropdown-item"><i class="fa fa-cogs"></i> Operators Hub</a>`;
-      } else if (user.userType === "sponsor") {
-        roleLinks = `<a href="sponsors.html" class="dropdown-item"><i class="fa fa-handshake"></i> Sponsors Hub</a>`;
+      // Settings link for player, operator, admin
+      let settingsLink = "";
+      if (["player", "operator", "admin"].includes(user.userType)) {
+        settingsLink = `<a href="settings.html" class="dropdown-item"><i class="fa fa-cog"></i> Settings</a>`;
       }
 
       dropdown.innerHTML =
         dashboardLink +
         `<a href="world-series.html" class="dropdown-item"><i class="fa fa-trophy"></i> Pathway Series</a>` +
-        roleLinks +
+        settingsLink +
         `<a href="#" class="dropdown-item logout-btn"><i class="fa fa-sign-out-alt"></i> Logout</a>`;
 
       btn.parentElement.style.position = "relative";
