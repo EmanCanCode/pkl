@@ -103,6 +103,39 @@ export class PaymentsService {
     }
 
     /**
+     * Verify a Stripe checkout session and activate membership if payment succeeded.
+     * This is a fallback for when webhooks aren't configured (sandbox/dev).
+     * Idempotent — safe to call multiple times.
+     */
+    async verifyMembershipSession(userId: string, sessionId: string): Promise<{ activated: boolean }> {
+        const payment = await this.paymentModel.findOne({
+            stripeSessionId: sessionId,
+            user: new Types.ObjectId(userId),
+            type: PaymentType.MEMBERSHIP,
+        });
+
+        if (!payment) {
+            throw new NotFoundException('Payment session not found');
+        }
+
+        // Already activated (by webhook or previous verify call)
+        if (payment.status === PaymentStatus.COMPLETED) {
+            return { activated: true };
+        }
+
+        // Retrieve session from Stripe to check actual payment status
+        const session = await this.stripeService.retrieveSession(sessionId);
+
+        if (session.payment_status !== 'paid') {
+            return { activated: false };
+        }
+
+        // Payment confirmed — activate membership
+        await this.handleCheckoutCompleted(session);
+        return { activated: true };
+    }
+
+    /**
      * Register player for an event.
      * REQUIRES ACTIVE MEMBERSHIP (Stripe subscription or admin-granted passes).
      * No per-event fee — membership is the only requirement.
