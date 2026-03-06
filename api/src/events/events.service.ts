@@ -255,6 +255,7 @@ export class EventsService {
       playerName: registerDto.playerName,
       email: registerDto.email,
       registeredAt: new Date(),
+      gameTypes: registerDto.gameTypes || [],
     });
 
     return event.save();

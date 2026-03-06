@@ -2691,6 +2691,115 @@
         `;
         }
 
+        // Show game type selection modal before registering
+        function showGameTypeModal(eventId, entryFee) {
+          const existing = document.getElementById("pws-game-type-modal");
+          if (existing) existing.remove();
+
+          const feePerOption =
+            entryFee > 0 ? `$${Number(entryFee).toFixed(2)}` : "Free";
+
+          const overlay = document.createElement("div");
+          overlay.id = "pws-game-type-modal";
+          overlay.style.cssText =
+            "position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;animation:pwsFadeIn 0.25s ease;";
+          overlay.innerHTML = `
+          <div style="
+            background: linear-gradient(160deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid rgba(47, 160, 111, 0.4);
+            border-radius: 20px;
+            padding: 36px 32px;
+            max-width: 460px;
+            width: 90vw;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(47,160,111,0.1);
+          ">
+            <button onclick="PWSDashboard.dismissGameTypeModal()"
+              style="position:absolute;top:14px;right:14px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:20px;cursor:pointer;padding:4px 8px;"
+              aria-label="Close">&times;</button>
+            <div style="font-size: 44px; margin-bottom: 12px;">🏓</div>
+            <h3 style="color: #7ed957; font-size: 22px; font-weight: 700; margin: 0 0 8px 0;">
+              Select Game Types
+            </h3>
+            <p style="color: rgba(255,255,255,0.65); font-size: 14px; margin: 0 0 24px 0; line-height: 1.5;">
+              Choose what you want to compete in. Each option is <strong style="color:#7ed957;">${feePerOption}</strong> per ticket.
+            </p>
+            <div id="pws-game-type-checks" style="text-align:left; margin-bottom: 20px; display:flex; flex-direction:column; gap:12px;">
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);transition:border-color 0.2s;">
+                <input type="checkbox" value="Mens/Womens Single" style="width:18px;height:18px;accent-color:#7ed957;cursor:pointer;">
+                <span style="color:#fff;font-size:15px;font-weight:500;">Mens / Womens Single</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);transition:border-color 0.2s;">
+                <input type="checkbox" value="Mens/Womens Doubles" style="width:18px;height:18px;accent-color:#7ed957;cursor:pointer;">
+                <span style="color:#fff;font-size:15px;font-weight:500;">Mens / Womens Doubles</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);transition:border-color 0.2s;">
+                <input type="checkbox" value="Mixed Doubles" style="width:18px;height:18px;accent-color:#7ed957;cursor:pointer;">
+                <span style="color:#fff;font-size:15px;font-weight:500;">Mixed Doubles</span>
+              </label>
+            </div>
+            <div id="pws-price-summary" style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:20px;min-height:20px;">Select at least one game type to continue.</div>
+            <button onclick="PWSDashboard.confirmGameTypes('${eventId}', ${entryFee || 0})" style="
+              display: inline-flex; align-items: center; gap: 10px;
+              padding: 14px 32px; border-radius: 12px; border: none;
+              background: linear-gradient(135deg, #2fa06f, #7ed957);
+              color: #000; font-weight: 700; font-size: 16px;
+              cursor: pointer; transition: all 0.3s ease;
+              box-shadow: 0 4px 20px rgba(47,160,111,0.3);
+            "
+              onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(47,160,111,0.5)';"
+              onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(47,160,111,0.3)';"
+            >
+              <i class="fas fa-user-plus"></i> Confirm Registration
+            </button>
+          </div>
+        `;
+          overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) overlay.remove();
+          });
+          document.body.appendChild(overlay);
+
+          // Live price update
+          overlay.querySelectorAll("input[type=checkbox]").forEach((cb) => {
+            cb.addEventListener("change", () =>
+              updateGameTypePriceSummary(entryFee || 0),
+            );
+          });
+        }
+
+        function updateGameTypePriceSummary(entryFee) {
+          const checked = document.querySelectorAll(
+            "#pws-game-type-modal input[type=checkbox]:checked",
+          );
+          const count = checked.length;
+          const summary = document.getElementById("pws-price-summary");
+          if (!summary) return;
+          if (count === 0) {
+            summary.textContent = "Select at least one game type to continue.";
+            summary.style.color = "rgba(255,255,255,0.5)";
+          } else {
+            const total = count * entryFee;
+            const totalStr = entryFee > 0 ? `$${total.toFixed(2)}` : "Free";
+            summary.innerHTML = `<strong style="color:#7ed957;">${count} option${count > 1 ? "s" : ""} selected</strong> &mdash; Total: <strong style="color:#fff;">${totalStr}</strong>`;
+            summary.style.color = "rgba(255,255,255,0.8)";
+          }
+        }
+
+        function confirmGameTypes(eventId, entryFee) {
+          const checked = document.querySelectorAll(
+            "#pws-game-type-modal input[type=checkbox]:checked",
+          );
+          const selectedTypes = Array.from(checked).map((cb) => cb.value);
+          if (selectedTypes.length === 0) {
+            showPwsToast("Please select at least one game type.", true);
+            return;
+          }
+          const modal = document.getElementById("pws-game-type-modal");
+          if (modal) modal.remove();
+          processRegistration(eventId, selectedTypes);
+        }
+
         // Show membership upgrade modal
         function showMembershipModal(eventId) {
           pendingEventId = eventId;
@@ -3013,6 +3122,19 @@
                   <div style="color: #fff; font-size: 15px; font-weight: 500;">${playerCount} Registered</div>
                 </div>
               </div>
+              ${
+                event.entryFee > 0
+                  ? `
+              <div class="col-md-4">
+                <div style="background: rgba(47, 160, 111, 0.1); border-radius: 12px; padding: 16px;">
+                  <div style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-bottom: 4px;">
+                    <i class="fas fa-ticket-alt" style="margin-right: 6px;"></i>Entry Fee / Option
+                  </div>
+                  <div style="color: #7ed957; font-size: 15px; font-weight: 600;">$${Number(event.entryFee).toFixed(2)}</div>
+                </div>
+              </div>`
+                  : ""
+              }
             </div>
 
             <!-- Winner Banner (for completed events) -->
@@ -3197,7 +3319,7 @@
               return `<span style="${disabledStyle}"><i class="fas fa-check-circle"></i> Already Registered</span>`;
             }
 
-            // Show register button - membership check happens on click (API-side)
+            // Show register button - membership check happens on click
             return `<button onclick="PWSDashboard.registerForEvent('${event._id}')" style="${primaryStyle}"><i class="fas fa-user-plus"></i> Register to Play</button>`;
           } catch (e) {
             return `<a href="login.html" style="${primaryStyle}"><i class="fas fa-sign-in-alt"></i> Login to Register</a>`;
@@ -3212,11 +3334,25 @@
             return;
           }
 
-          // If we already know membership is inactive, show modal instead
+          // Step 1: Membership gate — must have active membership first
           if (!playerMembershipActive) {
             showMembershipModal(eventId);
             return;
           }
+
+          // Step 2: Show game type selection modal
+          const event =
+            allEvents.find((e) => e._id === eventId) || selectedEvent;
+          const entryFee = event ? event.entryFee || 0 : 0;
+          showGameTypeModal(eventId, entryFee);
+        }
+
+        // Step 3: After game types are confirmed
+        async function processRegistration(eventId, gameTypes) {
+          const token = localStorage.getItem("pkl_token");
+          const event =
+            allEvents.find((e) => e._id === eventId) || selectedEvent;
+          const entryFee = event ? event.entryFee || 0 : 0;
 
           const btn = document.querySelector("#pws-action-buttons button");
           if (btn) {
@@ -3226,7 +3362,45 @@
           }
 
           try {
-            // Has membership — register for event (no per-event fee)
+            if (entryFee > 0) {
+              // Paid event — create Stripe checkout for entry fee
+              const resp = await fetch(
+                `${API_BASE}/payments/event/fee-checkout`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({
+                    eventId: eventId,
+                    gameTypes: gameTypes,
+                    successUrl:
+                      window.location.origin +
+                      "/world-series.html?eventfee=success&eventId=" +
+                      eventId,
+                    cancelUrl:
+                      window.location.origin +
+                      "/world-series.html?eventfee=cancelled",
+                  }),
+                },
+              );
+
+              if (!resp.ok) {
+                const err = await resp.json();
+                throw new Error(err.message || "Failed to create checkout");
+              }
+
+              const checkout = await resp.json();
+              sessionStorage.setItem(
+                "pkl_event_fee_session",
+                checkout.sessionId,
+              );
+              window.location.href = checkout.url;
+              return;
+            }
+
+            // Free event — register directly
             const registerResp = await fetch(
               `${API_BASE}/payments/event/register`,
               {
@@ -3237,6 +3411,7 @@
                 },
                 body: JSON.stringify({
                   eventId: eventId,
+                  gameTypes: gameTypes || [],
                 }),
               },
             );
@@ -3249,7 +3424,7 @@
             const result = await registerResp.json();
 
             showPwsToast(
-              "✅ " + (result.message || "Registered successfully!"),
+              "\u2705 " + (result.message || "Registered successfully!"),
             );
             // Update button in-place
             const actionDiv = document.getElementById("pws-action-buttons");
@@ -3260,7 +3435,6 @@
                   '<span style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; background: rgba(16, 185, 129, 0.2); color: #10b981; border: 2px solid rgba(16, 185, 129, 0.4);"><i class="fas fa-check-circle"></i> You\'re Registered!</span>';
               }
             }
-            // Refresh event data in background so counts update
             await refreshCurrentEvent(eventId);
           } catch (error) {
             console.error("Registration error:", error);
@@ -3361,16 +3535,52 @@
             setTimeout(() => {
               playerMembershipActive = true;
               renderMembershipBanner();
-              showPwsToast(
-                "Membership activated! Proceeding with registration...",
-              );
+              showPwsToast("Membership activated! Now select your game types.");
               if (eventId) {
-                registerForEvent(eventId);
+                // Membership done — proceed to game type selection
+                const event = allEvents.find((e) => e._id === eventId);
+                const entryFee = event ? event.entryFee || 0 : 0;
+                showGameTypeModal(eventId, entryFee);
               }
             }, 500);
           } else if (params.get("membership") === "cancelled") {
             setTimeout(
               () => showPwsToast("Membership purchase was cancelled.", true),
+              500,
+            );
+            window.history.replaceState({}, "", window.location.pathname);
+          } else if (params.get("eventfee") === "success") {
+            const eventId = params.get("eventId");
+            window.history.replaceState({}, "", window.location.pathname);
+
+            // Verify the event fee checkout session
+            const sessionId = sessionStorage.getItem("pkl_event_fee_session");
+            const token = localStorage.getItem("pkl_token");
+            if (sessionId && token) {
+              try {
+                await fetch(`${API_BASE}/payments/event/fee-verify`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({ sessionId }),
+                });
+                sessionStorage.removeItem("pkl_event_fee_session");
+              } catch (e) {
+                console.error("Event fee verify error:", e);
+              }
+            }
+
+            setTimeout(async () => {
+              showPwsToast("Payment successful! You are now registered.");
+              if (eventId) {
+                await refreshCurrentEvent(eventId);
+              }
+            }, 500);
+          } else if (params.get("eventfee") === "cancelled") {
+            setTimeout(
+              () => showPwsToast("Event fee payment was cancelled.", true),
               500,
             );
             window.history.replaceState({}, "", window.location.pathname);
@@ -3398,6 +3608,12 @@
           init: init,
           search: handleSearch,
           registerForEvent: registerForEvent,
+          showGameTypeModal: showGameTypeModal,
+          confirmGameTypes: confirmGameTypes,
+          dismissGameTypeModal: function () {
+            const modal = document.getElementById("pws-game-type-modal");
+            if (modal) modal.remove();
+          },
           buyMembership: buyMembership,
           dismissMembershipModal: function () {
             pendingEventId = null;

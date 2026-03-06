@@ -87,6 +87,13 @@ export class RegisteredPlayer {
   @ApiProperty({ description: "Registration date" })
   @Prop({ default: Date.now })
   registeredAt: Date;
+
+  @ApiPropertyOptional({
+    example: ["Mens/Womens Single", "Mixed Doubles"],
+    description: "Game types the player registered for",
+  })
+  @Prop({ type: [String], default: [] })
+  gameTypes: string[];
 }
 
 @Schema()
