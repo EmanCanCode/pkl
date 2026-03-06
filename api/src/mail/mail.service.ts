@@ -51,9 +51,10 @@ export class MailService {
     resetToken: string,
   ): Promise<void> {
     const baseUrl =
-      process.env.FRONTEND_URL || process.env.DOMAIN
+      process.env.FRONTEND_URL ||
+      (process.env.DOMAIN
         ? `https://${process.env.DOMAIN}`
-        : "http://localhost:8888";
+        : "http://localhost:8888");
     const resetLink = `${baseUrl}/login.html?token=${resetToken}`;
 
     try {
