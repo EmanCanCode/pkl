@@ -183,11 +183,11 @@ export class Event {
   description: string;
 
   @ApiProperty({ example: 50, description: "Maximum number of participants" })
-  @Prop()
+  @Prop({ type: Number })
   maxParticipants: number;
 
   @ApiPropertyOptional({ example: 25.0, description: "Entry fee in USD" })
-  @Prop()
+  @Prop({ type: Number })
   entryFee?: number;
 
   @ApiProperty({ description: "Admin notes (for approval/rejection)" })

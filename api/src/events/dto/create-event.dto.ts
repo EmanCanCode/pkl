@@ -108,10 +108,12 @@ export class CreateEventDto {
   @ApiPropertyOptional({ example: 50 })
   @IsNumber()
   @IsOptional()
+  @Type(() => Number)
   maxParticipants?: number;
 
   @ApiPropertyOptional({ example: 25.0 })
   @IsNumber()
   @IsOptional()
+  @Type(() => Number)
   entryFee?: number;
 }
