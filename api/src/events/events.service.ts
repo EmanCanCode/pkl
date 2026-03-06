@@ -29,6 +29,17 @@ export class EventsService {
     userId: string,
     userType: UserType,
   ): Promise<EventDocument> {
+    console.log(
+      "[EventsService] Creating event with DTO:",
+      JSON.stringify(createEventDto, null, 2),
+    );
+    console.log(
+      "[EventsService] entryFee value:",
+      createEventDto.entryFee,
+      "type:",
+      typeof createEventDto.entryFee,
+    );
+
     const eventData: any = {
       ...createEventDto,
       operator: new Types.ObjectId(userId),
@@ -45,7 +56,9 @@ export class EventsService {
     }
 
     const event = new this.eventModel(eventData);
-    return event.save();
+    const saved = await event.save();
+    console.log("[EventsService] Event saved with entryFee:", saved.entryFee);
+    return saved;
   }
 
   /**
@@ -99,7 +112,20 @@ export class EventsService {
       query.limit(limit);
     }
 
-    return query.exec();
+    const results = await query.exec();
+    console.log(
+      "[EventsService] findApproved returning",
+      results.length,
+      "events",
+    );
+    results.forEach((e) => {
+      console.log(
+        `  - Event "${e.name}": entryFee =`,
+        e.entryFee,
+        typeof e.entryFee,
+      );
+    });
+    return results;
   }
 
   /**

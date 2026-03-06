@@ -2484,6 +2484,16 @@
             allEvents = Array.isArray(events) ? events : [];
 
             console.log("[PWS Dashboard] Processed events:", allEvents.length);
+            // Debug: Log entryFee values
+            allEvents.forEach((e) => {
+              if (e.entryFee !== undefined && e.entryFee !== null) {
+                console.log(
+                  `[PWS Dashboard] Event "${e.name}" has entryFee:`,
+                  e.entryFee,
+                  typeof e.entryFee,
+                );
+              }
+            });
             return allEvents;
           } catch (error) {
             console.error("[PWS Dashboard] Error fetching events:", error);
@@ -3354,6 +3364,20 @@
             allEvents.find((e) => e._id === eventId) || selectedEvent;
           const entryFee = event ? event.entryFee || 0 : 0;
 
+          console.log(
+            "[PWS] processRegistration called with eventId:",
+            eventId,
+          );
+          console.log("[PWS] Found event:", event ? event.name : "NOT FOUND");
+          console.log("[PWS] Event object:", event);
+          console.log(
+            "[PWS] entryFee value:",
+            entryFee,
+            "type:",
+            typeof entryFee,
+          );
+          console.log("[PWS] gameTypes:", gameTypes);
+
           const btn = document.querySelector("#pws-action-buttons button");
           if (btn) {
             btn.disabled = true;
@@ -3363,6 +3387,7 @@
 
           try {
             if (entryFee > 0) {
+              console.log("[PWS] Creating Stripe checkout for paid event");
               // Paid event — create Stripe checkout for entry fee
               const resp = await fetch(
                 `${API_BASE}/payments/event/fee-checkout`,
@@ -3401,6 +3426,7 @@
             }
 
             // Free event — register directly
+            console.log("[PWS] Registering for free event (entryFee <= 0)");
             const registerResp = await fetch(
               `${API_BASE}/payments/event/register`,
               {
