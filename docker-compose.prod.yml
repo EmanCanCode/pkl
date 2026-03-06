@@ -7,6 +7,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    env_file:
+      - .env
+    environment:
+      GMAIL: ${GMAIL}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
     volumes:
       - ./ssl:/etc/nginx/ssl:ro
       - ./nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
