@@ -95,7 +95,7 @@ export class PaymentsService {
             type: PaymentType.MEMBERSHIP,
             stripeSessionId: session.id,
             amount: 0, // Will be updated from webhook
-            stripePriceId: StripeService.MEMBERSHIP_PRICE_ID,
+            stripePriceId: this.stripeService.getMembershipPriceId(),
             status: PaymentStatus.PENDING,
         });
 
@@ -137,7 +137,7 @@ export class PaymentsService {
             type: PaymentType.TOURNAMENT,
             stripeSessionId: session.id,
             amount: 0,
-            stripePriceId: StripeService.TOURNAMENT_PRICE_ID,
+            stripePriceId: this.stripeService.getEventPriceId(),
             tournament: new Types.ObjectId(tournamentId),
             registration: new Types.ObjectId(registrationId),
             status: PaymentStatus.PENDING,
@@ -227,7 +227,7 @@ export class PaymentsService {
             type: PaymentType.TOURNAMENT,
             stripeSessionId: session.id,
             amount: 0,
-            stripePriceId: StripeService.TOURNAMENT_PRICE_ID,
+            stripePriceId: this.stripeService.getEventPriceId(),
             event: new Types.ObjectId(eventId),
             status: PaymentStatus.PENDING,
         });

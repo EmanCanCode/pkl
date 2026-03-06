@@ -1,14 +1,14 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import Stripe from 'stripe';
 
 @Injectable()
-export class StripeService {
+export class StripeService implements OnModuleInit {
     private stripe: Stripe;
     private readonly logger = new Logger(StripeService.name);
 
-    // PKL Club Price IDs
-    static readonly MEMBERSHIP_PRICE_ID = 'price_1SxtVBPoLKspRBJeqExDsE5k';
-    static readonly TOURNAMENT_PRICE_ID = 'price_1SxtW4PoLKspRBJel8K9Gj41';
+    // Dynamic price IDs — populated on module init
+    private membershipPriceId: string | null = null;
+    private eventPriceId: string | null = null;
 
     constructor() {
         const secretKey = process.env.STRIPE_SECRET_KEY;
@@ -18,6 +18,128 @@ export class StripeService {
         this.stripe = new Stripe(secretKey || '', {
             apiVersion: '2023-10-16',
         });
+    }
+
+    async onModuleInit() {
+        if (!process.env.STRIPE_SECRET_KEY) {
+            this.logger.warn('Skipping Stripe product setup — no secret key configured');
+            return;
+        }
+        await this.ensureMembershipProduct();
+        await this.ensureEventRegistrationProduct();
+    }
+
+    /**
+     * Find or create the PKL Annual Membership product + $10/year price
+     */
+    private async ensureMembershipProduct(): Promise<void> {
+        // Allow env-var override
+        if (process.env.STRIPE_MEMBERSHIP_PRICE_ID) {
+            this.membershipPriceId = process.env.STRIPE_MEMBERSHIP_PRICE_ID;
+            this.logger.log(`Membership price (from env): ${this.membershipPriceId}`);
+            return;
+        }
+
+        try {
+            const existing = await this.findProductByMetadata('pkl_annual_membership');
+            if (existing) {
+                const prices = await this.stripe.prices.list({
+                    product: existing.id,
+                    active: true,
+                    limit: 1,
+                });
+                if (prices.data.length > 0) {
+                    this.membershipPriceId = prices.data[0].id;
+                    this.logger.log(`Membership price (existing): ${this.membershipPriceId}`);
+                    return;
+                }
+            }
+
+            // Create product + recurring price
+            const product = await this.stripe.products.create({
+                name: 'PKL Club Individual Annual Registration',
+                description: 'Annual membership required to register for PKL Pathway Series events. Grants one full year of event access.',
+                metadata: { pkl_type: 'pkl_annual_membership' },
+            });
+
+            const price = await this.stripe.prices.create({
+                product: product.id,
+                unit_amount: 1000, // $10.00
+                currency: 'usd',
+                recurring: { interval: 'year' },
+            });
+
+            this.membershipPriceId = price.id;
+            this.logger.log(`Created membership product ${product.id} → price ${price.id} ($10/year)`);
+        } catch (error: any) {
+            this.logger.error(`Failed to set up membership product: ${error.message}`);
+        }
+    }
+
+    /**
+     * Find or create the PKL Event Registration product + $25 one-time price
+     */
+    private async ensureEventRegistrationProduct(): Promise<void> {
+        if (process.env.STRIPE_EVENT_PRICE_ID) {
+            this.eventPriceId = process.env.STRIPE_EVENT_PRICE_ID;
+            this.logger.log(`Event price (from env): ${this.eventPriceId}`);
+            return;
+        }
+
+        try {
+            const existing = await this.findProductByMetadata('pkl_event_registration');
+            if (existing) {
+                const prices = await this.stripe.prices.list({
+                    product: existing.id,
+                    active: true,
+                    limit: 1,
+                });
+                if (prices.data.length > 0) {
+                    this.eventPriceId = prices.data[0].id;
+                    this.logger.log(`Event price (existing): ${this.eventPriceId}`);
+                    return;
+                }
+            }
+
+            const product = await this.stripe.products.create({
+                name: 'PKL Pathway Series Event Registration',
+                description: 'One-time registration fee for a PKL Pathway Series event.',
+                metadata: { pkl_type: 'pkl_event_registration' },
+            });
+
+            const price = await this.stripe.prices.create({
+                product: product.id,
+                unit_amount: 2500, // $25.00
+                currency: 'usd',
+            });
+
+            this.eventPriceId = price.id;
+            this.logger.log(`Created event product ${product.id} → price ${price.id} ($25)`);
+        } catch (error: any) {
+            this.logger.error(`Failed to set up event registration product: ${error.message}`);
+        }
+    }
+
+    /**
+     * Search for an existing Stripe product by our custom metadata tag
+     */
+    private async findProductByMetadata(pklType: string): Promise<Stripe.Product | null> {
+        const products = await this.stripe.products.list({ active: true, limit: 100 });
+        return products.data.find(p => p.metadata?.pkl_type === pklType) || null;
+    }
+
+    getMembershipPriceId(): string {
+        if (!this.membershipPriceId) {
+            throw new Error('Membership price not configured — check Stripe setup and STRIPE_SECRET_KEY');
+        }
+        return this.membershipPriceId;
+    }
+
+    getEventPriceId(): string {
+        if (!this.eventPriceId) {
+            throw new Error('Event price not configured — check Stripe setup and STRIPE_SECRET_KEY');
+        }
+        return this.eventPriceId;
     }
 
     async createCustomer(email: string, name: string): Promise<Stripe.Customer> {
@@ -39,7 +161,7 @@ export class StripeService {
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: StripeService.MEMBERSHIP_PRICE_ID,
+                    price: this.getMembershipPriceId(),
                     quantity: 1,
                 },
             ],
@@ -66,7 +188,7 @@ export class StripeService {
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: StripeService.TOURNAMENT_PRICE_ID,
+                    price: this.getEventPriceId(),
                     quantity: 1,
                 },
             ],
@@ -94,7 +216,7 @@ export class StripeService {
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: StripeService.TOURNAMENT_PRICE_ID,
+                    price: this.getEventPriceId(),
                     quantity: 1,
                 },
             ],
