@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export type EventDocument = Event & Document;
 
@@ -179,9 +179,9 @@ export class Event {
   @Prop()
   maxParticipants: number;
 
-  @ApiProperty({ example: 25.0, description: "Entry fee in USD" })
+  @ApiPropertyOptional({ example: 25.0, description: "Entry fee in USD" })
   @Prop()
-  entryFee: number;
+  entryFee?: number;
 
   @ApiProperty({ description: "Admin notes (for approval/rejection)" })
   @Prop()
