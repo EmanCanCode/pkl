@@ -2392,6 +2392,8 @@
             }
 
             const memberCheckout = await memberCheckoutResp.json();
+            // Store sessionId so we can verify on return
+            sessionStorage.setItem("pkl_checkout_session", memberCheckout.sessionId);
             // Redirect to Stripe
             window.location.href = memberCheckout.url;
             return;
@@ -2489,13 +2491,13 @@
       }
 
       // Check URL params for success/cancel messages
-      function checkUrlParams() {
+      async function checkUrlParams() {
         const params = new URLSearchParams(window.location.search);
         if (params.get("registration") === "success") {
           setTimeout(
             () =>
               showPwsToast(
-                "?? Registration successful! You are now registered.",
+                "Registration successful! You are now registered.",
               ),
             500,
           );
@@ -2508,15 +2510,35 @@
           window.history.replaceState({}, "", window.location.pathname);
         } else if (params.get("membership") === "success") {
           const eventId = params.get("eventId");
+          window.history.replaceState({}, "", window.location.pathname);
+
+          // Verify the checkout session to activate membership
+          const sessionId = sessionStorage.getItem("pkl_checkout_session");
+          const token = localStorage.getItem("pkl_token");
+          if (sessionId && token) {
+            try {
+              await fetch(`${API_BASE}/payments/membership/verify`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ sessionId }),
+              });
+              sessionStorage.removeItem("pkl_checkout_session");
+            } catch (e) {
+              console.error("Verify error:", e);
+            }
+          }
+
           setTimeout(() => {
             showPwsToast(
-              "?? Membership activated! Proceeding with registration...",
+              "Membership activated! Proceeding with registration...",
             );
             if (eventId) {
               registerForEvent(eventId);
             }
           }, 500);
-          window.history.replaceState({}, "", window.location.pathname);
         } else if (params.get("membership") === "cancelled") {
           setTimeout(
             () => showPwsToast("Membership purchase was cancelled.", true),

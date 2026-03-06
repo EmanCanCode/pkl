@@ -51,6 +51,18 @@ export class PaymentsController {
         );
     }
 
+    @Post('membership/verify')
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth()
+    @ApiOperation({ summary: 'Verify a membership checkout session and activate if paid (fallback for webhook)' })
+    @ApiResponse({ status: 200, description: 'Returns activation status' })
+    async verifyMembershipSession(
+        @Req() req: any,
+        @Body() body: { sessionId: string },
+    ) {
+        return this.paymentsService.verifyMembershipSession(req.user.userId, body.sessionId);
+    }
+
     @Post('event/register')
     @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()

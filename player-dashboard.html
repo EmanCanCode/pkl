@@ -857,6 +857,8 @@
           }
 
           const data = await response.json();
+          // Store sessionId so we can verify on return
+          sessionStorage.setItem("pkl_checkout_session", data.sessionId);
           window.location.href = data.url;
         } catch (error) {
           showToast(error.message || "Failed to start membership checkout", "error");
@@ -864,11 +866,27 @@
       }
 
       // Check URL params for payment return
-      (function checkParams() {
+      (async function checkParams() {
         const params = new URLSearchParams(window.location.search);
         if (params.get("membership") === "success") {
-          setTimeout(() => showToast("?? Membership activated successfully!", "success"), 500);
           window.history.replaceState({}, "", window.location.pathname);
+          const sessionId = sessionStorage.getItem("pkl_checkout_session");
+          if (sessionId && token) {
+            try {
+              await fetch(`${API_URL}/payments/membership/verify`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ sessionId }),
+              });
+              sessionStorage.removeItem("pkl_checkout_session");
+            } catch (e) {
+              console.error("Verify error:", e);
+            }
+          }
+          setTimeout(() => showToast("Membership activated successfully!", "success"), 500);
         } else if (params.get("membership") === "cancelled") {
           setTimeout(() => showToast("Membership purchase cancelled", "warning"), 500);
           window.history.replaceState({}, "", window.location.pathname);
