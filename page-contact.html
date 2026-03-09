@@ -31,14 +31,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
-      .form-control,
-      .form-control:focus {
+      #contact_form .form-control,
+      #contact_form .form-control:focus,
+      #contact_form .form-control:hover {
         color: #fff !important;
         -webkit-text-fill-color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        caret-color: #fff !important;
       }
 
-      .form-control::placeholder {
-        color: rgba(255, 255, 255, 0.5) !important;
+      #contact_form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.45) !important;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.45) !important;
+      }
+
+      /* Override browser autofill which replaces the background with its own color */
+      #contact_form .form-control:-webkit-autofill,
+      #contact_form .form-control:-webkit-autofill:hover,
+      #contact_form .form-control:-webkit-autofill:focus {
+        -webkit-text-fill-color: #fff !important;
+        -webkit-box-shadow: 0 0 0px 1000px rgba(30, 30, 40, 0.95) inset !important;
+        caret-color: #fff !important;
       }
     </style>
   </head>
