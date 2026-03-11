@@ -88,4 +88,16 @@ export class MailService {
       );
     }
   }
+
+  /**
+   * Send an arbitrary email (fire-and-forget friendly).
+   */
+  async sendRawEmail(to: string, subject: string, html: string): Promise<void> {
+    await this.transporter.sendMail({
+      from: `"PKL Club" <${process.env.GMAIL}>`,
+      to,
+      subject,
+      html,
+    });
+  }
 }
