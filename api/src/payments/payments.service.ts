@@ -16,6 +16,7 @@ import {
 } from "./payment.schema";
 import { Event, EventDocument, EventStatus } from "../events/event.schema";
 import { StripeService } from "./stripe.service";
+import { MailService } from "../mail/mail.service";
 import Stripe from "stripe";
 
 @Injectable()
@@ -27,6 +28,7 @@ export class PaymentsService {
     @InjectModel(Payment.name) private paymentModel: Model<PaymentDocument>,
     @InjectModel(Event.name) private eventModel: Model<EventDocument>,
     private stripeService: StripeService,
+    private mailService: MailService,
   ) {}
 
   /**
@@ -344,12 +346,43 @@ export class PaymentsService {
     this.logger.log(`Processing webhook event: ${event.type}`);
 
     switch (event.type) {
+      // ── Checkout sessions ──────────────────────────────────
       case "checkout.session.completed":
         await this.handleCheckoutCompleted(
           event.data.object as Stripe.Checkout.Session,
         );
         break;
 
+      case "checkout.session.async_payment_succeeded":
+        // Delayed payment methods (bank transfers etc.) — treat like completed
+        await this.handleCheckoutCompleted(
+          event.data.object as Stripe.Checkout.Session,
+        );
+        break;
+
+      case "checkout.session.async_payment_failed":
+      case "checkout.session.expired":
+        await this.handleCheckoutFailed(
+          event.data.object as Stripe.Checkout.Session,
+        );
+        break;
+
+      // ── Charge events ─────────────────────────────────────
+      case "charge.failed":
+        await this.handleChargeFailed(event.data.object as Stripe.Charge);
+        break;
+
+      case "charge.refunded":
+        await this.handleChargeRefunded(event.data.object as Stripe.Charge);
+        break;
+
+      case "charge.dispute.created":
+        await this.handleDisputeCreated(
+          event.data.object as Stripe.Dispute,
+        );
+        break;
+
+      // ── Subscription lifecycle ────────────────────────────
       case "customer.subscription.deleted":
         await this.handleSubscriptionCancelled(
           event.data.object as Stripe.Subscription,
@@ -360,8 +393,9 @@ export class PaymentsService {
         await this.handlePaymentFailed(event.data.object as Stripe.Invoice);
         break;
 
+      // ── Everything else: just log ─────────────────────────
       default:
-        this.logger.log(`Unhandled event type: ${event.type}`);
+        this.logger.log(`Acknowledged event (no action): ${event.type}`);
     }
   }
 
@@ -404,6 +438,18 @@ export class PaymentsService {
       });
 
       this.logger.log(`Membership activated for user: ${payment.user}`);
+
+      const user = await this.userModel.findById(payment.user);
+      if (user) {
+        this.sendUserEmail(
+          user.email,
+          "PKL.CLUB — Welcome to the Club! 🏓",
+          `<p>Hi ${user.firstName || user.username},</p>
+           <p>Your <strong>PKL Club Annual Membership</strong> is now active! You can register for any Pathway Series event.</p>
+           <p>Membership expires: <strong>${expiresAt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</strong></p>
+           <p>Head to the <a href="https://pkl.club/world-series.html">Pathway Series</a> to find upcoming events.</p>`,
+        );
+      }
     } else if (payment.type === PaymentType.TOURNAMENT) {
       // Handle event registration if eventId is present
       if (payment.event) {
@@ -482,6 +528,14 @@ export class PaymentsService {
         membershipStatus: "cancelled",
       });
       this.logger.log(`Membership cancelled for user: ${user._id}`);
+
+      this.sendUserEmail(
+        user.email,
+        "PKL.CLUB — Membership Cancelled",
+        `<p>Hi ${user.firstName || user.username},</p>
+         <p>Your PKL Club annual membership has been cancelled. You will no longer be able to register for Pathway Series events.</p>
+         <p>If this was a mistake, you can re-subscribe anytime at <a href="https://pkl.club/player-dashboard.html">your dashboard</a>.</p>`,
+      );
     }
   }
 
@@ -498,9 +552,137 @@ export class PaymentsService {
 
       if (user) {
         this.logger.warn(`Payment failed for user membership: ${user._id}`);
-        // Could send notification, etc.
+        this.sendUserEmail(
+          user.email,
+          "PKL.CLUB — Payment Failed",
+          `<p>Hi ${user.firstName || user.username},</p>
+           <p>We were unable to process your membership renewal payment. Please update your payment method to keep your membership active.</p>
+           <p>Visit <a href="https://pkl.club/player-dashboard.html">your dashboard</a> to resolve this.</p>`,
+        );
       }
     }
+  }
+
+  /**
+   * Handle checkout session that expired or had async payment failure.
+   * Marks the pending payment as failed and emails the user.
+   */
+  private async handleCheckoutFailed(
+    session: Stripe.Checkout.Session,
+  ): Promise<void> {
+    const payment = await this.paymentModel.findOne({
+      stripeSessionId: session.id,
+    });
+    if (!payment) return;
+
+    payment.status = PaymentStatus.FAILED;
+    await payment.save();
+    this.logger.warn(`Checkout failed/expired for session: ${session.id}`);
+
+    const user = await this.userModel.findById(payment.user);
+    if (user) {
+      this.sendUserEmail(
+        user.email,
+        "PKL.CLUB — Payment Not Completed",
+        `<p>Hi ${user.firstName || user.username},</p>
+         <p>It looks like your recent payment wasn\u2019t completed. No worries \u2014 you can try again anytime from your <a href="https://pkl.club/player-dashboard.html">dashboard</a>.</p>`,
+      );
+    }
+  }
+
+  /**
+   * A charge failed (card declined, insufficient funds, etc.).
+   */
+  private async handleChargeFailed(charge: Stripe.Charge): Promise<void> {
+    this.logger.warn(`Charge failed: ${charge.id} — ${charge.failure_message || "unknown reason"}`);
+    const email = charge.billing_details?.email || charge.receipt_email;
+    if (email) {
+      this.sendUserEmail(
+        email,
+        "PKL.CLUB — Charge Failed",
+        `<p>A recent charge of <strong>$${((charge.amount || 0) / 100).toFixed(2)}</strong> to your card was declined.</p>
+         <p>Reason: ${charge.failure_message || "Your bank declined the transaction."}</p>
+         <p>Please check your payment method and try again from <a href="https://pkl.club">pkl.club</a>.</p>`,
+      );
+    }
+  }
+
+  /**
+   * Charge refunded — deactivate membership if it was a membership payment.
+   */
+  private async handleChargeRefunded(charge: Stripe.Charge): Promise<void> {
+    this.logger.log(`Charge refunded: ${charge.id}`);
+
+    // Find payment by payment intent
+    const piId = typeof charge.payment_intent === "string"
+      ? charge.payment_intent
+      : charge.payment_intent?.id;
+    if (!piId) return;
+
+    const payment = await this.paymentModel.findOne({
+      stripePaymentIntentId: piId,
+    });
+    if (!payment) return;
+
+    payment.status = PaymentStatus.REFUNDED;
+    await payment.save();
+
+    if (payment.type === PaymentType.MEMBERSHIP) {
+      await this.userModel.findByIdAndUpdate(payment.user, {
+        membershipStatus: "cancelled",
+      });
+      this.logger.log(`Membership deactivated due to refund for user: ${payment.user}`);
+    }
+
+    const user = await this.userModel.findById(payment.user);
+    if (user) {
+      this.sendUserEmail(
+        user.email,
+        "PKL.CLUB — Refund Processed",
+        `<p>Hi ${user.firstName || user.username},</p>
+         <p>A refund of <strong>$${((charge.amount_refunded || 0) / 100).toFixed(2)}</strong> has been processed to your original payment method. It may take 5-10 business days to appear.</p>`,
+      );
+    }
+  }
+
+  /**
+   * A dispute was opened — email admin so they can respond in Stripe dashboard.
+   */
+  private async handleDisputeCreated(dispute: Stripe.Dispute): Promise<void> {
+    this.logger.warn(`Dispute created: ${dispute.id} — amount $${((dispute.amount || 0) / 100).toFixed(2)}`);
+
+    // Notify admin via the GMAIL address
+    this.sendUserEmail(
+      process.env.GMAIL || "",
+      "[ALERT] PKL.CLUB — New Stripe Dispute",
+      `<p><strong>A customer has disputed a charge.</strong></p>
+       <p>Dispute ID: ${dispute.id}</p>
+       <p>Amount: $${((dispute.amount || 0) / 100).toFixed(2)}</p>
+       <p>Reason: ${dispute.reason || "unknown"}</p>
+       <p>Respond in your <a href="https://dashboard.stripe.com/disputes/${dispute.id}">Stripe Dashboard</a> within the deadline to avoid losing the funds.</p>`,
+    );
+  }
+
+  /**
+   * Fire-and-forget email helper. Logs errors but never throws.
+   */
+  private sendUserEmail(to: string, subject: string, bodyHtml: string): void {
+    if (!to) return;
+    const wrapped = `
+      <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden;">
+        <div style="background: linear-gradient(135deg, #0a1628 0%, #2fa06f 100%); padding: 40px 30px; text-align: center;">
+          <h1 style="color: #fff; margin: 0; font-size: 28px;">PKL.CLUB</h1>
+        </div>
+        <div style="padding: 40px 30px; color: #333; font-size: 15px; line-height: 1.6;">
+          ${bodyHtml}
+          <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+          <p style="color: #aaa; font-size: 12px; text-align: center;">PKL.CLUB &mdash; The Global Pickleball Community</p>
+        </div>
+      </div>`;
+
+    this.mailService
+      .sendRawEmail(to, subject, wrapped)
+      .catch((err) => this.logger.error(`Failed to send email to ${to}: ${err.message}`));
   }
 
   /**
