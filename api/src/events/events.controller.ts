@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Patch,
+  Delete,
   Param,
   Body,
   Query,
@@ -18,11 +19,16 @@ import {
 } from "@nestjs/swagger";
 import { EventsService } from "./events.service";
 import { CreateEventDto } from "./dto/create-event.dto";
+import { UpdateEventDto } from "./dto/update-event.dto";
 import { SetWinnerDto } from "./dto/set-winner.dto";
 import { ReviewEventDto } from "./dto/review-event.dto";
 import { RegisterPlayerDto } from "./dto/register-player.dto";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 import { EventStatus } from "./event.schema";
+import {
+  ChangeRequestType,
+  ChangeRequestStatus,
+} from "./event-change-request.schema";
 import { UserType } from "../users/user.schema";
 
 @ApiTags("Events")
@@ -120,6 +126,64 @@ export class EventsController {
   }
 
   /**
+   * Get change requests (admin: all pending, operator: own requests)
+   */
+  @Get("change-requests")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: "Get change requests" })
+  @ApiQuery({ name: "status", required: false, enum: ChangeRequestStatus })
+  @ApiResponse({ status: 200, description: "List of change requests" })
+  async findChangeRequests(
+    @Query("status") status?: ChangeRequestStatus,
+    @Request() req?: any,
+  ) {
+    if (
+      req.user.userType !== UserType.ADMIN &&
+      req.user.userType !== UserType.OPERATOR
+    ) {
+      return {
+        error: "Unauthorized",
+        message: "Admin or operator access required",
+      };
+    }
+
+    const filters: any = {};
+    if (status) filters.status = status;
+
+    // Operators can only see their own requests
+    if (req.user.userType === UserType.OPERATOR) {
+      filters.requestedBy = req.user.userId;
+    }
+
+    return this.eventsService.findChangeRequests(filters);
+  }
+
+  /**
+   * Review a change request (admin only)
+   */
+  @Patch("change-requests/:id/review")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: "Approve or reject a change request (admin only)" })
+  @ApiResponse({ status: 200, description: "Change request reviewed" })
+  async reviewChangeRequest(
+    @Param("id") id: string,
+    @Body() body: { approved: boolean; adminNotes?: string },
+    @Request() req,
+  ) {
+    if (req.user.userType !== UserType.ADMIN) {
+      return { error: "Unauthorized", message: "Admin access required" };
+    }
+    return this.eventsService.reviewChangeRequest(
+      id,
+      body.approved,
+      req.user.userId,
+      body.adminNotes,
+    );
+  }
+
+  /**
    * Get single event by ID
    */
   @Get(":id")
@@ -127,6 +191,97 @@ export class EventsController {
   @ApiResponse({ status: 200, description: "Event details" })
   async findOne(@Param("id") id: string) {
     return this.eventsService.findById(id);
+  }
+
+  /**
+   * Update an event
+   * - Admin: direct update
+   * - Operator: creates a change request for admin approval
+   */
+  @Patch(":id")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary:
+      "Update an event (admin: direct, operator: creates change request)",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Event updated or change request created",
+  })
+  async updateEvent(
+    @Param("id") id: string,
+    @Body() updateDto: UpdateEventDto,
+    @Request() req,
+  ) {
+    if (
+      req.user.userType !== UserType.ADMIN &&
+      req.user.userType !== UserType.OPERATOR
+    ) {
+      return {
+        error: "Unauthorized",
+        message: "Admin or operator access required",
+      };
+    }
+
+    if (req.user.userType === UserType.ADMIN) {
+      return this.eventsService.updateEvent(id, updateDto, req.user.userId);
+    }
+
+    // Operator: create a change request
+    const { reason, ...proposedChanges } = updateDto;
+    return this.eventsService.createChangeRequest(
+      id,
+      ChangeRequestType.EDIT,
+      req.user.userId,
+      proposedChanges,
+      reason,
+    );
+  }
+
+  /**
+   * Delete an event
+   * - Admin: direct delete
+   * - Operator: creates a change request for admin approval
+   */
+  @Delete(":id")
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary:
+      "Delete an event (admin: direct, operator: creates change request)",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Event deleted or change request created",
+  })
+  async deleteEvent(
+    @Param("id") id: string,
+    @Body() body: { reason?: string },
+    @Request() req,
+  ) {
+    if (
+      req.user.userType !== UserType.ADMIN &&
+      req.user.userType !== UserType.OPERATOR
+    ) {
+      return {
+        error: "Unauthorized",
+        message: "Admin or operator access required",
+      };
+    }
+
+    if (req.user.userType === UserType.ADMIN) {
+      return this.eventsService.deleteEvent(id);
+    }
+
+    // Operator: create a delete change request
+    return this.eventsService.createChangeRequest(
+      id,
+      ChangeRequestType.DELETE,
+      req.user.userId,
+      undefined,
+      body.reason,
+    );
   }
 
   /**

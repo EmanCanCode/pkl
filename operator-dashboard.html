@@ -830,6 +830,41 @@
               </tbody>
             </table>
           </div>
+
+          <!-- My Change Requests -->
+          <div style="margin-top: 40px">
+            <h3 style="color: #fff; margin-bottom: 16px">
+              <i
+                class="fas fa-exchange-alt"
+                style="color: var(--pkl-accent, #2fa06f); margin-right: 8px"
+              ></i
+              >My Change Requests
+            </h3>
+            <div class="events-table-card">
+              <table class="events-table">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Admin Notes</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="my-change-requests-body">
+                  <tr>
+                    <td colspan="6">
+                      <div class="no-events" style="padding: 30px">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <h4>Loading...</h4>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -1058,11 +1093,252 @@
         </div>
       </div>
 
+      <!-- Edit Event Modal -->
+      <div class="modal-overlay" id="edit-event-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Edit Event</h3>
+            <button
+              class="modal-close"
+              onclick="
+                document
+                  .getElementById('edit-event-modal')
+                  .classList.remove('show')
+              "
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <div
+              class="info-box"
+              style="
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                border-radius: 10px;
+                padding: 14px;
+                margin-bottom: 20px;
+              "
+            >
+              <i class="fas fa-info-circle" style="color: #3b82f6"></i>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 13px;
+                  margin: 0;
+                "
+              >
+                Your edit request will be submitted for admin approval. Changes
+                will not take effect until approved.
+              </p>
+            </div>
+            <input type="hidden" id="edit-event-id" />
+            <form id="edit-event-form">
+              <div class="form-group">
+                <label>Event Name <span class="required">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-event-name"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Country <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-country"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>State <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-state"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-city"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Court Name <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-court"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-event-address"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Start Date <span class="required">*</span></label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="edit-event-start-date"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>End Date <span class="required">*</span></label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="edit-event-end-date"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Max Participants</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="edit-event-max-participants"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Entry Fee ($)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="edit-event-entry-fee"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Tournament Website</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="edit-event-website"
+                />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  class="form-control"
+                  id="edit-event-description"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Reason for Edit</label>
+                <textarea
+                  class="form-control"
+                  id="edit-event-reason"
+                  placeholder="Explain why you need to edit this event (helps admin review faster)..."
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn-cancel"
+              onclick="
+                document
+                  .getElementById('edit-event-modal')
+                  .classList.remove('show')
+              "
+            >
+              Cancel
+            </button>
+            <button class="btn-submit" onclick="submitEditEvent()">
+              Submit Edit Request
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete Request Modal -->
+      <div class="modal-overlay" id="delete-request-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Request Event Deletion</h3>
+            <button
+              class="modal-close"
+              onclick="
+                document
+                  .getElementById('delete-request-modal')
+                  .classList.remove('show')
+              "
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="warning-box">
+              <i class="fas fa-exclamation-triangle"></i>
+              <h4>Deletion Request</h4>
+              <p>
+                This will submit a deletion request to an administrator. The
+                event will not be removed until the admin approves your request.
+              </p>
+            </div>
+            <input type="hidden" id="delete-request-event-id" />
+            <p
+              style="color: rgba(255, 255, 255, 0.7); margin: 10px 0"
+              id="delete-request-event-name"
+            ></p>
+            <div class="form-group">
+              <label>Reason for Deletion</label>
+              <textarea
+                class="form-control"
+                id="delete-request-reason"
+                placeholder="Explain why this event should be deleted..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn-cancel"
+              onclick="
+                document
+                  .getElementById('delete-request-modal')
+                  .classList.remove('show')
+              "
+            >
+              Cancel
+            </button>
+            <button
+              class="btn-submit"
+              style="background: var(--pkl-danger, #ef4444)"
+              onclick="confirmDeleteRequest()"
+            >
+              Submit Delete Request
+            </button>
+          </div>
+        </div>
+      </div>
+
       <script>
         const API_URL = "/api";
         let token = localStorage.getItem("pkl_token");
         let currentUser = null;
         let allEvents = [];
+        let allChangeRequests = [];
         let currentFilter = "all";
 
         // Toast notification function
@@ -1124,6 +1400,7 @@
 
             // Load events
             await loadEvents();
+            await loadChangeRequests();
           } catch (error) {
             console.error("Auth error:", error);
             window.location.href = "login.html";
@@ -1216,11 +1493,23 @@
                         }
                     </td>
                     <td data-label="Actions">
+                        <div class="action-buttons">
                         ${
                           event.status === "approved" && !event.winner
                             ? `<button class="btn-action winner" onclick="openWinnerModal('${event._id}')">Set Winner</button>`
-                            : `<button class="btn-action view" onclick="viewEvent('${event._id}')">View</button>`
+                            : ""
                         }
+                        ${
+                          !event.winner
+                            ? `
+                          <button class="btn-action" style="background:rgba(59,130,246,0.15); color:#3b82f6;" onclick="openEditEventModal('${event._id}')"><i class="fas fa-edit"></i> Edit</button>
+                          <button class="btn-action" style="background:rgba(239,68,68,0.15); color:#ef4444;" onclick="requestDeleteEvent('${event._id}')"><i class="fas fa-trash"></i> Delete</button>
+                        `
+                            : `
+                          <button class="btn-action view" onclick="viewEvent('${event._id}')">View</button>
+                        `
+                        }
+                        </div>
                     </td>
                 </tr>
             `,
@@ -1434,6 +1723,209 @@
             console.error("Error setting winner:", error);
             showToast("Error: " + error.message, "error");
           }
+        }
+
+        // Edit Event Modal
+        function openEditEventModal(eventId) {
+          const event = allEvents.find((e) => e._id === eventId);
+          if (!event) return;
+
+          document.getElementById("edit-event-id").value = event._id;
+          document.getElementById("edit-event-name").value = event.name || "";
+          document.getElementById("edit-event-country").value =
+            event.location?.country || "";
+          document.getElementById("edit-event-state").value =
+            event.location?.state || "";
+          document.getElementById("edit-event-city").value =
+            event.location?.city || "";
+          document.getElementById("edit-event-court").value =
+            event.location?.courtName || "";
+          document.getElementById("edit-event-address").value =
+            event.location?.address || "";
+          document.getElementById("edit-event-start-date").value =
+            event.startDate ? event.startDate.substring(0, 10) : "";
+          document.getElementById("edit-event-end-date").value = event.endDate
+            ? event.endDate.substring(0, 10)
+            : "";
+          document.getElementById("edit-event-max-participants").value =
+            event.maxParticipants || "";
+          document.getElementById("edit-event-entry-fee").value =
+            event.entryFee || "";
+          document.getElementById("edit-event-website").value =
+            event.tournamentSite || "";
+          document.getElementById("edit-event-description").value =
+            event.description || "";
+          document.getElementById("edit-event-reason").value = "";
+
+          document.getElementById("edit-event-modal").classList.add("show");
+        }
+
+        async function submitEditEvent() {
+          const eventId = document.getElementById("edit-event-id").value;
+          const eventData = {
+            name: document.getElementById("edit-event-name").value,
+            location: {
+              country: document.getElementById("edit-event-country").value,
+              state: document.getElementById("edit-event-state").value,
+              city: document.getElementById("edit-event-city").value,
+              courtName: document.getElementById("edit-event-court").value,
+              address: document.getElementById("edit-event-address").value,
+            },
+            startDate: document.getElementById("edit-event-start-date").value,
+            endDate: document.getElementById("edit-event-end-date").value,
+            maxParticipants:
+              parseInt(
+                document.getElementById("edit-event-max-participants").value,
+              ) || undefined,
+            entryFee:
+              parseFloat(
+                document.getElementById("edit-event-entry-fee").value,
+              ) || undefined,
+            tournamentSite:
+              document.getElementById("edit-event-website").value || undefined,
+            description:
+              document.getElementById("edit-event-description").value ||
+              undefined,
+            reason:
+              document.getElementById("edit-event-reason").value || undefined,
+          };
+
+          if (
+            !eventData.name ||
+            !eventData.location.country ||
+            !eventData.location.state ||
+            !eventData.location.courtName ||
+            !eventData.startDate ||
+            !eventData.endDate
+          ) {
+            showToast("Please fill in all required fields", "warning");
+            return;
+          }
+
+          try {
+            const response = await fetch(`${API_URL}/events/${eventId}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify(eventData),
+            });
+
+            if (!response.ok) {
+              const error = await response.json();
+              throw new Error(error.message || "Failed to submit edit request");
+            }
+
+            showToast("Edit request submitted for admin approval!", "success");
+            document
+              .getElementById("edit-event-modal")
+              .classList.remove("show");
+            await loadChangeRequests();
+          } catch (error) {
+            console.error("Error submitting edit request:", error);
+            showToast("Error: " + error.message, "error");
+          }
+        }
+
+        // Delete Request
+        function requestDeleteEvent(eventId) {
+          const event = allEvents.find((e) => e._id === eventId);
+          if (!event) return;
+          document.getElementById("delete-request-event-id").value = eventId;
+          document.getElementById("delete-request-event-name").textContent =
+            `Event: "${event.name}"`;
+          document.getElementById("delete-request-reason").value = "";
+          document.getElementById("delete-request-modal").classList.add("show");
+        }
+
+        async function confirmDeleteRequest() {
+          const eventId = document.getElementById(
+            "delete-request-event-id",
+          ).value;
+          const reason = document
+            .getElementById("delete-request-reason")
+            .value.trim();
+
+          try {
+            const response = await fetch(`${API_URL}/events/${eventId}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ reason }),
+            });
+
+            if (!response.ok) {
+              const error = await response.json();
+              throw new Error(
+                error.message || "Failed to submit delete request",
+              );
+            }
+
+            showToast(
+              "Delete request submitted for admin approval!",
+              "success",
+            );
+            document
+              .getElementById("delete-request-modal")
+              .classList.remove("show");
+            await loadChangeRequests();
+          } catch (error) {
+            console.error("Error submitting delete request:", error);
+            showToast("Error: " + error.message, "error");
+          }
+        }
+
+        // Change Requests
+        async function loadChangeRequests() {
+          try {
+            const response = await fetch(`${API_URL}/events/change-requests`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            if (!response.ok) throw new Error("Failed to load change requests");
+            allChangeRequests = await response.json();
+            renderMyChangeRequests();
+          } catch (error) {
+            console.error("Error loading change requests:", error);
+          }
+        }
+
+        function renderMyChangeRequests() {
+          const container = document.getElementById("my-change-requests-body");
+          if (!container) return;
+
+          if (allChangeRequests.length === 0) {
+            container.innerHTML = `
+              <tr><td colspan="6"><div class="no-events" style="padding:30px;"><i class="fas fa-exchange-alt"></i><h4>No Change Requests</h4><p>You haven't submitted any edit or delete requests yet.</p></div></td></tr>
+            `;
+            return;
+          }
+
+          const statusBadge = (status) => {
+            const colors = {
+              pending: "#f59e0b",
+              approved: "#2fa06f",
+              rejected: "#ef4444",
+            };
+            return `<span class="status-badge ${status}">${status}</span>`;
+          };
+
+          container.innerHTML = allChangeRequests
+            .map(
+              (req) => `
+            <tr>
+              <td data-label="Event"><div class="event-name">${req.event?.name || "Deleted Event"}</div></td>
+              <td data-label="Type"><span style="color:${req.requestType === "edit" ? "#3b82f6" : "#ef4444"}; font-weight:600; text-transform:uppercase; font-size:12px;">${req.requestType}</span></td>
+              <td data-label="Status">${statusBadge(req.status)}</td>
+              <td data-label="Submitted">${formatDate(req.createdAt)}</td>
+              <td data-label="Admin Notes"><div style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,0.6);">${req.adminNotes || "-"}</div></td>
+              <td data-label="Reason"><div style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,0.6);">${req.reason || "-"}</div></td>
+            </tr>
+          `,
+            )
+            .join("");
         }
 
         function viewEvent(eventId) {

@@ -321,6 +321,23 @@
               <button class="dashboard-tab active" data-tab="events">
                 <i class="fas fa-calendar-alt"></i> Events
               </button>
+              <button class="dashboard-tab" data-tab="change-requests">
+                <i class="fas fa-exchange-alt"></i> Change Requests
+                <span
+                  class="badge"
+                  id="change-requests-badge"
+                  style="
+                    display: none;
+                    background: #f59e0b;
+                    color: #000;
+                    border-radius: 50%;
+                    padding: 2px 7px;
+                    font-size: 11px;
+                    margin-left: 6px;
+                  "
+                  >0</span
+                >
+              </button>
               <button class="dashboard-tab" data-tab="admins">
                 <i class="fas fa-user-shield"></i> Admin Users
               </button>
@@ -410,6 +427,85 @@
                         <div class="no-events">
                           <i class="fas fa-spinner fa-spin"></i>
                           <h4>Loading events...</h4>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Change Requests Tab Content -->
+            <div class="tab-content" id="tab-change-requests">
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <div class="stat-icon pending">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="stat-value" id="stat-cr-pending">0</div>
+                  <div class="stat-label">Pending Requests</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon approved">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="stat-value" id="stat-cr-approved">0</div>
+                  <div class="stat-label">Approved</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon rejected">
+                    <i class="fas fa-times-circle"></i>
+                  </div>
+                  <div class="stat-value" id="stat-cr-rejected">0</div>
+                  <div class="stat-label">Rejected</div>
+                </div>
+              </div>
+
+              <div class="actions-bar">
+                <div class="filter-tabs">
+                  <button
+                    class="filter-tab cr-filter active"
+                    data-cr-filter="pending"
+                  >
+                    Pending
+                  </button>
+                  <button
+                    class="filter-tab cr-filter"
+                    data-cr-filter="approved"
+                  >
+                    Approved
+                  </button>
+                  <button
+                    class="filter-tab cr-filter"
+                    data-cr-filter="rejected"
+                  >
+                    Rejected
+                  </button>
+                  <button class="filter-tab cr-filter" data-cr-filter="all">
+                    All
+                  </button>
+                </div>
+              </div>
+
+              <div class="events-table-card">
+                <table class="events-table">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Operator</th>
+                      <th>Type</th>
+                      <th>Reason</th>
+                      <th>Status</th>
+                      <th>Submitted</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="change-requests-table-body">
+                    <tr>
+                      <td colspan="7">
+                        <div class="no-events">
+                          <i class="fas fa-exchange-alt"></i>
+                          <h4>Loading change requests...</h4>
                         </div>
                       </td>
                     </tr>
@@ -625,6 +721,206 @@
             </button>
             <button class="btn-submit danger" onclick="confirmReject()">
               Reject Application
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Event Modal -->
+      <div class="modal-overlay" id="edit-event-modal">
+        <div class="modal-content large">
+          <div class="modal-header">
+            <h3>Edit Event</h3>
+            <button
+              class="modal-close"
+              onclick="closeModal('edit-event-modal')"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="edit-event-id" />
+            <form id="edit-event-form">
+              <div class="form-group">
+                <label>Event Name <span class="required">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-event-name"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Country <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-country"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>State <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-state"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-city"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Court Name <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-event-court"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-event-address"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Start Date <span class="required">*</span></label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="edit-event-start-date"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>End Date <span class="required">*</span></label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="edit-event-end-date"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Max Participants</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="edit-event-max-participants"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Entry Fee ($)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="edit-event-entry-fee"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Tournament Website</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="edit-event-website"
+                />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  class="form-control"
+                  id="edit-event-description"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeModal('edit-event-modal')">
+              Cancel
+            </button>
+            <button class="btn-submit" onclick="submitEditEvent()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete Event Confirm Modal -->
+      <div class="modal-overlay" id="delete-event-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Delete Event</h3>
+            <button
+              class="modal-close"
+              onclick="closeModal('delete-event-modal')"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="warning-box">
+              <i class="fas fa-exclamation-triangle"></i>
+              <h4>Are you sure?</h4>
+              <p>
+                This will permanently delete the event and all associated data.
+                This action cannot be undone.
+              </p>
+            </div>
+            <input type="hidden" id="delete-event-id" />
+            <p
+              style="color: rgba(255, 255, 255, 0.7); margin-top: 10px"
+              id="delete-event-name-display"
+            ></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn-cancel"
+              onclick="closeModal('delete-event-modal')"
+            >
+              Cancel
+            </button>
+            <button class="btn-submit danger" onclick="confirmDeleteEvent()">
+              Delete Event
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Request Details Modal -->
+      <div class="modal-overlay" id="cr-details-modal">
+        <div class="modal-content large">
+          <div class="modal-header">
+            <h3 id="cr-details-title">Change Request Details</h3>
+            <button
+              class="modal-close"
+              onclick="closeModal('cr-details-modal')"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="cr-details-content"></div>
+          <div class="modal-footer" id="cr-details-footer">
+            <button class="btn-cancel" onclick="closeModal('cr-details-modal')">
+              Close
             </button>
           </div>
         </div>
@@ -1108,8 +1404,10 @@
       let currentUser = null;
       let allEvents = [];
       let allAdmins = [];
+      let allChangeRequests = [];
       let searchedUsers = [];
       let currentFilter = "pending";
+      let currentCRFilter = "pending";
       let currentEventId = null;
       const SUPER_ADMIN_USERNAME = "eman";
 
@@ -1135,6 +1433,8 @@
         setupTabs();
 
         await loadEvents();
+        // Load change request count for badge
+        loadChangeRequests();
       }
 
       /**
@@ -1157,6 +1457,8 @@
             // Load data for the tab
             if (tabId === "admins") {
               loadAdmins();
+            } else if (tabId === "change-requests") {
+              loadChangeRequests();
             } else if (tabId === "users") {
               // Focus search input when switching to users tab
               setTimeout(
@@ -1291,6 +1593,18 @@
                       </button>
                       <button class="btn-action reject" onclick="openRejectModal('${event._id}')">
                         <i class="fas fa-times"></i> Reject
+                      </button>
+                    `
+                        : ""
+                    }
+                    ${
+                      !event.winner
+                        ? `
+                      <button class="btn-action" style="background:rgba(59,130,246,0.15); color:#3b82f6;" onclick="openEditEventModal('${event._id}')">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="btn-action reject" onclick="deleteEvent('${event._id}')">
+                        <i class="fas fa-trash"></i> Delete
                       </button>
                     `
                         : ""
@@ -1552,6 +1866,341 @@
           showToast("Error: " + error.message, "error");
         }
       }
+
+      /* ===== EDIT / DELETE EVENTS ===== */
+
+      function openEditEventModal(eventId) {
+        const event = allEvents.find((e) => e._id === eventId);
+        if (!event) return;
+
+        document.getElementById("edit-event-id").value = event._id;
+        document.getElementById("edit-event-name").value = event.name || "";
+        document.getElementById("edit-event-country").value =
+          event.location?.country || "";
+        document.getElementById("edit-event-state").value =
+          event.location?.state || "";
+        document.getElementById("edit-event-city").value =
+          event.location?.city || "";
+        document.getElementById("edit-event-court").value =
+          event.location?.courtName || "";
+        document.getElementById("edit-event-address").value =
+          event.location?.address || "";
+        document.getElementById("edit-event-start-date").value = event.startDate
+          ? event.startDate.substring(0, 10)
+          : "";
+        document.getElementById("edit-event-end-date").value = event.endDate
+          ? event.endDate.substring(0, 10)
+          : "";
+        document.getElementById("edit-event-max-participants").value =
+          event.maxParticipants || "";
+        document.getElementById("edit-event-entry-fee").value =
+          event.entryFee || "";
+        document.getElementById("edit-event-website").value =
+          event.tournamentSite || "";
+        document.getElementById("edit-event-description").value =
+          event.description || "";
+
+        openModal("edit-event-modal");
+      }
+
+      async function submitEditEvent() {
+        const eventId = document.getElementById("edit-event-id").value;
+        const eventData = {
+          name: document.getElementById("edit-event-name").value,
+          location: {
+            country: document.getElementById("edit-event-country").value,
+            state: document.getElementById("edit-event-state").value,
+            city: document.getElementById("edit-event-city").value,
+            courtName: document.getElementById("edit-event-court").value,
+            address: document.getElementById("edit-event-address").value,
+          },
+          startDate: document.getElementById("edit-event-start-date").value,
+          endDate: document.getElementById("edit-event-end-date").value,
+          maxParticipants:
+            parseInt(
+              document.getElementById("edit-event-max-participants").value,
+            ) || undefined,
+          entryFee:
+            parseFloat(document.getElementById("edit-event-entry-fee").value) ||
+            undefined,
+          tournamentSite:
+            document.getElementById("edit-event-website").value || undefined,
+          description:
+            document.getElementById("edit-event-description").value ||
+            undefined,
+        };
+
+        if (
+          !eventData.name ||
+          !eventData.location.country ||
+          !eventData.location.state ||
+          !eventData.location.courtName ||
+          !eventData.startDate ||
+          !eventData.endDate
+        ) {
+          showToast("Please fill in all required fields", "warning");
+          return;
+        }
+
+        try {
+          await apiRequest(`/events/${eventId}`, {
+            method: "PATCH",
+            body: JSON.stringify(eventData),
+          });
+          showToast("Event updated successfully!", "success");
+          closeModal("edit-event-modal");
+          await loadEvents();
+        } catch (error) {
+          console.error("Error updating event:", error);
+          showToast("Error: " + error.message, "error");
+        }
+      }
+
+      function deleteEvent(eventId) {
+        const event = allEvents.find((e) => e._id === eventId);
+        if (!event) return;
+        document.getElementById("delete-event-id").value = eventId;
+        document.getElementById("delete-event-name-display").textContent =
+          `Event: "${event.name}"`;
+        openModal("delete-event-modal");
+      }
+
+      async function confirmDeleteEvent() {
+        const eventId = document.getElementById("delete-event-id").value;
+        try {
+          await apiRequest(`/events/${eventId}`, { method: "DELETE" });
+          showToast("Event deleted successfully", "success");
+          closeModal("delete-event-modal");
+          await loadEvents();
+        } catch (error) {
+          console.error("Error deleting event:", error);
+          showToast("Error: " + error.message, "error");
+        }
+      }
+
+      /* ===== CHANGE REQUESTS ===== */
+
+      async function loadChangeRequests() {
+        document.getElementById("change-requests-table-body").innerHTML = `
+          <tr><td colspan="7"><div class="no-events"><i class="fas fa-spinner fa-spin"></i><h4>Loading...</h4></div></td></tr>
+        `;
+        try {
+          allChangeRequests = await apiRequest("/events/change-requests");
+          updateCRStats();
+          renderChangeRequests();
+        } catch (error) {
+          console.error("Error loading change requests:", error);
+          showToast(
+            "Failed to load change requests: " + error.message,
+            "error",
+          );
+        }
+      }
+
+      function updateCRStats() {
+        const pending = allChangeRequests.filter(
+          (r) => r.status === "pending",
+        ).length;
+        const approved = allChangeRequests.filter(
+          (r) => r.status === "approved",
+        ).length;
+        const rejected = allChangeRequests.filter(
+          (r) => r.status === "rejected",
+        ).length;
+        document.getElementById("stat-cr-pending").textContent = pending;
+        document.getElementById("stat-cr-approved").textContent = approved;
+        document.getElementById("stat-cr-rejected").textContent = rejected;
+
+        // Update badge
+        const badge = document.getElementById("change-requests-badge");
+        if (pending > 0) {
+          badge.textContent = pending;
+          badge.style.display = "inline";
+        } else {
+          badge.style.display = "none";
+        }
+      }
+
+      function renderChangeRequests() {
+        const filtered =
+          currentCRFilter === "all"
+            ? allChangeRequests
+            : allChangeRequests.filter((r) => r.status === currentCRFilter);
+
+        if (filtered.length === 0) {
+          document.getElementById("change-requests-table-body").innerHTML = `
+            <tr><td colspan="7"><div class="no-events"><i class="fas fa-exchange-alt"></i><h4>No Change Requests</h4><p>No ${currentCRFilter === "all" ? "" : currentCRFilter + " "}change requests found.</p></div></td></tr>
+          `;
+          return;
+        }
+
+        const typeBadge = (type) =>
+          type === "edit"
+            ? '<span class="status-badge approved" style="background:rgba(59,130,246,0.15);color:#3b82f6;">Edit</span>'
+            : '<span class="status-badge rejected">Delete</span>';
+
+        document.getElementById("change-requests-table-body").innerHTML =
+          filtered
+            .map(
+              (req) => `
+          <tr>
+            <td data-label="Event"><div class="event-name">${req.event?.name || "Deleted Event"}</div></td>
+            <td data-label="Operator"><span class="operator-name">${req.requestedBy?.username || "Unknown"}</span></td>
+            <td data-label="Type">${typeBadge(req.requestType)}</td>
+            <td data-label="Reason"><div style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${req.reason || "-"}</div></td>
+            <td data-label="Status">${getStatusBadge(req.status)}</td>
+            <td data-label="Submitted">${formatDate(req.createdAt)}</td>
+            <td data-label="Actions">
+              <div class="action-buttons">
+                <button class="btn-action view" onclick="viewChangeRequest('${req._id}')"><i class="fas fa-eye"></i> View</button>
+                ${
+                  req.status === "pending"
+                    ? `
+                  <button class="btn-action approve" onclick="approveChangeRequest('${req._id}')"><i class="fas fa-check"></i></button>
+                  <button class="btn-action reject" onclick="rejectChangeRequest('${req._id}')"><i class="fas fa-times"></i></button>
+                `
+                    : ""
+                }
+              </div>
+            </td>
+          </tr>
+        `,
+            )
+            .join("");
+      }
+
+      function viewChangeRequest(requestId) {
+        const req = allChangeRequests.find((r) => r._id === requestId);
+        if (!req) return;
+
+        document.getElementById("cr-details-title").textContent =
+          (req.requestType === "edit" ? "Edit" : "Delete") +
+          " Request — " +
+          (req.event?.name || "Event");
+
+        let html = `
+          <div class="event-details-grid">
+            <div class="event-detail-item"><label>Request Type</label><span>${req.requestType === "edit" ? '<i class="fas fa-edit" style="color:#3b82f6;margin-right:6px;"></i>Edit' : '<i class="fas fa-trash" style="color:#ef4444;margin-right:6px;"></i>Delete'}</span></div>
+            <div class="event-detail-item"><label>Status</label><span>${getStatusBadge(req.status)}</span></div>
+            <div class="event-detail-item"><label>Operator</label><span>${req.requestedBy?.username || "Unknown"}</span></div>
+            <div class="event-detail-item"><label>Submitted</label><span>${formatDateTime(req.createdAt)}</span></div>
+            ${req.reason ? `<div class="event-detail-item full-width"><label>Reason</label><span>${req.reason}</span></div>` : ""}
+            ${req.adminNotes ? `<div class="event-detail-item full-width"><label>Admin Notes</label><span>${req.adminNotes}</span></div>` : ""}
+            ${req.reviewedBy ? `<div class="event-detail-item"><label>Reviewed By</label><span>${req.reviewedBy.username}</span></div>` : ""}
+            ${req.reviewedAt ? `<div class="event-detail-item"><label>Reviewed At</label><span>${formatDateTime(req.reviewedAt)}</span></div>` : ""}
+          </div>
+        `;
+
+        if (req.requestType === "edit" && req.proposedChanges) {
+          html += `<h4 style="color:#fff; margin: 20px 0 12px;">Proposed Changes</h4><div class="event-details-grid">`;
+          const changes = req.proposedChanges;
+          if (changes.name)
+            html += `<div class="event-detail-item"><label>Name</label><span>${changes.name}</span></div>`;
+          if (changes.location) {
+            const loc = changes.location;
+            if (loc.country)
+              html += `<div class="event-detail-item"><label>Country</label><span>${loc.country}</span></div>`;
+            if (loc.state)
+              html += `<div class="event-detail-item"><label>State</label><span>${loc.state}</span></div>`;
+            if (loc.city)
+              html += `<div class="event-detail-item"><label>City</label><span>${loc.city}</span></div>`;
+            if (loc.courtName)
+              html += `<div class="event-detail-item"><label>Court Name</label><span>${loc.courtName}</span></div>`;
+            if (loc.address)
+              html += `<div class="event-detail-item"><label>Address</label><span>${loc.address}</span></div>`;
+          }
+          if (changes.startDate)
+            html += `<div class="event-detail-item"><label>Start Date</label><span>${formatDate(changes.startDate)}</span></div>`;
+          if (changes.endDate)
+            html += `<div class="event-detail-item"><label>End Date</label><span>${formatDate(changes.endDate)}</span></div>`;
+          if (changes.maxParticipants)
+            html += `<div class="event-detail-item"><label>Max Participants</label><span>${changes.maxParticipants}</span></div>`;
+          if (changes.entryFee !== undefined)
+            html += `<div class="event-detail-item"><label>Entry Fee</label><span>$${changes.entryFee}</span></div>`;
+          if (changes.tournamentSite)
+            html += `<div class="event-detail-item"><label>Website</label><span>${changes.tournamentSite}</span></div>`;
+          if (changes.description)
+            html += `<div class="event-detail-item full-width"><label>Description</label><span>${changes.description}</span></div>`;
+          html += `</div>`;
+        }
+
+        document.getElementById("cr-details-content").innerHTML = html;
+
+        const footer = document.getElementById("cr-details-footer");
+        if (req.status === "pending") {
+          footer.innerHTML = `
+            <button class="btn-cancel" onclick="closeModal('cr-details-modal')">Close</button>
+            <button class="btn-action reject" style="padding: 12px 24px;" onclick="rejectChangeRequest('${req._id}'); closeModal('cr-details-modal');">
+              <i class="fas fa-times"></i> Reject
+            </button>
+            <button class="btn-action approve" style="padding: 12px 24px;" onclick="approveChangeRequest('${req._id}'); closeModal('cr-details-modal');">
+              <i class="fas fa-check"></i> Approve
+            </button>
+          `;
+        } else {
+          footer.innerHTML = `<button class="btn-cancel" onclick="closeModal('cr-details-modal')">Close</button>`;
+        }
+
+        openModal("cr-details-modal");
+      }
+
+      async function approveChangeRequest(requestId) {
+        const req = allChangeRequests.find((r) => r._id === requestId);
+        if (!req) return;
+
+        const label =
+          req.requestType === "edit" ? "apply the proposed edits to" : "delete";
+        if (
+          !confirm(
+            `Are you sure you want to approve this request? This will ${label} the event "${req.event?.name || "this event"}".`,
+          )
+        )
+          return;
+
+        try {
+          await apiRequest(`/events/change-requests/${requestId}/review`, {
+            method: "PATCH",
+            body: JSON.stringify({ approved: true, adminNotes: "" }),
+          });
+          showToast("Change request approved and applied!", "success");
+          await loadChangeRequests();
+          await loadEvents();
+        } catch (error) {
+          console.error("Error approving change request:", error);
+          showToast("Error: " + error.message, "error");
+        }
+      }
+
+      async function rejectChangeRequest(requestId) {
+        const reason = prompt(
+          "Provide a reason for rejecting this request (optional):",
+        );
+        if (reason === null) return; // cancelled
+
+        try {
+          await apiRequest(`/events/change-requests/${requestId}/review`, {
+            method: "PATCH",
+            body: JSON.stringify({ approved: false, adminNotes: reason }),
+          });
+          showToast("Change request rejected", "info");
+          await loadChangeRequests();
+        } catch (error) {
+          console.error("Error rejecting change request:", error);
+          showToast("Error: " + error.message, "error");
+        }
+      }
+
+      // CR filter tab handlers
+      document.querySelectorAll(".cr-filter").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          document
+            .querySelectorAll(".cr-filter")
+            .forEach((t) => t.classList.remove("active"));
+          this.classList.add("active");
+          currentCRFilter = this.dataset.crFilter;
+          renderChangeRequests();
+        });
+      });
 
       /* ===== ADMIN CRUD ===== */
 

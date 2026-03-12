@@ -7,7 +7,14 @@
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from "mongoose";
 import { Event, EventDocument, EventStatus } from "./event.schema";
+import {
+  EventChangeRequest,
+  EventChangeRequestDocument,
+  ChangeRequestType,
+  ChangeRequestStatus,
+} from "./event-change-request.schema";
 import { CreateEventDto } from "./dto/create-event.dto";
+import { UpdateEventDto } from "./dto/update-event.dto";
 import { SetWinnerDto } from "./dto/set-winner.dto";
 import { ReviewEventDto } from "./dto/review-event.dto";
 import { RegisterPlayerDto } from "./dto/register-player.dto";
@@ -17,6 +24,8 @@ import { UserType } from "../users/user.schema";
 export class EventsService {
   constructor(
     @InjectModel(Event.name) private eventModel: Model<EventDocument>,
+    @InjectModel(EventChangeRequest.name)
+    private changeRequestModel: Model<EventChangeRequestDocument>,
   ) {}
 
   /**
@@ -288,6 +297,207 @@ export class EventsService {
   }
 
   /**
+   * Update an event directly (admin only)
+   */
+  async updateEvent(
+    eventId: string,
+    updateDto: UpdateEventDto,
+    userId: string,
+  ): Promise<EventDocument> {
+    const event = await this.eventModel.findById(eventId);
+    if (!event) {
+      throw new NotFoundException("Event not found");
+    }
+
+    if (event.winner) {
+      throw new BadRequestException(
+        "Cannot edit a completed event with a declared winner",
+      );
+    }
+
+    // Remove reason field — it's not part of event data
+    const { reason, ...updateData } = updateDto;
+    Object.assign(event, updateData);
+    return event.save();
+  }
+
+  /**
+   * Delete an event directly (admin only)
+   */
+  async deleteEvent(eventId: string): Promise<{ message: string }> {
+    const event = await this.eventModel.findById(eventId);
+    if (!event) {
+      throw new NotFoundException("Event not found");
+    }
+
+    if (event.winner) {
+      throw new BadRequestException(
+        "Cannot delete a completed event with a declared winner",
+      );
+    }
+
+    await this.eventModel.findByIdAndDelete(eventId);
+    // Clean up any pending change requests for this event
+    await this.changeRequestModel.deleteMany({
+      event: new Types.ObjectId(eventId),
+    });
+    return { message: "Event deleted successfully" };
+  }
+
+  /**
+   * Create a change request (operator requesting edit/delete)
+   */
+  async createChangeRequest(
+    eventId: string,
+    requestType: ChangeRequestType,
+    userId: string,
+    proposedChanges?: Record<string, any>,
+    reason?: string,
+  ): Promise<EventChangeRequestDocument> {
+    const event = await this.eventModel.findById(eventId);
+    if (!event) {
+      throw new NotFoundException("Event not found");
+    }
+
+    // Operator can only request changes on their own events
+    if (event.operator.toString() !== userId) {
+      throw new ForbiddenException(
+        "You can only request changes for your own events",
+      );
+    }
+
+    if (event.winner) {
+      throw new BadRequestException(
+        "Cannot modify a completed event with a declared winner",
+      );
+    }
+
+    // Check for existing pending request of the same type
+    const existingRequest = await this.changeRequestModel.findOne({
+      event: new Types.ObjectId(eventId),
+      requestedBy: new Types.ObjectId(userId),
+      requestType,
+      status: ChangeRequestStatus.PENDING,
+    });
+
+    if (existingRequest) {
+      throw new BadRequestException(
+        `You already have a pending ${requestType} request for this event`,
+      );
+    }
+
+    const changeRequest = new this.changeRequestModel({
+      event: new Types.ObjectId(eventId),
+      requestedBy: new Types.ObjectId(userId),
+      requestType,
+      proposedChanges:
+        requestType === ChangeRequestType.EDIT ? proposedChanges : undefined,
+      reason,
+    });
+
+    return changeRequest.save();
+  }
+
+  /**
+   * Get change requests with optional filters
+   */
+  async findChangeRequests(filters?: {
+    status?: ChangeRequestStatus;
+    requestedBy?: string;
+  }): Promise<EventChangeRequestDocument[]> {
+    const query: any = {};
+
+    if (filters?.status) {
+      query.status = filters.status;
+    }
+
+    if (filters?.requestedBy) {
+      query.requestedBy = new Types.ObjectId(filters.requestedBy);
+    }
+
+    return this.changeRequestModel
+      .find(query)
+      .populate("event", "name location startDate endDate status")
+      .populate("requestedBy", "username firstName lastName email")
+      .populate("reviewedBy", "username firstName lastName")
+      .sort({ createdAt: -1 })
+      .exec();
+  }
+
+  /**
+   * Review a change request (admin approve/reject)
+   * If approved: apply edit changes or delete the event
+   */
+  async reviewChangeRequest(
+    requestId: string,
+    approved: boolean,
+    adminId: string,
+    adminNotes?: string,
+  ): Promise<{ changeRequest: EventChangeRequestDocument; message: string }> {
+    const changeRequest = await this.changeRequestModel.findById(requestId);
+    if (!changeRequest) {
+      throw new NotFoundException("Change request not found");
+    }
+
+    if (changeRequest.status !== ChangeRequestStatus.PENDING) {
+      throw new BadRequestException("This request has already been reviewed");
+    }
+
+    changeRequest.status = approved
+      ? ChangeRequestStatus.APPROVED
+      : ChangeRequestStatus.REJECTED;
+    changeRequest.reviewedBy = new Types.ObjectId(adminId);
+    changeRequest.reviewedAt = new Date();
+    changeRequest.adminNotes = adminNotes;
+
+    await changeRequest.save();
+
+    let message: string;
+
+    if (approved) {
+      if (changeRequest.requestType === ChangeRequestType.EDIT) {
+        // Apply the proposed changes to the event
+        const event = await this.eventModel.findById(changeRequest.event);
+        if (event) {
+          Object.assign(event, changeRequest.proposedChanges);
+          await event.save();
+        }
+        message = "Edit request approved and changes applied to the event";
+      } else {
+        // Delete the event
+        await this.eventModel.findByIdAndDelete(changeRequest.event);
+        // Clean up other pending requests for this event
+        await this.changeRequestModel.updateMany(
+          {
+            event: changeRequest.event,
+            _id: { $ne: changeRequest._id },
+            status: ChangeRequestStatus.PENDING,
+          },
+          {
+            status: ChangeRequestStatus.REJECTED,
+            reviewedBy: new Types.ObjectId(adminId),
+            reviewedAt: new Date(),
+            adminNotes: "Auto-rejected: event was deleted via another request",
+          },
+        );
+        message = "Delete request approved and event has been removed";
+      }
+    } else {
+      message = "Change request rejected";
+    }
+
+    // Re-populate for the response
+    const populated = await this.changeRequestModel
+      .findById(requestId)
+      .populate("event", "name location startDate endDate status")
+      .populate("requestedBy", "username firstName lastName email")
+      .populate("reviewedBy", "username firstName lastName")
+      .exec();
+
+    return { changeRequest: populated, message };
+  }
+
+  /**
    * Get event statistics
    */
   async getStats(): Promise<any> {
@@ -305,6 +515,17 @@ export class EventsService {
       status: EventStatus.REJECTED,
     });
 
-    return { total, pending, approved, completed, rejected };
+    const pendingChangeRequests = await this.changeRequestModel.countDocuments({
+      status: ChangeRequestStatus.PENDING,
+    });
+
+    return {
+      total,
+      pending,
+      approved,
+      completed,
+      rejected,
+      pendingChangeRequests,
+    };
   }
 }
